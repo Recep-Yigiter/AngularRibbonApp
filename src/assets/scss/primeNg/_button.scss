@@ -1,0 +1,36 @@
+
+
+
+
+
+
+:host ::ng-deep{
+
+   .selectButton  {
+
+      .p-button.p-button-icon-only{
+        width: 27px;
+        height: 27px;
+        padding: 0.75rem 0;
+      }
+        .fa-pencil{
+         color: black;
+        }
+
+        .p-button{
+            color: #ffffff;
+            background: #ffffff;
+            border: none !important;
+            border-radius: 50%;
+            box-shadow: none !important;
+        
+        }
+        .p-button:enabled:hover{
+            background-color: #d4d4d4;
+        }
+    }
+
+
+}
+
+

@@ -1,0 +1,230 @@
+* {
+	box-sizing: border-box;
+}
+
+
+
+.splash {
+	position: absolute;
+	z-index: 9999;
+	width: 100vw;
+	height: 100vh;
+	background-color: black;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+
+}
+.splash .loading-bar {
+	background: linear-gradient(to right, rgba(89, 132, 178, 1) 0%, rgba(177, 185, 193, 1) 50%, rgba(89, 132, 178, 1) 100%);
+	height: 20px;
+	width: 100vw;
+	bottom: 0;
+	position: absolute;
+	animation-name: loading-scroll;
+	animation-duration: 3s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+.splash .loading-bar {
+	background: linear-gradient(to right, rgba(89, 132, 178, 1) 0%, rgba(177, 185, 193, 1) 50%, rgba(89, 132, 178, 1) 100%);
+	height: 20px;
+	width: 100vw;
+	bottom: 0;
+	position: absolute;
+	animation-name: loading-scroll;
+	animation-duration: 3s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+
+
+
+
+
+
+@keyframes loading-scroll {
+	0% {
+		background-position: -100vw;
+	}
+
+	100% {
+		background-position: 100vw;
+	}
+}
+
+.menu {
+	position: absolute;
+	z-index: 100;
+	bottom: 0;
+	background-color: #BDBDBD;
+	width: 100vw;
+	height: 30px;
+	border-bottom: 1px solid #1F1F1F;
+	border-right: 1px solid #1F1F1F;
+	border-top: 1px solid #EEEEEE;
+	border-left: 1px solid #EEEEEE;
+	border-right: none;
+	border-left: none;
+	padding: 1px;
+	display: flex;
+
+
+}
+
+.menu .start-button {
+	font-size: 1.1em;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 5px;
+	border-bottom: 1px solid #1F1F1F;
+	border-right: 1px solid #1F1F1F;
+	border-top: 1px solid #EEEEEE;
+	border-left: 1px solid #EEEEEE;
+}
+
+.window{
+	font-size: 12px;
+	background-color: #BDBDBD;
+	border-bottom: 1px solid #1F1F1F;
+	border-right: 1px solid #1F1F1F;
+	border-top: 1px solid #EEEEEE;
+	border-left: 1px solid #EEEEEE;
+	position: absolute;
+	padding: 3px;
+	display: flex;
+	flex-direction: column;
+}
+
+.window .top-bar {
+	/* background: linear-gradient(to right, #717171 0%, #bbbbbb 100%); */
+	padding: 2px;
+	/* background-color: #BDBDBD; */
+	background-color: #515050;
+	color: white;
+	margin-bottom: 3px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-shrink: 0;
+}
+
+
+.window .toolbar {
+	display: flex;
+	flex-direction: row;
+
+
+}
+
+.window .toolbar .item {
+	padding: 0 3px;
+	flex-grow: 1;
+	cursor: default;
+	display: flex;
+	border-bottom: 1px solid #1F1F1F;
+	border-right: 1px solid #1F1F1F;
+	border-top: 1px solid #EEEEEE;
+	border-left: 1px solid #EEEEEE;
+	background-color: #BDBDBD;
+	color: black;
+	min-width: 15px;
+	justify-content: center;
+	align-items: center;
+}
+
+.window  .toolbar .footer {
+	padding-top: 3px;
+
+
+}
+
+.window  .toolbar .footer .content {
+	background-color: #BDBDBD;
+	border-bottom: 1px solid #1F1F1F;
+	border-right: 1px solid #1F1F1F;
+	border-top: 1px solid #EEEEEE;
+	border-left: 1px solid #EEEEEE;
+	width: 100%;
+	padding: 2px;
+}
+
+.window {
+	width: 600px;
+	height: 300px;
+	min-width: 200px;
+	min-height: 200px;
+	max-width: 100vw;
+	max-height:100vh;
+
+}
+
+.window .footer .resize {
+	 
+		height: 10px;
+		width: 10px;
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		cursor: nwse-resize;	
+}
+
+
+.window .toolbar.item:active {
+	border-bottom: 1px solid #EEEEEE;
+	border-right: 1px solid #EEEEEE;
+	border-top: 1px solid #1F1F1F;
+	border-left: 1px solid #1F1F1F;
+}
+
+.window>.content {
+	/* overflow: scroll; */
+	display: flex;
+	flex-grow: 1;
+	border-bottom: 1px solid #EEEEEE;
+	border-right: 1px solid #EEEEEE;
+	border-top: 1px solid #1F1F1F;
+	border-left: 1px solid #1F1F1F;
+	padding: 5px;
+	background-color: white;
+    height: calc(100% - 45px);
+
+
+
+}
+
+.window > .content > div {
+	display: flex;
+	flex-wrap: wrap;
+	align-content: flex-start;
+}
+
+.window > .content .folder {
+	flex-shrink: 0;
+	padding: 10px;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+
+
+}
+
+.window > .content .folder .title {
+	min-width: 100%;
+	text-align: center;
+}
+
+
+
+
+
+.icon-folder {
+	flex-shrink: 0;
+	width: 40px;
+	height: 38px;
+	background: url('https://pbs.twimg.com/media/DPHZZNbU8AAefce.png') no-repeat -41px -332px;
+}

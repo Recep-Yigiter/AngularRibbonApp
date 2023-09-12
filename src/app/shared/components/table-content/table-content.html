@@ -1,0 +1,32 @@
+
+
+<div style="display: flex;margin: 2px 10px;">
+  <div style="margin-top: 10px; margin-right: 10px; cursor: pointer;">
+    <ng-content select=".action-insert"></ng-content>
+  </div>
+  <div style="margin-top: 10px; margin-right: 10px; cursor: pointer;">
+    <ng-content select=".action-delete"></ng-content>
+  </div>
+  <div style="margin-top: 10px; margin-right: 10px; cursor: pointer;">
+    <ng-content select=".action-update"></ng-content>
+  </div>
+
+</div>
+
+<div  style=" border-width: 1px 2px 2px 2px ; 
+             border-style: solid; 
+             border-color:  rgb(184, 184, 184);
+             position: relative; margin-top: 5px;">
+
+  <mat-progress-bar mode="determinate" value="100" style="margin-bottom: 0px; opacity: 1; ">
+  </mat-progress-bar>
+
+  <ng-content select=".table"></ng-content>
+
+
+</div>
+
+<div style="display: flex; justify-content: end;">
+  <ng-content select=".pagination"></ng-content>
+</div>
+

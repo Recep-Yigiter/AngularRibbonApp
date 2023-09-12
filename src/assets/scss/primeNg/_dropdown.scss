@@ -1,0 +1,19 @@
+.p-dropdown-trigger-icon.pi-chevron-down:before{
+    content: "\e902" !important;
+}
+.p-dropdown {
+    width: 100% !important;
+    border-radius: 0 !important;
+
+}
+.p-dropdown-panel {
+    background: #ffffff;
+    color: #495057;
+    border: 0 none;
+    border-radius: 0px !important;
+    box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
+}
+
+.form-control{
+    border-radius: 0;
+}

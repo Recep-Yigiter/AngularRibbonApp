@@ -1,0 +1,19 @@
+<dialog-action>
+    <button (click)="onSubmit($event)" class="done_outline" autofocus="false" mat-button>
+        <mat-icon class="big-icon" style="font-size: 25px;">done_outline</mat-icon>
+    </button>
+
+    <button class="clear" autofocus="false" mat-dialog-close mat-button>
+        <mat-icon class="big-icon" style="font-size: 25px;">clear</mat-icon>
+    </button>
+</dialog-action>
+
+
+
+
+
+<form-content formTitle="Stok Kart">
+    <form class="form" [formGroup]="frm">
+        <common-input label="test" [formControlNames]="hareketAdi"></common-input>
+    </form>
+</form-content>
