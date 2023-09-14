@@ -6,6 +6,7 @@ import { HizmetCardComponent } from './pages/stok/cards/hizmet-card/hizmet-card.
 import { AppLayoutComponent } from './app-layout/app-layout.component';
 import { StokComponent } from './pages/stok/stok.component';
 import { MasrafCardComponent } from './pages/stok/cards/masraf-card/masraf-card.component';
+import { MaliyetComponent } from './pages/maliyet/maliyet.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'stok', pathMatch: 'full', },
@@ -17,6 +18,12 @@ const routes: Routes = [
           { path: "depo-kart", component: DepoCardComponent },
           { path: "hizmet-kart", component: HizmetCardComponent },
           { path: "masraf-kart", component: MasrafCardComponent },
+        ]
+      },
+      {
+        path: "maliyet", component: MaliyetComponent, children: [
+
+
         ]
       },
 

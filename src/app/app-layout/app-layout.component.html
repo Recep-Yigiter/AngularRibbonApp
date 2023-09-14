@@ -38,7 +38,6 @@
     </div>
 </div> -->
 
-<div id="ribbon" unselectable="on">
 
     <tabs>
         <tab tabTitle="Stok">
@@ -46,9 +45,11 @@
         </tab>
         <tab tabTitle="Fatura">Fatura</tab>
         <tab tabTitle="Satınalma">Satınalma</tab>
+        <tab tabTitle="Maliyet">
+            <app-maliyet-tab></app-maliyet-tab>
+        </tab>
     </tabs>
 
-    <div style="position: fixed;">
+    <div style="position: fixed; margin-top: 120px;">
         <router-outlet></router-outlet>
     </div>
-</div>

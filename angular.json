@@ -34,11 +34,9 @@
               "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "src/assets/scss/primeNg/primeNG-styles.scss"
-
-
             ],
             "scripts": [
-             
+              "node_modules/jquery/dist/jquery.min.js"
             ]
           },
           "configurations": {

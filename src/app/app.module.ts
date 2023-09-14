@@ -26,6 +26,8 @@ import { StokCardAddComponent } from './shared/dialogs/stok/stok-card-add/stok-c
 import { StokCardUpdateComponent } from './shared/dialogs/stok/stok-card-update/stok-card-update.component';
 import { TabsComponent } from './app-layout/tabs/tabs.component';
 import { TabComponent } from './app-layout/tab/tab.component';
+import { MaliyetTabComponent } from './app-layout/maliyet-tab/maliyet-tab.component';
+import { MaliyetComponent } from './pages/maliyet/maliyet.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { TabComponent } from './app-layout/tab/tab.component';
     StokCardUpdateComponent,
     TabsComponent,
     TabComponent,
+    MaliyetTabComponent,
+    MaliyetComponent,
     
   ],
   imports: [
