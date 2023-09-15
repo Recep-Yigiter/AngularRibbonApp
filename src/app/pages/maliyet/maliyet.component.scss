@@ -10912,8 +10912,8 @@
   .dx-filemanager
     .dx-filemanager-container
     .dx-drawer-panel-content.dx-drawer-panel-content-initial {
-    min-width:500px;
-    max-width:500px;
+    min-width:525px;
+    max-width:525px;
   }
   .dx-filemanager
     .dx-filemanager-container
@@ -11697,11 +11697,40 @@
     border-bottom: 1px dotted silver;
   }
 
-.test{
+.menu-node-folder{
 font-size: 17px;
 font-weight: 600;
 color: #464646 !important;
 }
+.view-icon-content{
+  position: absolute;
+  right: 10px;
+  top: 4px;
+  z-index: 99;
+}
+.title-icon{
+  height: 100%;
+  width: 22px;
+  margin-left: 2px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.menu-node-name + .view-icon-content .view-icon{
+  opacity: 0;
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+}
+
+.menu-node-name:hover + div .view-icon{
+  opacity: 0.4;
+
+}
+.menu-node-name + .view-icon-content .view-icon:hover{
+  opacity: 1;
+}
+
+
 
 
 

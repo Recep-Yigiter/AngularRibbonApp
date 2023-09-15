@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Menu } from './menu';
 declare var $: any;
+
+
 @Component({
   selector: 'app-maliyet',
   templateUrl: './maliyet.component.html',
@@ -12,23 +14,46 @@ export class MaliyetComponent implements OnInit {
 
 
   }
+
   index = 0;
   menu: any;
   expand = {};
 
   selectedNode = undefined;
+  denemeArray: any;
+  deneme(test: any) {
+    this.denemeArray = test
+    
+    let res = [];
+    this.denemeArray.submenu.map( s  => {
+      res = [...res, s]
+
+      if (s.submenu.length > 0) {
+        s.submenu.map(c => {
+          res = [...res, c]
+        })
+      }
+    })
+    console.log(res)
+
+
+
+
+
+  }
 
   constructor() {
+
     this.menu = Menu.map(x => this.toNode(x));
   }
 
   private toNode(x: any): any {
-      const y: any = { ...x };
-      y.index = ++this.index;
-      for (let n = 0; n < y.submenu.length; n++) {
-        y.submenu[n] = this.toNode(y.submenu[n])
-      }
-      return y;
+    const y: any = { ...x };
+    y.index = ++this.index;
+    for (let n = 0; n < y.submenu.length; n++) {
+      y.submenu[n] = this.toNode(y.submenu[n])
+    }
+    return y;
   }
 
   toggleVisible(node: any) {
@@ -46,9 +71,6 @@ export class MaliyetComponent implements OnInit {
   }
 
 
-  deneme(test:any){
-// console.log(test)
-  }
 
   // collapsibleSidebar() {
   //   $(document).ready(function () {

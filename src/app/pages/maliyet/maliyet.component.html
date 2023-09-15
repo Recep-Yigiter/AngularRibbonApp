@@ -113,7 +113,7 @@
                                                     <div class="dx-drawer-panel-content dx-drawer-panel-content-initial"
                                                         style="margin-left: 0px;">
                                                         <!-- TREE MENU GELECEK -->
-
+                                                        <!-- I want to convert flat list array to tree view array based on node number in Javascript. -->
                                                         <!-- <div class="directory-list main-content">
                                                             <li>900 * 2000 2 Panel Satine Paslanmaz Kat Mekanizması 
                                                                 <ul>
@@ -155,20 +155,35 @@
                                                                     [ngClass]=" { 'menu-node-tree' : tree }"
                                                                     style="position: relative;">
                                                                     <div (click)="toggleVisible(node)"
-                                                                        class="menu-node-button"
+                                                                        class="menu-node-button "
                                                                         [ngClass]="{ 'menu-node-button-show': node.submenu && node.submenu.length,'menu-node-button-plus': !expand[node.index],'menu-node-button-minus': expand[node.index] } "
                                                                         role="button">
                                                                     </div>
-                                                                    <div (click)="toggleVisible(node)"
-                                                                        class="menu-node-name" [ngClass]="{
-                'menu-node-name-selected': (node === selectedNode),'test':(node.submenu.length>0)}"
+                                                                    <div 
+                                                                        class="menu-node-name"
+                                                                        [ngClass]="{
+                                                                     'menu-node-name-selected': (node === selectedNode),'menu-node-folder':(node.submenu.length>0)}"
                                                                         (click)="selectNode(node)">
+
+
+                                                                        <img *ngIf="node.submenu.length>0"
+                                                                        src=" ../../assets/icons/actions/received_files.png"
+                                                                        class="title-icon" alt="">
+
+                                                                        <img *ngIf="node.submenu.length==0"
+                                                                        src=" ../../assets/icons/actions/list.png"
+                                                                        class="title-icon" alt="">
+                                                                        
+                                                                        
                                                                         {{ node.title }}
                                                                     </div>
-                                                                    <div style="position: absolute; right: 10px; top: 4px; z-index: 99;"
-                                                                        (click)="deneme(node)">deneme</div>
+                                                                    <div class="view-icon-content"  (click)="deneme(node)">
+                                                                        <img 
+                                                                        src=" ../../assets/icons/actions/view_details.png"
+                                                                        class="title-icon view-icon" alt="">
+                                                                    </div>
                                                                     <ng-container
-                                                                        *ngIf="node.submenu && node.submenu.length && expand[node.index]">
+                                                                        *ngIf="node.submenu && node.submenu.length && expand[node.index] ">
                                                                         <ng-template [ngTemplateOutlet]="nodeTemplate"
                                                                             [ngTemplateOutletContext]="{ nodes: node.submenu, tree: true }">
                                                                         </ng-template>

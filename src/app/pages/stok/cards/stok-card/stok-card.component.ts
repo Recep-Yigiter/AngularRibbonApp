@@ -86,7 +86,7 @@ export class StokCardComponent implements OnDestroy {
  async initData() {
 
     const allStoks=await this.ReceteTreeViewService.list(0,100,()=>{} )
-  
+  console.log(allStoks)
     this.list$= allStoks;
     this.treeSource.data= await (await this.ReceteTreeViewService.list())
     this.dataSource$.next(this.list$)

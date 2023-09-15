@@ -1,8 +1,8 @@
 export const Menu = [
    {
     "path": "/home",
-    "title": "900 * 2000 2 Panel Satine Paslanmaz Kat Mekanizması dtgjdj dfjgfjfjk fkfgk",
-    "icon": "mdi mdi-table",
+    "title": "900 * 2000 2 Panel Satine Paslanmaz Kat Mekanizması",
+    "icon": "folder-title-icon",
     "class": "",
     "label": "",
     "labelClass": "",
@@ -11,7 +11,7 @@ export const Menu = [
         {
             "path": "/articleassociationconfig",
             "title": "ARTICLE_ASSOCIATION",
-            "icon": "",
+            "icon": "file-title-icon",
             "class": "",
             "label": "",
             "labelClass": "",
@@ -21,7 +21,7 @@ export const Menu = [
         {
             "path": "/compatibilityloclu",
             "title": "COMPATIBILITY_LOC_LU",
-            "icon": "",
+            "icon": "file-title-icon",
             "class": "",
             "label": "",
             "labelClass": "",
@@ -31,7 +31,7 @@ export const Menu = [
         {
             "path": "/manageproductgroup",
             "title": "PRODUCT_GROUP",
-            "icon": "",
+            "icon": "file-title-icon",
             "class": "",
             "label": "",
             "labelClass": "",
@@ -40,7 +40,7 @@ export const Menu = [
         }, {
             "path": "/manageproductsubgroup",
             "title": "PRODUCT_SUB_GROUP",
-            "icon": "",
+            "icon": "file-title-icon",
             "class": "",
             "label": "",
             "labelClass": "",
@@ -49,7 +49,7 @@ export const Menu = [
         }, {
             "path": "/loadunitheighttype",
             "title": "LOAD_UNIT_HEIGHT_TYPE",
-            "icon": "",
+            "icon": "file-title-icon",
             "class": "",
             "label": "",
             "labelClass": "",
@@ -58,7 +58,7 @@ export const Menu = [
         }, {
             "path": "/locationheighttype",
             "title": "LOCATION_HEIGHT_TYPE",
-            "icon": "",
+            "icon": "file-title-icon",
             "class": "",
             "label": "",
             "labelClass": "",
@@ -67,7 +67,7 @@ export const Menu = [
         }, {
             "path": "",
             "title": "MAP_REGISTRY",
-            "icon": "mdi mdi-map",
+            "icon": "folder-title-icon",
             "class": "has-arrow",
             "label": "",
             "labelClass": "label label-rouded label-themecolor pull-right",
@@ -75,7 +75,7 @@ export const Menu = [
             "submenu": [{
                     "path": "/managecarrier",
                     "title": "CARRIERS",
-                    "icon": "",
+                    "icon": "file-title-icon",
                     "class": "",
                     "label": "",
                     "labelClass": "",
@@ -84,16 +84,59 @@ export const Menu = [
                 }, {
                     "path": "/managesite",
                     "title": "SITES",
-                    "icon": "",
+                    "icon": "file-title-icon",
                     "class": "",
                     "label": "",
                     "labelClass": "",
                     "extralink": false,
-                    "submenu": []
+                    "submenu": [
+
+                        {
+                            "path": "/managesite",
+                            "title": "SITES",
+                            "icon": "file-title-icon",
+                            "class": "",
+                            "label": "",
+                            "labelClass": "",
+                            "extralink": false,
+                            "submenu": []
+                        },
+
+                        {
+                            "path": "/managesite",
+                            "title": "SITES",
+                            "icon": "file-title-icon",
+                            "class": "",
+                            "label": "",
+                            "labelClass": "",
+                            "extralink": false,
+                            "submenu": []
+                        },
+                        {
+                            "path": "/managesite",
+                            "title": "SITES",
+                            "icon": "file-title-icon",
+                            "class": "",
+                            "label": "",
+                            "labelClass": "",
+                            "extralink": false,
+                            "submenu": [
+                                 {
+                                "path": "/managesite",
+                                "title": "SITES",
+                                "icon": "file-title-icon",
+                                "class": "",
+                                "label": "",
+                                "labelClass": "",
+                                "extralink": false,
+                                "submenu": []
+                            }]
+                        }
+                    ]
                 }, {
                     "path": "/managedepartment",
                     "title": "DEPARTMENTS",
-                    "icon": "",
+                    "icon": "file-title-icon",
                     "class": "",
                     "label": "",
                     "labelClass": "",
@@ -102,7 +145,7 @@ export const Menu = [
                 }, {
                     "path": "/managearea",
                     "title": "AREAS",
-                    "icon": "",
+                    "icon": "file-title-icon",
                     "class": "",
                     "label": "",
                     "labelClass": "",
@@ -111,7 +154,7 @@ export const Menu = [
                 }, {
                     "path": "/managedevice",
                     "title": "DEVICES",
-                    "icon": "",
+                    "icon": "file-title-icon",
                     "class": "",
                     "label": "",
                     "labelClass": "",
@@ -120,7 +163,7 @@ export const Menu = [
                 }, {
                     "path": "/managelocation",
                     "title": "LOCATIONS",
-                    "icon": "",
+                    "icon": "file-title-icon",
                     "class": "",
                     "label": "",
                     "labelClass": "",
@@ -129,7 +172,7 @@ export const Menu = [
                 }, {
                     "path": "/logicalwh",
                     "title": "LOGICAL_WH",
-                    "icon": "",
+                    "icon": "file-title-icon",
                     "class": "",
                     "label": "",
                     "labelClass": "",
@@ -138,7 +181,7 @@ export const Menu = [
                 }, {
                     "path": "/logicalwhdecode",
                     "title": "LOGICAL_WH_DECODE",
-                    "icon": "",
+                    "icon": "file-title-icon",
                     "class": "",
                     "label": "",
                     "labelClass": "",
@@ -147,7 +190,7 @@ export const Menu = [
                 }, {
                     "path": "/logicalwhchangeconfig",
                     "title": "LOGICAL_WH_CHANGE_CONFIG",
-                    "icon": "",
+                    "icon": "file-title-icon",
                     "class": "",
                     "label": "",
                     "labelClass": "",
@@ -156,7 +199,7 @@ export const Menu = [
                 }, {
                     "path": "/logicalwhtransaction",
                     "title": "LOGICAL_WH_TRANSACTION",
-                    "icon": "",
+                    "icon": "file-title-icon",
                     "class": "",
                     "label": "",
                     "labelClass": "",
@@ -169,12 +212,23 @@ export const Menu = [
 }, {
     "path": "",
     "title": "Setup",
-    "icon": "mdi mdi-memory",
+    "icon": "file-title-icon",
     "class": "",
     "label": "",
     "labelClass": "",
     "extralink": false,
     "roles": ["PD0034_suppli"],
-    "submenu": []
+    "submenu": [
+        {
+            "path": "/logicalwhtransaction",
+            "title": "SETUP_TITLE",
+            "icon": "file-title-icon",
+            "class": "",
+            "label": "",
+            "labelClass": "",
+            "extralink": false,
+            "submenu": []
+        }
+    ]
 }
 ];
