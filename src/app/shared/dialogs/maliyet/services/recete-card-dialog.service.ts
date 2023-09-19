@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { StokCardAddComponent } from '../stok-card-add/stok-card-add.component';
+import { ReceteCardAddComponent } from '../recete-card-add/recete-card-add.component';
+import { ReceteChildCardAddComponent } from '../recete-child-card-add/recete-child-card-add.component';
 
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class StokCardDialogService {
+export class ReceteCardDialogService {
 
   constructor(
     private dialog: MatDialog,
@@ -15,17 +16,17 @@ export class StokCardDialogService {
 
 
   treeViewItems:any;
-  StokCardAddDialog(successCallBack?: (treeViewItems) => void) {
+  ReceteCardAddDialog(successCallBack?: (treeViewItems) => void) {
 
 
-    const dialogRef = this.dialog.open(StokCardAddComponent, {
+    const dialogRef = this.dialog.open(ReceteCardAddComponent, {
       width: '25%',
       minWidth: '300px',
-      height: '28vh',
+      height: '35vh',
       disableClose: true,
       autoFocus: false,
       restoreFocus: false,
-   
+    
     });
     
     dialogRef.afterClosed().subscribe(result => {
@@ -37,13 +38,14 @@ export class StokCardDialogService {
 
 
   }
-  StokChildCardAddDialog(event,successCallBack?: (treeViewItems) => void) {
+  treeViewChildItems:any;
+  ReceteChildCardAddDialog(event,successCallBack?: (treeViewChildItems) => void) {
 
 
-    const dialogRef = this.dialog.open(StokCardAddComponent, {
+    const dialogRef = this.dialog.open(ReceteChildCardAddComponent, {
       width: '25%',
       minWidth: '300px',
-      height: '28vh',
+      height: '35vh',
       disableClose: true,
       autoFocus: false,
       restoreFocus: false,
@@ -51,10 +53,10 @@ export class StokCardDialogService {
     });
     
     dialogRef.afterClosed().subscribe(result => {
-       if (dialogRef.componentInstance.treeViewItems == null) { return }
+       if (dialogRef.componentInstance.treeViewChildItems == null) { return }
 
-       this.treeViewItems = dialogRef.componentInstance.treeViewItems;
-      successCallBack(this.treeViewItems);
+       this.treeViewChildItems = dialogRef.componentInstance.treeViewChildItems;
+      successCallBack(this.treeViewChildItems);
     });
 
 

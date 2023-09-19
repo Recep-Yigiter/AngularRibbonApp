@@ -1,7 +1,8 @@
-<div style="position: fixed;margin-left: 4px;">
+<!-- 
+ <div style="position: fixed;margin-left: 4px;">
     <div id="window" class="window" style="height: 300px; width:calc(100vw - 10px); min-height:calc(100vh - 176px); ">
         <div id="draggable-header" class="top-bar">
-            <div class="title">Stok Kart </div>
+            <div class="title">Maliyet Kart </div>
             <div class="toolbar">
                 <button class="item" name="close">
                     <i class="fa fa-close"></i>
@@ -31,13 +32,15 @@
 
                                                         <div id="draggable-header" class="top-bar"
                                                             style="border: none; background-color: transparent;margin-bottom: 0;">
+                                                          
                                                             <div class="title"
                                                                 style="background: linear-gradient(to bottom, #ffffff 0%, #bbbbbb 100%); width: 100%; ">
-                                                                <div class="ribbon-section"
-                                                                    style="height: 36px;margin-bottom: 3px;">
-                                                                    <div class="ribbon-button ribbon-button-large"
+                                                                  
+                                                                <div class="ribbon-section" (click)="receteCardAdd($event)"
+                                                                    style="height: 40px;margin-bottom: 3px;">
+                                                                    <div class="ribbon-button ribbon-button-large" 
                                                                         id="add-table-btn" unselectable="on"
-                                                                        style="height: 36px;">
+                                                                        style="height: 40px;">
                                                                         <img style="width: 30px; height: 30px; "
                                                                             class="ribbon-icon ribbon-normal"
                                                                             src=" ../../assets/icons/actions/folder_add.png">
@@ -51,11 +54,11 @@
                                                                     </div>
 
                                                                 </div>
-                                                                <div class="ribbon-section"
-                                                                    style="height: 36px; margin-bottom: 3px;">
+                                                                <div class="ribbon-section" (click)="receteChildCardAdd($event)"
+                                                                    style="height: 40px; margin-bottom: 3px;">
                                                                     <div class="ribbon-button ribbon-button-large"
                                                                         id="add-table-btn" unselectable="on"
-                                                                        style="height: 36px;">
+                                                                        style="height: 40px;">
                                                                         <img style="width: 30px; height: 30px; "
                                                                             class="ribbon-icon ribbon-normal"
                                                                             src=" ../../assets/icons/actions/folder_down.png">
@@ -70,10 +73,10 @@
 
                                                                 </div>
                                                                 <div class="ribbon-section"
-                                                                    style="height: 36px; margin-bottom: 3px;">
+                                                                    style="height: 40px; margin-bottom: 3px;">
                                                                     <div class="ribbon-button ribbon-button-large"
                                                                         id="add-table-btn" unselectable="on"
-                                                                        style="height: 36px;">
+                                                                        style="height: 40px;">
                                                                         <img style="width: 30px; height: 30px; "
                                                                             class="ribbon-icon ribbon-normal"
                                                                             src=" ../../assets/icons/actions/erase_registry.png">
@@ -94,9 +97,6 @@
                                                             </div>
 
                                                         </div>
-
-
-                                                        <!-- EKLE SİL -->
 
 
 
@@ -111,90 +111,56 @@
                                             <div class="dx-drawer-shrink   ">
                                                 <div class="dx-drawer-wrapper">
                                                     <div class="dx-drawer-panel-content dx-drawer-panel-content-initial"
-                                                        style="margin-left: 0px;">
-                                                        <!-- TREE MENU GELECEK -->
-                                                        <!-- I want to convert flat list array to tree view array based on node number in Javascript. -->
-                                                        <!-- <div class="directory-list main-content">
-                                                            <li>900 * 2000 2 Panel Satine Paslanmaz Kat Mekanizması 
-                                                                <ul>
-                                                                    <li> Kılıç
-                                                                        <ul>
-                                                                            <li>Kilit Tekeri</li>
-                                                                            <li>CE Tekeri</li>
-                                                                            <li>Kilit Göbeği</li>
-                                                                            <li>M3x10 Ysb</li>
+                                                        style="margin-left: 0px; overflow-y: auto; overflow-x: hidden; border-right: 1px solid #dee2e6;">
+                                                        <div>
+                                                            <ng-template #nodeTemplate let-nodes="nodes"
+                                                                let-tree="tree">
+                                                                <ng-container *ngFor="let node of nodes">
+                                                                    <div class="menu-node" (click)="TreeItemSelect(node)"
+                                                                        [ngClass]=" { 'menu-node-tree' : tree }"
+                                                                        style="position: relative;" >
+                                                                        <div (click)="toggleVisible(node)" 
+                                                                            class="menu-node-button "
+                                                                            [ngClass]="{ 'menu-node-button-show': node.submenu && node.submenu?.length,'menu-node-button-plus': !expand[node.index],'menu-node-button-minus': expand[node.index] } "
+                                                                            role="button">
+                                                                        </div>
+                                                                        <div class="menu-node-name" [ngClass]="{
+                 'menu-node-name-selected': (node === selectedNode),'menu-node-folder':(node.submenu?.length>0)}"
+                                                                            (click)="selectNode(node)">
 
-                                                                            <div style="display: flex; justify-content: end;
-                                                                            align-items: center;">Toplam Maliyet : 0 TL</div>
-                                                              
-                                                                        </ul>
-                                                                    </li>
-                                                                    <li>Kilit
-                                                                        <ul>
-                                                                            <li>KİLİT TAMPON LASTİĞİ</li>
-                                                                            <li>CİVATALI KİLİT MAKARA PARÇASI</li>
-                                                                            <li>KİLİT PİMİ</li>
-                                                                            <li>KİLİT KOLU CİVATASI</li>
-                                                                            <li>KAYNAKLI KİLİT MAKARA PARÇASI KISA</li>
-                                                                            <li>KAYNAKLI KİLİT MAKARA PARÇASI UZUN</li>
-                                                                            <div style="display: flex; justify-content: end; ;
-                                                                            align-items: center;">Toplam Maliyet : 0 TL</div>
-                                                                        </ul>
-                                                                    </li>
-                                                                    <li>MEKANIZMA SACI</li>
-                                                                    <li>TELESKOPİK YAYLAR</li>
-                                                                </ul>
-                                                            </li>
-                                                            <li>item-1</li>
-                                                            <li>item-2</li>
-                                                        </div> -->
 
-                                                        <ng-template #nodeTemplate let-nodes="nodes" let-tree="tree">
-                                                            <ng-container *ngFor="let node of nodes">
-                                                                <div class="menu-node"
-                                                                    [ngClass]=" { 'menu-node-tree' : tree }"
-                                                                    style="position: relative;">
-                                                                    <div (click)="toggleVisible(node)"
-                                                                        class="menu-node-button "
-                                                                        [ngClass]="{ 'menu-node-button-show': node.submenu && node.submenu.length,'menu-node-button-plus': !expand[node.index],'menu-node-button-minus': expand[node.index] } "
-                                                                        role="button">
+                                                                            <img *ngIf="node.submenu?.length>0"
+                                                                                src=" ../../assets/icons/actions/received_files.png"
+                                                                                class="title-icon" alt="">
+
+                                                                            <img *ngIf="node.submenu==undefined"
+                                                                                src=" ../../assets/icons/actions/list.png"
+                                                                                class="title-icon" alt="">
+                                                                            {{ node.name }}
+                                                                        </div>
+                                                                        <div class="view-icon-content"
+                                                                       (click)="TreeItem(node)"
+                                                                            *ngIf="node.submenu?.length>0">
+                                                                            <img src="../../assets/icons/actions/view_details.png"
+                                                                                class="title-icon view-icon" alt="">
+                                                                        </div> 
+                                                                        <ng-container
+                                                                            *ngIf="node.submenu && node.submenu?.length && expand[node.index] ">
+                                                                            <ng-template
+                                                                                [ngTemplateOutlet]="nodeTemplate"
+                                                                                [ngTemplateOutletContext]="{ nodes: node.submenu, tree: true }">
+                                                                            </ng-template>
+                                                                        </ng-container>
                                                                     </div>
-                                                                    <div 
-                                                                        class="menu-node-name"
-                                                                        [ngClass]="{
-                                                                     'menu-node-name-selected': (node === selectedNode),'menu-node-folder':(node.submenu.length>0)}"
-                                                                        (click)="selectNode(node)">
+                                                                </ng-container>
+                                                            </ng-template>
+
+                                                            <ng-template [ngTemplateOutlet]="nodeTemplate"
+                                                                [ngTemplateOutletContext]="{ nodes: menu, tree: false }">
+                                                            </ng-template>
+                                                        </div>
 
 
-                                                                        <img *ngIf="node.submenu.length>0"
-                                                                        src=" ../../assets/icons/actions/received_files.png"
-                                                                        class="title-icon" alt="">
-
-                                                                        <img *ngIf="node.submenu.length==0"
-                                                                        src=" ../../assets/icons/actions/list.png"
-                                                                        class="title-icon" alt="">
-                                                                        
-                                                                        
-                                                                        {{ node.title }}
-                                                                    </div>
-                                                                    <div class="view-icon-content"  (click)="deneme(node)">
-                                                                        <img 
-                                                                        src=" ../../assets/icons/actions/view_details.png"
-                                                                        class="title-icon view-icon" alt="">
-                                                                    </div>
-                                                                    <ng-container
-                                                                        *ngIf="node.submenu && node.submenu.length && expand[node.index] ">
-                                                                        <ng-template [ngTemplateOutlet]="nodeTemplate"
-                                                                            [ngTemplateOutletContext]="{ nodes: node.submenu, tree: true }">
-                                                                        </ng-template>
-                                                                    </ng-container>
-                                                                </div>
-                                                            </ng-container>
-                                                        </ng-template>
-
-                                                        <ng-template [ngTemplateOutlet]="nodeTemplate"
-                                                            [ngTemplateOutletContext]="{ nodes: menu, tree: false }">
-                                                        </ng-template>
 
 
 
@@ -204,7 +170,8 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="dx-drawer-content" style="padding: 0px;">
+                                                    <div class="dx-drawer-content" style="padding: 0px;width: calc(100vw - 560px);
+                                                    min-width: 800px;">
                                                         <div class="dx-drawer-shader dx-state-invisible"
                                                             style="opacity: 1; transition: none 0s ease 0s; visibility: visible;">
                                                         </div>
@@ -284,132 +251,70 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="dx-datagrid ">
+                                                        <p-table [value]="res" [tableStyle]="{'min-width': '50rem'}"  selectionMode="single" [(selection)]="selectedReceteItem" dataKey="id"
+                                                            responsiveLayout="scroll" [resizableColumns]="true"
+                                                            [scrollable]="true" scrollHeight="calc(100vh - 395px)"
+                                                            columnResizeMode="expand" selectionMode="single" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnSelect()">
+                                                            <ng-template pTemplate="header" >
+                                                                <tr >
+                                                                    <th 
+                                                                        style="width: auto;min-width:350px; color: #959595 !important;">
+                                                                        Name</th>
+                                                                    <th style="width:350px;color: #959595 !important;">
+                                                                        Stok Adı</th>
+                                                                    <th style="width:100px;color: #959595 !important;">
+                                                                        Stok Turu</th>
+                                                                    <th style="width:75px;color: #959595 !important;">
+                                                                        Adet</th>
+                                                                    <th style="width:75px;color: #959595 !important;">
+                                                                        Miktar</th>
+                                                                    <th style="width:75px;color: #959595 !important;">
+                                                                        Birim Adı</th>
+                                                                    <th style="width:75px;color: #959595 !important;">
+                                                                        Birim Fiyat</th>
+                                                                    <th style="width:100px;color: #959595 !important;">
+                                                                        Top. Maliyet</th>
+                                                                </tr>
+                                                            </ng-template>
+                                                            <ng-template pTemplate="body" let-product>
+                                                                <tr [pSelectableRow]="product">
+                                                                    <td >{{product.name}}</td>
+                                                                    <td>{{product.stokAdi}}</td>
+                                                                    <td>{{product.stokTuru}}</td>
+                                                                    <td>{{product.adet}}</td>
 
-                                                            <div class="dx-datagrid-headers "
-                                                                style="padding-right: 0px;">
-                                                                <div class=" ">
-                                                                    <table class=" dx-datagrid-table-fixed">
-                                                                        <colgroup>
-                                                                            <col style="width: 43px;">
-                                                                            <col style="width: 36px;">
-                                                                            <col style="width: auto;">
-                                                                            <col style="width: 95px;">
-                                                                            <col style="width: 110px;">
-                                                                            <col style="width: 90px;">
-                                                                            <col style="width: 0.0001px;">
-                                                                        </colgroup>
+                                                                    <td>
+                                                                        <div matTooltip="{{product.olcu}}"
+                                                                        [matTooltipPosition]="'right'" *ngIf="product.birimAdi!='Adet'">{{product.miktar | number:'1.1-2' }}</div>
+                                                                        <div matTooltip="{{product.olcu}}"
+                                                                        [matTooltipPosition]="'right'" *ngIf="product.birimAdi=='Adet'">-</div>
+                                                                    </td>
+                                                                    <td>{{product.birimAdi}}</td>
+                                                                    <td>{{product.birimFiyat}}</td>
+                                                                    <td style="font-weight: 600; font-size: 16px;"  >
+                                                                        <div
+                                                                        *ngIf="product.birimAdi!='Adet'">
+                                                                            {{product.birimFiyat *( product.miktar)*(
+                                                                            product.adet) |currency:'TRY':'₺':'0.2-2'}}
+                                                                        </div>
+                                                                        <div *ngIf="product.birimAdi=='Adet'">
+                                                                            {{product.birimFiyat *( product.adet)
+                                                                            |currency:'TRY':'₺':'0.2-2'}}</div>
+                                                                    </td>
+                                                                </tr>
+                                                            </ng-template>
 
-                                                                        <tbody>
-                                                                            <tr class="dx-row dx-header-row" role="row">
-                                                                                <td class="dx-command-select dx-cell-focus-disabled dx-editor-cell dx-editor-inline-block"
-                                                                                    role="columnheader"
-                                                                                    aria-colindex="1"
-                                                                                    style="text-align: center;">
-                                                                                    <div class="dx-widget dx-checkbox dx-select-checkbox dx-datagrid-checkbox-size"
-                                                                                        aria-label="Select all"
-                                                                                        aria-readonly="false"
-                                                                                        aria-invalid="false"
-                                                                                        role="checkbox"
-                                                                                        aria-checked="false"
-                                                                                        tabindex="0">
-                                                                                        <input type="hidden"
-                                                                                            value="false">
-                                                                                        <div
-                                                                                            class="dx-checkbox-container">
-                                                                                            <span
-                                                                                                class="dx-checkbox-icon"></span>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td class="dx-filemanager-details-item-is-directory dx-datagrid-action dx-cell-focus-disabled"
-                                                                                    role="columnheader"
-                                                                                    aria-colindex="2" id="dx-col-1"
-                                                                                    aria-label="Column "
-                                                                                    aria-sort="none" tabindex="0"
-                                                                                    style="text-align: center;">
-                                                                                    <div
-                                                                                        class="dx-column-indicators dx-visibility-hidden">
-                                                                                        <span
-                                                                                            class="dx-sort dx-sort-none"></span>
-                                                                                    </div>
-                                                                                    <div
-                                                                                        class="dx-datagrid-text-content dx-text-content-alignment-left dx-text-content-alignment-right">
-                                                                                    </div>
-                                                                                    <div class="dx-column-indicators">
-                                                                                        <span
-                                                                                            class="dx-sort dx-sort-none"></span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td role="columnheader"
-                                                                                    aria-colindex="3" id="dx-col-2"
-                                                                                    aria-label="Column Name"
-                                                                                    class="dx-datagrid-action dx-cell-focus-disabled"
-                                                                                    aria-sort="none" tabindex="0"
-                                                                                    style="text-align: left;">
-                                                                                    <div
-                                                                                        class="dx-datagrid-text-content dx-text-content-alignment-left">
-                                                                                        Name</div>
-                                                                                    <div class="dx-column-indicators">
-                                                                                        <span
-                                                                                            class="dx-sort dx-sort-none"></span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td role="columnheader"
-                                                                                    aria-colindex="4" id="dx-col-3"
-                                                                                    aria-label="Column Category"
-                                                                                    class="dx-datagrid-action dx-cell-focus-disabled"
-                                                                                    aria-sort="none" tabindex="0"
-                                                                                    style="text-align: left;">
-                                                                                    <div
-                                                                                        class="dx-datagrid-text-content dx-text-content-alignment-left">
-                                                                                        Category</div>
-                                                                                    <div class="dx-column-indicators">
-                                                                                        <span
-                                                                                            class="dx-sort dx-sort-none"></span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td role="columnheader"
-                                                                                    aria-colindex="5" id="dx-col-4"
-                                                                                    aria-label="Column Date Modified"
-                                                                                    class="dx-datagrid-action dx-cell-focus-disabled"
-                                                                                    aria-sort="none" tabindex="0"
-                                                                                    style="text-align: left;">
-                                                                                    <div
-                                                                                        class="dx-datagrid-text-content dx-text-content-alignment-left">
-                                                                                        Date Modified
-                                                                                    </div>
-                                                                                    <div class="dx-column-indicators">
-                                                                                        <span
-                                                                                            class="dx-sort dx-sort-none"></span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td role="columnheader"
-                                                                                    aria-colindex="6" id="dx-col-5"
-                                                                                    aria-label="Column File Size"
-                                                                                    class="dx-datagrid-action dx-cell-focus-disabled"
-                                                                                    aria-sort="none" tabindex="0"
-                                                                                    style="text-align: right;">
-                                                                                    <div class="dx-column-indicators">
-                                                                                        <span
-                                                                                            class="dx-sort dx-sort-none"></span>
-                                                                                    </div>
-                                                                                    <div
-                                                                                        class="dx-datagrid-text-content dx-text-content-alignment-right">
-                                                                                        File Size</div>
-                                                                                </td>
-                                                                                <td class="dx-command-adaptive dx-cell-focus-disabled dx-command-adaptive-hidden"
-                                                                                    role="columnheader"
-                                                                                    aria-colindex="7"
-                                                                                    style="text-align: center;"
-                                                                                    tabindex="-1" aria-hidden="true">
-                                                                                    &nbsp;</td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
+                                                            <ng-template pTemplate="summary" let-product>
+                                                                <div 
+                                                                    class="flex align-items-center justify-content-between">
+                                                                    Genel Maliyet : {{totalHesap
+                                                                    |currency:'TRY':'₺':'0.2-2'}} TL
                                                                 </div>
-                                                            </div>
-                                                        </div>
+                                                            </ng-template>
+
+                                                        </p-table>
+
+                                               
                                                     </div>
                                                 </div>
                                             </div>
@@ -437,4 +342,211 @@
         </div>
     </div>
 
-</div>
+</div>  -->
+
+
+
+<layout-content layoutName="Maliyet Kart">
+
+    <div class="sidebar-add-layout-content">
+
+        <div class="ribbon-section" (click)="receteCardAdd($event)" style="height: 40px;margin-bottom: 3px;">
+            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/actions/folder_add.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/actions/folder_add.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/actions/folder_add.png">
+
+            </div>
+
+        </div>
+        <div class="ribbon-section" (click)="receteChildCardAdd($event)" style="height: 40px; margin-bottom: 3px;">
+            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/actions/folder_down.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/actions/folder_down.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/actions/folder_down.png">
+
+            </div>
+
+        </div>
+        <div class="ribbon-section" style="height: 40px; margin-bottom: 3px;">
+            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/actions/erase_registry.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/actions/erase_registry.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/actions/erase_registry.png">
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="sidebar-layout-content">
+        <ng-template #nodeTemplate let-nodes="nodes" let-tree="tree">
+            <ng-container *ngFor="let node of nodes">
+                <div class="menu-node" (click)="TreeItemSelect(node)" [ngClass]=" { 'menu-node-tree' : tree }"
+                    style="position: relative;">
+                    <div (click)="toggleVisible(node)" class="menu-node-button "
+                        [ngClass]="{ 'menu-node-button-show': node.submenu && node.submenu?.length,'menu-node-button-plus': !expand[node.index],'menu-node-button-minus': expand[node.index] } "
+                        role="button">
+                    </div>
+                    <div class="menu-node-name" [ngClass]="{
+                 'menu-node-name-selected': (node === selectedNode),'menu-node-folder':(node.submenu?.length>0)}"
+                        (click)="selectNode(node)">
+
+
+                        <img *ngIf="node.submenu?.length>0" src=" ../../assets/icons/actions/received_files.png"
+                            class="title-icon" alt="">
+
+                        <img *ngIf="node.submenu==undefined" src=" ../../assets/icons/actions/list.png"
+                            class="title-icon" alt="">
+                        {{ node.name }}
+                    </div>
+                    <div class="view-icon-content" (click)="TreeItem(node)" *ngIf="node.submenu?.length>0">
+                        <img src="../../assets/icons/actions/view_details.png" class="title-icon view-icon" alt="">
+                    </div>
+                    <ng-container *ngIf="node.submenu && node.submenu?.length && expand[node.index] ">
+                        <ng-template [ngTemplateOutlet]="nodeTemplate"
+                            [ngTemplateOutletContext]="{ nodes: node.submenu, tree: true }">
+                        </ng-template>
+                    </ng-container>
+                </div>
+            </ng-container>
+        </ng-template>
+
+        <ng-template [ngTemplateOutlet]="nodeTemplate" [ngTemplateOutletContext]="{ nodes: menu, tree: false }">
+        </ng-template>
+    </div>
+
+
+    <div class="table-action-layout-content" style="display: flex;justify-content: space-between; align-items: center;">
+
+        <div style="height: 100%;padding: 5px;">
+            <div class="ribbon-section"  style="height: 40px;margin-bottom: 3px;">
+                <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
+                    style="height: 40px;">
+                    <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/actions/clipboard_add.png">
+                    <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/actions/clipboard_add.png">
+                    <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/actions/clipboard_add.png">
+
+                </div>
+
+            </div>
+            <div class="ribbon-section"  style="height: 40px;margin-bottom: 3px;">
+                <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
+                    style="height: 40px;">
+                    <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/actions/erase_registry.png">
+                    <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/actions/erase_registry.png">
+                    <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/actions/erase_registry.png">
+
+                </div>
+
+            </div>
+            <div class="ribbon-section"  style="height: 40px;margin-bottom: 3px;">
+                <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
+                    style="height: 40px;">
+                    <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/actions/edit.png">
+                    <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/actions/edit.png">
+                    <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/actions/edit.png">
+
+                </div>
+
+            </div>
+        </div>
+        {{selectedCategory}}
+        <div>
+            <mat-radio-group aria-label="Select an option" [(ngModel)]="selectedCategory" (click)="radioChange()">
+                <mat-radio-button  #first value="1" style="font-weight: 500;">Genel Maliyet</mat-radio-button>
+                <mat-radio-button value="2" >İşçilik</mat-radio-button>
+                <mat-radio-button value="3">Malzeme</mat-radio-button>
+                <mat-radio-button value="4">Elektrik</mat-radio-button>
+            </mat-radio-group>
+           
+        </div>
+    </div>
+
+
+
+<div class="table-layout-content">
+    <div class="table-display-none activeSelectCategori" [class.activeSelectCategori]="selectedCategory==='1'" >
+        <p-table [value]="res" [tableStyle]="{'min-width': '50rem'}" selectionMode="single"
+            [(selection)]="selectedReceteItem" dataKey="id" responsiveLayout="scroll" [resizableColumns]="true"
+            [scrollable]="true" scrollHeight="calc(100vh - 395px)" columnResizeMode="expand" selectionMode="single"
+            (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnSelect()">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: auto;min-width:350px; color: #959595 !important;">
+                        Name</th>
+                    <th style="width:350px;color: #959595 !important;">
+                        Stok Adı</th>
+                    <th style="width:100px;color: #959595 !important;">
+                        Stok Turu</th>
+                    <th style="width:75px;color: #959595 !important;">
+                        Adet</th>
+                    <th style="width:75px;color: #959595 !important;">
+                        Miktar</th>
+                    <th style="width:75px;color: #959595 !important;">
+                        Birim Adı</th>
+                    <th style="width:75px;color: #959595 !important;">
+                        Birim Fiyat</th>
+                    <th style="width:100px;color: #959595 !important;">
+                        Top. Maliyet</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+                <tr [pSelectableRow]="product">
+                    <td>{{product.name}}</td>
+                    <td>{{product.stokAdi}}</td>
+                    <td>{{product.stokTuru}}</td>
+                    <td>{{product.adet}}</td>
+
+                    <td>
+                        <div matTooltip="{{product.olcu}}" [matTooltipPosition]="'right'"
+                            *ngIf="product.birimAdi!='Adet'">{{product.miktar | number:'1.1-2' }}</div>
+                        <div matTooltip="{{product.olcu}}" [matTooltipPosition]="'right'"
+                            *ngIf="product.birimAdi=='Adet'">-</div>
+                    </td>
+                    <td>{{product.birimAdi}}</td>
+                    <td>{{product.birimFiyat}}</td>
+                    <td style="font-weight: 600; font-size: 16px;">
+                        <div *ngIf="product.birimAdi!='Adet'">
+                            {{product.birimFiyat *( product.miktar)*(
+                            product.adet) |currency:'TRY':'₺':'0.2-2'}}
+                        </div>
+                        <div *ngIf="product.birimAdi=='Adet'">
+                            {{product.birimFiyat *( product.adet)
+                            |currency:'TRY':'₺':'0.2-2'}}</div>
+                    </td>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="summary" let-product>
+                <div class="flex align-items-center justify-content-between">
+                    Genel Maliyet : {{totalHesap
+                    |currency:'TRY':'₺':'0.2-2'}} TL
+                </div>
+            </ng-template>
+
+        </p-table>
+    </div>
+
+    </div>
+</layout-content>

@@ -7,6 +7,8 @@ import { MatTreeFlatDataSource, MatTreeFlattener, MatTreeNestedDataSource } from
 import { BehaviorSubject } from 'rxjs';
 import { ReceteTreeViewService } from '../../services/recete-tree-view.service';
 import { StokCardDialogService } from 'src/app/shared/dialogs/stok/services/stok-card-dialog.service';
+import { MatRadioButton } from '@angular/material/radio';
+import { StokService } from '../../services/stok.service';
 
 export class TodoItemNode {
   children: TodoItemNode[];
@@ -27,174 +29,179 @@ export interface TreeViewItemModel {
   styleUrls: ['./stok-card.component.scss'],
  
 })
-export class StokCardComponent implements OnDestroy {
-  activeNode:any;
-  open=true;
-  constructor(private ReceteTreeViewService:ReceteTreeViewService,private fb:FormBuilder,private StokCardDialogService:StokCardDialogService) {
-    this.treeSource = new MatTreeNestedDataSource<TreeViewItemModel>();     
-    this.dataSource$ = new BehaviorSubject<TreeViewItemModel[]>([]);
-    this.dataSource$.subscribe(items => {
-      this.treeSource.data = null;
-      this.treeSource.data = items;
-
-    });
-
-    this.initData();
-
-
-
-
-
-
-
-
-
-  }
-
-
-  public frm: FormGroup = this.fb.group({
-    stokKod: [null],
-    stokKisaAd: [null],
-    stokTuru: [null],
-    alisKdvOrani: [null],
-    satisKdvOrani: [null],
-  });
-  get stokKod() { return this.frm.get('stokKod') }
-  get stokKisaAd() { return this.frm.get('stokKisaAd') }
-  get stokTuru() { return this.frm.get('stokTuru') }
-  get alisKdvOrani() { return this.frm.get('alisKdvOrani') }
-  get satisKdvOrani() { return this.frm.get('satisKdvOrani') }
-
- 
-  private static _id = 0;
-  readonly dataSource$: BehaviorSubject<TreeViewItemModel[]>;
-  readonly treeSource: MatTreeNestedDataSource<TreeViewItemModel>;
-
-  readonly treeControl = new NestedTreeControl<TreeViewItemModel>(node => node.subFolders );
-
-  readonly hasChild = (_: number, node: TreeViewItemModel) => !!node.subFolders && node.subFolders.length > 0;
-
-  readonly trackBy = (_: number, node: TreeViewItemModel) => node.id;
-
-  /** destroy */
-  ngOnDestroy() {
-    this.dataSource$.complete();
-  }
-
-  /** init tree data */
-  list$:any
- async initData() {
-
-    const allStoks=await this.ReceteTreeViewService.list(0,100,()=>{} )
-  console.log(allStoks)
-    this.list$= allStoks;
-    this.treeSource.data= await (await this.ReceteTreeViewService.list())
-    this.dataSource$.next(this.list$)
-  }
-
-  displayModal:boolean=false;
-  hareketEvent:TreeViewItemModel;
-  hareketItemAdi:any;
-  addOpenDialog(event?:TreeViewItemModel){
-  this.StokCardDialogService.StokCardAddDialog(event,(data)=>{
-    this.ad(data.hareketAdi,event);
-    
-    this.hareketItemAdi=data.hareketAdi;
-
-  } )
-     this.hareketEvent=event;
-    // this.displayModal=true;
+export class StokCardComponent implements OnInit {
+  index = 0;
+  menu: any;
+  expand = {};
+  dataSource: any;
+  totalRecords: number;
+  totalHesap: any;
+  selectedNode = undefined;
+  res: any = []
+  selectedReceteItem:any;
+  selectedCategory:any="1";
+  @ViewChild('first') matRadioButton : MatRadioButton;
+  constructor(private StokService: StokService, private StokCardDialogService: StokCardDialogService) {
    
   }
-  /** add */
-  ad(hareketAdi?:any,node?: TreeViewItemModel) {
+  ngOnInit(): void {
+
+    this.GetAllRecete()
+
+  }
+
+  treeItemSelect: any;
+  TreeItem(item: any) {
+
+    var deneme = [];
 
 
-      node=this.hareketEvent;
-      
-    
-    const newItem = this._createTreeItem(hareketAdi);
+    deneme.push(item)
+    const collect = (n, out = []) => {
 
-    // add as child
-    if (node) {
-      node.subFolders = [
-        ...(node.subFolders || []),
-        newItem
-      ];
-      if (!this.treeControl.isExpanded(node)) {
-        this.treeControl.expand(node);
+      for (const { submenu, ...item } of n) {
+        out.push(item);
+        submenu?.length && collect(submenu, out);
+      }
+      return out;
+    };
+
+    const result = deneme.map(({ submenu, ...item }) => ({ ...item, submenu: collect(submenu) }));
+
+    this.res = result[0].submenu
+
+    this.calculateLastYearTotal()
+  }
+
+  TreeItemSelect(item) {
+    this.treeItemSelect = item
+
+  }
+
+
+
+  private toNode(x: any): any {
+    const y: any = { ...x };
+    y.index = ++this.index;
+    for (let n = 0; n < y.submenu?.length; n++) {
+      y.submenu[n] = this.toNode(y.submenu[n])
+    }
+    return y;
+  }
+
+  toggleVisible(node: any) {
+    if (node.submenu && node.submenu?.length) {
+      if (this.expand[node.index]) {
+        this.expand[node.index] = false;
+      } else {
+        this.expand[node.index] = true;
       }
     }
-  
-    else {
-      this.dataSource$.next([
-        ...this.dataSource$.value,
-        newItem
-      ]);
+  }
+
+  selectNode(node: any) {
+    this.selectedNode = node;
+  }
 
 
+  async GetAllRecete() {
+    const allReceteler = await this.StokService.list(0,1000)
+    this.dataSource = allReceteler;
+    this.totalRecords = allReceteler.count;
+
+    this.dataSource.items.forEach(element => {
+      if (element.parentId="00000000-0000-0000-0000-000000000000") {
+        element.parentId=null
+      }
+    });
+    var tree = createTree(this.dataSource.items);
+    this.menu = tree.map(x => this.toNode(x));
+    console.log(tree)
+    this.calculateLastYearTotal()
+
+  }
+
+
+
+  calculateLastYearTotal() {
+    let total = 0;
+    for (let sale of this.res) {
+      total += sale.birimFiyat * (sale.miktar) * (sale.adet);
+    }
+    this.totalHesap = total;
+
+  }
+
+
+
+
+  receteCardAdd(event) {
+    this.StokCardDialogService.StokCardAddDialog(() => {
+    
+      this.GetAllRecete()
+    })
+
+  }
+  receteChildCardAdd(event) {
+    if (this.treeItemSelect!=undefined) {
+      this.StokCardDialogService.StokChildCardAddDialog(this.treeItemSelect, () => {
+    
+        this.GetAllRecete()
+      })
     }
 
-    this.dataSource$.next(this.dataSource$.value);
-  
-    console.log(this.dataSource$.value)
-    this.displayModal=false;
-    this.frm.reset()
-    
-  }
-toggle:boolean=false;
-  change(){
-this.toggle=!this.toggle;
-  }
 
-  // toggleNode(node: TreeItem) {
-  //   this.treeControl.toggle(node);
-  // }
+  }
+  StokItem:any;
+  onRowSelect(event: any) {
+    this.StokItem = event.data;
 
-  
-  private _createTreeItem(hareketAdi: string, ...subFolders: TreeViewItemModel[]): TreeViewItemModel {
-    return {
-      id: null,
-      name: hareketAdi,
-      subFolders: subFolders, 
-      parentId:this.hareketEvent?.id?this.hareketEvent?.id:null,
-      stokAdi:this.selectStok?this.selectStok:null,
-      stokId:this.selectStokId?this.selectStokId:null
-    };
+  }
+  onRowUnSelect() {
+    this.StokItem = null
   }
 
 
 
 
-  @ViewChild(MatMenuTrigger)
-  contextMenu: MatMenuTrigger;
 
-  contextMenuPosition = { x: '0px', y: '0px' };
-
-  onContextMenu(event: MouseEvent, item: any) {
-    event.preventDefault();
-    
-    this.contextMenuPosition.x = event.clientX + 'px';
-    this.contextMenuPosition.y = event.clientY + 'px';
-    this.contextMenu.menuData = { 'item': item };
-    this.contextMenu.menu.focusFirstItem('mouse');
-    this.contextMenu.openMenu();
-  }
-
-  ekle(item: any) {
-    console.log(item)
-  }
-
-  sil(item: any) {
-   console.log(item)
-  }
+}
 
 
-  selectStokId:any;
-  selectStok:any;
-  stokChildFunc(event){
- 
-    this.selectStokId = event.id;
-    this.selectStok = event;
-  }
+
+function findParent(arr, id) {
+  return arr.find((parent) => parent.id === id);
+}
+
+function createTreeNode(value) {
+  return {
+    id: value.id,
+    name: value.ad,
+    stokAdi: value.stokAdi,
+    birimAdi: value.birimAdi,
+    birimFiyat: value.birimFiyat,
+    stokTuru: value.stokTuru,
+    adet: value.adet,
+    olcu: value.olcu,
+    miktar: value.miktar,
+    submenu: (value.submenu !== undefined)
+      ? value.submenu.map(createTreeNode)
+      : undefined
+  };
+}
+
+function createTree(data) {
+  return data
+    .reduce((result, value, index, originalArray) => {
+      if (value.parentId !== null) {
+        const parent = findParent(originalArray, value.parentId);
+        if (parent) {
+          parent.submenu = (parent.submenu || []).concat(value);
+        }
+        return result;
+      } else {
+        return result.concat(value);
+      }
+    }, [])
+    .map(createTreeNode);
 }

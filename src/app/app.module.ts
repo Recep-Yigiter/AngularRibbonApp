@@ -28,6 +28,13 @@ import { TabsComponent } from './app-layout/tabs/tabs.component';
 import { TabComponent } from './app-layout/tab/tab.component';
 import { MaliyetTabComponent } from './app-layout/maliyet-tab/maliyet-tab.component';
 import { MaliyetComponent } from './pages/maliyet/maliyet.component';
+import { ReceteCardAddComponent } from './shared/dialogs/maliyet/recete-card-add/recete-card-add.component';
+import { ReceteCardUpdateComponent } from './shared/dialogs/maliyet/recete-card-update/recete-card-update.component';
+import { StokSelectInput } from './shared/components/select-input/stok-select-input/stok-select-input';
+import { StokCardSelectComponent } from './shared/dialogs/stok/stok-card-select/stok-card-select.component';
+import { StokTuruDropDown } from './shared/components/dropdown/stok-turu-dropdown/stok-turu-dropdown';
+import { ReceteChildCardAddComponent } from './shared/dialogs/maliyet/recete-child-card-add/recete-child-card-add.component';
+import { LayoutContent } from './shared/components/layout-content/layout-content';
 
 @NgModule({
   declarations: [
@@ -52,6 +59,14 @@ import { MaliyetComponent } from './pages/maliyet/maliyet.component';
     TabComponent,
     MaliyetTabComponent,
     MaliyetComponent,
+    ReceteCardAddComponent,
+    ReceteCardUpdateComponent,
+    LayoutContent,
+
+    StokSelectInput,
+      StokCardSelectComponent,
+      StokTuruDropDown,
+      ReceteChildCardAddComponent
     
   ],
   imports: [

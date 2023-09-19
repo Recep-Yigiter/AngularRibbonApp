@@ -1,4 +1,4 @@
-import { mapEnumToOptions } from "@abp/ng.core";
+// import { mapEnumToOptions } from "@abp/ng.core";
 
 
 
@@ -9,7 +9,7 @@ export enum StokTuru{
     Mamul=4
 }
 
-export const stokTuruOptions = mapEnumToOptions(StokTuru);
+// export const stokTuruOptions = mapEnumToOptions(StokTuru);
 
 
 
