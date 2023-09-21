@@ -4,6 +4,8 @@ import { PageEvent } from '@angular/material/paginator';
 import { ReceteService } from './services/recete.service';
 import { ReceteCardDialogService } from 'src/app/shared/dialogs/maliyet/services/recete-card-dialog.service';
 import { MatRadioButton } from '@angular/material/radio';
+import { ReceteTreeViewService } from 'src/app/core/services/recete/recete-treeview.service';
+
 declare var $: any;
 
 
@@ -24,12 +26,15 @@ export class MaliyetComponent implements OnInit {
   res: any = []
   selectedReceteItem:any;
   selectedCategory:any="1";
+  treeViewChildList:any;
   @ViewChild('first') matRadioButton : MatRadioButton;
-  constructor(private ReceteService: ReceteService, private ReceteCardDialogService: ReceteCardDialogService) {
+  constructor(private ReceteService: ReceteService, private ReceteCardDialogService: ReceteCardDialogService,private ReceteTreeViewService:ReceteTreeViewService) {
     setTimeout(() =>{
      this.matRadioButton._elementRef.nativeElement.click();
      this.matRadioButton.checked = true;
      } ,10)
+
+
   }
   ngOnInit(): void {
 
@@ -41,25 +46,9 @@ export class MaliyetComponent implements OnInit {
   }
 
   treeItemSelect: any;
+
   TreeItem(item: any) {
-
-    var deneme = [];
-
-
-    deneme.push(item)
-    const collect = (n, out = []) => {
-
-      for (const { submenu, ...item } of n) {
-        out.push(item);
-        submenu?.length && collect(submenu, out);
-      }
-      return out;
-    };
-
-    const result = deneme.map(({ submenu, ...item }) => ({ ...item, submenu: collect(submenu) }));
-
-    this.res = result[0].submenu
-
+    this.treeViewChildList=this.ReceteTreeViewService.treeViewChildList(item)
     this.calculateLastYearTotal()
   }
 

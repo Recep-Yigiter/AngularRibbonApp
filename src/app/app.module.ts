@@ -80,7 +80,7 @@ import { LayoutContent } from './shared/components/layout-content/layout-content
     MaterialModule,
    
   ],
-  providers: [ { provide: "baseUrl", useValue: "https://localhost:7064/api", multi: true },],
+  providers: [ { provide: "baseUrl", useValue: "https://localhost:7146/api", multi: true },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

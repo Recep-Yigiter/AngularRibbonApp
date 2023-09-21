@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { StokCardAddComponent } from '../stok-card-add/stok-card-add.component';
+import { StokCardUpdateComponent } from '../stok-card-update/stok-card-update.component';
 
 
 
@@ -15,7 +16,7 @@ export class StokCardDialogService {
 
 
   treeViewItems:any;
-  StokCardAddDialog(successCallBack?: (treeViewItems) => void) {
+  addDialog(successCallBack?: (treeViewItems) => void) {
 
 
     const dialogRef = this.dialog.open(StokCardAddComponent, {
@@ -37,7 +38,7 @@ export class StokCardDialogService {
 
 
   }
-  StokChildCardAddDialog(event,successCallBack?: (treeViewItems) => void) {
+  addChildDialog(event,successCallBack?: (treeViewItems) => void) {
 
 
     const dialogRef = this.dialog.open(StokCardAddComponent, {
@@ -60,7 +61,26 @@ export class StokCardDialogService {
 
   }
 
+  updateDialog(event,successCallBack?: (treeViewItems) => void) {
+    const dialogRef = this.dialog.open(StokCardUpdateComponent, {
+      width: '25%',
+      minWidth: '300px',
+      height: '28vh',
+      disableClose: true,
+      autoFocus: false,
+      restoreFocus: false,
+      data:event
+    });
+    
+    dialogRef.afterClosed().subscribe(result => {
+       if (dialogRef.componentInstance.treeViewItems == null) { return }
 
+       this.treeViewItems = dialogRef.componentInstance.treeViewItems;
+      successCallBack(this.treeViewItems);
+    });
+
+
+  }
 
 
 

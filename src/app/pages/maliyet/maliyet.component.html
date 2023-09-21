@@ -487,7 +487,7 @@
 
 <div class="table-layout-content">
     <div class="table-display-none activeSelectCategori" [class.activeSelectCategori]="selectedCategory==='1'" >
-        <p-table [value]="res" [tableStyle]="{'min-width': '50rem'}" selectionMode="single"
+        <p-table [value]="treeViewChildList" [tableStyle]="{'min-width': '50rem'}" selectionMode="single"
             [(selection)]="selectedReceteItem" dataKey="id" responsiveLayout="scroll" [resizableColumns]="true"
             [scrollable]="true" scrollHeight="calc(100vh - 395px)" columnResizeMode="expand" selectionMode="single"
             (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnSelect()">

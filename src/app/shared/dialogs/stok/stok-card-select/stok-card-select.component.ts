@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { StokCardAddComponent } from '../stok-card-add/stok-card-add.component';
 import { PageEvent } from '@angular/material/paginator';
-import { StokService } from 'src/app/pages/stok/services/stok.service';
+
 import { DialogRef } from '@angular/cdk/dialog';
 import { MatDialog } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
+import { StokService } from 'src/app/core/services/stok/stok.service';
 
 @Component({
   selector: 'app-stok-card-select',
@@ -31,8 +32,7 @@ export class StokCardSelectComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private dialogRef: DialogRef,
-    private StokService: StokService,
-    private http: HttpClient) { }
+    private http: HttpClient,private StokService:StokService) { }
 
 
 
@@ -62,9 +62,7 @@ export class StokCardSelectComponent implements OnInit {
 
   async getAllStok() {
 
-    const allStoks: { items: any[], index: number, size: number, count: number, pages: number, hasPrevious: boolean, hasNext: boolean } = await this.StokService.list(
-      this.pageIndex ? this.pageIndex : 0, this.pageSize ? this.pageSize : 5, () => console.log()
-    )
+    const allStoks= await this.StokService.GetList( () => console.log())
     this.dataSource = allStoks.items;
     this.totalRecords = allStoks.count;
 

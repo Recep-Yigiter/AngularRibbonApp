@@ -242,7 +242,7 @@
 
                         <img *ngIf="node.submenu==undefined" src=" ../../assets/icons/actions/list.png"
                             class="title-icon" alt="">
-                        {{ node.name }}
+                        {{ node.ad }}
                     </div>
                     <div class="view-icon-content" (click)="TreeItem(node)" *ngIf="node.submenu?.length>0">
                         <img src="../../assets/icons/actions/view_details.png" class="title-icon view-icon" alt="">
@@ -312,7 +312,7 @@
 
 <div class="table-layout-content">
    
-        <p-table [value]="res" [tableStyle]="{'min-width': '50rem'}" selectionMode="single"
+        <p-table [value]="dataSource" [tableStyle]="{'min-width': '50rem'}" selectionMode="single"
              responsiveLayout="scroll" [resizableColumns]="true"
             [scrollable]="true" scrollHeight="calc(100vh - 395px)" columnResizeMode="expand" selectionMode="single"
             >
@@ -338,7 +338,7 @@
             </ng-template>
             <ng-template pTemplate="body" let-product>
                 <tr [pSelectableRow]="product">
-                    <td>{{product.name}}</td>
+                    <td>{{product.ad}}</td>
                     <td>{{product.stokAdi}}</td>
                     <td>{{product.stokTuru}}</td>
                     <td>{{product.adet}}</td>
@@ -363,11 +363,7 @@
                 </tr>
             </ng-template>
 
-            <ng-template pTemplate="summary" let-product>
-                <div class="flex align-items-center justify-content-between">
-                    <!-- Genel Maliyet : {{totalHesap |currency:'TRY':'₺':'0.2-2'}} TL -->
-                </div>
-            </ng-template>
+
 
         </p-table>
   
