@@ -1,189 +1,11 @@
-<!-- <div style="position: fixed;margin-left: 4px;">
-    <div id="window" class="window" style="height: 300px; width:calc(100vw - 10px); min-height:calc(100vh - 176px); ">
-        <div id="draggable-header" class="top-bar">
-            <div class="title">Stok Kart </div>
-            <div class="toolbar">
-                <button class="item" name="close">
-                    <i class="fa fa-close"></i>
-                </button>
-            </div>
-        </div>
-        <div id="draggable-header" class="top-bar"
-            style="border: none; background-color: transparent;margin-bottom: 0;">
-            <div class="title" style="background: linear-gradient(to bottom, #ffffff 0%, #bbbbbb 100%); width: 100%; ">
-                <div class="ribbon-section" style="height: 36px;">
-                    <div (click)="addOpenDialog()" class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
-                        style="height: 36px;">
-                        <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                            src=" ../../assets/icons/actions/folder_add.png">
-                        <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                            src=" ../../assets/icons/actions/folder_add.png">
-                        <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                            src=" ../../assets/icons/actions/folder_add.png">
-
-                    </div>
-
-                </div>
-                <div class="ribbon-section" style="height: 36px;">
-                    <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
-                        style="height: 36px;">
-                        <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                            src=" ../../assets/icons/actions/folder_down.png">
-                        <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                            src=" ../../assets/icons/actions/folder_down.png">
-                        <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                            src=" ../../assets/icons/actions/folder_down.png">
-
-                    </div>
-
-                </div>
-                <div class="ribbon-section" style="height: 36px;">
-                    <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
-                        style="height: 36px;">
-                        <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                            src=" ../../assets/icons/actions/erase_registry.png">
-                        <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                            src=" ../../assets/icons/actions/erase_registry.png">
-                        <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                            src=" ../../assets/icons/actions/erase_registry.png">
-
-                    </div>
-
-                </div>
 
 
 
-
-            </div>
-
-        </div>
-        <div class="content" style="overflow-x: scroll;">
-
-
-
-
-
-
-
-            <div class="tree-content" >
-                <mat-tree [dataSource]="treeSource" [treeControl]="treeControl" [trackBy]="trackBy"
-                    style="margin-top: 20px; position: relative;">
-
-                    <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle 
-                        (contextmenu)="onContextMenu($event, node)" (contextmenu)="activeNode = node"
-                        [ngClass]="{ 'background-highlight': activeNode === node }" (click)="activeNode = node"
-                        [ngClass]="{ 'background-highlight': activeNode === node }">
-
-                        <li class="mat-tree-node">
-                            <button mat-icon-button disabled></button>
-                            <img *ngIf="node.parentId!=null" width="25px" height="25px" class="mr-2" 
-                                src="../../assets/icons/actions/compare_documents.png" alt="" >
-                            <img *ngIf="node.parentId==null " width="25px" height="25px" class="mr-2"
-                            src="../../assets/icons/actions/compare_documents.png" alt="">
-                            {{node.name}}
-
-                        </li>
-
-
-                    </mat-tree-node>
-
-                    <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild" 
-                        (contextmenu)="onContextMenu($event, node)" (contextmenu)="activeNode = node">
-                        <li class="mat-tree-node" [ngClass]="{ 'background-highlight': activeNode === node }"
-                            (click)="activeNode = node" [ngClass]="{ 'background-highlight': activeNode === node }">
-                            <div class="mat-tree-node">
-                                <button  mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.name">
-                                    <mat-icon class="mat-icon-rtl-mirror" style="opacity: 0.7; font-size: 18px;">
-                                
-                                        {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-                                    </mat-icon> 
-
-                                  
-                                </button>
-                                <img *ngIf="node.parentId!=null" width="25px" height="25px" class="mr-2"
-                                    src="../../assets/icons/actions/folder.png" alt="">
-                                <img *ngIf="node.parentId==null " width="25px" height="25px"
-                                    src="../../assets/icons/actions/folder.png" class="mr-2" alt="">{{node.name}}
-                            </div>
-                        </li>
-                        <ul [class.children-invisible]="!treeControl.isExpanded(node)">
-                            <ng-container matTreeNodeOutlet></ng-container>
-                        </ul>
-                    </mat-nested-tree-node>
-                </mat-tree>
-            </div>
-
-            <div style="flex: 1;  ">
-                <div class="tree-detay-content" >
-                    <common-input label="Stok Kodu" [formControlNames]="stokKod"></common-input>
-                     <common-input label="Stok Kısa Ad" [formControlNames]="stokKisaAd"></common-input>
-                    <common-input label="Stok Türü" [formControlNames]="stokTuru"></common-input>
-                    <common-input label="Alıs KDV Oranı" [formControlNames]="alisKdvOrani"></common-input>
-                    <common-input label="Satıs KDV Oranı" [formControlNames]="satisKdvOrani"></common-input> 
-                   
-                
-                </div>
-            </div>
-
-        </div>
-
-
-        <div class="footer">
-            <div class="content">
-                footer
-            </div>
-            <div id="draggable-resize" class="resize"></div>
-        </div>
-    </div>
-
-</div>
-
-
-
-<div style="visibility: hidden; position: fixed" [style.left]="contextMenuPosition.x"
-    [style.top]="contextMenuPosition.y" [matMenuTriggerFor]="contextMenu">
-</div>
-<mat-menu #contextMenu="matMenu">
-    <ng-template matMenuContent let-item="item">
-        <button mat-menu-item (click)="addOpenDialog(item)">
-            <img width="25px" height="25px" src="../../assets/icons/actions/folder.png" alt=""
-                style="margin-right:15px;">
-            <span>Ekle</span>
-        </button>
-
-        <button mat-menu-item (click)="sil(item)">
-            <img width="25px" height="25px" src="../../assets/icons/actions/compare_documents.png" alt=""
-                style="margin-right:15px;">
-            <span>Sil</span>
-        </button>
-    </ng-template>
-</mat-menu>
-
-<mat-menu>
-    <button mat-menu-item>
-        <mat-icon>dialpad</mat-icon>
-        <span>Redial</span>
-    </button>
-    <button mat-menu-item disabled>
-        <mat-icon>voicemail</mat-icon>
-        <span>Check voice mail</span>
-    </button>
-    <button mat-menu-item>
-        <mat-icon>notifications_off</mat-icon>
-        <span>Disable alerts</span>
-    </button>
-</mat-menu> -->
-
-
-
-
-
-
-<layout-content layoutName="Maliyet Kart">
+<layout-content layoutName="Stok Kart">
 
     <div class="sidebar-add-layout-content">
 
-        <div class="ribbon-section"  style="height: 40px;margin-bottom: 3px;">
+        <div class="ribbon-section" style="height: 40px;margin-bottom: 3px;">
             <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
                 <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
                     src=" ../../assets/icons/actions/folder_add.png">
@@ -195,7 +17,7 @@
             </div>
 
         </div>
-        <div class="ribbon-section"  style="height: 40px; margin-bottom: 3px;">
+        <div class="ribbon-section" style="height: 40px; margin-bottom: 3px;">
             <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
                 <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
                     src=" ../../assets/icons/actions/folder_down.png">
@@ -224,9 +46,9 @@
     </div>
 
     <div class="sidebar-layout-content">
-         <ng-template #nodeTemplate let-nodes="nodes" let-tree="tree">
+        <ng-template #nodeTemplate let-nodes="nodes" let-tree="tree">
             <ng-container *ngFor="let node of nodes">
-                <div class="menu-node" (click)="TreeItemSelect(node)" [ngClass]=" { 'menu-node-tree' : tree }"
+                <div class="menu-node" [ngClass]=" { 'menu-node-tree' : tree }"
                     style="position: relative;">
                     <div (click)="toggleVisible(node)" class="menu-node-button "
                         [ngClass]="{ 'menu-node-button-show': node.submenu && node.submenu?.length,'menu-node-button-plus': !expand[node.index],'menu-node-button-minus': expand[node.index] } "
@@ -244,9 +66,6 @@
                             class="title-icon" alt="">
                         {{ node.ad }}
                     </div>
-                    <div class="view-icon-content" (click)="TreeItem(node)" *ngIf="node.submenu?.length>0">
-                        <img src="../../assets/icons/actions/view_details.png" class="title-icon view-icon" alt="">
-                    </div>
                     <ng-container *ngIf="node.submenu && node.submenu?.length && expand[node.index] ">
                         <ng-template [ngTemplateOutlet]="nodeTemplate"
                             [ngTemplateOutletContext]="{ nodes: node.submenu, tree: true }">
@@ -257,62 +76,59 @@
         </ng-template>
 
         <ng-template [ngTemplateOutlet]="nodeTemplate" [ngTemplateOutletContext]="{ nodes: menu, tree: false }">
-        </ng-template> 
+        </ng-template>
     </div>
 
 
-    <div class="table-action-layout-content" >
+    <div class="table-action-layout-content">
 
-    
-            <div class="ribbon-section"  style="height: 40px;margin-bottom: 3px;">
-                <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
-                    style="height: 40px;">
-                    <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                    src=" ../../assets/icons/actions/clipboard_add.png">
-                    <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                    src=" ../../assets/icons/actions/clipboard_add.png">
-                    <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                    src=" ../../assets/icons/actions/clipboard_add.png">
 
-                </div>
+        <div class="ribbon-section" style="height: 40px;margin-bottom: 3px;">
+            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/actions/clipboard_add.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/actions/clipboard_add.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/actions/clipboard_add.png">
 
             </div>
-            <div class="ribbon-section"  style="height: 40px;margin-bottom: 3px;">
-                <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
-                    style="height: 40px;">
-                    <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                    src=" ../../assets/icons/actions/erase_registry.png">
-                    <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                    src=" ../../assets/icons/actions/erase_registry.png">
-                    <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                    src=" ../../assets/icons/actions/erase_registry.png">
 
-                </div>
+        </div>
+        <div class="ribbon-section" style="height: 40px;margin-bottom: 3px;">
+            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/actions/erase_registry.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/actions/erase_registry.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/actions/erase_registry.png">
 
             </div>
-            <div class="ribbon-section"  style="height: 40px;margin-bottom: 3px;">
-                <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
-                    style="height: 40px;">
-                    <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                    src=" ../../assets/icons/actions/edit.png">
-                    <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                    src=" ../../assets/icons/actions/edit.png">
-                    <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                    src=" ../../assets/icons/actions/edit.png">
 
-                </div>
+        </div>
+        <div class="ribbon-section" style="height: 40px;margin-bottom: 3px;">
+            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/actions/edit.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/actions/edit.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/actions/edit.png">
 
             </div>
-      
+
+        </div>
+
 
 
     </div>
 
 
 
-<div class="table-layout-content">
-   
-        <p-table [value]="dataSource" [tableStyle]="{'min-width': '50rem'}" selectionMode="single"
+    <div class="table-layout-content">
+
+        <!-- <p-table [value]="dataSource" [tableStyle]="{'min-width': '50rem'}" selectionMode="single"
              responsiveLayout="scroll" [resizableColumns]="true"
             [scrollable]="true" scrollHeight="calc(100vh - 395px)" columnResizeMode="expand" selectionMode="single"
             >
@@ -365,8 +181,91 @@
 
 
 
-        </p-table>
-  
+        </p-table> -->
+
+
+        <div
+            style="padding-right: 10px;    color: #959595; font-size: 16px;
+        font-weight: 500; width: 100%; display: flex;justify-content: center;align-items: center;  border-bottom: 2px solid #c9c9c9;">
+            STOK DETAY
+        </div>
+
+
+        <table class="dx-datagrid-table dx-datagrid-table-fixed dx-select-checkboxes-hidden" role="presentation"
+            style="table-layout: fixed; margin-top: 10px !important;">
+            <colgroup>
+                <col style="width: 200px;">
+                <col style="width: 30px;">
+                <col style="width: auto;">
+            </colgroup>
+            <tbody role="presentation" *ngFor="let item of stokDetayList">
+                
+                    <tr class="dx-row dx-data-row" role="row" aria-selected="false" aria-rowindex="1" tabindex="0"
+                    style=" border-bottom: 1px solid #dee2e6;">
+                    <td role="gridcell" aria-colindex="1">
+                        <span class="dx-filemanager-details-item-name" style="color: black; 
+                            text-align: left;
+                            margin-left: 10px;">{{item?.label?item?.label:"NULL"}}</span>
+                    </td>
+                    <td role="gridcell" aria-colindex="1">
+                        <span class="dx-filemanager-details-item-name"
+                            style="color: black; text-align: left; margin-left: 10px;font-size: 13px;font-weight: 600;">:</span>
+                    </td>
+                    <td aria-describedby="dx-col-2" role="gridcell" aria-colindex="3" style="text-align: left;">
+                        <span class="dx-filemanager-details-item-name" style="                            font-size: 14px;
+                        font-weight: 600;
+                        font-family: 'times new roman', serif;
+                        font-style: italic;">{{item?.value?item?.value:""}}</span>
+                    </td>
+
+                </tr>
+
+         
+                <!-- <tr class="dx-row dx-data-row" role="row" aria-selected="false" aria-rowindex="1" tabindex="0"
+                    style=" border-bottom: 1px solid #dee2e6;">
+                    <td role="gridcell" aria-colindex="1">
+                        <span class="dx-filemanager-details-item-name" style="color: black; 
+                            text-align: left;
+                            margin-left: 10px;
+                            font-size: 14px;
+                            font-weight: 600;
+                            font-family: 'times new roman', serif;
+                            font-style: italic;">Stok Adı </span>
+                    </td>
+                    <td role="gridcell" aria-colindex="1">
+                        <span class="dx-filemanager-details-item-name"
+                            style="color: black; text-align: left; margin-left: 10px;font-size: 13px;font-weight: 600;">:</span>
+                    </td>
+                    <td aria-describedby="dx-col-2" role="gridcell" aria-colindex="3" style="text-align: left;">
+                        <span class="dx-filemanager-details-item-name">{{selectedNode?.ad?selectedNode?.ad:'NULL'}}</span>
+                    </td>
+
+                </tr>
+
+                <tr class="dx-row dx-data-row" role="row" aria-selected="false" aria-rowindex="1" tabindex="0"
+                    style=" border-bottom: 1px solid #dee2e6; ">
+                    <td role="gridcell" aria-colindex="1">
+                        <span class="dx-filemanager-details-item-name" style="color: black;
+                         text-align: left;
+                         margin-left: 10px;
+                         font-size: 14px;
+                         font-weight: 600;
+                         font-family: 'times new roman', serif;
+                         font-style: italic; ">Birim </span>
+                    </td>
+                    <td role="gridcell" aria-colindex="1">
+                        <span class="dx-filemanager-details-item-name" style="color: black; text-align: left; margin-left: 10px;font-size: 14px;font-weight: 600;">:</span>
+                    </td>
+                    <td aria-describedby="dx-col-2" role="gridcell" aria-colindex="3" style="text-align: left;">
+                        <span class="dx-filemanager-details-item-name">{{selectedNode?.birimAdi?selectedNode?.birimAdi:'NULL'}}</span>
+                    </td>
+
+                </tr> -->
+
+
+            </tbody>
+        </table>
+
 
     </div>
 </layout-content>
