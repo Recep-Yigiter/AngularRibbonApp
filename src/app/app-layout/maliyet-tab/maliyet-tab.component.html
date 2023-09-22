@@ -1,7 +1,7 @@
 <div class="ribbon-tab" id="format-tab" style="display: block; height: 93px;" >
     <div class="ribbon-section" unselectable="on" style="border-right: 1px solid #939393;">
         <span class="section-title" unselectable="on">Kartlar</span>
-        <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on">
+        <div [routerLink]="['/maliyet/recete-kart']" [routerLinkActive]="['active']" class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on">
             <span class="button-help" unselectable="on">This button will add a table to your document.</span>
             <img style="width: 36px; height: 36px; opacity: 0.9;" class="ribbon-icon ribbon-normal" src=" ../../assets/icons/maliyet/work_breakdown_structure.png">
             <img style="width: 36px; height: 36px;" class="ribbon-icon ribbon-hot" src=" ../../assets/icons/maliyet/work_breakdown_structure.png">

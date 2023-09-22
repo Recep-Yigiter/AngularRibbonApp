@@ -21,7 +21,6 @@ export class StokTreeViewService {
                 stokAdi: value.stokAdi,
                 birimAdi: value.birimAdi,
                 birimFiyat: value.birimFiyat,
-                stokTuru: value.stokTuru,
                 adet: value.adet,
                 olcu: value.olcu,
                 miktar: value.miktar,

@@ -8,7 +8,48 @@ export class ReceteTreeViewService {
   expand = {};
   res: any;
   constructor() { }
+  CreateTreeView(data: any) {
 
+    function findParent(arr, id) {
+      return arr.find((parent) => parent.id === id);
+    }
+    function createTreeNode(value) {
+      return {
+        id: value.id,
+        ad: value.ad,
+        stokAdi: value.stokAdi,
+        birimAdi: value.birimAdi,
+        birimFiyat: value.birimFiyat,
+        adet: value.adet,
+        olcuAciklama: value.olcuAciklama,
+        miktar: value.miktar,
+        receteTuru: value.receteTuru,
+        submenu: (value.submenu !== undefined)
+          ? value.submenu.map(createTreeNode)
+          : undefined
+      };
+    }
+
+    function createTree(data) {
+      return data
+        .reduce((result, value, index, originalArray) => {
+          if (value.parentId !== null) {
+            const parent = findParent(originalArray, value.parentId);
+            if (parent) {
+              parent.submenu = (parent.submenu || []).concat(value);
+            }
+            return result;
+          } else {
+            return result.concat(value);
+          }
+        }, [])
+        .map(createTreeNode);
+    }
+
+    return createTree(data)
+
+
+  }
   toNode(x: any): any {
     const y: any = { ...x };
     y.index = ++this.index;
@@ -19,6 +60,7 @@ export class ReceteTreeViewService {
   }
 
   toggleVisible(node: any) {
+
     if (node.submenu && node.submenu?.length) {
       if (this.expand[node.index]) {
         this.expand[node.index] = false;
@@ -27,8 +69,6 @@ export class ReceteTreeViewService {
       }
     }
   }
-
-
   treeViewChildList(item: any) {
 
     var array = [];
@@ -48,7 +88,7 @@ export class ReceteTreeViewService {
 
     this.res = result[0].submenu
 
-
+    return this.res;
   }
 
 

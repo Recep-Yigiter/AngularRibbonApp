@@ -35,6 +35,14 @@ import { StokCardSelectComponent } from './shared/dialogs/stok/stok-card-select/
 import { StokTuruDropDown } from './shared/components/dropdown/stok-turu-dropdown/stok-turu-dropdown';
 import { ReceteChildCardAddComponent } from './shared/dialogs/maliyet/recete-child-card-add/recete-child-card-add.component';
 import { LayoutContent } from './shared/components/layout-content/layout-content';
+import { StokListComponent } from './pages/stok/lists/stok-list/stok-list.component';
+import { HizmetListComponent } from './pages/stok/lists/hizmet-list/hizmet-list.component';
+import { MasrafListComponent } from './pages/stok/lists/masraf-list/masraf-list.component';
+import { DepoListComponent } from './pages/stok/lists/depo-list/depo-list.component';
+import { LayoutListContent } from './shared/components/layout-list-content/layout-list-content';
+import { ReceteCardComponent } from './pages/maliyet/cards/recete-card/recete-card.component';
+import { ProcessCardComponent } from './pages/maliyet/cards/process-card/process-card.component';
+
 
 @NgModule({
   declarations: [
@@ -62,11 +70,19 @@ import { LayoutContent } from './shared/components/layout-content/layout-content
     ReceteCardAddComponent,
     ReceteCardUpdateComponent,
     LayoutContent,
+    LayoutListContent,
 
     StokSelectInput,
       StokCardSelectComponent,
       StokTuruDropDown,
-      ReceteChildCardAddComponent
+      ReceteChildCardAddComponent,
+      StokListComponent,
+      HizmetListComponent,
+      MasrafListComponent,
+      DepoListComponent,
+      ReceteCardComponent,
+      ProcessCardComponent
+
     
   ],
   imports: [

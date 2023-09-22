@@ -99,7 +99,7 @@
 
     <div class="ribbon-section" unselectable="on" style="border-right: 1px solid #939393;">
         <span class="section-title" unselectable="on">Listeler</span>
-        <div class="ribbon-button ribbon-button-large" id="add-page-btn" unselectable="on">
+        <div [routerLink]="['/stok/stok-list']" [routerLinkActive]="['active']" class="ribbon-button ribbon-button-large" id="add-page-btn" unselectable="on">
 
             <span class="button-help" unselectable="on">This button will add a page to your document.</span>
             <img style="width: 36px; height: 36px;  opacity: 0.9;" class="ribbon-icon ribbon-normal" src=" ../../assets/icons/stok/inventory Ek/inventory.png">
@@ -107,7 +107,7 @@
             <img style="width: 36px; height: 36px;" class="ribbon-icon ribbon-disabled" src=" ../../assets/icons/stok/inventory Ek/inventory.png">
             <span class="button-title" unselectable="on">Stok<br>Listesi</span>
         </div>
-        <div class="ribbon-button ribbon-button-large" id="open-page-btn" unselectable="on">
+        <div [routerLink]="['/stok/depo-list']" [routerLinkActive]="['active']" class="ribbon-button ribbon-button-large" id="open-page-btn" unselectable="on">
 
             <span class="button-help" unselectable="on">This button will open a page and add it to your
                 document.</span>
@@ -116,7 +116,7 @@
             <img style="width: 36px; height: 36px;"class="ribbon-icon ribbon-disabled" src=" ../../assets/icons/stok/warehouse.png">
             <span class="button-title" unselectable="on">Depo<br>Listesi</span>
         </div>
-        <div class="ribbon-button ribbon-button-large " id="del-page-btn" unselectable="on">
+        <div [routerLink]="['/stok/hizmet-list']" [routerLinkActive]="['active']" class="ribbon-button ribbon-button-large " id="del-page-btn" unselectable="on">
 
             <span class="button-help" unselectable="on">This button will remove the selected page from your
                 document.</span>
@@ -125,7 +125,7 @@
             <img style="width: 36px; height: 36px; " class="ribbon-icon ribbon-disabled" src=" ../../assets/icons/stok/services_save.png">
             <span class="button-title" unselectable="on">Hizmet<br>Listesi</span>
         </div>
-        <div class="ribbon-button ribbon-button-large " id="del-page-btn" unselectable="on">
+        <div [routerLink]="['/stok/masraf-list']" [routerLinkActive]="['active']" class="ribbon-button ribbon-button-large " id="del-page-btn" unselectable="on">
 
             <span class="button-help" unselectable="on">This button will remove the selected page from your
                 document.</span>

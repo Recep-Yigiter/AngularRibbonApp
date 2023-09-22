@@ -1,6 +1,3 @@
-
-
-
 <layout-content layoutName="Stok Kart">
 
     <div class="sidebar-add-layout-content">
@@ -48,8 +45,7 @@
     <div class="sidebar-layout-content">
         <ng-template #nodeTemplate let-nodes="nodes" let-tree="tree">
             <ng-container *ngFor="let node of nodes">
-                <div class="menu-node" [ngClass]=" { 'menu-node-tree' : tree }"
-                    style="position: relative;">
+                <div class="menu-node" [ngClass]=" { 'menu-node-tree' : tree }" style="position: relative;">
                     <div (click)="toggleVisible(node)" class="menu-node-button "
                         [ngClass]="{ 'menu-node-button-show': node.submenu && node.submenu?.length,'menu-node-button-plus': !expand[node.index],'menu-node-button-minus': expand[node.index] } "
                         role="button">
@@ -83,31 +79,8 @@
     <div class="table-action-layout-content">
 
 
-        <div class="ribbon-section" style="height: 40px;margin-bottom: 3px;">
-            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
-                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                    src=" ../../assets/icons/actions/clipboard_add.png">
-                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                    src=" ../../assets/icons/actions/clipboard_add.png">
-                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                    src=" ../../assets/icons/actions/clipboard_add.png">
 
-            </div>
-
-        </div>
-        <div class="ribbon-section" style="height: 40px;margin-bottom: 3px;">
-            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
-                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                    src=" ../../assets/icons/actions/erase_registry.png">
-                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                    src=" ../../assets/icons/actions/erase_registry.png">
-                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                    src=" ../../assets/icons/actions/erase_registry.png">
-
-            </div>
-
-        </div>
-        <div class="ribbon-section" style="height: 40px;margin-bottom: 3px;">
+        <div class="ribbon-section" style="height: 40px;margin-bottom: 3px; margin-left: 10px;">
             <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
                 <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
                     src=" ../../assets/icons/actions/edit.png">
@@ -128,141 +101,24 @@
 
     <div class="table-layout-content">
 
-        <!-- <p-table [value]="dataSource" [tableStyle]="{'min-width': '50rem'}" selectionMode="single"
-             responsiveLayout="scroll" [resizableColumns]="true"
-            [scrollable]="true" scrollHeight="calc(100vh - 395px)" columnResizeMode="expand" selectionMode="single"
-            >
-            <ng-template pTemplate="header">
-                <tr>
-                    <th style="width: auto;min-width:350px; color: #959595 !important;">
-                        Name</th>
-                    <th style="width:350px;color: #959595 !important;">
-                        Stok Adı</th>
-                    <th style="width:100px;color: #959595 !important;">
-                        Stok Turu</th>
-                    <th style="width:75px;color: #959595 !important;">
-                        Adet</th>
-                    <th style="width:75px;color: #959595 !important;">
-                        Miktar</th>
-                    <th style="width:75px;color: #959595 !important;">
-                        Birim Adı</th>
-                    <th style="width:75px;color: #959595 !important;">
-                        Birim Fiyat</th>
-                    <th style="width:100px;color: #959595 !important;">
-                        Top. Maliyet</th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-product>
-                <tr [pSelectableRow]="product">
-                    <td>{{product.ad}}</td>
-                    <td>{{product.stokAdi}}</td>
-                    <td>{{product.stokTuru}}</td>
-                    <td>{{product.adet}}</td>
-
-                    <td>
-                        <div matTooltip="{{product.olcu}}" [matTooltipPosition]="'right'"
-                            *ngIf="product.birimAdi!='Adet'">{{product.miktar | number:'1.1-2' }}</div>
-                        <div matTooltip="{{product.olcu}}" [matTooltipPosition]="'right'"
-                            *ngIf="product.birimAdi=='Adet'">-</div>
-                    </td>
-                    <td>{{product.birimAdi}}</td>
-                    <td>{{product.birimFiyat}}</td>
-                    <td style="font-weight: 600; font-size: 16px;">
-                        <div *ngIf="product.birimAdi!='Adet'">
-                            {{product.birimFiyat *( product.miktar)*(
-                            product.adet) |currency:'TRY':'₺':'0.2-2'}}
-                        </div>
-                        <div *ngIf="product.birimAdi=='Adet'">
-                            {{product.birimFiyat *( product.adet)
-                            |currency:'TRY':'₺':'0.2-2'}}</div>
-                    </td>
-                </tr>
-            </ng-template>
-
-
-
-        </p-table> -->
-
-
-        <div
-            style="padding-right: 10px;    color: #959595; font-size: 16px;
-        font-weight: 500; width: 100%; display: flex;justify-content: center;align-items: center;  border-bottom: 2px solid #c9c9c9;">
+        <div class="content-detay">
             STOK DETAY
         </div>
 
 
-        <table class="dx-datagrid-table dx-datagrid-table-fixed dx-select-checkboxes-hidden" role="presentation"
-            style="table-layout: fixed; margin-top: 10px !important;">
+        <table class="table-detay">
             <colgroup>
                 <col style="width: 200px;">
                 <col style="width: 30px;">
                 <col style="width: auto;">
             </colgroup>
-            <tbody role="presentation" *ngFor="let item of stokDetayList">
-                
-                    <tr class="dx-row dx-data-row" role="row" aria-selected="false" aria-rowindex="1" tabindex="0"
-                    style=" border-bottom: 1px solid #dee2e6;">
-                    <td role="gridcell" aria-colindex="1">
-                        <span class="dx-filemanager-details-item-name" style="color: black; 
-                            text-align: left;
-                            margin-left: 10px;">{{item?.label?item?.label:"NULL"}}</span>
-                    </td>
-                    <td role="gridcell" aria-colindex="1">
-                        <span class="dx-filemanager-details-item-name"
-                            style="color: black; text-align: left; margin-left: 10px;font-size: 13px;font-weight: 600;">:</span>
-                    </td>
-                    <td aria-describedby="dx-col-2" role="gridcell" aria-colindex="3" style="text-align: left;">
-                        <span class="dx-filemanager-details-item-name" style="                            font-size: 14px;
-                        font-weight: 600;
-                        font-family: 'times new roman', serif;
-                        font-style: italic;">{{item?.value?item?.value:""}}</span>
-                    </td>
+            <tbody *ngFor="let item of stokDetayList">
 
+                <tr>
+                    <td><span class="table-detay-label">{{item.label?item.label:"NULL"}}</span></td>
+                    <td><span>:</span></td>
+                    <td><span class="table-detay-value">{{item.value?item.value:""}}</span></td>
                 </tr>
-
-         
-                <!-- <tr class="dx-row dx-data-row" role="row" aria-selected="false" aria-rowindex="1" tabindex="0"
-                    style=" border-bottom: 1px solid #dee2e6;">
-                    <td role="gridcell" aria-colindex="1">
-                        <span class="dx-filemanager-details-item-name" style="color: black; 
-                            text-align: left;
-                            margin-left: 10px;
-                            font-size: 14px;
-                            font-weight: 600;
-                            font-family: 'times new roman', serif;
-                            font-style: italic;">Stok Adı </span>
-                    </td>
-                    <td role="gridcell" aria-colindex="1">
-                        <span class="dx-filemanager-details-item-name"
-                            style="color: black; text-align: left; margin-left: 10px;font-size: 13px;font-weight: 600;">:</span>
-                    </td>
-                    <td aria-describedby="dx-col-2" role="gridcell" aria-colindex="3" style="text-align: left;">
-                        <span class="dx-filemanager-details-item-name">{{selectedNode?.ad?selectedNode?.ad:'NULL'}}</span>
-                    </td>
-
-                </tr>
-
-                <tr class="dx-row dx-data-row" role="row" aria-selected="false" aria-rowindex="1" tabindex="0"
-                    style=" border-bottom: 1px solid #dee2e6; ">
-                    <td role="gridcell" aria-colindex="1">
-                        <span class="dx-filemanager-details-item-name" style="color: black;
-                         text-align: left;
-                         margin-left: 10px;
-                         font-size: 14px;
-                         font-weight: 600;
-                         font-family: 'times new roman', serif;
-                         font-style: italic; ">Birim </span>
-                    </td>
-                    <td role="gridcell" aria-colindex="1">
-                        <span class="dx-filemanager-details-item-name" style="color: black; text-align: left; margin-left: 10px;font-size: 14px;font-weight: 600;">:</span>
-                    </td>
-                    <td aria-describedby="dx-col-2" role="gridcell" aria-colindex="3" style="text-align: left;">
-                        <span class="dx-filemanager-details-item-name">{{selectedNode?.birimAdi?selectedNode?.birimAdi:'NULL'}}</span>
-                    </td>
-
-                </tr> -->
-
-
             </tbody>
         </table>
 

@@ -1,0 +1,579 @@
+<!-- 
+ <div style="position: fixed;margin-left: 4px;">
+    <div id="window" class="window" style="height: 300px; width:calc(100vw - 10px); min-height:calc(100vh - 176px); ">
+        <div id="draggable-header" class="top-bar">
+            <div class="title">Maliyet Kart </div>
+            <div class="toolbar">
+                <button class="item" name="close">
+                    <i class="fa fa-close"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="content" style="overflow-x: scroll;">
+
+            <div class="" style="position: relative;">
+                <div id="file-manager" class="dx-filemanager" style="height: 100%; min-height: 450px;">
+                    <div class="dx-filemanager-notification-container dx-widget"></div>
+                    <div class=" dx-drawer dx-widget dx-visibility-change-handler dx-drawer-slide dx-drawer-right ">
+                        <div class="dx-drawer-wrapper">
+                            <div class="dx-drawer-content"
+                                style="transform: translate(0px, 0px); padding: 0px; left: 0px;">
+                                <div class="dx-drawer-shader dx-state-invisible"
+                                    style="visibility: hidden; z-index: 1500; opacity: 0;"></div>
+                                <div class="dx-filemanager-notification-drawer-panel">
+                                    <div class="dx-filemanager-wrapper">
+                                        <div class="dx-filemanager-toolbar dx-filemanager-general-toolbar">
+                                            <div class="dx-toolbar dx-widget dx-visibility-change-handler dx-collection"
+                                                role="toolbar">
+                                                <div class="dx-toolbar-items-container">
+                                                    <div class="dx-toolbar-before">
+
+
+                                                        <div id="draggable-header" class="top-bar"
+                                                            style="border: none; background-color: transparent;margin-bottom: 0;">
+                                                          
+                                                            <div class="title"
+                                                                style="background: linear-gradient(to bottom, #ffffff 0%, #bbbbbb 100%); width: 100%; ">
+                                                                  
+                                                                <div class="ribbon-section" (click)="receteCardAdd($event)"
+                                                                    style="height: 40px;margin-bottom: 3px;">
+                                                                    <div class="ribbon-button ribbon-button-large" 
+                                                                        id="add-table-btn" unselectable="on"
+                                                                        style="height: 40px;">
+                                                                        <img style="width: 30px; height: 30px; "
+                                                                            class="ribbon-icon ribbon-normal"
+                                                                            src=" ../../assets/icons/actions/folder_add.png">
+                                                                        <img style="width: 30px; height: 30px;"
+                                                                            class="ribbon-icon ribbon-hot"
+                                                                            src=" ../../assets/icons/actions/folder_add.png">
+                                                                        <img style="width: 30px; height: 30px;"
+                                                                            class="ribbon-icon ribbon-disabled"
+                                                                            src=" ../../assets/icons/actions/folder_add.png">
+
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="ribbon-section" (click)="receteChildCardAdd($event)"
+                                                                    style="height: 40px; margin-bottom: 3px;">
+                                                                    <div class="ribbon-button ribbon-button-large"
+                                                                        id="add-table-btn" unselectable="on"
+                                                                        style="height: 40px;">
+                                                                        <img style="width: 30px; height: 30px; "
+                                                                            class="ribbon-icon ribbon-normal"
+                                                                            src=" ../../assets/icons/actions/folder_down.png">
+                                                                        <img style="width: 30px; height: 30px;"
+                                                                            class="ribbon-icon ribbon-hot"
+                                                                            src=" ../../assets/icons/actions/folder_down.png">
+                                                                        <img style="width: 30px; height: 30px;"
+                                                                            class="ribbon-icon ribbon-disabled"
+                                                                            src=" ../../assets/icons/actions/folder_down.png">
+
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="ribbon-section"
+                                                                    style="height: 40px; margin-bottom: 3px;">
+                                                                    <div class="ribbon-button ribbon-button-large"
+                                                                        id="add-table-btn" unselectable="on"
+                                                                        style="height: 40px;">
+                                                                        <img style="width: 30px; height: 30px; "
+                                                                            class="ribbon-icon ribbon-normal"
+                                                                            src=" ../../assets/icons/actions/erase_registry.png">
+                                                                        <img style="width: 30px; height: 30px;"
+                                                                            class="ribbon-icon ribbon-hot"
+                                                                            src=" ../../assets/icons/actions/erase_registry.png">
+                                                                        <img style="width: 30px; height: 30px;"
+                                                                            class="ribbon-icon ribbon-disabled"
+                                                                            src=" ../../assets/icons/actions/erase_registry.png">
+
+                                                                    </div>
+
+                                                                </div>
+
+
+
+
+                                                            </div>
+
+                                                        </div>
+
+
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="dx-filemanager-view-switcher-popup"></div>
+                                        </div>
+                                        <div class="dx-filemanager-container ">
+                                            <div class="dx-drawer-shrink   ">
+                                                <div class="dx-drawer-wrapper">
+                                                    <div class="dx-drawer-panel-content dx-drawer-panel-content-initial"
+                                                        style="margin-left: 0px; overflow-y: auto; overflow-x: hidden; border-right: 1px solid #dee2e6;">
+                                                        <div>
+                                                            <ng-template #nodeTemplate let-nodes="nodes"
+                                                                let-tree="tree">
+                                                                <ng-container *ngFor="let node of nodes">
+                                                                    <div class="menu-node" (click)="TreeItemSelect(node)"
+                                                                        [ngClass]=" { 'menu-node-tree' : tree }"
+                                                                        style="position: relative;" >
+                                                                        <div (click)="toggleVisible(node)" 
+                                                                            class="menu-node-button "
+                                                                            [ngClass]="{ 'menu-node-button-show': node.submenu && node.submenu?.length,'menu-node-button-plus': !expand[node.index],'menu-node-button-minus': expand[node.index] } "
+                                                                            role="button">
+                                                                        </div>
+                                                                        <div class="menu-node-name" [ngClass]="{
+                 'menu-node-name-selected': (node === selectedNode),'menu-node-folder':(node.submenu?.length>0)}"
+                                                                            (click)="selectNode(node)">
+
+
+                                                                            <img *ngIf="node.submenu?.length>0"
+                                                                                src=" ../../assets/icons/actions/received_files.png"
+                                                                                class="title-icon" alt="">
+
+                                                                            <img *ngIf="node.submenu==undefined"
+                                                                                src=" ../../assets/icons/actions/list.png"
+                                                                                class="title-icon" alt="">
+                                                                            {{ node.name }}
+                                                                        </div>
+                                                                        <div class="view-icon-content"
+                                                                       (click)="TreeItem(node)"
+                                                                            *ngIf="node.submenu?.length>0">
+                                                                            <img src="../../assets/icons/actions/view_details.png"
+                                                                                class="title-icon view-icon" alt="">
+                                                                        </div> 
+                                                                        <ng-container
+                                                                            *ngIf="node.submenu && node.submenu?.length && expand[node.index] ">
+                                                                            <ng-template
+                                                                                [ngTemplateOutlet]="nodeTemplate"
+                                                                                [ngTemplateOutletContext]="{ nodes: node.submenu, tree: true }">
+                                                                            </ng-template>
+                                                                        </ng-container>
+                                                                    </div>
+                                                                </ng-container>
+                                                            </ng-template>
+
+                                                            <ng-template [ngTemplateOutlet]="nodeTemplate"
+                                                                [ngTemplateOutletContext]="{ nodes: menu, tree: false }">
+                                                            </ng-template>
+                                                        </div>
+
+
+
+
+
+                                                        <div class="dx-widget dx-splitter-wrapper dx-splitter-initial">
+                                                            <div class="dx-splitter-border">
+                                                                <div class="dx-splitter dx-splitter-inactive"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="dx-drawer-content" style="padding: 0px;width: calc(100vw - 560px);
+                                                    min-width: 800px;">
+                                                        <div class="dx-drawer-shader dx-state-invisible"
+                                                            style="opacity: 1; transition: none 0s ease 0s; visibility: visible;">
+                                                        </div>
+                                                        <div class=" dx-filemanager-breadcrumbs">
+                                                            <div class="dx-menu dx-menu-base" tabindex="0"
+                                                                role="menubar">
+                                                                <div class="dx-menu-horizontal">
+
+                                                                    <ul role="none" class="dx-menu-items-container">
+                                                                        <li role="none" class="dx-menu-item-wrapper">
+                                                                            <div class="dx-item dx-menu-item dx-menu-item-has-icon dx-filemanager-breadcrumbs-parent-folder-item"
+                                                                                role="menuitem" tabindex="-1">
+                                                                                <div
+                                                                                    class="dx-item-content dx-menu-item-content ">
+                                                                                    <img class="dx-icon  dx-icon-arrowup"
+                                                                                        src=" ../../assets/icons/actions/baseline_upgrade_black_24dp.png"
+                                                                                        style="width: 30px; height: 30px;opacity: 0.5;"
+                                                                                        alt="">
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </li>
+                                                                        <li role="none" class="dx-menu-item-wrapper"
+                                                                            style="margin-left: -10px;">
+                                                                            <div class="dx-item dx-menu-item dx-menu-item-has-text dx-filemanager-breadcrumbs-separator-item"
+                                                                                role="menuitem" tabindex="-1">
+                                                                                <div
+                                                                                    class="dx-item-content dx-menu-item-content">
+                                                                                    <span
+                                                                                        class="dx-menu-item-text">&nbsp;</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </li>
+                                                                        <li role="none" class="dx-menu-item-wrapper"
+                                                                            style="margin: 0 5px;">
+                                                                            <div class="dx-item dx-menu-item dx-menu-item-has-text"
+                                                                                role="menuitem" tabindex="-1">
+                                                                                <div
+                                                                                    class="dx-item-content dx-menu-item-content">
+                                                                                    <img class="dx-icon"
+                                                                                        src=" ../../assets/icons/actions/clipboard_add.png"
+                                                                                        style="width: 30px; height: 30px;"
+                                                                                        alt="">
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </li>
+                                                                        <li role="none" class="dx-menu-item-wrapper"
+                                                                            style="margin: 0 5px;">
+                                                                            <div class="dx-item dx-menu-item dx-menu-item-has-text"
+                                                                                role="menuitem" tabindex="-1">
+                                                                                <div
+                                                                                    class="dx-item-content dx-menu-item-content">
+                                                                                    <img class="dx-icon"
+                                                                                        src=" ../../assets/icons/actions/erase_registry.png"
+                                                                                        style="width: 30px; height: 30px;"
+                                                                                        alt="">
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </li>
+                                                                        <li role="none" class="dx-menu-item-wrapper"
+                                                                            style="margin: 0 5px;">
+                                                                            <div class="dx-item dx-menu-item dx-menu-item-has-text"
+                                                                                role="menuitem" tabindex="-1">
+                                                                                <div
+                                                                                    class="dx-item-content dx-menu-item-content">
+                                                                                    <img class="dx-icon"
+                                                                                        src=" ../../assets/icons/actions/edit.png"
+                                                                                        style="width: 30px; height: 30px;"
+                                                                                        alt="">
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <p-table [value]="res" [tableStyle]="{'min-width': '50rem'}"  selectionMode="single" [(selection)]="selectedReceteItem" dataKey="id"
+                                                            responsiveLayout="scroll" [resizableColumns]="true"
+                                                            [scrollable]="true" scrollHeight="calc(100vh - 395px)"
+                                                            columnResizeMode="expand" selectionMode="single" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnSelect()">
+                                                            <ng-template pTemplate="header" >
+                                                                <tr >
+                                                                    <th 
+                                                                        style="width: auto;min-width:350px; color: #959595 !important;">
+                                                                        Name</th>
+                                                                    <th style="width:350px;color: #959595 !important;">
+                                                                        Stok Adı</th>
+                                                                    <th style="width:100px;color: #959595 !important;">
+                                                                        Stok Turu</th>
+                                                                    <th style="width:75px;color: #959595 !important;">
+                                                                        Adet</th>
+                                                                    <th style="width:75px;color: #959595 !important;">
+                                                                        Miktar</th>
+                                                                    <th style="width:75px;color: #959595 !important;">
+                                                                        Birim Adı</th>
+                                                                    <th style="width:75px;color: #959595 !important;">
+                                                                        Birim Fiyat</th>
+                                                                    <th style="width:100px;color: #959595 !important;">
+                                                                        Top. Maliyet</th>
+                                                                </tr>
+                                                            </ng-template>
+                                                            <ng-template pTemplate="body" let-product>
+                                                                <tr [pSelectableRow]="product">
+                                                                    <td >{{product.name}}</td>
+                                                                    <td>{{product.stokAdi}}</td>
+                                                                    <td>{{product.stokTuru}}</td>
+                                                                    <td>{{product.adet}}</td>
+
+                                                                    <td>
+                                                                        <div matTooltip="{{product.olcu}}"
+                                                                        [matTooltipPosition]="'right'" *ngIf="product.birimAdi!='Adet'">{{product.miktar | number:'1.1-2' }}</div>
+                                                                        <div matTooltip="{{product.olcu}}"
+                                                                        [matTooltipPosition]="'right'" *ngIf="product.birimAdi=='Adet'">-</div>
+                                                                    </td>
+                                                                    <td>{{product.birimAdi}}</td>
+                                                                    <td>{{product.birimFiyat}}</td>
+                                                                    <td style="font-weight: 600; font-size: 16px;"  >
+                                                                        <div
+                                                                        *ngIf="product.birimAdi!='Adet'">
+                                                                            {{product.birimFiyat *( product.miktar)*(
+                                                                            product.adet) |currency:'TRY':'₺':'0.2-2'}}
+                                                                        </div>
+                                                                        <div *ngIf="product.birimAdi=='Adet'">
+                                                                            {{product.birimFiyat *( product.adet)
+                                                                            |currency:'TRY':'₺':'0.2-2'}}</div>
+                                                                    </td>
+                                                                </tr>
+                                                            </ng-template>
+
+                                                            <ng-template pTemplate="summary" let-product>
+                                                                <div 
+                                                                    class="flex align-items-center justify-content-between">
+                                                                    Genel Maliyet : {{totalHesap
+                                                                    |currency:'TRY':'₺':'0.2-2'}} TL
+                                                                </div>
+                                                            </ng-template>
+
+                                                        </p-table>
+
+                                               
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="footer">
+            <div class="content">
+                footer
+            </div>
+            <div id="draggable-resize" class="resize"></div>
+        </div>
+    </div>
+
+</div>  -->
+
+
+
+<layout-content layoutName="Maliyet Kart">
+
+    <div class="sidebar-add-layout-content">
+
+        <div class="ribbon-section" (click)="receteCardAdd($event)" style="height: 40px;margin-bottom: 3px;">
+            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/actions/folder_add.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/actions/folder_add.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/actions/folder_add.png">
+
+            </div>
+
+        </div>
+        <div class="ribbon-section" (click)="receteChildCardAdd($event)" style="height: 40px; margin-bottom: 3px;">
+            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/actions/folder_down.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/actions/folder_down.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/actions/folder_down.png">
+
+            </div>
+
+        </div>
+        <div class="ribbon-section" style="height: 40px; margin-bottom: 3px;">
+            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/actions/erase_registry.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/actions/erase_registry.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/actions/erase_registry.png">
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="sidebar-layout-content">
+        <ng-template #nodeTemplate let-nodes="nodes" let-tree="tree">
+            <!-- <ng-container *ngFor="let node of nodes">
+                <div class="menu-node" (click)="TreeItemSelect(node)" [ngClass]=" { 'menu-node-tree' : tree }"
+                    style="position: relative;">
+                    <div (click)="toggleVisible(node)" class="menu-node-button "
+                        [ngClass]="{ 'menu-node-button-show': node.submenu && node.submenu?.length,'menu-node-button-plus': !expand[node.index],'menu-node-button-minus': expand[node.index] } "
+                        role="button">
+                    </div>
+                    <div class="menu-node-name" [ngClass]="{
+                 'menu-node-name-selected': (node === selectedNode),'menu-node-folder':(node.submenu?.length>0)}"
+                        (click)="selectNode(node)">
+
+
+                        <img *ngIf="node.submenu?.length>0" src=" ../../assets/icons/actions/received_files.png"
+                            class="title-icon" alt="">
+
+                        <img *ngIf="node.submenu==undefined" src=" ../../assets/icons/actions/list.png"
+                            class="title-icon" alt="">
+                        {{ node.ad }}
+                    </div>
+                    <div class="view-icon-content" (click)="TreeItem(node)" *ngIf="node.submenu?.length>0">
+                        <img src="../../assets/icons/actions/view_details.png" class="title-icon view-icon" alt="">
+                    </div>
+                    <ng-container *ngIf="node.submenu && node.submenu?.length && expand[node.index] ">
+                        <ng-template [ngTemplateOutlet]="nodeTemplate"
+                            [ngTemplateOutletContext]="{ nodes: node.submenu, tree: true }">
+                        </ng-template>
+                    </ng-container>
+                </div>
+            </ng-container> -->
+     
+            <ng-container *ngFor="let node of nodes">
+                <div class="menu-node" [ngClass]=" { 'menu-node-tree' : tree }" style="position: relative;">
+                    <div (click)="toggleVisible(node)" class="menu-node-button "
+                        [ngClass]="{ 'menu-node-button-show': node.submenu && node.submenu?.length,'menu-node-button-plus': !expand[node.index],'menu-node-button-minus': expand[node.index] } "
+                        role="button">
+                    </div>
+                    <div class="menu-node-name" [ngClass]="{
+                 'menu-node-name-selected': (node === selectedNode),'menu-node-folder':(node.submenu?.length>0)}"
+                        (click)="selectNode(node)" >
+
+
+                        <img *ngIf="node.submenu?.length>0" src=" ../../assets/icons/actions/received_files.png"
+                            class="title-icon" alt="">
+
+                        <img *ngIf="node.submenu==undefined" src=" ../../assets/icons/actions/list.png"
+                            class="title-icon" alt="">
+                        {{ node.ad }}
+                    </div>
+                    <ng-container *ngIf="node.submenu && node.submenu?.length && expand[node.index] ">
+                        <ng-template [ngTemplateOutlet]="nodeTemplate"
+                            [ngTemplateOutletContext]="{ nodes: node.submenu, tree: true }">
+                        </ng-template>
+                    </ng-container>
+                </div>
+            </ng-container>
+     
+        </ng-template>
+
+        <ng-template [ngTemplateOutlet]="nodeTemplate" [ngTemplateOutletContext]="{ nodes: menu, tree: false }">
+        </ng-template>
+    </div>
+
+
+    <div class="table-action-layout-content" style="display: flex;justify-content: space-between; align-items: center;">
+
+        <div style="height: 100%;padding: 5px;">
+            <div class="ribbon-section"  style="height: 40px;margin-bottom: 3px;">
+                <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
+                    style="height: 40px;">
+                    <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/actions/clipboard_add.png">
+                    <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/actions/clipboard_add.png">
+                    <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/actions/clipboard_add.png">
+
+                </div>
+
+            </div>
+            <div class="ribbon-section"  style="height: 40px;margin-bottom: 3px;">
+                <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
+                    style="height: 40px;">
+                    <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/actions/erase_registry.png">
+                    <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/actions/erase_registry.png">
+                    <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/actions/erase_registry.png">
+
+                </div>
+
+            </div>
+            <div class="ribbon-section"  style="height: 40px;margin-bottom: 3px;">
+                <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
+                    style="height: 40px;">
+                    <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/actions/edit.png">
+                    <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/actions/edit.png">
+                    <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/actions/edit.png">
+
+                </div>
+
+            </div>
+        </div>
+        {{selectedCategory}}
+        <div>
+            <mat-radio-group aria-label="Select an option" [(ngModel)]="selectedCategory" (click)="radioChange()">
+                <mat-radio-button  #first value="1" style="font-weight: 500;">Genel Maliyet</mat-radio-button>
+                <mat-radio-button value="2" >İşçilik</mat-radio-button>
+                <mat-radio-button value="3">Malzeme</mat-radio-button>
+                <mat-radio-button value="4">Elektrik</mat-radio-button>
+            </mat-radio-group>
+           
+        </div>
+    </div>
+
+
+
+<div class="table-layout-content">
+    <div class="table-display-none activeSelectCategori" [class.activeSelectCategori]="selectedCategory==='1'" >
+        <p-table [value]="treeViewChildList" [tableStyle]="{'min-width': '50rem'}" selectionMode="single"
+            [(selection)]="selectedReceteItem" dataKey="id" responsiveLayout="scroll" [resizableColumns]="true"
+            [scrollable]="true" scrollHeight="calc(100vh - 395px)" columnResizeMode="expand" selectionMode="single"
+            (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnSelect()">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: auto;min-width:350px; color: #959595 !important;">
+                        Ad</th>
+                    <th style="width:350px;color: #959595 !important;">
+                        Stok Adı</th>
+                    <th style="width:100px;color: #959595 !important;">
+                        Recete Turu</th>
+                    <th style="width:75px;color: #959595 !important;">
+                        Adet</th>
+                    <th style="width:75px;color: #959595 !important;">
+                        Miktar</th>
+                    <th style="width:75px;color: #959595 !important;">
+                        Birim Adı</th>
+                    <th style="width:75px;color: #959595 !important;">
+                        Birim Fiyat</th>
+                    <th style="width:100px;color: #959595 !important;">
+                        Top. Maliyet</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+                <tr [pSelectableRow]="product">
+                    <td>{{product.ad}}</td>
+                    <td>{{product.stokAdi}}</td>
+                    <td>{{product.receteTuru}}</td>
+                    <td>{{product.adet}}</td>
+
+                    <td>
+                        <div matTooltip="{{product.olcu}}" [matTooltipPosition]="'right'"
+                            *ngIf="product.birimAdi!='Adet'">{{product.miktar | number:'1.1-2' }}</div>
+                        <div matTooltip="{{product.olcu}}" [matTooltipPosition]="'right'"
+                            *ngIf="product.birimAdi=='Adet'">-</div>
+                    </td>
+                    <td>{{product.birimAdi}}</td>
+                    <td>{{product.birimFiyat}}</td>
+                    <td style="font-weight: 600; font-size: 16px;">
+                        <div *ngIf="product.birimAdi!='Adet'">
+                            {{product.birimFiyat *( product.miktar)*(
+                            product.adet) |currency:'TRY':'₺':'0.2-2'}}
+                        </div>
+                        <div *ngIf="product.birimAdi=='Adet'">
+                            {{product.birimFiyat *( product.adet)
+                            |currency:'TRY':'₺':'0.2-2'}}</div>
+                    </td>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="summary" let-product>
+                <div class="flex align-items-center justify-content-between">
+                    Genel Maliyet : {{totalHesap
+                    |currency:'TRY':'₺':'0.2-2'}} TL
+                </div>
+            </ng-template>
+
+        </p-table>
+    </div>
+
+    </div>
+</layout-content>

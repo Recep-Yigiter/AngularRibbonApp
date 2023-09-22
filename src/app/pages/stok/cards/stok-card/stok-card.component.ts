@@ -40,22 +40,7 @@ export class StokCardComponent implements OnInit {
   toggleVisible: any;
   treeViewChildList: any;
 
-  stokDetayList: any = [
-    // { label: "Stok Kodu", value: this.selectedNode?.kod },
-    // { label: "Stok Kısa Adı ", value: null },
-    // { label: "Stok Adı", value: this.selectedNode?.ad },
-    // { label: "Stok Türü", value: null },
-    // { label: "Sipariş İhtiyaç Seviyesi", value: null },
-    // { label: "Birim1 Adı ", value: this.selectedNode?.birimAdi },
-    // { label: "Birim2 Adı ", value: null },
-    // { label: "Birim3 Adı ", value: null },
-    // { label: "Katsayı ", value: null },
-    // { label: "Alış KDV Oranı ", value: null },
-    // { label: "Satış KDV Oranı ", value: null },
-    // { label: "Alış Vade Süresi", value: null },
-    // { label: "Satış Vade Süresi", value: null },
-    // { label: "Satır İskonto", value: "Uygulanır" },
-  ]
+  stokDetayList: any = []
   @ViewChild('first') matRadioButton: MatRadioButton;
   constructor(
     private StokService: StokService,
