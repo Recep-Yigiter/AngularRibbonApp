@@ -22,7 +22,7 @@ export class ReceteService {
         return await promiseData;
     }
     async update(update: any, successCallBack?: () => void, errorCallback?: (errorMessage: string) => void) {
-        const observable = await this.apiService.put({
+        const observable = await this.apiService.post({
             controller: "Recetes",
             action: "Update"
         }, update)

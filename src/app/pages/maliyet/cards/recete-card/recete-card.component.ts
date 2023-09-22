@@ -62,7 +62,7 @@ export class ReceteCardComponent implements OnInit {
 
     this.selectedNode = node;
     if (node.submenu != undefined) {
-      this.treeViewChildList = this.ReceteTreeViewService.treeViewChildList(node);
+      this.treeViewChildList = this.ReceteTreeViewService.treeViewChildList(node).filter(c => c.receteTuru !== "YariMamul");
       this.calculateTotalMaliyet()
     }
 
@@ -72,6 +72,7 @@ export class ReceteCardComponent implements OnInit {
   async GetAllRecete() {
     const allReceteler = await this.ReceteService.GetList()
     this.dataSource = allReceteler.data.items;
+
     this.dataSource.forEach(element => {
 
       if (element.parentId == "00000000-0000-0000-0000-000000000000" || element.parentId == null) {
@@ -81,7 +82,6 @@ export class ReceteCardComponent implements OnInit {
       }
     });
     var tree = this.ReceteTreeViewService.CreateTreeView(this.dataSource);
-
     this.menu = tree.map(x => this.ReceteTreeViewService.toNode(x));
     this.calculateTotalMaliyet()
   }
@@ -96,6 +96,13 @@ export class ReceteCardComponent implements OnInit {
       this.ReceteDialogService.addChildDialog(this.selectedNode, () => {
         this.GetAllRecete()
         this.selectNode(this.selectedNode)
+      })
+    }
+  }
+  updateChildDialog() {
+    if (this.selectedNode != undefined && this.receteItem) {
+      this.ReceteDialogService.updateChildDialog(this.receteItem, () => {
+        this.GetAllRecete()
       })
     }
   }
@@ -120,13 +127,13 @@ export class ReceteCardComponent implements OnInit {
 
   }
 
-  StokItem: any;
+  receteItem: any;
   onRowSelect(event: any) {
-    this.StokItem = event.data;
+    this.receteItem = event.data;
 
   }
   onRowUnSelect() {
-    this.StokItem = null
+    this.receteItem = null
   }
 
 

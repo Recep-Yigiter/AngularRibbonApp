@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ReceteCardAddComponent } from '../recete-card-add/recete-card-add.component';
 import { ReceteChildCardAddComponent } from '../recete-child-card-add/recete-child-card-add.component';
+import { ReceteCardUpdateComponent } from '../recete-card-update/recete-card-update.component';
 
 
 
@@ -37,6 +38,23 @@ export class ReceteCardDialogService {
 
 
     const dialogRef = this.dialog.open(ReceteChildCardAddComponent, {
+      width: '25%',
+      minWidth: '300px',
+      height: '35vh',
+      disableClose: true,
+      autoFocus: false,
+      restoreFocus: false,
+      data:event
+    });
+    
+    dialogRef.afterClosed().subscribe(result => {
+      successCallBack();
+    });
+  }
+  updateChildDialog(event,successCallBack?: () => void) {
+
+
+    const dialogRef = this.dialog.open(ReceteCardUpdateComponent, {
       width: '25%',
       minWidth: '300px',
       height: '35vh',

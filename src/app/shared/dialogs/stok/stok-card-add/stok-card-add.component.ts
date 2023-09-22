@@ -15,11 +15,23 @@ export class StokCardAddComponent implements OnInit {
   }
   public frm: FormGroup = this.fb.group({
 
-    hareketAdi: [null, [Validators.required, Validators.maxLength(16)]],
-    stokId: [null, [Validators.required, Validators.maxLength(50), Validators.minLength(3)]],
+    kod: [null, [Validators.required, Validators.maxLength(16)]],
+    ad: [null, [Validators.required, Validators.maxLength(16)]],
+    birimFiyat: [null, [Validators.required, Validators.maxLength(16)]],
+    aciklama: [null, [Validators.required, Validators.maxLength(16)]],
+    stokGrup: [null, [Validators.required, Validators.maxLength(16)]],
+    durum: [null, [Validators.required, Validators.maxLength(16)]],
+    parentId: [null, [Validators.required, Validators.maxLength(16)]],
+    birimId: [null, [Validators.required, Validators.maxLength(16)]],
   });
-  get hareketAdi() { return this.frm.get('hareketAdi') }
-  get stokId() { return this.frm.get('stokId') }
+  get kod() { return this.frm.get('kod') }
+  get ad() { return this.frm.get('ad') }
+  get birimFiyat() { return this.frm.get('birimFiyat') }
+  get aciklama() { return this.frm.get('aciklama') }
+  get stokGrup() { return this.frm.get('stokGrup') }
+  get durum() { return this.frm.get('durum') }
+  get parentId() { return this.frm.get('parentId') }
+  get birimId() { return this.frm.get('birimId') }
 
 
   selectStokId: any;
@@ -36,17 +48,7 @@ export class StokCardAddComponent implements OnInit {
     this.treeViewItems=this.frm.value
     this.dialogRef.close()
 
-    //   const recete = new ReceteUpdateModel();
-    //   recete.id = this.data.id;
-    //   recete.ad = this.frm.value.receteAd;
-    //   recete.kod = this.frm.value.receteKod;
-    //   recete.receteCategoriId = this.selectReceteCategoriId ? this.selectReceteCategoriId : this.data.receteCategoriId
-    //   this.receteService.update(recete, () => { this.frm.reset(); this.dialogRef.close() }, errorMessage => {
-    //     console.log("Hata....", errorMessage)
-    //     setTimeout(() => {
-    //       console.log("Hata....", errorMessage)
-    //     }, 1000)
-    //   })
+
   }
 
 }
