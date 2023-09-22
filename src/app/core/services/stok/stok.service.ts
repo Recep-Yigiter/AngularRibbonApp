@@ -12,7 +12,8 @@ export class StokService {
     async create(create: any, successCallBack?: () => void, errorCallback?: (errorMessage: string) => void) {
 
         const observable = this.apiService.post({
-            controller: "Stoks"
+            controller: "Stoks",
+            action: "Add"
         }, create)
 
         const promiseData = firstValueFrom(observable);

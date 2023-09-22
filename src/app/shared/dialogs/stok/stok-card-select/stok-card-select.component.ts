@@ -63,8 +63,8 @@ export class StokCardSelectComponent implements OnInit {
   async getAllStok() {
 
     const allStoks= await this.StokService.GetList( () => console.log())
-    this.dataSource = allStoks.items;
-    this.totalRecords = allStoks.count;
+    this.dataSource = allStoks.data.items;
+    this.totalRecords = allStoks.data.count;
 
 
   }

@@ -12,7 +12,8 @@ export class ReceteService {
     async create(create: any, successCallBack?: () => void, errorCallback?: (errorMessage: string) => void) {
 
         const observable = this.apiService.post({
-            controller: "Recetes"
+            controller: "Recetes",
+            action: "Add"
         }, create)
 
         const promiseData = firstValueFrom(observable);

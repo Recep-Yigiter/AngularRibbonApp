@@ -12,17 +12,10 @@
 
 
 
-<form-content formTitle="Stok Kart">
+<form-content formTitle="Recete Kart">
     <form class="form" [formGroup]="frm">
-        <common-input label="Ad" [formControlNames]="name"></common-input>
-        <stok-select-input label="Stok" [formControlNames]="stokId" (childFunc)="stokFunc($event)"></stok-select-input>
-
-
-        <div style="display: flex; gap: 10px;">
-            <common-input type="number" valueInput="0" label="Miktar" [formControlNames]="miktar"></common-input>
-            <common-input type="number" valueInput="0" label="Adet" [formControlNames]="adet"></common-input>
-        </div>
-        <common-input label="Olcu" [formControlNames]="olcu"></common-input>
-        <stok-turu-dropdown [formControlNames]="stokTuru"></stok-turu-dropdown>
+        <common-input label="Ad" [formControlNames]="ad"></common-input>
+        <common-input label="Kod" [formControlNames]="kod"></common-input>
+        <common-input label="Olcu" [formControlNames]="olcuAciklama"></common-input>
     </form>
 </form-content>

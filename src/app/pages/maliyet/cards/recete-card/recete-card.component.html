@@ -350,7 +350,7 @@
 
     <div class="sidebar-add-layout-content">
 
-        <div class="ribbon-section" (click)="receteCardAdd($event)" style="height: 40px;margin-bottom: 3px;">
+        <div class="ribbon-section" (click)="addDialog()" style="height: 40px;margin-bottom: 3px;">
             <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
                 <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
                     src=" ../../assets/icons/actions/folder_add.png">
@@ -362,7 +362,7 @@
             </div>
 
         </div>
-        <div class="ribbon-section" (click)="receteChildCardAdd($event)" style="height: 40px; margin-bottom: 3px;">
+        <div class="ribbon-section" (click)="addChildDialog()" style="height: 40px; margin-bottom: 3px;">
             <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
                 <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
                     src=" ../../assets/icons/actions/folder_down.png">
@@ -421,7 +421,7 @@
                     </ng-container>
                 </div>
             </ng-container> -->
-     
+
             <ng-container *ngFor="let node of nodes">
                 <div class="menu-node" [ngClass]=" { 'menu-node-tree' : tree }" style="position: relative;">
                     <div (click)="toggleVisible(node)" class="menu-node-button "
@@ -430,7 +430,7 @@
                     </div>
                     <div class="menu-node-name" [ngClass]="{
                  'menu-node-name-selected': (node === selectedNode),'menu-node-folder':(node.submenu?.length>0)}"
-                        (click)="selectNode(node)" >
+                        (click)="selectNode(node)">
 
 
                         <img *ngIf="node.submenu?.length>0" src=" ../../assets/icons/actions/received_files.png"
@@ -447,7 +447,7 @@
                     </ng-container>
                 </div>
             </ng-container>
-     
+
         </ng-template>
 
         <ng-template [ngTemplateOutlet]="nodeTemplate" [ngTemplateOutletContext]="{ nodes: menu, tree: false }">
@@ -458,41 +458,41 @@
     <div class="table-action-layout-content" style="display: flex;justify-content: space-between; align-items: center;">
 
         <div style="height: 100%;padding: 5px;">
-            <div class="ribbon-section"  style="height: 40px;margin-bottom: 3px;">
+            <div class="ribbon-section" style="height: 40px;margin-bottom: 3px;">
                 <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
                     style="height: 40px;">
                     <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                    src=" ../../assets/icons/actions/clipboard_add.png">
+                        src=" ../../assets/icons/actions/clipboard_add.png">
                     <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                    src=" ../../assets/icons/actions/clipboard_add.png">
+                        src=" ../../assets/icons/actions/clipboard_add.png">
                     <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                    src=" ../../assets/icons/actions/clipboard_add.png">
+                        src=" ../../assets/icons/actions/clipboard_add.png">
 
                 </div>
 
             </div>
-            <div class="ribbon-section"  style="height: 40px;margin-bottom: 3px;">
+            <div class="ribbon-section" style="height: 40px;margin-bottom: 3px;">
                 <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
                     style="height: 40px;">
                     <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                    src=" ../../assets/icons/actions/erase_registry.png">
+                        src=" ../../assets/icons/actions/erase_registry.png">
                     <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                    src=" ../../assets/icons/actions/erase_registry.png">
+                        src=" ../../assets/icons/actions/erase_registry.png">
                     <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                    src=" ../../assets/icons/actions/erase_registry.png">
+                        src=" ../../assets/icons/actions/erase_registry.png">
 
                 </div>
 
             </div>
-            <div class="ribbon-section"  style="height: 40px;margin-bottom: 3px;">
+            <div class="ribbon-section" style="height: 40px;margin-bottom: 3px;">
                 <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
                     style="height: 40px;">
                     <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                    src=" ../../assets/icons/actions/edit.png">
+                        src=" ../../assets/icons/actions/edit.png">
                     <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                    src=" ../../assets/icons/actions/edit.png">
+                        src=" ../../assets/icons/actions/edit.png">
                     <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                    src=" ../../assets/icons/actions/edit.png">
+                        src=" ../../assets/icons/actions/edit.png">
 
                 </div>
 
@@ -501,79 +501,118 @@
         {{selectedCategory}}
         <div>
             <mat-radio-group aria-label="Select an option" [(ngModel)]="selectedCategory" (click)="radioChange()">
-                <mat-radio-button  #first value="1" style="font-weight: 500;">Genel Maliyet</mat-radio-button>
-                <mat-radio-button value="2" >İşçilik</mat-radio-button>
+                <mat-radio-button #first value="1" style="font-weight: 500;">Genel Maliyet</mat-radio-button>
+                <mat-radio-button value="2">İşçilik</mat-radio-button>
                 <mat-radio-button value="3">Malzeme</mat-radio-button>
                 <mat-radio-button value="4">Elektrik</mat-radio-button>
             </mat-radio-group>
-           
+
         </div>
     </div>
 
 
 
-<div class="table-layout-content">
-    <div class="table-display-none activeSelectCategori" [class.activeSelectCategori]="selectedCategory==='1'" >
-        <p-table [value]="treeViewChildList" [tableStyle]="{'min-width': '50rem'}" selectionMode="single"
-            [(selection)]="selectedReceteItem" dataKey="id" responsiveLayout="scroll" [resizableColumns]="true"
-            [scrollable]="true" scrollHeight="calc(100vh - 395px)" columnResizeMode="expand" selectionMode="single"
-            (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnSelect()">
-            <ng-template pTemplate="header">
-                <tr>
-                    <th style="width: auto;min-width:350px; color: #959595 !important;">
-                        Ad</th>
-                    <th style="width:350px;color: #959595 !important;">
-                        Stok Adı</th>
-                    <th style="width:100px;color: #959595 !important;">
-                        Recete Turu</th>
-                    <th style="width:75px;color: #959595 !important;">
-                        Adet</th>
-                    <th style="width:75px;color: #959595 !important;">
-                        Miktar</th>
-                    <th style="width:75px;color: #959595 !important;">
-                        Birim Adı</th>
-                    <th style="width:75px;color: #959595 !important;">
-                        Birim Fiyat</th>
-                    <th style="width:100px;color: #959595 !important;">
-                        Top. Maliyet</th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-product>
-                <tr [pSelectableRow]="product">
-                    <td>{{product.ad}}</td>
-                    <td>{{product.stokAdi}}</td>
-                    <td>{{product.receteTuru}}</td>
-                    <td>{{product.adet}}</td>
+    <div class="table-layout-content">
+        <div class="table-display-none activeSelectCategori" [class.activeSelectCategori]="selectedCategory==='1'">
 
-                    <td>
-                        <div matTooltip="{{product.olcu}}" [matTooltipPosition]="'right'"
-                            *ngIf="product.birimAdi!='Adet'">{{product.miktar | number:'1.1-2' }}</div>
-                        <div matTooltip="{{product.olcu}}" [matTooltipPosition]="'right'"
-                            *ngIf="product.birimAdi=='Adet'">-</div>
-                    </td>
-                    <td>{{product.birimAdi}}</td>
-                    <td>{{product.birimFiyat}}</td>
-                    <td style="font-weight: 600; font-size: 16px;">
-                        <div *ngIf="product.birimAdi!='Adet'">
-                            {{product.birimFiyat *( product.miktar)*(
-                            product.adet) |currency:'TRY':'₺':'0.2-2'}}
-                        </div>
-                        <div *ngIf="product.birimAdi=='Adet'">
-                            {{product.birimFiyat *( product.adet)
-                            |currency:'TRY':'₺':'0.2-2'}}</div>
-                    </td>
-                </tr>
-            </ng-template>
+            <p-table [value]="treeViewChildList" [tableStyle]="{'min-width': '50rem'}" selectionMode="single"
+                [(selection)]="selectedReceteItem" responsiveLayout="scroll" [resizableColumns]="true"
+                [scrollable]="true" scrollHeight="calc(100vh - 395px)" columnResizeMode="expand" selectionMode="single"
+                (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnSelect()">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: auto;min-width:350px; color: #959595 !important;">
+                            Ad</th>
+                        <th style="width:350px;color: #959595 !important;">
+                            Stok Adı</th>
+                        <th style="width:100px;color: #959595 !important;">
+                            Recete Turu</th>
+                        <th style="width:75px;color: #959595 !important;">
+                            Adet</th>
+                        <th style="width:75px;color: #959595 !important;">
+                            Miktar</th>
+                        <th style="width:75px;color: #959595 !important;">
+                            Birim Adı</th>
+                        <th style="width:75px;color: #959595 !important;">
+                            Birim Fiyat</th>
+                        <th style="width:100px;color: #959595 !important;">
+                            Top. Maliyet</th>
+                    </tr>
+                </ng-template>
 
-            <ng-template pTemplate="summary" let-product>
-                <div class="flex align-items-center justify-content-between">
-                    Genel Maliyet : {{totalHesap
-                    |currency:'TRY':'₺':'0.2-2'}} TL
-                </div>
-            </ng-template>
 
-        </p-table>
-    </div>
+
+                <ng-template pTemplate="body" let-product>
+                    <tr [pSelectableRow]="product">
+                        <td>{{product.ad}}</td>
+                        <td>{{product.stokAdi?product.stokAdi:"-"}}</td>
+                        <td>
+                            <div *ngIf="product.receteTuru=='Yarımamul'" style="color: red; font-weight: 700;">
+                                {{product.receteTuru}}
+                            </div>
+                            <div *ngIf="product.receteTuru!='Yarımamul'">
+                                {{product.receteTuru}}
+                            </div>
+
+
+                        </td>
+                        <td>{{product.adet}}</td>
+                        <td>
+                            <div matTooltip="{{product.olcu}}" [matTooltipPosition]="'right'"
+                                *ngIf="product.birimAdi!='Adet'">{{product.miktar | number:'1.1-2' }}</div>
+                            <div matTooltip="{{product.olcu}}" [matTooltipPosition]="'right'"
+                                *ngIf="product.birimAdi=='Adet'">-</div>
+                        </td>
+                        <td>{{product.birimAdi?product.birimAdi:"-"}}</td>
+                        <td>
+                            <div *ngIf="product.birimFiyat==0">
+                                -
+                            </div>
+                            <div *ngIf="product.birimFiyat!=0">
+                                {{product.birimFiyat|currency:'TRY':'₺':'0.2-2'}}
+                            </div>
+
+
+                        </td>
+                        <td style="font-weight: 600; font-size: 16px;">
+                            <div *ngIf="product.birimAdi!='Adet'">
+                                <div *ngIf="product.birimFiyat *( product.miktar)*(product.adet)==0">
+                                    -
+                                </div>
+                                <div *ngIf="product.birimFiyat *( product.miktar)*(product.adet)!=0">
+                                    {{product.birimFiyat *( product.miktar)*(product.adet)
+                                    |currency:'TRY':'₺':'0.2-2'}}
+                                </div>
+                            </div>
+                            <div *ngIf="product.birimAdi=='Adet'">
+
+                                <div *ngIf="product.birimFiyat *(
+                                product.adet)==0">
+                                    -
+                                </div>
+
+                                <div *ngIf="product.birimFiyat *(
+                                product.adet)!=0">
+                                    {{product.birimFiyat *(
+                                    product.adet)|currency:'TRY':'₺':'0.2-2'}}
+                                </div>
+
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="summary" let-product>
+                    <div class="flex align-items-center justify-content-between">
+                        Genel Maliyet : {{totalHesap
+                        |currency:'TRY':'₺':'0.2-2'}} TL
+                    </div>
+                </ng-template>
+
+            </p-table>
+
+
+        </div>
 
     </div>
 </layout-content>

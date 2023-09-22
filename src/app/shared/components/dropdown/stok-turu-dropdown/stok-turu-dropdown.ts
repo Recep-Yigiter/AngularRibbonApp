@@ -1,13 +1,12 @@
 import { ChangeDetectorRef, Component, Injectable, Input } from '@angular/core';
 
 export enum CategoryEnum {
-    TicariMal = 1,
-    YariMamul = 2,
-    Hammadde = 3,
+
+    YariMamul = 1,
+    Hammadde = 2,
   
   }
 export const CategoryMapping = [
-    { value: CategoryEnum.TicariMal, type: 'TicariMal' },
     { value: CategoryEnum.YariMamul, type: 'YariMamul' },
     { value: CategoryEnum.Hammadde, type: 'Hammadde' },
   

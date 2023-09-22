@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatRadioButton } from '@angular/material/radio';
 import { ReceteTreeViewService } from 'src/app/core/services/recete/recete-treeview.service';
 import { ReceteService } from 'src/app/core/services/recete/recete.service';
@@ -18,16 +18,16 @@ export class ReceteCardComponent implements OnInit {
   totalHesap: any;
   selectedNode = undefined;
   res: any = []
-  selectedReceteItem:any;
-  selectedCategory:any="1";
-  treeViewChildList:any;
-  @ViewChild('first') matRadioButton : MatRadioButton;
-  constructor(private ReceteService: ReceteService, private ReceteCardDialogService: ReceteCardDialogService,private ReceteTreeViewService:ReceteTreeViewService) {
-    setTimeout(() =>{
-     this.matRadioButton._elementRef.nativeElement.click();
-     this.matRadioButton.checked = true;
-     } ,10)
-     this.toggleVisible = this.ReceteTreeViewService.toggleVisible;
+  selectedReceteItem: any;
+  selectedCategory: any = "1";
+  treeViewChildList: any;
+  @ViewChild('first') matRadioButton: MatRadioButton;
+  constructor(private ReceteService: ReceteService, private ReceteDialogService: ReceteCardDialogService, private ReceteTreeViewService: ReceteTreeViewService) {
+    setTimeout(() => {
+      this.matRadioButton._elementRef.nativeElement.click();
+      this.matRadioButton.checked = true;
+    }, 10)
+    this.toggleVisible = this.ReceteTreeViewService.toggleVisible;
 
   }
   ngOnInit(): void {
@@ -35,15 +35,15 @@ export class ReceteCardComponent implements OnInit {
     this.GetAllRecete()
 
   }
-  radioChange(){
+  radioChange() {
 
   }
 
   treeItemSelect: any;
-  toggleVisible:any;
+  toggleVisible: any;
   TreeItem(item: any) {
     console.log(item)
-  
+
 
   }
 
@@ -61,18 +61,15 @@ export class ReceteCardComponent implements OnInit {
   selectNode(node: any) {
 
     this.selectedNode = node;
-    if (node.submenu!=undefined) {
-      this.treeViewChildList=this.ReceteTreeViewService.treeViewChildList(node);
-
-      this.calculateLastYearTotal()
+    if (node.submenu != undefined) {
+      this.treeViewChildList = this.ReceteTreeViewService.treeViewChildList(node);
+      this.calculateTotalMaliyet()
     }
-   
+
   }
 
 
   async GetAllRecete() {
-
-
     const allReceteler = await this.ReceteService.GetList()
     this.dataSource = allReceteler.data.items;
     this.dataSource.forEach(element => {
@@ -84,51 +81,46 @@ export class ReceteCardComponent implements OnInit {
       }
     });
     var tree = this.ReceteTreeViewService.CreateTreeView(this.dataSource);
+
     this.menu = tree.map(x => this.ReceteTreeViewService.toNode(x));
-
-
-
-
-    this.calculateLastYearTotal()
-
-
-
-
-
+    this.calculateTotalMaliyet()
   }
 
-
-
-  calculateLastYearTotal() {
-    let total = 0;
-    for (let sale of this.res) {
-      total += sale.birimFiyat * (sale.miktar) * (sale.adet);
-    }
-    this.totalHesap = total;
-
-  }
-
-
-
-
-  receteCardAdd(event) {
-    this.ReceteCardDialogService.ReceteCardAddDialog(() => {
-      console.log("işlem basarılı")
+  addDialog() {
+    this.ReceteDialogService.addDialog(() => {
       this.GetAllRecete()
     })
-
   }
-  receteChildCardAdd(event) {
-    if (this.treeItemSelect!=undefined) {
-      this.ReceteCardDialogService.ReceteChildCardAddDialog(this.treeItemSelect, () => {
-    
+  addChildDialog() {
+    if (this.selectedNode != undefined) {
+      this.ReceteDialogService.addChildDialog(this.selectedNode, () => {
         this.GetAllRecete()
+        this.selectNode(this.selectedNode)
       })
     }
+  }
+
+
+
+
+
+
+
+
+
+
+  calculateTotalMaliyet() {
+    let total = 0;
+    if (this.treeViewChildList != null)
+      for (let sale of this.treeViewChildList) {
+        total += sale.birimFiyat * (sale.miktar) * (sale.adet);
+      }
+    this.totalHesap = total;
 
 
   }
-  StokItem:any;
+
+  StokItem: any;
   onRowSelect(event: any) {
     this.StokItem = event.data;
 

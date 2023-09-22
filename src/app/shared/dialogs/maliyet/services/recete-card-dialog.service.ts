@@ -15,31 +15,25 @@ export class ReceteCardDialogService {
   ) { }
 
 
-  treeViewItems:any;
-  ReceteCardAddDialog(successCallBack?: (treeViewItems) => void) {
+  addDialog(successCallBack?: () => void) {
 
 
     const dialogRef = this.dialog.open(ReceteCardAddComponent, {
       width: '25%',
       minWidth: '300px',
-      height: '35vh',
+      height: '30vh',
       disableClose: true,
       autoFocus: false,
       restoreFocus: false,
     
     });
-    
     dialogRef.afterClosed().subscribe(result => {
-       if (dialogRef.componentInstance.treeViewItems == null) { return }
-
-       this.treeViewItems = dialogRef.componentInstance.treeViewItems;
-      successCallBack(this.treeViewItems);
+      successCallBack();
     });
-
-
   }
-  treeViewChildItems:any;
-  ReceteChildCardAddDialog(event,successCallBack?: (treeViewChildItems) => void) {
+
+
+  addChildDialog(event,successCallBack?: () => void) {
 
 
     const dialogRef = this.dialog.open(ReceteChildCardAddComponent, {
@@ -53,23 +47,9 @@ export class ReceteCardDialogService {
     });
     
     dialogRef.afterClosed().subscribe(result => {
-       if (dialogRef.componentInstance.treeViewChildItems == null) { return }
-
-       this.treeViewChildItems = dialogRef.componentInstance.treeViewChildItems;
-      successCallBack(this.treeViewChildItems);
+      successCallBack();
     });
-
-
   }
-
-
-
-
-
-
-
-
-
 
 }
 

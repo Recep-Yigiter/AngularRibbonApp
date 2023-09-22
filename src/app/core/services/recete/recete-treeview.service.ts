@@ -14,6 +14,7 @@ export class ReceteTreeViewService {
       return arr.find((parent) => parent.id === id);
     }
     function createTreeNode(value) {
+
       return {
         id: value.id,
         ad: value.ad,
@@ -24,6 +25,9 @@ export class ReceteTreeViewService {
         olcuAciklama: value.olcuAciklama,
         miktar: value.miktar,
         receteTuru: value.receteTuru,
+        parentId: value.parentId,
+        yarimamulAdi: value.ad,
+
         submenu: (value.submenu !== undefined)
           ? value.submenu.map(createTreeNode)
           : undefined
@@ -31,13 +35,16 @@ export class ReceteTreeViewService {
     }
 
     function createTree(data) {
+
       return data
         .reduce((result, value, index, originalArray) => {
           if (value.parentId !== null) {
             const parent = findParent(originalArray, value.parentId);
             if (parent) {
               parent.submenu = (parent.submenu || []).concat(value);
+
             }
+
             return result;
           } else {
             return result.concat(value);
@@ -70,7 +77,7 @@ export class ReceteTreeViewService {
     }
   }
   treeViewChildList(item: any) {
-
+   
     var array = [];
 
 
@@ -87,6 +94,10 @@ export class ReceteTreeViewService {
     const result = array.map(({ submenu, ...item }) => ({ ...item, submenu: collect(submenu) }));
 
     this.res = result[0].submenu
+ 
+    this.res.forEach(element => {
+      element.yarimamulAdi=item.yarimamulAdi
+    });
 
     return this.res;
   }
