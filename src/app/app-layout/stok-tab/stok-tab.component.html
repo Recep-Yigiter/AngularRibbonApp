@@ -141,7 +141,7 @@
 
     <div class="ribbon-section" unselectable="on" style="border-right: 1px solid #939393;">
         <span class="section-title" unselectable="on">Tanımlar</span>
-        <div class="ribbon-button ribbon-button-small" id="run-btn" unselectable="on">
+        <div [routerLink]="['/stok/birim']" [routerLinkActive]="['active']" class="ribbon-button ribbon-button-small" id="run-btn" unselectable="on">
 
             <span class="button-help" unselectable="on">This button will run the program.</span>
             <img class="ribbon-icon ribbon-normal" src=" ../../assets/icons/normal/run.png">

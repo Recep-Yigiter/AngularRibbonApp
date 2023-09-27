@@ -12,6 +12,15 @@ html, body { height: 100%; }
     color: rgb(70, 70, 70);
 }
 
-.p-tooltip.p-tooltip-right{
-    
-  }
+
+  .mat-menu-content:not(:empty){
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.mat-elevation-z4 {
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.2), 0px 1px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 1px 0px rgba(0, 0, 0, 0.12);
+}
+.mat-menu-panel{
+  border-radius: 1px !important;
+}

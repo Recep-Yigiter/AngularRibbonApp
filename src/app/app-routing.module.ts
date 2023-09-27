@@ -12,6 +12,7 @@ import { DepoListComponent } from './pages/stok/lists/depo-list/depo-list.compon
 import { HizmetListComponent } from './pages/stok/lists/hizmet-list/hizmet-list.component';
 import { MasrafListComponent } from './pages/stok/lists/masraf-list/masraf-list.component';
 import { ReceteCardComponent } from './pages/maliyet/cards/recete-card/recete-card.component';
+import { BirimComponent } from './pages/stok/tanimlar/birim/birim.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'stok', pathMatch: 'full', },
@@ -27,6 +28,7 @@ const routes: Routes = [
           { path: "depo-list", component: DepoListComponent },
           { path: "hizmet-list", component: HizmetListComponent },
           { path: "masraf-list", component: MasrafListComponent },
+          { path: "birim", component: BirimComponent },
         ]
       },
       {
@@ -35,6 +37,7 @@ const routes: Routes = [
           { path: "recete-kart", component: ReceteCardComponent },
         ]
       },
+
 
     ]
   },

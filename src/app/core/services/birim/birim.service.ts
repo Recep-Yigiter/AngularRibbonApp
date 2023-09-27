@@ -15,7 +15,8 @@ export class BirimService {
  async create(create: any, successCallBack?: () => void, errorCallback?: (errorMessage: string) => void) {
   
   const observable=  this.apiService.post({
-      controller: "Birims"
+      controller: "Birims",
+      action:"Add"
     }, create)
 
     const promiseData=firstValueFrom(observable) ;
@@ -24,7 +25,7 @@ export class BirimService {
     return await promiseData;
   }
   async update (update: any, successCallBack?: () => void, errorCallback?: (errorMessage: string) => void){ 
-    const observable = await this.apiService.put({
+    const observable = await this.apiService.post({
       controller: "Birims",
       action:"Update"
     }, update) 
@@ -35,7 +36,7 @@ export class BirimService {
 
 
   async delete (id: string, successCallBack?: () => void, errorCallback?: (errorMessage: string) => void){ 
-    const observable = await this.apiService.delete({
+    const observable = await this.apiService.post({
       controller: "Birims",
       action:"Delete"
     }, id) 

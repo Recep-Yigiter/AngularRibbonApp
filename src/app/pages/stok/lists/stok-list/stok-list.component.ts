@@ -29,8 +29,10 @@ export class StokListComponent implements OnInit {
     this.dataSource.map(c=>c.ad).forEach(element => {
   
      this.testList.push({ad:element})
-    });
+
  
+    });
+
 
   }
  

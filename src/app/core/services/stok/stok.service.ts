@@ -22,7 +22,7 @@ export class StokService {
         return await promiseData;
     }
     async update(update: any, successCallBack?: () => void, errorCallback?: (errorMessage: string) => void) {
-        const observable = await this.apiService.put({
+        const observable = await this.apiService.post({
             controller: "Stoks",
             action: "Update"
         }, update)
@@ -33,7 +33,7 @@ export class StokService {
 
 
     async delete(id: string, successCallBack?: () => void, errorCallback?: (errorMessage: string) => void) {
-        const observable = await this.apiService.delete({
+        const observable = await this.apiService.post({
             controller: "Stoks",
             action: "Delete"
         }, id)

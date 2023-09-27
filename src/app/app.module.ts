@@ -42,7 +42,15 @@ import { DepoListComponent } from './pages/stok/lists/depo-list/depo-list.compon
 import { LayoutListContent } from './shared/components/layout-list-content/layout-list-content';
 import { ReceteCardComponent } from './pages/maliyet/cards/recete-card/recete-card.component';
 import { ProcessCardComponent } from './pages/maliyet/cards/process-card/process-card.component';
-
+import { BirimComponent } from './pages/stok/tanimlar/birim/birim.component';
+import { KategoriComponent } from './pages/stok/tanimlar/kategori/kategori.component';
+import { BirimAddDialogComponent } from './shared/dialogs/birim/birim-add-dialog/birim-add-dialog.component';
+import { BirimUpdateDialogComponent } from './shared/dialogs/birim/birim-update-dialog/birim-update-dialog.component';
+import { BirimSelectDialogComponent } from './shared/dialogs/birim/birim-select-dialog/birim-select-dialog.component';
+import { BirimSelectInput } from './shared/components/select-input/birim-select-input/birim-select-input';
+import { StokCardChildAddComponent } from './shared/dialogs/stok/stok-card-child-add/stok-card-child-add.component';
+import { IscilikComponent } from './pages/maliyet/iscilik/iscilik.component';
+import { SatinalmaTabComponent } from './app-layout/satinalma-tab/satinalma-tab.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +82,7 @@ import { ProcessCardComponent } from './pages/maliyet/cards/process-card/process
 
     StokSelectInput,
       StokCardSelectComponent,
+      BirimSelectInput,
       StokTuruDropDown,
       ReceteChildCardAddComponent,
       StokListComponent,
@@ -81,8 +90,16 @@ import { ProcessCardComponent } from './pages/maliyet/cards/process-card/process
       MasrafListComponent,
       DepoListComponent,
       ReceteCardComponent,
-      ProcessCardComponent
-
+      ProcessCardComponent,
+      BirimComponent,
+      KategoriComponent,
+      BirimAddDialogComponent,
+      BirimUpdateDialogComponent,
+      BirimSelectDialogComponent,
+      StokCardChildAddComponent,
+      IscilikComponent,
+      SatinalmaTabComponent,
+    
     
   ],
   imports: [

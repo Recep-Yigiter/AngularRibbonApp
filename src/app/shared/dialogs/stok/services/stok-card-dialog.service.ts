@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { StokCardAddComponent } from '../stok-card-add/stok-card-add.component';
 import { StokCardUpdateComponent } from '../stok-card-update/stok-card-update.component';
+import { StokCardChildAddComponent } from '../stok-card-child-add/stok-card-child-add.component';
 
 
 
@@ -15,14 +16,14 @@ export class StokCardDialogService {
   ) { }
 
 
-  treeViewItems:any;
-  addDialog(successCallBack?: (treeViewItems) => void) {
+
+  addDialog(successCallBack?: () => void) {
 
 
     const dialogRef = this.dialog.open(StokCardAddComponent, {
       width: '25%',
       minWidth: '300px',
-      height: '28vh',
+      height: '35vh',
       disableClose: true,
       autoFocus: false,
       restoreFocus: false,
@@ -30,21 +31,18 @@ export class StokCardDialogService {
     });
     
     dialogRef.afterClosed().subscribe(result => {
-       if (dialogRef.componentInstance.treeViewItems == null) { return }
-
-       this.treeViewItems = dialogRef.componentInstance.treeViewItems;
-      successCallBack(this.treeViewItems);
+      successCallBack();
     });
 
 
   }
-  addChildDialog(event,successCallBack?: (treeViewItems) => void) {
+  addChildDialog(event,successCallBack?: () => void) {
 
 
-    const dialogRef = this.dialog.open(StokCardAddComponent, {
+    const dialogRef = this.dialog.open(StokCardChildAddComponent, {
       width: '25%',
       minWidth: '300px',
-      height: '28vh',
+      height: '35vh',
       disableClose: true,
       autoFocus: false,
       restoreFocus: false,
@@ -52,20 +50,20 @@ export class StokCardDialogService {
     });
     
     dialogRef.afterClosed().subscribe(result => {
-       if (dialogRef.componentInstance.treeViewItems == null) { return }
+      //  if (dialogRef.componentInstance.treeViewItems == null) { return }
 
-       this.treeViewItems = dialogRef.componentInstance.treeViewItems;
-      successCallBack(this.treeViewItems);
+      //  this.treeViewItems = dialogRef.componentInstance.treeViewItems;
+      successCallBack();
     });
 
 
   }
 
-  updateDialog(event,successCallBack?: (treeViewItems) => void) {
+  updateDialog(event,successCallBack?: () => void) {
     const dialogRef = this.dialog.open(StokCardUpdateComponent, {
       width: '25%',
       minWidth: '300px',
-      height: '28vh',
+      height: '35vh',
       disableClose: true,
       autoFocus: false,
       restoreFocus: false,
@@ -73,10 +71,10 @@ export class StokCardDialogService {
     });
     
     dialogRef.afterClosed().subscribe(result => {
-       if (dialogRef.componentInstance.treeViewItems == null) { return }
+      //  if (dialogRef.componentInstance.treeViewItems == null) { return }
 
-       this.treeViewItems = dialogRef.componentInstance.treeViewItems;
-      successCallBack(this.treeViewItems);
+      //  this.treeViewItems = dialogRef.componentInstance.treeViewItems;
+      successCallBack();
     });
 
 

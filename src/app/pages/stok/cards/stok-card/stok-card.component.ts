@@ -58,6 +58,7 @@ export class StokCardComponent implements OnInit {
     const getList = await this.StokService.GetListTreeView()
 
     this.treeViewDataSource = getList;
+    console.log(this.treeViewDataSource)
     this.treeViewDataSource.data.items.forEach(element => {
 
       if (element.parentId == "00000000-0000-0000-0000-000000000000" || element.parentId == null) {

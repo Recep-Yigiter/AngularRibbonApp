@@ -27,6 +27,8 @@ export class ReceteTreeViewService {
         receteTuru: value.receteTuru,
         parentId: value.parentId,
         yarimamulAdi: value.ad,
+        etkinlik:value.etkinlik,
+        iscilik:value.iscilik,
 
         submenu: (value.submenu !== undefined)
           ? value.submenu.map(createTreeNode)
@@ -47,6 +49,7 @@ export class ReceteTreeViewService {
 
             return result;
           } else {
+            console.log(result.concat(value))
             return result.concat(value);
           }
         }, [])

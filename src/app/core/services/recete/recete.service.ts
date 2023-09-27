@@ -22,18 +22,20 @@ export class ReceteService {
         return await promiseData;
     }
     async update(update: any, successCallBack?: () => void, errorCallback?: (errorMessage: string) => void) {
+        
         const observable = await this.apiService.post({
             controller: "Recetes",
             action: "Update"
         }, update)
         const promiseData = firstValueFrom(observable);
         promiseData.then(successCallBack).catch(errorCallback);
+        
         return await promiseData;
     }
 
 
     async delete(id: string, successCallBack?: () => void, errorCallback?: (errorMessage: string) => void) {
-        const observable = await this.apiService.delete({
+        const observable = await this.apiService.post({
             controller: "Recetes",
             action: "Delete"
         }, id)
