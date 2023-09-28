@@ -7,23 +7,16 @@ import { PrimeNgModule } from 'src/primeng.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from 'src/material.module';
-import { DepoComponent } from './pages/depo/depo.component';
+
 
 import { StokComponent } from './pages/stok/stok.component';
-import { StokCardComponent } from './pages/stok/cards/stok-card/stok-card.component';
-import { HizmetCardComponent } from './pages/stok/cards/hizmet-card/hizmet-card.component';
-import { DepoCardComponent } from './pages/stok/cards/depo-card/depo-card.component';
-import { MasrafCardComponent } from './pages/stok/cards/masraf-card/masraf-card.component';
 import { CommonInput } from './shared/components/input/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ListContent } from './shared/components/list/common-list/list-content';
 import { TableContent } from './shared/components/table-content/table-content';
 import { FormContent } from './shared/components/form-content/form-content';
 import { DialogAction } from './shared/components/dialog-action/dialog-action';
 import { AppLayoutComponent } from './app-layout/app-layout.component';
 import { StokTabComponent } from './app-layout/stok-tab/stok-tab.component';
-import { StokCardAddComponent } from './shared/dialogs/stok/stok-card-add/stok-card-add.component';
-import { StokCardUpdateComponent } from './shared/dialogs/stok/stok-card-update/stok-card-update.component';
 import { TabsComponent } from './app-layout/tabs/tabs.component';
 import { TabComponent } from './app-layout/tab/tab.component';
 import { MaliyetTabComponent } from './app-layout/maliyet-tab/maliyet-tab.component';
@@ -31,46 +24,65 @@ import { MaliyetComponent } from './pages/maliyet/maliyet.component';
 import { ReceteCardAddComponent } from './shared/dialogs/maliyet/recete-card-add/recete-card-add.component';
 import { ReceteCardUpdateComponent } from './shared/dialogs/maliyet/recete-card-update/recete-card-update.component';
 import { StokSelectInput } from './shared/components/select-input/stok-select-input/stok-select-input';
-import { StokCardSelectComponent } from './shared/dialogs/stok/stok-card-select/stok-card-select.component';
 import { StokTuruDropDown } from './shared/components/dropdown/stok-turu-dropdown/stok-turu-dropdown';
 import { ReceteChildCardAddComponent } from './shared/dialogs/maliyet/recete-child-card-add/recete-child-card-add.component';
 import { LayoutContent } from './shared/components/layout-content/layout-content';
-import { StokListComponent } from './pages/stok/lists/stok-list/stok-list.component';
-import { HizmetListComponent } from './pages/stok/lists/hizmet-list/hizmet-list.component';
-import { MasrafListComponent } from './pages/stok/lists/masraf-list/masraf-list.component';
-import { DepoListComponent } from './pages/stok/lists/depo-list/depo-list.component';
 import { LayoutListContent } from './shared/components/layout-list-content/layout-list-content';
 import { ReceteCardComponent } from './pages/maliyet/cards/recete-card/recete-card.component';
 import { ProcessCardComponent } from './pages/maliyet/cards/process-card/process-card.component';
-import { BirimComponent } from './pages/stok/tanimlar/birim/birim.component';
-import { KategoriComponent } from './pages/stok/tanimlar/kategori/kategori.component';
-import { BirimAddDialogComponent } from './shared/dialogs/birim/birim-add-dialog/birim-add-dialog.component';
-import { BirimUpdateDialogComponent } from './shared/dialogs/birim/birim-update-dialog/birim-update-dialog.component';
-import { BirimSelectDialogComponent } from './shared/dialogs/birim/birim-select-dialog/birim-select-dialog.component';
 import { BirimSelectInput } from './shared/components/select-input/birim-select-input/birim-select-input';
-import { StokCardChildAddComponent } from './shared/dialogs/stok/stok-card-child-add/stok-card-child-add.component';
 import { IscilikComponent } from './pages/maliyet/iscilik/iscilik.component';
 import { SatinalmaTabComponent } from './app-layout/satinalma-tab/satinalma-tab.component';
+import { DialogAddStokComponent } from './pages/stok/dialog-add-stok/dialog-add-stok.component';
+import { DialogUpdateStokComponent } from './pages/stok/dialog-update-stok/dialog-update-stok.component';
+import { DialogSelectStokComponent } from './pages/stok/dialog-select-stok/dialog-select-stok.component';
+import { DepoComponent } from './pages/depo/depo.component';
+import { HizmetComponent } from './pages/hizmet/hizmet.component';
+import { MasrafComponent } from './pages/masraf/masraf.component';
+import { DialogAddDepoComponent } from './pages/depo/dialog-add-depo/dialog-add-depo.component';
+import { DialogUpdateDepoComponent } from './pages/depo/dialog-update-depo/dialog-update-depo.component';
+import { DialogSelectDepoComponent } from './pages/depo/dialog-select-depo/dialog-select-depo.component';
+import { DialogSelectHizmetComponent } from './pages/hizmet/dialog-select-hizmet/dialog-select-hizmet.component';
+import { DialogAddHizmetComponent } from './pages/hizmet/dialog-add-hizmet/dialog-add-hizmet.component';
+import { DialogUpdateHizmetComponent } from './pages/hizmet/dialog-update-hizmet/dialog-update-hizmet.component';
+import { DialogUpdateMasrafComponent } from './pages/masraf/dialog-update-masraf/dialog-update-masraf.component';
+import { DialogAddMasrafComponent } from './pages/masraf/dialog-add-masraf/dialog-add-masraf.component';
+import { DialogSelectMasrafComponent } from './pages/masraf/dialog-select-masraf/dialog-select-masraf.component';
+import { CardDepoComponent } from './pages/depo/card-depo/card-depo.component';
+import { CardHizmetComponent } from './pages/hizmet/card-hizmet/card-hizmet.component';
+import { CardStokComponent } from './pages/stok/card-stok/card-stok.component';
+import { ListStokComponent } from './pages/stok/list-stok/list-stok.component';
+import { DialogAddBirimComponent } from './pages/birim/dialog-add-birim/dialog-add-birim.component';
+import { DialogUpdateBirimComponent } from './pages/birim/dialog-update-birim/dialog-update-birim.component';
+import { DialogSelectBirimComponent } from './pages/birim/dialog-select-birim/dialog-select-birim.component';
+import { CardBirimComponent } from './pages/birim/card-birim/card-birim.component';
+import { ListBirimComponent } from './pages/birim/list-birim/list-birim.component';
+import { ListDepoComponent } from './pages/depo/list-depo/list-depo.component';
+import { ListHizmetComponent } from './pages/hizmet/list-hizmet/list-hizmet.component';
+import { ListMasrafComponent } from './pages/masraf/list-masraf/list-masraf.component';
+import { DialogAddChildStokComponent } from './pages/stok/dialog-add-child-stok/dialog-add-child-stok.component';
+import { DialogAddIscilikComponent } from './pages/iscilik/dialog-add-iscilik/dialog-add-iscilik.component';
+import { DialogUpdateIscilikComponent } from './pages/iscilik/dialog-update-iscilik/dialog-update-iscilik.component';
+import { ElektrikComponent } from './pages/elektrik/elektrik.component';
+import { DialogAddElektrikComponent } from './pages/elektrik/dialog-add-elektrik/dialog-add-elektrik.component';
+import { DialogUpdateElektrikComponent } from './pages/elektrik/dialog-update-elektrik/dialog-update-elektrik.component';
+import { FaturaComponent } from './pages/fatura/fatura.component';
+import { AlisFaturaComponent } from './pages/fatura/alis-fatura/alis-fatura.component';
+import { SatisFaturaComponent } from './pages/fatura/satis-fatura/satis-fatura.component';
+import { SatinalmaComponent } from './pages/satinalma/satinalma.component';
+import { FaturaLayoutContent } from './shared/components/fatura-layout-content/fatura-layout-content';
 
 @NgModule({
   declarations: [
     AppComponent,
-
     StokComponent,
-    DepoComponent,
-    StokCardComponent,
-    HizmetCardComponent,
-    DepoCardComponent,
-    MasrafCardComponent,
     CommonInput,
-    ListContent,
     TableContent,
     FormContent,
     DialogAction,
     AppLayoutComponent,
     StokTabComponent,
-    StokCardAddComponent,
-    StokCardUpdateComponent,
+
     TabsComponent,
     TabComponent,
     MaliyetTabComponent,
@@ -79,28 +91,55 @@ import { SatinalmaTabComponent } from './app-layout/satinalma-tab/satinalma-tab.
     ReceteCardUpdateComponent,
     LayoutContent,
     LayoutListContent,
-
     StokSelectInput,
-      StokCardSelectComponent,
-      BirimSelectInput,
-      StokTuruDropDown,
-      ReceteChildCardAddComponent,
-      StokListComponent,
-      HizmetListComponent,
-      MasrafListComponent,
-      DepoListComponent,
-      ReceteCardComponent,
-      ProcessCardComponent,
-      BirimComponent,
-      KategoriComponent,
-      BirimAddDialogComponent,
-      BirimUpdateDialogComponent,
-      BirimSelectDialogComponent,
-      StokCardChildAddComponent,
-      IscilikComponent,
-      SatinalmaTabComponent,
-    
-    
+
+    BirimSelectInput,
+    StokTuruDropDown,
+    ReceteChildCardAddComponent,
+    ReceteCardComponent,
+    ProcessCardComponent,
+    FaturaLayoutContent,
+    IscilikComponent,
+    SatinalmaTabComponent,
+    DialogAddStokComponent,
+    DialogUpdateStokComponent,
+    DialogSelectStokComponent,
+    DepoComponent,
+    HizmetComponent,
+    MasrafComponent,
+    DialogAddDepoComponent,
+    DialogUpdateDepoComponent,
+    DialogSelectDepoComponent,
+    DialogSelectHizmetComponent,
+    DialogAddHizmetComponent,
+    DialogUpdateHizmetComponent,
+    DialogUpdateMasrafComponent,
+    DialogAddMasrafComponent,
+    DialogSelectMasrafComponent,
+    CardDepoComponent,
+    CardHizmetComponent,
+    CardStokComponent,
+    ListStokComponent,
+    DialogAddBirimComponent,
+    DialogUpdateBirimComponent,
+    DialogSelectBirimComponent,
+    CardBirimComponent,
+    ListBirimComponent,
+    ListDepoComponent,
+    ListHizmetComponent,
+    ListMasrafComponent,
+    DialogAddChildStokComponent,
+    DialogAddIscilikComponent,
+    DialogUpdateIscilikComponent,
+    ElektrikComponent,
+    DialogAddElektrikComponent,
+    DialogUpdateElektrikComponent,
+    FaturaComponent,
+    AlisFaturaComponent,
+    SatisFaturaComponent,
+    SatinalmaComponent
+
+
   ],
   imports: [
     BrowserModule,
@@ -111,9 +150,9 @@ import { SatinalmaTabComponent } from './app-layout/satinalma-tab/satinalma-tab.
     HttpClientModule,
     PrimeNgModule,
     MaterialModule,
-   
+
   ],
-  providers: [ { provide: "baseUrl", useValue: "https://localhost:7146/api", multi: true },],
+  providers: [{ provide: "baseUrl", useValue: "https://localhost:7146/api", multi: true },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

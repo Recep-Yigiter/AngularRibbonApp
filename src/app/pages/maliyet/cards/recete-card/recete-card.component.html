@@ -207,22 +207,22 @@
                         </td>
                         <td style="font-weight: 600; font-size: 16px;">
                             <div *ngIf="product.birimAdi!='Adet'">
-                                <div *ngIf="product.birimFiyat *( product.miktar)*(product.adet/product.etkinlik)==0">
+                                <div *ngIf="product.birimFiyat *( product.miktar)*(product.adet*product.etkinlik)==0">
                                     -
                                 </div>
                                 <div *ngIf="product.birimFiyat *( product.miktar)*(product.adet)!=0">
-                                    {{product.birimFiyat *( product.miktar)*(product.adet)/product.etkinlik
+                                    {{product.birimFiyat *( product.miktar)*(product.adet)*product.etkinlik
                                     |currency:'TRY':'₺':'0.2-2'}}
                                 </div>
                             </div>
                             <div *ngIf="product.birimAdi=='Adet'">
 
-                                <div *ngIf="product.birimFiyat *(product.adet /(product.etkinlik))==0">
+                                <div *ngIf="product.birimFiyat *(product.adet *(product.etkinlik))==0">
                                     -
                                 </div>
 
                                 <div *ngIf="product.birimFiyat *( product.adet)!=0">{{product.birimFiyat *(
-                                    product.adet/product.etkinlik)|currency:'TRY':'₺':'0.2-2'}}
+                                    product.adet*product.etkinlik)|currency:'TRY':'₺':'0.2-2'}}
                                 </div>
 
                             </div>

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Injectable, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { StokCardSelectComponent } from 'src/app/shared/dialogs/stok/stok-card-select/stok-card-select.component';
+import { DialogAddStokComponent } from 'src/app/pages/stok/dialog-add-stok/dialog-add-stok.component';
+import { DialogSelectStokComponent } from 'src/app/pages/stok/dialog-select-stok/dialog-select-stok.component';
 
 
 @Injectable({
@@ -32,7 +33,7 @@ export class StokSelectInput {
 
 
   StokSelectDialogOpen() {
-    const dialogRef = this.dialog.open(StokCardSelectComponent, {
+    const dialogRef = this.dialog.open(DialogSelectStokComponent, {
       width: '40%',
       minWidth: '40%',
       height: '550px',

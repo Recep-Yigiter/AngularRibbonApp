@@ -25,7 +25,8 @@ export class ReceteChildCardAddComponent implements OnInit {
     olcuAciklama: [null],
     durum: [null],
     stokId: [null],
-    parentId: [null]
+    parentId: [null],
+    etkinlik: [null],
 
   });
   get ad() { return this.frm.get('ad') }
@@ -37,6 +38,7 @@ export class ReceteChildCardAddComponent implements OnInit {
   get olcuAciklama() { return this.frm.get('olcuAciklama') }
   get durum() { return this.frm.get('durum') }
   get stokId() { return this.frm.get('stokId') }
+  get etkinlik() { return this.frm.get('etkinlik') }
 
 
 
@@ -57,6 +59,7 @@ export class ReceteChildCardAddComponent implements OnInit {
     this.frm.value.miktar = this.frm.value.miktar ? this.frm.value.miktar : 1;
     this.frm.value.olcuAciklama = this.frm.value.olcuAciklama ? this.frm.value.olcuAciklama : null;
     this.frm.value.durum = true;
+    this.frm.value.etkinlik = this.frm.value.etkinlik ? this.frm.value.etkinlik : 1;;
     this.frm.value.stokId = this.selectStokId ? this.selectStokId : null;
     if (this.data != undefined) {
       this.frm.value.parentId = this.data.id

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Injectable, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { BirimSelectDialogComponent } from 'src/app/shared/dialogs/birim/birim-select-dialog/birim-select-dialog.component';
+import { DialogSelectBirimComponent } from 'src/app/pages/birim/dialog-select-birim/dialog-select-birim.component';
 
 
 @Injectable({
@@ -32,7 +32,7 @@ export class BirimSelectInput {
 
 
   BirimSelectDialogOpen() {
-    const dialogRef = this.dialog.open(BirimSelectDialogComponent, {
+    const dialogRef = this.dialog.open(DialogSelectBirimComponent, {
       width: '40%',
       minWidth: '40%',
       height: '550px',

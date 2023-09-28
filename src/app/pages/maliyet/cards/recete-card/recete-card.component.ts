@@ -11,7 +11,7 @@ import { ReceteCardDialogService } from 'src/app/shared/dialogs/maliyet/services
   selector: 'app-recete-card',
   templateUrl: './recete-card.component.html',
   styleUrls: ['./recete-card.component.scss'],
- 
+
 
 })
 export class ReceteCardComponent implements OnInit {
@@ -55,7 +55,7 @@ export class ReceteCardComponent implements OnInit {
   treeItemSelect: any;
   toggleVisible: any;
   TreeItem(item: any) {
-    
+
 
 
   }
@@ -74,15 +74,18 @@ export class ReceteCardComponent implements OnInit {
   selectNode(node: any) {
 
     this.selectedNode = node;
-    if (node.submenu != undefined) {
-      this.treeViewChildList = this.ReceteTreeViewService.treeViewChildList(node).filter(c => c.receteTuru !== "YariMamul");
+    if (node.submenu != undefined && this.ReceteTreeViewService.treeViewChildList(node) != undefined) {
 
-      this.treeViewChildIscilikList=[]
+      this.treeViewChildList = this.ReceteTreeViewService.treeViewChildList(node).filter(c => c.receteTuru !== "YariMamul");
+  
+      this.treeViewChildIscilikList = []
       this.treeViewChildIscilikList = this.dataSourceIscilik.filter(c => c.receteId == this.selectedNode.id);
-      this.calculateTotalMaliyet();
+
+
+
 
     }
-
+    this.calculateTotalMaliyet();
   }
 
 
@@ -98,7 +101,7 @@ export class ReceteCardComponent implements OnInit {
         element.parentId = element.parentId
       }
     });
-    
+
     var tree = this.ReceteTreeViewService.CreateTreeView(this.dataSource);
     this.menu = tree.map(x => this.ReceteTreeViewService.toNode(x));
 
@@ -164,17 +167,17 @@ export class ReceteCardComponent implements OnInit {
     let totalIscilik = 0;
     if (this.treeViewChildList != null)
       for (let sale of this.treeViewChildList) {
-        total += sale.birimFiyat * (sale.miktar) * (sale.adet);
+        total += sale.birimFiyat * (sale.miktar) * (sale.adet)*(sale.etkinlik);
       }
     this.totalHesap = total;
 
-    if (this.treeViewChildIscilikList != null) 
+    if (this.treeViewChildIscilikList != null)
       for (let sale of this.treeViewChildIscilikList) {
-        totalIscilik += (sale.gunlukCalismaSaati/sale.gunlukUretimSayisi)*((sale.calisanSayisi*sale.kisiBasiAylikBrutUcret)/240);
-       
+        totalIscilik += (sale.gunlukCalismaSaati / sale.gunlukUretimSayisi) * ((sale.calisanSayisi * sale.kisiBasiAylikBrutUcret) / 240);
+
       }
-      this.totalHesapIscilik = totalIscilik;
-    
+    this.totalHesapIscilik = totalIscilik;
+
 
   }
 
@@ -199,8 +202,8 @@ export class ReceteCardComponent implements OnInit {
 
 
 
-  activeNode:any;
-  open=true;
+  activeNode: any;
+  open = true;
   @ViewChild(MatMenuTrigger)
   contextMenu: MatMenuTrigger;
 
@@ -208,7 +211,7 @@ export class ReceteCardComponent implements OnInit {
 
   onContextMenu(event: MouseEvent, item: any) {
     event.preventDefault();
-    
+
     this.contextMenuPosition.x = event.clientX + 'px';
     this.contextMenuPosition.y = event.clientY + 'px';
     this.contextMenu.menuData = { 'item': item };

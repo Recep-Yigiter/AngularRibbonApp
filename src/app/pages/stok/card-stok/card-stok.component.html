@@ -1,0 +1,127 @@
+<layout-content layoutName="Stok Kart">
+
+    <div class="sidebar-add-layout-content">
+
+        <div (click)="addDialog()" class="ribbon-section" style="height: 40px;margin-bottom: 3px;">
+            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/actions/folder_add.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/actions/folder_add.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/actions/folder_add.png">
+
+            </div>
+
+        </div>
+        <div (click)=" addDialog()" class="ribbon-section" style="height: 40px; margin-bottom: 3px;">
+            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/actions/folder_down.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/actions/folder_down.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/actions/folder_down.png">
+
+            </div>
+
+        </div>
+        <div class="ribbon-section" style="height: 40px; margin-bottom: 3px;">
+            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/actions/erase_registry.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/actions/erase_registry.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/actions/erase_registry.png">
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="sidebar-layout-content">
+        <ng-template #nodeTemplate let-nodes="nodes" let-tree="tree">
+            <ng-container *ngFor="let node of nodes">
+                <div class="menu-node" [ngClass]=" { 'menu-node-tree' : tree }" style="position: relative;">
+                    <div (click)="toggleVisible(node)" class="menu-node-button "
+                        [ngClass]="{ 'menu-node-button-show': node.submenu && node.submenu?.length,'menu-node-button-plus': !expand[node.index],'menu-node-button-minus': expand[node.index] } "
+                        role="button">
+                    </div>
+                    <div class="menu-node-name" [ngClass]="{
+                 'menu-node-name-selected': (node === selectedNode),'menu-node-folder':(node.submenu?.length>0)}"
+                        (click)="selectNode(node)">
+
+
+                        <img *ngIf="node.submenu?.length>0" src=" ../../assets/icons/actions/received_files.png"
+                            class="title-icon" alt="">
+
+                        <img *ngIf="node.submenu==undefined" src=" ../../assets/icons/actions/list.png"
+                            class="title-icon" alt="">
+                        {{ node.ad }}
+                    </div>
+                    <ng-container *ngIf="node.submenu && node.submenu?.length && expand[node.index] ">
+                        <ng-template [ngTemplateOutlet]="nodeTemplate"
+                            [ngTemplateOutletContext]="{ nodes: node.submenu, tree: true }">
+                        </ng-template>
+                    </ng-container>
+                </div>
+            </ng-container>
+        </ng-template>
+
+        <ng-template [ngTemplateOutlet]="nodeTemplate" [ngTemplateOutletContext]="{ nodes: menu, tree: false }">
+        </ng-template>
+    </div>
+
+
+    <div class="table-action-layout-content">
+
+
+
+        <div class="ribbon-section" style="height: 40px;margin-bottom: 3px; margin-left: 10px;">
+            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/actions/edit.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/actions/edit.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/actions/edit.png">
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+
+    <div class="table-layout-content">
+
+        <div class="content-detay">
+            STOK DETAY
+        </div>
+
+
+        <table class="table-detay">
+            <colgroup>
+                <col style="width: 200px;">
+                <col style="width: 30px;">
+                <col style="width: auto;">
+            </colgroup>
+            <tbody *ngFor="let item of stokDetayList">
+
+                <tr>
+                    <td><span class="table-detay-label">{{item.label?item.label:"NULL"}}</span></td>
+                    <td><span>:</span></td>
+                    <td><span class="table-detay-value">{{item.value?item.value:""}}</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+</layout-content>

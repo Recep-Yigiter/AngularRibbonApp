@@ -21,8 +21,14 @@
         <div style="display: flex; gap: 10px;">
             <common-input type="number" valueInput="0" label="Miktar" [formControlNames]="miktar"></common-input>
             <common-input type="number" valueInput="0" label="Adet" [formControlNames]="adet"></common-input>
+ 
         </div>
         <common-input label="Olcu" [formControlNames]="olcuAciklama"></common-input>
-        <stok-turu-dropdown [formControlNames]="receteTuru"></stok-turu-dropdown>
+       
+        <div style="display: flex; justify-content: space-between; gap: 10px;">
+            <stok-turu-dropdown [formControlNames]="receteTuru"></stok-turu-dropdown>
+            <common-input type="number" valueInput="0" label="Etkinlik" [formControlNames]="etkinlik"></common-input>
+        </div>
+       
     </form>
 </form-content>

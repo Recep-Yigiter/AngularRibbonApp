@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { BirimAddDialogComponent } from '../birim-add-dialog/birim-add-dialog.component';
-import { BirimUpdateDialogComponent } from '../birim-update-dialog/birim-update-dialog.component';
+import { DialogAddBirimComponent } from 'src/app/pages/birim/dialog-add-birim/dialog-add-birim.component';
+import { DialogUpdateBirimComponent } from 'src/app/pages/birim/dialog-update-birim/dialog-update-birim.component';
 
 
 
@@ -19,7 +19,7 @@ export class BirimDialogService {
   addDialog(successCallBack?: () => void) {
 
 
-    const dialogRef = this.dialog.open(BirimAddDialogComponent, {
+    const dialogRef = this.dialog.open(DialogAddBirimComponent, {
       width: '25%',
       minWidth: '300px',
       height: '28vh',
@@ -41,7 +41,7 @@ export class BirimDialogService {
 
 
   updateDialog(event,successCallBack?: () => void) {
-    const dialogRef = this.dialog.open(BirimUpdateDialogComponent, {
+    const dialogRef = this.dialog.open(DialogUpdateBirimComponent, {
       width: '25%',
       minWidth: '300px',
       height: '28vh',

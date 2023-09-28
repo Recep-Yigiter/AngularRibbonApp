@@ -12,7 +12,7 @@ export class IscilikComponent implements OnInit {
 
   async ngOnInit() {
     const test=await this.isclikService.GetList();
-    console.log(test.data.items)
+
   }
 
 }

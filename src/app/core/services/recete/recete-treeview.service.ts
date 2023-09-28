@@ -27,8 +27,8 @@ export class ReceteTreeViewService {
         receteTuru: value.receteTuru,
         parentId: value.parentId,
         yarimamulAdi: value.ad,
-        etkinlik:value.etkinlik,
-        iscilik:value.iscilik,
+        etkinlik: value.etkinlik,
+        active: value.active,
 
         submenu: (value.submenu !== undefined)
           ? value.submenu.map(createTreeNode)
@@ -49,7 +49,7 @@ export class ReceteTreeViewService {
 
             return result;
           } else {
-            console.log(result.concat(value))
+        
             return result.concat(value);
           }
         }, [])
@@ -80,29 +80,33 @@ export class ReceteTreeViewService {
     }
   }
   treeViewChildList(item: any) {
-   
-    var array = [];
+
+    if (item.active == true) {
+      var array = [];
 
 
-    array.push(item)
-    const collect = (n, out = []) => {
+      array.push(item)
+      const collect = (n, out = []) => {
 
-      for (const { submenu, ...item } of n) {
-        out.push(item);
-        submenu?.length && collect(submenu, out);
-      }
-      return out;
-    };
+        for (const { submenu, ...item } of n) {
+          out.push(item);
+          submenu?.length && collect(submenu, out);
+        }
+        return out;
+      };
 
-    const result = array.map(({ submenu, ...item }) => ({ ...item, submenu: collect(submenu) }));
+      const result = array.map(({ submenu, ...item }) => ({ ...item, submenu: collect(submenu) }));
 
-    this.res = result[0].submenu
- 
-    this.res.forEach(element => {
-      element.yarimamulAdi=item.yarimamulAdi
-    });
+      this.res = result[0].submenu
 
-    return this.res;
+      this.res.forEach(element => {
+        element.yarimamulAdi = item.yarimamulAdi
+      });
+
+      return this.res;
+
+    }
+
   }
 
 

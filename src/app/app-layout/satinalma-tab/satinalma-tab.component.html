@@ -140,7 +140,7 @@
     <mat-menu #menu="matMenu">
 
         <ng-template matMenuContent let-item="item">
-          <button mat-menu-item  >
+          <button mat-menu-item [routerLink]="['/satinalma/fatura/alis-faturasi']" [routerLinkActive]="['active']">
               <img style="width: 22px; height: 22px; " class="ribbon-icon ribbon-normal"
               src=" ../../assets/icons/fatura/inventory_down.png">
             <span>Alış Faturası</span>
@@ -151,7 +151,7 @@
               src=" ../../assets/icons/fatura/inventory_close.png">
             <span>Alış İade Faturası</span>
           </button>
-          <button mat-menu-item >
+          <button mat-menu-item [routerLink]="['/satinalma/fatura/satis-faturasi']" [routerLinkActive]="['active']">
               <img style="width: 22px; height: 22px; " class="ribbon-icon ribbon-normal"
               src=" ../../assets/icons/fatura/inventory_up.png">
             <span>Satış Faturası</span>
