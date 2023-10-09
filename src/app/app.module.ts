@@ -71,6 +71,19 @@ import { AlisFaturaComponent } from './pages/fatura/alis-fatura/alis-fatura.comp
 import { SatisFaturaComponent } from './pages/fatura/satis-fatura/satis-fatura.component';
 import { SatinalmaComponent } from './pages/satinalma/satinalma.component';
 import { FaturaLayoutContent } from './shared/components/fatura-layout-content/fatura-layout-content';
+import { CalendarInput } from './shared/components/calerdar-input/calendar-input';
+import { IrsaliyeTuru } from './shared/components/dropdown/irsaliye-turu/irsaliye-turu';
+import { IrsaliyeSeri } from './shared/components/dropdown/irsaliye-seri/irsaliye-seri';
+import { IrsaliyeSelectInput } from './shared/components/select-input/irsaliye-select-input/irsaliye-select-input';
+import { Kdv } from './shared/components/dropdown/kdv/kdv';
+import { Otv } from './shared/components/dropdown/otv/otv';
+import { CariComponent } from './pages/cari/cari.component';
+import { CardCariComponent } from './pages/cari/card-cari/card-cari.component';
+import { ListCariComponent } from './pages/cari/list-cari/list-cari.component';
+import { DialogAddCariComponent } from './pages/cari/dialog-add-cari/dialog-add-cari.component';
+import { DialogUpdateCariComponent } from './pages/cari/dialog-update-cari/dialog-update-cari.component';
+import { DialogSelectCariComponent } from './pages/cari/dialog-select-cari/dialog-select-cari.component';
+import { CariSelectInput } from './shared/components/select-input/cari-select-input/cari-select-input';
 
 @NgModule({
   declarations: [
@@ -92,7 +105,7 @@ import { FaturaLayoutContent } from './shared/components/fatura-layout-content/f
     LayoutContent,
     LayoutListContent,
     StokSelectInput,
-
+    CalendarInput,
     BirimSelectInput,
     StokTuruDropDown,
     ReceteChildCardAddComponent,
@@ -137,7 +150,19 @@ import { FaturaLayoutContent } from './shared/components/fatura-layout-content/f
     FaturaComponent,
     AlisFaturaComponent,
     SatisFaturaComponent,
-    SatinalmaComponent
+    SatinalmaComponent,
+    IrsaliyeTuru,
+    IrsaliyeSeri,
+    IrsaliyeSelectInput,
+    Kdv,
+    Otv,
+    CariComponent,
+    CardCariComponent,
+    ListCariComponent,
+    DialogAddCariComponent,
+    DialogUpdateCariComponent,
+    DialogSelectCariComponent,
+    CariSelectInput
 
 
   ],

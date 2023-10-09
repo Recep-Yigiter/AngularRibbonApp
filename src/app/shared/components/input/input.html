@@ -1,13 +1,13 @@
 <div class="select-container">
 
-   <div
-      style="background-color: #e6e6e6;display: flex;align-items: center;justify-content: space-between;padding: 0 0.5rem;">
+   <div [style]="styleInput" style="background-color: #fbfbfb;display: flex;align-items: center;justify-content: space-between;padding: 0 0.5rem;font-size: 13px;">
       {{label}}<span>: </span>
    </div>
    <div style="width: 100%;">
       <span class="p-float-label" >
-         <input  [value]="valueInput" [readonly]="readonly" [formControl]="formControlNames" [(ngModel)]="field"
-            type="{{type}}" class="p-inputtext-sm" pInputText />
+        <input id="disabled-input" [formControl]="formControlNames"  [(value)]="valueInput" [disabled]="disableInput" [readonly]="readonly"  [(ngModel)]="field" 
+            type="{{type}}" class="p-inputtext-sm" pInputText /> 
+
       </span>
    </div>
 

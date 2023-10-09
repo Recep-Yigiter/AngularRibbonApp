@@ -22,64 +22,36 @@
                         <div class="dx-filemanager-notification-drawer-panel">
                            <div class="dx-filemanager-wrapper">
                               <div class="dx-filemanager-toolbar dx-filemanager-general-toolbar">
-                                 <!-- <div class="dx-toolbar dx-widget dx-visibility-change-handler dx-collection"
-                                     role="toolbar">
-                                     <div class="dx-toolbar-items-container">
-                                        <div class="dx-toolbar-before">
- 
- 
-                                           <div id="draggable-header" class="top-bar"
-                                              style="border: none; background-color: transparent;margin-bottom: 0;">
- 
-                                              <div class="title"
-                                                 style="background: linear-gradient(to bottom, #ffffff 0%, #bbbbbb 100%); width: 100%; ">
- 
-                                              
-                                                 <ng-content select=".sidebar-add-layout-content"></ng-content>
- 
- 
-                                              </div>
- 
-                                           </div>
- 
- 
- 
-                                        </div>
- 
-                                     </div>
-                                  </div> -->
-
-                                 <div class="grid_container">
+                               
+                                 <div class="grid_container" style="max-width: 1400px;min-width: 1300px;">
                                     <aside class="aside">
                                      <div class="title-kart">
                                           <ng-content select=".aside-title-content"></ng-content>
                                        </div> 
                                        <ng-content select=".aside-content"></ng-content>
-
-
                                     </aside>
                                     <main class="main">
                                        <ng-content select=".main-content"></ng-content>
                                     </main>
                                     <section class="kart-1">
                                        <div class="title-kart">
-                                          <ng-content select=".section-title-content"></ng-content>
+                                          <ng-content select=".section1-title-content"></ng-content>
                                        </div>
-                                       <ng-content select=".section-content"></ng-content>
+                                       <ng-content select=".section1-content"></ng-content>
 
                                     </section>
                                     <section class="kart-2">
                                        <div class="title-kart">
-                                          <ng-content select=".section-title-content"></ng-content>
+                                          <ng-content select=".section2-title-content"></ng-content>
                                        </div>
-                                       <ng-content select=".section-content"></ng-content>
+                                       <ng-content select=".section2-content"></ng-content>
 
                                     </section>
                                     <section class="kart-3">
                                        <div class="title-kart">
-                                          <ng-content select=".section-title-content"></ng-content>
+                                          <ng-content select=".section3-title-content"></ng-content>
                                        </div>
-                                       <ng-content select=".section-content"></ng-content>
+                                       <ng-content select=".section3-content"></ng-content>
 
                                     </section>
                                  </div>

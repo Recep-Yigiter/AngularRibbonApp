@@ -1,0 +1,28 @@
+<div class="select-container">
+
+    <div style="width: 100%;">
+        <span class="p-float-label">
+
+            <input readonly *ngIf="selectedStokItem!=undefined" [ngModel]="selectedStokItem.ad" [formControl]="formControlNames"
+                style=" text-align : left;padding-right:55px  !important;" type="text" class="p-inputtext-sm"
+                pInputText />
+            <input readonly [(ngModel)]="field" *ngIf="selectedStokItem==undefined || selectedStokItem==null" [formControl]="formControlNames"
+                style=" text-align : left;" type="text" class="p-inputtext-sm"
+                pInputText />
+
+            <div class="selectButton-insert">
+                <button (click)="IrsaliyeSelectDialogOpen()" type="button" pbutton pripple
+                    class="p-element p-ripple p-autocomplete-dropdown  p-button p-component p-button-icon-only ng-star-inserted">
+                    <i class="fa-solid fa-ellipsis" style="color: black;"></i>
+                </button>
+            </div>
+            <div class="selectButton-delete" *ngIf="selectedStokItem!=null &&selectedStokItem!=''">
+                <button (click)="selectedStokItem=''" type="button" pbutton pripple
+                    class="p-element p-ripple p-autocomplete-dropdown  p-button p-component p-button-icon-only ng-star-inserted">
+                    <i class="pi pi-times" style="color: black;"></i>
+                </button>
+            </div>
+        </span>
+    </div>
+
+</div>

@@ -20,7 +20,6 @@ export class DialogSelectStokComponent implements OnInit {
   totalRecords: number;
   selectedStok: any;
   _selectedDataItem: any;
-  typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
   pageSizeOptions = [5, 10, 15];
   hidePageSize = false;
   showPageSizeOptions = true;
@@ -31,7 +30,9 @@ export class DialogSelectStokComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private dialogRef: DialogRef,
-    private http: HttpClient,private StokService:StokService) { }
+    private http: HttpClient,private StokService:StokService,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    ) { }
 
 
 
@@ -39,6 +40,7 @@ export class DialogSelectStokComponent implements OnInit {
 
 
   async ngOnInit() {
+
     this.getAllStok();
 
   }

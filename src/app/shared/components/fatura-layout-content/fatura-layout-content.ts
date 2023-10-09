@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, Injectable, Input, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 @Injectable({
     providedIn: 'root',
 })
@@ -10,6 +11,7 @@ import { ChangeDetectorRef, Component, Injectable, Input, OnInit } from '@angula
 
 export class FaturaLayoutContent {
     @Input() layoutName: any;
+    
 
     constructor( private ref: ChangeDetectorRef) {
        

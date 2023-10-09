@@ -1,0 +1,18 @@
+  <!-- <div class="select-container">
+    <div style="background-color: #fbfbfb;background-color: #fbfbfb;display: flex;align-items: center;justify-content: space-between;padding: 0 0.5rem;font-size: 13px;">
+      {{label}}<span>: </span>
+    </div>
+    <p-dropdown [options]="options" [(ngModel)]="field" [formControl]="formControlNames" placeholder=" " optionLabel="name" [showClear]="true"></p-dropdown>
+ 
+  </div> -->
+
+
+  <div class="select-container">
+
+    <div  style="background-color: #fbfbfb;display: flex;align-items: center;justify-content: space-between;padding: 0 0.5rem;font-size: 13px;">
+       {{label}}<span>: </span>
+    </div>
+    <p-dropdown [options]="options"  [(ngModel)]="field" placeholder=" " [formControl]="formControlNames" optionLabel="name" [showClear]="true"></p-dropdown>
+ 
+ 
+ </div>

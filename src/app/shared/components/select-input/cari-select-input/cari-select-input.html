@@ -1,0 +1,38 @@
+<div class="select-container">
+    <div
+        style="background-color: #fbfbfb;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 0.5rem;
+        font-size: 13px;">
+        {{label}} <span>: </span>
+    </div>
+
+    <div style="width: 100%;">
+        <span class="p-float-label">
+
+            <input readonly *ngIf="selectedCariItem!=undefined" [ngModel]="selectedCariItem.ad" [formControl]="formControlNames"
+                style=" text-align : left;padding-right:85px  !important;" type="text" class="p-inputtext-sm"
+                pInputText />
+            <input readonly [(ngModel)]="field" *ngIf="selectedCariItem==undefined || selectedCariItem==null"
+                [formControl]="formControlNames" style=" text-align : left;" type="text" class="p-inputtext-sm"
+                pInputText />
+
+            <div class="selectButton-insert">
+                <button (click)="CariSelectDialogOpen()" type="button" pbutton pripple
+                    class="p-element p-ripple p-autocomplete-dropdown  p-button p-component p-button-icon-only ng-star-inserted">
+                    <i class="fa-solid fa-ellipsis" style="color: black;"></i>
+                </button>
+            </div>
+           
+            <div class="selectButton-delete" *ngIf="selectedCariItem!=null &&selectedCariItem!=''">
+                <button (click)="selectedCariItem=null" type="button" pbutton pripple
+                    class="p-element p-ripple p-autocomplete-dropdown  p-button p-component p-button-icon-only ng-star-inserted">
+                    <i class="pi pi-times" style="color: black;"></i>
+                </button>
+            </div>
+        </span>
+    </div>
+
+</div>

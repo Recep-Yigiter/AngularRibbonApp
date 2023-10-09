@@ -2,43 +2,127 @@
 
 
     <div class="table-action-layout-content">
-
-        <div class="ribbon-section" style="height: 40px;margin-bottom: 3px; margin-left: 10px;">
+        <div class="ribbon-section" style="height: 40px; margin-left: 10px;">
             <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
                 <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                    src=" ../../assets/icons/actions/edit.png">
+                    src=" ../../assets/icons/actions/clipboard_add.png">
                 <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                    src=" ../../assets/icons/actions/edit.png">
+                    src=" ../../assets/icons/actions/clipboard_add.png">
                 <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                    src=" ../../assets/icons/actions/edit.png">
+                    src=" ../../assets/icons/actions/clipboard_add.png">
+
+            </div>
+
+        </div>
+        <div class="ribbon-section" style="height: 40px;">
+            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/actions/clipboard_close.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/actions/clipboard_close.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/actions/clipboard_close.png">
+
+            </div>
+
+        </div>
+        <div class="ribbon-section" style="height: 40px;">
+            <div (click)="saveFatura()" class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/disabled/save-page.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/disabled/save-page.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/disabled/save-page.png">
 
             </div>
 
         </div>
 
-
-
     </div>
 
 
-    <div class="aside-title-content">Belge</div>
+
+
+    <div class="aside-title-content">BELGE</div>
     <div class="aside-content">
-
         <form class="form" [formGroup]="frm">
-            <common-input label="Tarih" [formControlNames]="ad"></common-input>
-            <common-input label="Seri" [formControlNames]="kod"></common-input>
-            <common-input label="No" [formControlNames]="kod"></common-input>
+
+            <calendar-input [field]="date" label="Tarih" [formControlNames]="tarih"></calendar-input>
+            <div style="width: 250px;">
+                <common-input [readonly]="true" label="Seri" [formControlNames]="seri" [disableInput]="true"
+                    [field]="faturaSeri"></common-input>
+                <common-input type="text" label="No" [formControlNames]="belgeNo" [field]="'Otomatik gelecek'"
+                    [readonly]="true"></common-input>
+            </div>
         </form>
-        <!-- <form-content formTitle="Stok Kart">
-            <form class="form" [formGroup]="frm">
-                <common-input label="Ad" [formControlNames]="ad"></common-input>
-                <common-input label="Kod" [formControlNames]="kod"></common-input>
-            </form>
-        </form-content> -->
+    </div>
+
+    <div class="section1-title-content">MÜŞTERİ/SATICI</div>
+    <div class="section1-content">
+        <form class="form" [formGroup]="frm">
+            <common-input [readonly]="true" label="Kodu" [formControlNames]="cariKod" [field]="cariSelectItemKod"></common-input>
+            <cari-select-input label="Adı" [formControlNames]="cariAd"
+                (childFunc)="cariChildFunc($event)"></cari-select-input>
+        </form>
+    </div>
+
+    <div class="section2-title-content">İRSALİYE</div>
+    <div class="section2-content">
+        <form class="form" [formGroup]="irsaliyeFrm">
+            <common-input label="Tür" [formControlNames]="irsaliyeTur" [field]="'Aliş'"
+                [readonly]="true"></common-input>
+            <div style="display: flex; align-items: center; justify-content: space-between; height: 25px;">
+                <irsaliye-seri label="Seri" [formControlNames]="irsaliyeSeri"></irsaliye-seri>
+                <common-input label="No" [formControlNames]="irsaliyeNo"></common-input>
+            </div>
+            <div
+                style="display: flex; align-items: center; justify-content: space-between; height: 25px; margin-top: 5px;">
+                <common-input type="number" label="Fiyat" [formControlNames]="fiyat"></common-input>
+                <irsaliye-select-input [formControlNames]="irsaliyeAdi" irsaliyeTuru="Aliş"></irsaliye-select-input>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="section3-title-content">DEPO</div>
+    <div class="section3-content">
+        <form class="form" [formGroup]="frm">
+            <common-input [disableInput]="true" label="Seçme" [formControlNames]="depoSecme"></common-input>
+            <common-input [disableInput]="true" label="Adı" [formControlNames]="depoAd"></common-input>
+            <common-input [disableInput]="true" label="Kodu" [formControlNames]="depoKod"></common-input>
+        </form>
+
     </div>
 
 
 
+    <div class="main-content">
+        <form class="form" [formGroup]="frm">
+            <div
+                style="display: flex; align-items: center; justify-content: space-between; height: 25px;margin: 5px 0;">
+                <common-input label="Referans" [formControlNames]="referans"></common-input>
+                <kdv label="KDV" [formControlNames]="kdv"></kdv>
+                <common-input label="e-Fatura" [formControlNames]="eFatura" [field]="'Yok'"
+                    [readonly]="true"></common-input>
+            </div>
+            <div
+                style="display: flex; align-items: center; justify-content: space-between; height: 25px;margin: 5px 0;">
+                <common-input label="Düzenleyen" [readonly]="true" [formControlNames]="duzenleyen"
+                    [field]="'Kullanıcı Adı Girilecek'"></common-input>
+                <otv label="ÖTV" [formControlNames]="otv" [disableDropdown]="true" [field]="defaultOtv.name"></otv>
+                <common-input label="e-Arşiv" [formControlNames]="eArsiv" [field]="'Yok'"
+                    [readonly]="true"></common-input>
+            </div>
+            <div
+                style="display: flex; align-items: center; justify-content: space-between; height: 25px;margin: 5px 0;">
+                <common-input label="Açıklama" [formControlNames]="depoSecme"></common-input>
+                <common-input label="Diğer" [formControlNames]="depoAd"></common-input>
+            </div>
+
+
+        </form>
+    </div>
 
 
 
@@ -60,13 +144,28 @@
                 (onRowUnselect)="onRowUnSelect()">
                 <ng-template pTemplate="header">
                     <tr>
-                        <th style="width: 350px; color: #959595 !important;">Stok Adı</th>
-                        <th style="width:100px;color: #959595 !important;">Stok Grup</th>
-                        <th style="width:100px;color: #959595 !important;">Birim Adı</th>
-                        <th style="width:100px;color: #959595 !important;">Birim Fiyat</th>
-                        <th style="width:auto; min-width: 150px;color: #959595 !important;">Açıklama</th>
+                        <th style="width:50px; color: #959595 !important;">S/H/D</th>
+                        <th style="width:150px;color: #959595 !important;">Kodu</th>
+                        <th style="width:300px;color: #959595 !important;">Adı</th>
+                        <th style="width:75px;color: #959595 !important;">Miktar</th>
+                        <th style="width:75px; min-width:50px;color: #959595 !important;">Birim</th>
+                        <th style="width:100px; min-width:50px;color: #959595 !important;">Birim Fiyat</th>
+                        <th style="width:auto; min-width:250px;color: #959595 !important;">Açıklama</th>
+                        <th style="width:75px; min-width:150px;color: #959595 !important;">Toplam Tutar</th>
                     </tr>
                     <tr>
+                        <th>
+                            <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                                (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                        </th>
+                        <th>
+                            <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                                (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                        </th>
+                        <th>
+                            <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                                (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                        </th>
                         <th>
                             <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
                                 (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
@@ -91,11 +190,14 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-product>
                     <tr [pSelectableRow]="product">
+                        <td>{{product.faturaHareketTuru}}</td>
+                        <td>{{product.kod}}</td>
                         <td>{{product.ad}}</td>
-                        <td>{{product.stokGrup}}</td>
-                        <td>{{product.birimAdi}}</td>
-                        <td>{{product.birimFiyat |currency:'TRY':'₺':'0.2-2'}}</td>
+                        <td>{{product.miktar |currency:'TRY':'₺':'0.2-2'}}</td>
+                        <td>{{product.birim}}</td>
+                        <td>{{product.birimFiyat}}</td>
                         <td>{{product.aciklama}}</td>
+                        <td>Toplam</td>
                     </tr>
                 </ng-template>
 

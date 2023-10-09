@@ -11,12 +11,14 @@ export class CommonInput {
     @Input() formControlNames: any;
     @Input() readonly: boolean;
     @Input() field: any;
-    @Input() label:any;
-    @Input() type:any;
-    @Input() valueInput:any;
-    @Input() disabled:any;
-    constructor( private ref: ChangeDetectorRef) {
-       
+    @Input() label: any;
+    @Input() type: any;
+    @Input() valueInput: any;
+    @Input() styleInput: any;
+    @Input() disableInput = false
+
+    constructor(private ref: ChangeDetectorRef) {
+
     }
 
     // ngAfterContentChecked() {
