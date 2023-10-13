@@ -12,7 +12,7 @@
     <div  style="background-color: #fbfbfb;display: flex;align-items: center;justify-content: space-between;padding: 0 0.5rem;font-size: 13px;">
        {{label}}<span>: </span>
     </div>
-    <p-dropdown [options]="options"  [(ngModel)]="field" placeholder=" " [formControl]="formControlNames" optionLabel="name" [showClear]="false"></p-dropdown>
+    <p-dropdown [options]="options"  [attr.disabled]="disableInput" [(ngModel)]="field" placeholder=" " [formControl]="formControlNames" optionLabel="name" [showClear]="false"></p-dropdown>
  
  
  </div>

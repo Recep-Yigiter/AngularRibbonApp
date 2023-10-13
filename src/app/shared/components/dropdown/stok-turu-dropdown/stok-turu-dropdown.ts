@@ -25,7 +25,7 @@ export class StokTuruDropDown {
     @Input() field: any;
     @Input() label:any;
     @Input() type:any;
-
+    @Input() disableInput: any;
     @Input() selectedValue: any;
     public categoryTypes: any;
     constructor(private ref: ChangeDetectorRef) {

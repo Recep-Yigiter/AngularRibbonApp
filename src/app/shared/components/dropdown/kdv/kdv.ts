@@ -25,7 +25,7 @@ export class Kdv {
     @Input() field: any;
     @Input() label: any;
     @Input() type: any;
-
+    @Input() disableInput: any;
     options: any[];
     constructor(private ref: ChangeDetectorRef) {
 

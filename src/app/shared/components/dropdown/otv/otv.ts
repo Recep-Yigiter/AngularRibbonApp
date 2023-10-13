@@ -25,8 +25,7 @@ export class Otv {
     @Input() field: any;
     @Input() label: any;
     @Input() type: any;
-    @Input() disableDropdown: boolean=false;
-
+    @Input() disableInput: any;
     options: any[];
     constructor(private ref: ChangeDetectorRef) {
 

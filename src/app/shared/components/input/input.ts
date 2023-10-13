@@ -15,7 +15,7 @@ export class CommonInput {
     @Input() type: any;
     @Input() valueInput: any;
     @Input() styleInput: any;
-    @Input() disableInput = false
+    @Input() disableInput:boolean;
 
     constructor(private ref: ChangeDetectorRef) {
 

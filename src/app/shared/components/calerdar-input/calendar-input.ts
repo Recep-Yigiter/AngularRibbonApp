@@ -15,6 +15,8 @@ export class CalendarInput {
     @Input() type:any;
     @Input() valueInput:any;
     @Input() styleInput:any;
+    @Input() disableInput:any=true;
+
 
     // date:any;
     // DateObj:Date;

@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FaturaService } from '../services/fatura.service';
+import { MatDialogRef } from '@angular/material/dialog';
+import { CreateFaturaHareketModel, CreateFaturaModel } from '../models/create-fatura.model';
+import { StokDialogService } from '../../stok/services/stok-dialog.service';
 
 @Component({
   selector: 'app-alis-fatura',
@@ -13,39 +17,46 @@ export class AlisFaturaComponent implements OnInit {
   date: Date;
   defaultOtv: any = { name: "Yok" }
   defaultFiyat = 0;
-  faturaSeri: any = "AF"
-  constructor(private fb: FormBuilder) { }
+  faturaSeri: any = "AF";
+  faturaBelgeNo:any;
+  constructor(private fb: FormBuilder,
+    private FaturaService: FaturaService,
+    private stokDialogService: StokDialogService
+    // private dialogRef: MatDialogRef<AlisFaturaComponent>
+  ) { }
 
-  ngOnInit(): void {
+ async ngOnInit() {
 
     this.date = new Date;
+    const fatura =await this.FaturaService.GetCode()
+    this.faturaBelgeNo=fatura.data
+
 
   }
 
 
   public frm: FormGroup = this.fb.group({
-
     tarih: [null, [Validators.required, Validators.maxLength(16)]],
     seri: [null, [Validators.required, Validators.maxLength(16)]],
     belgeNo: [null, [Validators.required, Validators.maxLength(16)]],
-    cariKod: [null, [Validators.required, Validators.maxLength(16)]],
-    cariAd: [null, [Validators.required, Validators.maxLength(16)]],
     cariId: [null, [Validators.required, Validators.maxLength(16)]],
-    depoSecme: [null, [Validators.required, Validators.maxLength(16)]],
-    depoAd: [null, [Validators.required, Validators.maxLength(16)]],
-    depoKod: [null, [Validators.required, Validators.maxLength(16)]],
-    duzenleyen: [null, [Validators.required, Validators.maxLength(16)]],
     referans: [null, [Validators.required, Validators.maxLength(16)]],
     eFatura: [null, [Validators.required, Validators.maxLength(16)]],
     kdv: [null, [Validators.required, Validators.maxLength(16)]],
     otv: [null, [Validators.required, Validators.maxLength(16)]],
     eArsiv: [null, [Validators.required, Validators.maxLength(16)]],
+    depoSecme: [null, [Validators.required, Validators.maxLength(16)]],
+    depoAd: [null, [Validators.required, Validators.maxLength(16)]],
+    depoKod: [null, [Validators.required, Validators.maxLength(16)]],
+    duzenleyen: [null, [Validators.required, Validators.maxLength(16)]],
+    cariKod: [null, [Validators.required, Validators.maxLength(16)]],
+    aciklama: [null, [Validators.required, Validators.maxLength(16)]],
 
   });
   get tarih() { return this.frm.get('tarih') }
   get seri() { return this.frm.get('seri') }
   get belgeNo() { return this.frm.get('belgeNo') }
-  get cariAd() { return this.frm.get('cariAd') }
+  get cariId() { return this.frm.get('cariId') }
   get cariKod() { return this.frm.get('cariKod') }
   get depoSecme() { return this.frm.get('depoSecme') }
   get depoAd() { return this.frm.get('depoAd') }
@@ -56,6 +67,7 @@ export class AlisFaturaComponent implements OnInit {
   get kdv() { return this.frm.get('kdv') }
   get otv() { return this.frm.get('otv') }
   get eArsiv() { return this.frm.get('eArsiv') }
+  get aciklama() { return this.frm.get('aciklama') }
 
   public irsaliyeFrm: FormGroup = this.fb.group({
     irsaliyeTur: [null],
@@ -84,9 +96,48 @@ export class AlisFaturaComponent implements OnInit {
     // var DateObj = new Date();
     // this.frm.value.tarih= DateObj.getFullYear() + '/' + ('0' + (DateObj.getMonth() + 1)).slice(-2) + '/' + ('0' + DateObj.getDate()).slice(-2);
     // this.frm.value.otv=this.frm.value.otv.name
-    this.frm.value.cariId=this.cariSelectItem.id
-    this.frm.value.cariKod=this.cariSelectItem.kod
-    console.log(this.frm.value)
+    this.frm.value.cariId = this.cariSelectItem?.id;
+
+    const model = new CreateFaturaModel();
+    model.belgeNo = this.frm.value.belgeNo;
+    model.faturaTuru = 1;
+    model.seri = this.frm.value.seri;
+    model.referans = this.frm.value.referans;
+    model.kdv = this.frm.value.kdv;
+    model.otv = this.frm.value.otv;
+    model.eFatura = this.frm.value.eFatura;
+    model.eArsiv = this.frm.value.eArsiv;
+    model.aciklama = this.frm.value.aciklama;
+    model.cariId = this.cariSelectItem?.id;
+    model.faturaHareketler = this.faturaHareketler;
+
+    if (this.cariSelectItem?.id != undefined || this.cariSelectItem?.id != null) {
+      this.FaturaService.create(model, () => {
+        window.location.reload();
+
+
+      }, errorMessage => {
+        console.log("Hata....", errorMessage)
+        setTimeout(() => {
+          console.log("Hata....", errorMessage)
+        }, 1000)
+      })
+    }
+
+
+  }
+  faturaHareketler: CreateFaturaHareketModel[] = [];
+  faturaHareket: CreateFaturaHareketModel;
+
+  addStok() {
+    this.faturaHareket = {}
+    this.stokDialogService.selectDialog((data) => {
+
+      data.faturaHareketTuru = 1;
+      data.miktar = 0;
+      data.birimFiyat = 0;
+      this.faturaHareketler.push(data)
+    })
   }
 
 

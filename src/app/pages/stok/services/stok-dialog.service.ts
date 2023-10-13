@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogAddStokComponent } from 'src/app/pages/stok/dialog-add-stok/dialog-add-stok.component';
 import { DialogAddChildStokComponent } from 'src/app/pages/stok/dialog-add-child-stok/dialog-add-child-stok.component';
 import { DialogUpdateStokComponent } from 'src/app/pages/stok/dialog-update-stok/dialog-update-stok.component';
+import { DialogSelectStokComponent } from '../dialog-select-stok/dialog-select-stok.component';
 
 
 
@@ -70,6 +71,34 @@ export class StokDialogService {
     dialogRef.afterClosed().subscribe(result => {
       successCallBack();
     });
+
+
+  }
+
+  selectedData: any;
+  selectDialog(successCallBack?: (data) => void) {
+
+
+    const dialogRef = this.dialog.open(DialogSelectStokComponent, {
+      width: '40%',
+      minWidth: '40%',
+      height: '550px',
+      maxWidth: '850px',
+      disableClose: true,
+      autoFocus: false,
+      restoreFocus: false,
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (dialogRef.componentInstance._selectedDataItem == null) { return }
+
+      this.selectedData = dialogRef.componentInstance._selectedDataItem;
+      successCallBack(this.selectedData);
+    });
+
+
+
 
 
   }
