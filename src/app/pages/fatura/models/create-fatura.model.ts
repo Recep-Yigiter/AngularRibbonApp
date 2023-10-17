@@ -18,6 +18,7 @@ export class CreateFaturaHareketModel{
     birimFiyat?:number;
     miktar?:number;
     stokId?:any;
+    depoId?:any;
 }
 
 

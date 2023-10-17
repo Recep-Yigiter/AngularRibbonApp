@@ -1,4 +1,8 @@
 @import "src/assets/scss/material/_dialogtittle.scss";
 @import "src/assets/scss/primeNG/primeNG-styles.scss";
 
-
+:host ::ng-deep{
+    .p-scroller {
+        height: 395px !important;
+    }
+}

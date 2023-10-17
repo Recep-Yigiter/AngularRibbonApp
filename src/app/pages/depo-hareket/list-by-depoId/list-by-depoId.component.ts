@@ -1,16 +1,16 @@
-import { Component, OnInit ,Inject} from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { DepoService } from '../services/depo.service';
+import { FaturaService } from '../../fatura/services/fatura.service';
 import { HttpClient } from '@angular/common/http';
 import { DialogRef } from '@angular/cdk/dialog';
+import { MatDialog } from '@angular/material/dialog';
+
 @Component({
-  selector: 'app-dialog-select-depo',
-  templateUrl: './dialog-select-depo.component.html',
-  styleUrls: ['./dialog-select-depo.component.scss']
+  selector: 'app-list-by-depoId',
+  templateUrl: './list-by-depoId.component.html',
+  styleUrls: ['./list-by-depoId.component.scss']
 })
-export class DialogSelectDepoComponent implements OnInit {
+export class ListByDepoIdComponent implements OnInit {
 
   rows: any;
   pageIndex: number;
@@ -31,7 +31,7 @@ export class DialogSelectDepoComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private dialogRef: DialogRef,
-    private http: HttpClient,private DepoService:DepoService) { }
+    private http: HttpClient,private DepoService:FaturaService) { }
 
 
 
@@ -83,23 +83,13 @@ export class DialogSelectDepoComponent implements OnInit {
 
   }
   openAddDialog() {
-    const dialogRef = this.dialog.open(DialogSelectDepoComponent, {
-      width: '25%',
-      minWidth: '350px',
-      height: '38vh',
-      disableClose: true,
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      this.getAllDepo();
-
-    });
+   
   }
 
 
   
   selectedDbClickDepo(event) {
-    this._selectedDataItem = event;
-    this.dialogRef.close({ data: this._selectedDataItem })
+    
     
   }
 }

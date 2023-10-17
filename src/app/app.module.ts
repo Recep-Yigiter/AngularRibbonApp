@@ -84,6 +84,9 @@ import { DialogAddCariComponent } from './pages/cari/dialog-add-cari/dialog-add-
 import { DialogUpdateCariComponent } from './pages/cari/dialog-update-cari/dialog-update-cari.component';
 import { DialogSelectCariComponent } from './pages/cari/dialog-select-cari/dialog-select-cari.component';
 import { CariSelectInput } from './shared/components/select-input/cari-select-input/cari-select-input';
+import { DepoSelectInput } from './shared/components/select-input/depo-select-input/depo-select-input';
+import { DepoHareketComponent } from './pages/depo-hareket/depo-hareket.component';
+import { ListByDepoIdComponent } from './pages/depo-hareket/list-by-depoId/list-by-depoId.component';
 
 @NgModule({
   declarations: [
@@ -162,7 +165,10 @@ import { CariSelectInput } from './shared/components/select-input/cari-select-in
     DialogAddCariComponent,
     DialogUpdateCariComponent,
     DialogSelectCariComponent,
-    CariSelectInput
+    CariSelectInput,
+    DepoSelectInput,
+    DepoHareketComponent,
+    ListByDepoIdComponent
 
 
   ],

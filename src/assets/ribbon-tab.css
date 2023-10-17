@@ -326,7 +326,7 @@ body
   .ribbon-button.disabled .ribbon-icon.ribbon-disabled
 {
 	display: block;
-	opacity: 0.8;
+	opacity: 0.6;
 
 }
   .ribbon-button.disabled .ribbon-icon.ribbon-implicit-disabled

@@ -18,18 +18,21 @@ export class AlisFaturaComponent implements OnInit {
   defaultOtv: any = { name: "Yok" }
   defaultFiyat = 0;
   faturaSeri: any = "AF";
-  faturaBelgeNo:any;
+  faturaBelgeNo: any;
+  formReferans: any;
   constructor(private fb: FormBuilder,
     private FaturaService: FaturaService,
     private stokDialogService: StokDialogService
     // private dialogRef: MatDialogRef<AlisFaturaComponent>
   ) { }
 
- async ngOnInit() {
+  async ngOnInit() {
 
     this.date = new Date;
-    const fatura =await this.FaturaService.GetCode()
-    this.faturaBelgeNo=fatura.data
+
+    const fatura = await this.FaturaService.GetCode()
+    this.faturaBelgeNo = fatura.data;
+    this.formReferans = `${this.frm.value.seri}-${this.faturaBelgeNo?.kod}`
 
 
   }
@@ -51,6 +54,7 @@ export class AlisFaturaComponent implements OnInit {
     duzenleyen: [null, [Validators.required, Validators.maxLength(16)]],
     cariKod: [null, [Validators.required, Validators.maxLength(16)]],
     aciklama: [null, [Validators.required, Validators.maxLength(16)]],
+    diger: [null, [Validators.required, Validators.maxLength(16)]],
 
   });
   get tarih() { return this.frm.get('tarih') }
@@ -68,6 +72,7 @@ export class AlisFaturaComponent implements OnInit {
   get otv() { return this.frm.get('otv') }
   get eArsiv() { return this.frm.get('eArsiv') }
   get aciklama() { return this.frm.get('aciklama') }
+  get diger() { return this.frm.get('diger') }
 
   public irsaliyeFrm: FormGroup = this.fb.group({
     irsaliyeTur: [null],
@@ -136,6 +141,7 @@ export class AlisFaturaComponent implements OnInit {
       data.faturaHareketTuru = 1;
       data.miktar = 0;
       data.birimFiyat = 0;
+      data.depoId=this.cariSelectItem.id?this.cariSelectItem.id:"3fa85f64-5717-4562-b3fc-2c963f66afa6"
       this.faturaHareketler.push(data)
     })
   }
@@ -146,6 +152,15 @@ export class AlisFaturaComponent implements OnInit {
   cariChildFunc(item) {
     this.cariSelectItem = item;
     this.cariSelectItemKod = item.kod;
+
+  }
+
+
+  depoSelectItem: any;
+  depoSelectItemKod: any;
+  depoChildFunc(item) {
+    this.depoSelectItem = item;
+    this.depoSelectItemKod = item.kod;
 
   }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DepoService } from '../services/depo.service';
 
 @Component({
   selector: 'app-list-depo',
@@ -7,9 +8,76 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListDepoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private DepoService: DepoService) { }
 
   ngOnInit(): void {
+    this.getList()
+  }
+
+  dataSource: any;
+  selectedItem: any;
+  DepoItem: any;
+  totalHesap: any;
+
+
+  testList: any[];
+  async getList() {
+    this.testList = []
+    const list = await this.DepoService.GetList();
+    this.dataSource = list.data.items;
+    this.dataSource.map(c=>c.ad).forEach(element => {
+  
+     this.testList.push({ad:element})
+
+ 
+    });
+
+
+  }
+ 
+
+  onRowSelect(event: any) {
+    this.DepoItem = event.data;
+
+  }
+  onRowUnSelect() {
+    this.DepoItem = null
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  getFilter(event: Event): any {
+    return (event.target as HTMLInputElement).value;
   }
 
 }

@@ -52,7 +52,7 @@
             <div style="width: 250px;">
                 <common-input [readonly]="true" label="Seri" [formControlNames]="seri" [disableInput]="true"
                     [field]="faturaSeri"></common-input>
-                <common-input type="text" label="No" [formControlNames]="belgeNo" [field]="faturaBelgeNo.kod"
+                <common-input type="text" label="No" [formControlNames]="belgeNo" [field]="faturaBelgeNo?.kod"
                     [readonly]="true"></common-input>
             </div>
         </form>
@@ -89,8 +89,9 @@
     <div class="section3-content">
         <form class="form" [formGroup]="frm">
             <common-input [disableInput]="true" label="Seçme" [formControlNames]="depoSecme"></common-input>
-            <common-input [disableInput]="true" label="Adı" [formControlNames]="depoAd"></common-input>
-            <common-input [disableInput]="true" label="Kodu" [formControlNames]="depoKod"></common-input>
+            <!-- <common-input [disableInput]="true" label="Adı" [formControlNames]="depoAd"></common-input> -->
+            <depo-select-input label="Adı"  [formControlNames]="depoAd" (childFunc)="depoChildFunc($event)"></depo-select-input>
+            <common-input [disableInput]="true" label="Kodu" [formControlNames]="depoKod" [field]="depoSelectItemKod "></common-input>
         </form>
 
     </div>
@@ -101,7 +102,7 @@
         <form class="form" [formGroup]="frm">
             <div
                 style="display: flex; align-items: center; justify-content: space-between; height: 25px;margin: 5px 0;">
-                <common-input label="Referans" [formControlNames]="referans" [disableInput]="true"></common-input>
+                <common-input label="Referans" [formControlNames]="referans" [disableInput]="true" [field]="formReferans"></common-input>
                 <kdv label="KDV" [formControlNames]="kdv" [field]="'Hariç'"></kdv>
                 <common-input label="e-Fatura" [formControlNames]="eFatura" [field]="'Yok'"
                     [readonly]="true"></common-input>
@@ -117,7 +118,7 @@
             <div
                 style="display: flex; align-items: center; justify-content: space-between; height: 25px;margin: 5px 0;">
                 <common-input label="Açıklama" [formControlNames]="aciklama"></common-input>
-                <common-input label="Diğer" [formControlNames]="depoAd"></common-input>
+                <common-input label="Diğer" [formControlNames]="diger"></common-input>
             </div>
 
 
@@ -206,7 +207,17 @@
                             </p-cellEditor>
                         </td>
                         <td>{{product.birimAdi}}</td>
-                        <td>{{product.birimFiyat |currency:'TRY':'₺':'0.2-2'}}</td>
+                        <td pEditableColumn>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <input pInputText type="number" onfocus="this.select()" [(ngModel)]="product.birimFiyat" required>
+                                </ng-template>
+                                <ng-template pTemplate="output">
+                                    {{product.birimFiyat |currency:'TRY':'₺':'0.2-2'}}
+                                </ng-template>
+                            </p-cellEditor>
+
+                        </td>
                         <td>{{product.aciklama}}</td>
                         <td>{{product.miktar * product.birimFiyat |currency:'TRY':'₺':'0.2-2'}}</td>
                     </tr>
