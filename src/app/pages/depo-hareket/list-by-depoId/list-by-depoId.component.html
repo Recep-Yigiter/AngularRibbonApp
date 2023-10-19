@@ -1,7 +1,5 @@
-
-
-
-<dialog-action>
+<!-- <div style="padding: 24px;">
+  <dialog-action>
     <button class="done_outline" autofocus="false" mat-button>
       <mat-icon class="big-icon" style="font-size: 25px;">done_outline</mat-icon>
     </button>
@@ -11,55 +9,178 @@
     </button>
   </dialog-action>
   
-    <table-content selectClass="table">
-      <!-- <img  (click)="openAddDialog()" class="action-insert" width="25px" height="25px" src="assets/add.png" alt=""> -->
-      <div class="table">
-        <p-table #dt [value]="dataSource" responsiveLayout="scroll" [resizableColumns]="true" columnResizeMode="expand"
-        [scrollable]="true" [virtualScroll]="true" [virtualScrollItemSize]="46" selectionMode="single" [(selection)]="selectedDepo" dataKey="id"
-          (onRowSelect)="onRowSelect($event)" [(contextMenuSelection)]="selectedDepo">
-          <ng-template pTemplate="header">
-            <tr>
-              <th style="min-width:150px;" pSortableColumn="kod">Kod <p-sortIcon field="kod"></p-sortIcon></th>
-              <th style="min-width:300px;" pSortableColumn="ad">Ad <p-sortIcon field="ad"></p-sortIcon></th>   
-              <th style="min-width:100px;" pSortableColumn="aciklama">Açıklama<p-sortIcon field="aciklama"></p-sortIcon>
-              </th>
-            </tr>
-            <tr>
-              <th>
-                <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-                  (input)="dt.filter(getFilter($event),'kod', 'contains')" class="p-column-filter">
-              </th>
-              <th>
-                <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-                  (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
-              </th>
-              <th>
-                <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-                  (input)="dt.filter(getFilter($event),'aciklama', 'contains')" class="p-column-filter">
-              </th>
-    
-            </tr>
-          </ng-template>
-          <ng-template pTemplate="body" let-customer let-rowIndex="rowIndex">
-            <tr (dblclick)="selectedDbClickDepo(customer)" [pContextMenuRow]="customer" [pSelectableRow]="customer">
-    
-              <td style="width: 100px;">{{customer.kod}}</td>
-              <td>{{customer.ad}}</td>
-              <td>{{customer.aciklama}}</td>
-            </tr>
-          </ng-template>
-        </p-table>
-      </div>
-     
-    
-      <div class="pagination">
-        <mat-paginator #paginator class="demo-paginator" (page)="handlePageEvent($event)" [length]="totalRecords"
-          [pageSize]="pageSize"  [showFirstLastButtons]="showFirstLastButtons"
-          [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []" [hidePageSize]="hidePageSize"
-          [pageIndex]="pageIndex" aria-label="sayfa Seç">
-        </mat-paginator>
-      </div>
-    </table-content>
+  <table-content selectClass="table">
+    <div class="table">
+      <p-table #dt [value]="dataSource" responsiveLayout="scroll" [resizableColumns]="true" columnResizeMode="expand"
+        [scrollable]="true" [virtualScroll]="true" [virtualScrollItemSize]="46" selectionMode="single"
+        [(selection)]="selectedDepoHareket" dataKey="id" (onRowSelect)="onRowSelect($event)"
+        [(contextMenuSelection)]="selectedDepoHareket">
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="min-width:150px;" pSortableColumn="kod">Hareket Türü <p-sortIcon field="kod"></p-sortIcon></th>
+            <th style="min-width:100px;" pSortableColumn="ad">Stok Kodu <p-sortIcon field="ad"></p-sortIcon></th>
+            <th style="min-width:300px;" pSortableColumn="aciklama">Stok Adı<p-sortIcon field="aciklama"></p-sortIcon>
+            <th style="min-width:50px;" pSortableColumn="aciklama">Birim<p-sortIcon field="aciklama"></p-sortIcon>
+            <th style="min-width:100px;" pSortableColumn="aciklama">Giren<p-sortIcon field="aciklama"></p-sortIcon>
+            </th>
+            <th style="min-width:100px;" pSortableColumn="aciklama">Çıkan<p-sortIcon field="aciklama"></p-sortIcon>
+            </th>
+            <th style="min-width:100px;" pSortableColumn="aciklama">TOPLAM<p-sortIcon field="aciklama"></p-sortIcon>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                (input)="dt.filter(getFilter($event),'kod', 'contains')" class="p-column-filter">
+            </th>
+            <th>
+              <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+            </th>
+            <th>
+              <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                (input)="dt.filter(getFilter($event),'aciklama', 'contains')" class="p-column-filter">
+            </th>
+            <th>
+              <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                (input)="dt.filter(getFilter($event),'aciklama', 'contains')" class="p-column-filter">
+            </th>
+            <th>
+              <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                (input)="dt.filter(getFilter($event),'aciklama', 'contains')" class="p-column-filter">
+            </th>
+            <th>
+              <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                (input)="dt.filter(getFilter($event),'aciklama', 'contains')" class="p-column-filter">
+            </th>
+            <th>
+              <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                (input)="dt.filter(getFilter($event),'aciklama', 'contains')" class="p-column-filter">
+            </th>
+  
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-customer let-rowIndex="rowIndex">
+          <tr (dblclick)="selectedDbClickDepoHareket(customer)" [pContextMenuRow]="customer" [pSelectableRow]="customer">
+  
+            <td style="width: 100px;">{{customer.faturaHareketTuruAdi}}</td>
+            <td>{{customer.stokKodu}}</td>
+            <td>{{customer.stokAdi}}</td>
+            <td>{{customer.birimAdi}}</td>
+            <td>{{customer.giren |currency:'':'':'0.1-2'}}</td>
+            <td>{{customer.cikan |currency:'':'':'0.1-2'}}</td>
+            <td>{{customer.giren - customer.cikan |currency:'':'':'0.1-2'}}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
   
   
-  
+    <div class="pagination">
+      <mat-paginator #paginator class="demo-paginator" (page)="handlePageEvent($event)" [length]="totalRecords"
+        [pageSize]="pageSize" [showFirstLastButtons]="showFirstLastButtons"
+        [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []" [hidePageSize]="hidePageSize"
+        [pageIndex]="pageIndex" aria-label="sayfa Seç">
+      </mat-paginator>
+    </div>
+  </table-content>
+</div> -->
+
+
+
+
+
+
+   
+
+
+
+<select-list-layout-content>
+  <div class="close-dialog">
+    <button class="item" name="close" mat-dialog-close>
+        <i class="fa fa-close"></i>
+    </button>
+</div>
+
+
+  <div class="table-layout-content">
+
+    <div class="content-detay" style="position: relative;">
+        TEDARİKÇİLER
+
+        <div style="position: absolute; right: 0; font-size: 12px;">
+            Tedarikçi Sayısı : <span style="color: red;">{{10000000 | number:'1.0-2' }} </span>
+        </div>
+    </div>
+    <div class="table-display-none activeSelectCategori">
+
+      <p-table #dt [value]="dataSource" responsiveLayout="scroll" [resizableColumns]="true" columnResizeMode="expand"
+      [scrollable]="true" [virtualScroll]="true" [virtualScrollItemSize]="46" selectionMode="single"
+      [(selection)]="selectedDepoHareket" dataKey="id" (onRowSelect)="onRowSelect($event)"
+      [(contextMenuSelection)]="selectedDepoHareket">
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="min-width:150px;" pSortableColumn="kod">Hareket Türü <p-sortIcon field="kod"></p-sortIcon></th>
+          <th style="min-width:100px;" pSortableColumn="ad">Stok Kodu <p-sortIcon field="ad"></p-sortIcon></th>
+          <th style="min-width:300px;" pSortableColumn="aciklama">Stok Adı<p-sortIcon field="aciklama"></p-sortIcon>
+          <th style="min-width:50px;" pSortableColumn="aciklama">Birim<p-sortIcon field="aciklama"></p-sortIcon>
+          <th style="min-width:100px;" pSortableColumn="aciklama">Giren<p-sortIcon field="aciklama"></p-sortIcon>
+          </th>
+          <th style="min-width:100px;" pSortableColumn="aciklama">Çıkan<p-sortIcon field="aciklama"></p-sortIcon>
+          </th>
+          <th style="min-width:100px;" pSortableColumn="aciklama">TOPLAM<p-sortIcon field="aciklama"></p-sortIcon>
+          </th>
+        </tr>
+        <tr>
+          <th>
+            <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+              (input)="dt.filter(getFilter($event),'kod', 'contains')" class="p-column-filter">
+          </th>
+          <th>
+            <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+              (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+          </th>
+          <th>
+            <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+              (input)="dt.filter(getFilter($event),'aciklama', 'contains')" class="p-column-filter">
+          </th>
+          <th>
+            <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+              (input)="dt.filter(getFilter($event),'aciklama', 'contains')" class="p-column-filter">
+          </th>
+          <th>
+            <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+              (input)="dt.filter(getFilter($event),'aciklama', 'contains')" class="p-column-filter">
+          </th>
+          <th>
+            <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+              (input)="dt.filter(getFilter($event),'aciklama', 'contains')" class="p-column-filter">
+          </th>
+          <th>
+            <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+              (input)="dt.filter(getFilter($event),'aciklama', 'contains')" class="p-column-filter">
+          </th>
+
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-customer let-rowIndex="rowIndex">
+        <tr (dblclick)="selectedDbClickDepoHareket(customer)" [pContextMenuRow]="customer" [pSelectableRow]="customer">
+
+          <td style="width: 100px;">{{customer.faturaHareketTuruAdi}}</td>
+          <td>{{customer.stokKodu}}</td>
+          <td>{{customer.stokAdi}}</td>
+          <td>{{customer.birimAdi}}</td>
+          <td>{{customer.giren |currency:'':'':'0.1-2'}}</td>
+          <td>{{customer.cikan |currency:'':'':'0.1-2'}}</td>
+          <td>{{customer.giren - customer.cikan |currency:'':'':'0.1-2'}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+    </div>
+
+
+
+
+</div>
+</select-list-layout-content>

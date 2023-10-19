@@ -1,8 +1,80 @@
-@import "src/assets/scss/material/_dialogtittle.scss";
-@import "src/assets/scss/primeNG/primeNG-styles.scss";
+@import "src/assets/resizeble-panel";
+@import "src/assets/resizable-table-columns.min";
+@import "src/assets/scss/primeNg/primeNG-styles";
+@import "src/assets/ribbon-tab";
+@import "src/assets/soft_button";
+@import "src/assets/css/dx-light";
+
 
 :host ::ng-deep{
     .p-scroller {
         height: 395px !important;
     }
+    .p-datatable-table{
+        border-spacing: 0px;
+        width: 100% !important;
+    }
+    .p-datatable .p-datatable-footer {
+        background: #f8f9fa;
+        color: #343a40;
+        border: 1px solid #dee2e6;
+        border-width: 0 0 1px 0;
+        padding: 1rem 1rem;
+        font-weight: 700;
+        position: sticky;
+        bottom: 0;
+        text-align: end;
+    }
+    .dx-menu-horizontal {
+        height: 40px !important;
+    }
+
+.activeSelectCategori{
+    display: block !important;
 }
+.table-display-none{
+    display: none;
+}
+}   
+
+
+
+
+.content-detay{
+    padding-right: 10px;
+    color: #959595; 
+    font-size: 16px;  
+    font-weight: 500;   
+    width: 100%; 
+    min-width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    border-bottom: 2px solid #c9c9c9;
+}
+
+.table-detay{
+    table-layout: fixed; 
+    margin-top: 10px !important;
+    width: 100%;
+    tr{
+         border-bottom: 1px solid #dee2e6;
+         .table-detay-label{
+            color: black; 
+            text-align: left;
+            margin-left: 10px;
+         }
+         .table-detay-value{
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'times new roman', serif;
+            font-style: italic;
+         }
+    }
+}
+
+
+
+
+
+

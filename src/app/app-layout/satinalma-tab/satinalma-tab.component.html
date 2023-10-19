@@ -1,7 +1,7 @@
 <div class="ribbon-tab" id="format-tab" style="display: block; height: 93px;">
     <div class="ribbon-section" unselectable="on" style="border-right: 1px solid #939393;">
         <span class="section-title" unselectable="on">Hareketler</span>
-        <div class="ribbon-button ribbon-button-large disabled" id="add-table-btn" unselectable="on">
+        <div [routerLink]="['/satinalma/talep']" [routerLinkActive]="['active']" class="ribbon-button ribbon-button-large " id="add-table-btn" unselectable="on">
             <span class="button-help" unselectable="on">This button will add a table to your document.</span>
             <img style="width: 36px; height: 36px; opacity: 0.9;" class="ribbon-icon ribbon-normal"
                 src=" ../../assets/icons/satinalma/inventory.png">
@@ -22,7 +22,7 @@
                 src=" ../../assets/icons/satinalma/inventory_categories_down.png">
             <span class="button-title" unselectable="on">Toplu<br>Talep</span>
         </div>
-        <div class="ribbon-button ribbon-button-large disabled" id="del-table-btn" unselectable="on">
+        <div [routerLink]="['/satinalma/alinan-teklif']" [routerLinkActive]="['active']"  class="ribbon-button ribbon-button-large" id="del-table-btn" unselectable="on">
             <span class="button-help" unselectable="on">This button will remove the selected table from your
                 document.</span>
             <img style="width: 36px; height: 36px;  opacity: 0.9;" class="ribbon-icon ribbon-normal"
@@ -106,7 +106,7 @@
                 src=" ../../assets/icons/satinalma/list_up.png">
             <span class="button-title" unselectable="on">Verilen<br>Teklif</span>
         </div>
-        <div class="ribbon-button ribbon-button-large disabled" id="add-table-btn" unselectable="on">
+        <div [routerLink]="['/satinalma/list-talep']" [routerLinkActive]="['active']" class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on">
             <span class="button-help" unselectable="on">This button will add a table to your document.</span>
             <img style="width: 36px; height: 36px; opacity: 0.9;" class="ribbon-icon ribbon-normal"
                 src=" ../../assets/icons/satinalma/inventory_categories_clock.png">

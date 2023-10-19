@@ -1,20 +1,27 @@
 
 
 
-<dialog-action>
-    <button class="done_outline" autofocus="false" mat-button>
-      <mat-icon class="big-icon" style="font-size: 25px;">done_outline</mat-icon>
-    </button>
-  
-    <button class="clear" autofocus="false" mat-dialog-close mat-button>
-      <mat-icon class="big-icon" style="font-size: 25px;">clear</mat-icon>
-    </button>
-  </dialog-action>
-  
-    <table-content selectClass="table">
-      <!-- <img  (click)="openAddDialog()" class="action-insert" width="25px" height="25px" src="assets/add.png" alt=""> -->
-      <div class="table">
-        <p-table #dt [value]="dataSource" responsiveLayout="scroll" [resizableColumns]="true" columnResizeMode="expand"
+
+  <select-list-layout-content>
+    <div class="close-dialog">
+      <button class="item" name="close" mat-dialog-close>
+          <i class="fa fa-close"></i>
+      </button>
+  </div>
+
+
+    <div class="table-layout-content">
+
+      <div class="content-detay" style="position: relative;">
+          TALEP HAREKETLER
+
+          <div style="position: absolute; right: 0; font-size: 12px;">
+              Hareket Sayısı : <span style="color: red;">{{10000000 | number:'1.0-2' }} </span>
+          </div>
+      </div>
+      <div class="table-display-none activeSelectCategori">
+
+<p-table #dt [value]="dataSource" responsiveLayout="scroll" [resizableColumns]="true" columnResizeMode="expand"
         [scrollable]="true" [virtualScroll]="true" [virtualScrollItemSize]="46" selectionMode="single" [(selection)]="selectedStok" dataKey="id"
           (onRowSelect)="onRowSelect($event)" [(contextMenuSelection)]="selectedStok">
           <ng-template pTemplate="header">
@@ -49,17 +56,12 @@
             </tr>
           </ng-template>
         </p-table>
+
+
       </div>
-     
-    
-      <div class="pagination">
-        <mat-paginator #paginator class="demo-paginator" (page)="handlePageEvent($event)" [length]="totalRecords"
-          [pageSize]="pageSize"  [showFirstLastButtons]="showFirstLastButtons"
-          [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []" [hidePageSize]="hidePageSize"
-          [pageIndex]="pageIndex" aria-label="sayfa Seç">
-        </mat-paginator>
-      </div>
-    </table-content>
-  
-  
-  
+
+
+
+
+  </div>
+  </select-list-layout-content>

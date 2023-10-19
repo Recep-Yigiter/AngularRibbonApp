@@ -1,0 +1,93 @@
+<layout-list-content layoutName="Talep List">
+
+
+    <div class="table-action-layout-content">
+
+
+
+        <div class="ribbon-section" style="height: 40px;margin-bottom: 3px; margin-left: 10px;">
+            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/actions/edit.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/actions/edit.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/actions/edit.png">
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+
+    <div class="table-layout-content">
+
+        <div class="content-detay" style="position: relative;">
+            TALEP LİSTESİ
+
+            <div style="position: absolute; right: 0; font-size: 12px;">
+                Talep Sayısı: <span style="color: red;">{{10000000 | number:'1.0-2' }} </span>
+            </div>
+        </div>
+        <div class="table-display-none activeSelectCategori">
+            <p-table #dt [value]="dataSource" [tableStyle]="{'min-width': '50rem'}"
+                selectionMode="single" frozenWidth="1200px" [(selection)]="selectedItem" dataKey="id"
+                responsiveLayout="scroll" [resizableColumns]="false" [scrollable]="true"
+                scrollHeight="calc(100vh - 345px)" columnResizeMode="expand" selectionMode="single"
+                (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnSelect()">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 100px; color: #959595 !important;">Talep No</th>
+                        <th style="width:100px;color: #959595 !important;">Departman</th>
+                        <th style="width:200px;color: #959595 !important;">Talep Nedeni</th>
+
+                        <th style="width:auto; min-width: 200px;color: #959595 !important;">Açıklama</th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                              (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                        </th>
+                        <th>
+                            <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                              (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                        </th>
+                        <th>
+                            <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                              (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                        </th>
+                        <th>
+                            <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                              (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                        </th>
+
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-product>
+                    <tr [pSelectableRow]="product" (dblclick)="dblclickTalep(product)">
+                        <td>{{product.talepNo}}</td>
+                        <td>{{product.departman}}</td>
+                        <td>{{product.talepNedeni}}</td>
+                        <td>{{product.aciklama}}</td>
+                    </tr>
+                </ng-template>
+
+
+
+            </p-table>
+
+
+
+
+
+        </div>
+
+
+
+
+    </div>
+</layout-list-content>

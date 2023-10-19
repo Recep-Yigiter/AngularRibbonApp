@@ -26,8 +26,8 @@ import { ReceteCardUpdateComponent } from './shared/dialogs/maliyet/recete-card-
 import { StokSelectInput } from './shared/components/select-input/stok-select-input/stok-select-input';
 import { StokTuruDropDown } from './shared/components/dropdown/stok-turu-dropdown/stok-turu-dropdown';
 import { ReceteChildCardAddComponent } from './shared/dialogs/maliyet/recete-child-card-add/recete-child-card-add.component';
-import { LayoutContent } from './shared/components/layout-content/layout-content';
-import { LayoutListContent } from './shared/components/layout-list-content/layout-list-content';
+import { LayoutContent } from './shared/components/layouts/layout-content/layout-content/layout-content';
+import { LayoutListContent } from './shared/components/layouts/layout-content/layout-list-content/layout-list-content';
 import { ReceteCardComponent } from './pages/maliyet/cards/recete-card/recete-card.component';
 import { ProcessCardComponent } from './pages/maliyet/cards/process-card/process-card.component';
 import { BirimSelectInput } from './shared/components/select-input/birim-select-input/birim-select-input';
@@ -67,10 +67,10 @@ import { ElektrikComponent } from './pages/elektrik/elektrik.component';
 import { DialogAddElektrikComponent } from './pages/elektrik/dialog-add-elektrik/dialog-add-elektrik.component';
 import { DialogUpdateElektrikComponent } from './pages/elektrik/dialog-update-elektrik/dialog-update-elektrik.component';
 import { FaturaComponent } from './pages/fatura/fatura.component';
-import { AlisFaturaComponent } from './pages/fatura/alis-fatura/alis-fatura.component';
-import { SatisFaturaComponent } from './pages/fatura/satis-fatura/satis-fatura.component';
+import { AlisFaturaComponent } from './pages/fatura/create-fatura/alis-fatura/alis-fatura.component';
+import { SatisFaturaComponent } from './pages/fatura/create-fatura/satis-fatura/satis-fatura.component';
 import { SatinalmaComponent } from './pages/satinalma/satinalma.component';
-import { FaturaLayoutContent } from './shared/components/fatura-layout-content/fatura-layout-content';
+import { FaturaLayoutContent } from './shared/components/layouts/layout-content/fatura-layout-content/fatura-layout-content';
 import { CalendarInput } from './shared/components/calerdar-input/calendar-input';
 import { IrsaliyeTuru } from './shared/components/dropdown/irsaliye-turu/irsaliye-turu';
 import { IrsaliyeSeri } from './shared/components/dropdown/irsaliye-seri/irsaliye-seri';
@@ -87,6 +87,20 @@ import { CariSelectInput } from './shared/components/select-input/cari-select-in
 import { DepoSelectInput } from './shared/components/select-input/depo-select-input/depo-select-input';
 import { DepoHareketComponent } from './pages/depo-hareket/depo-hareket.component';
 import { ListByDepoIdComponent } from './pages/depo-hareket/list-by-depoId/list-by-depoId.component';
+import { FaturaHareketComponent } from './pages/fatura-hareket/fatura-hareket.component';
+import {  TalepLayoutContent } from './shared/components/layouts/layout-content/talep-layout-content/talep-layout-content';
+import { TalepDurum } from './shared/components/dropdown/talep-durum/talep-durum';
+import { TalepComponent } from './pages/talep/talep.component';
+import { TalepHareketComponent } from './pages/talep-hareket/talep-hareket.component';
+import { CreateTalepComponent } from './pages/talep/create-talep/create-talep.component';
+import { ListTalepComponent } from './pages/talep/list-talep/list-talep.component';
+import { ListByTalepIdComponent } from './pages/talep-hareket/list-by-talep-id/list-by-talepId.component';
+import { TalepHareketLayoutListContent } from './shared/components/layouts/layout-dialog/talep-hareket-layout-content/talep-hareket-layout-list-content';
+import { SelectListLayoutContent } from './shared/components/layouts/layout-dialog/select-list-layout-content/select-list-layout-content';
+import { TeklifComponent } from './pages/teklif/teklif.component';
+import { TeklifHareketComponent } from './pages/teklif-hareket/teklif-hareket.component';
+import { AlinanTeklifComponent } from './pages/teklif/create-teklif/alinan-teklif/alinan-teklif.component';
+import { VerilenTeklifComponent } from './pages/teklif/create-teklif/verilen-teklif/verilen-teklif.component';
 
 @NgModule({
   declarations: [
@@ -168,8 +182,22 @@ import { ListByDepoIdComponent } from './pages/depo-hareket/list-by-depoId/list-
     CariSelectInput,
     DepoSelectInput,
     DepoHareketComponent,
-    ListByDepoIdComponent
+    ListByDepoIdComponent,
+    FaturaHareketComponent,
+    TalepLayoutContent,
+    TalepDurum,
 
+    TalepComponent,
+    TalepHareketComponent,
+    CreateTalepComponent,
+    ListTalepComponent,
+    ListByTalepIdComponent,
+    TalepHareketLayoutListContent,
+    SelectListLayoutContent,
+    TeklifComponent,
+    TeklifHareketComponent,
+    AlinanTeklifComponent,
+    VerilenTeklifComponent
 
   ],
   imports: [

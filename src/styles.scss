@@ -24,3 +24,38 @@ html, body { height: 100%; }
 .mat-menu-panel{
   border-radius: 1px !important;
 }
+.mat-dialog-container{
+  padding: 0 !important;
+}
+
+
+
+
+.mat-menu-item {
+
+  line-height: 36px !important;
+  height: 36px !important;
+  padding: 0 0px !important;
+
+}
+
+.mat-menu-panel {
+  min-width: 112px;
+  max-width: 280px;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  max-height: calc(100vh - 48px);
+  border-radius: 0px !important;
+  outline: 0;
+  min-height: 100% !important ; 
+
+}
+
+
+
+
+
+
+
+
+

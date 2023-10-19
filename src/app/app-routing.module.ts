@@ -15,8 +15,12 @@ import { BirimComponent } from './pages/birim/birim.component';
 import { CardMasrafComponent } from './pages/masraf/card-masraf/card-masraf.component';
 import { SatinalmaComponent } from './pages/satinalma/satinalma.component';
 import { FaturaComponent } from './pages/fatura/fatura.component';
-import { AlisFaturaComponent } from './pages/fatura/alis-fatura/alis-fatura.component';
-import { SatisFaturaComponent } from './pages/fatura/satis-fatura/satis-fatura.component';
+import { AlisFaturaComponent } from './pages/fatura/create-fatura/alis-fatura/alis-fatura.component';
+import { SatisFaturaComponent } from './pages/fatura/create-fatura/satis-fatura/satis-fatura.component';
+
+import { ListTalepComponent } from './pages/talep/list-talep/list-talep.component';
+import { CreateTalepComponent } from './pages/talep/create-talep/create-talep.component';
+import { AlinanTeklifComponent } from './pages/teklif/create-teklif/alinan-teklif/alinan-teklif.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'stok', pathMatch: 'full', },
@@ -50,6 +54,9 @@ const routes: Routes = [
               { path: "satis-faturasi", component: SatisFaturaComponent },
             ]
           },
+          { path: "talep", component: CreateTalepComponent },
+          { path: "list-talep", component: ListTalepComponent },
+          { path: "alinan-teklif", component: AlinanTeklifComponent },
         ]
       },
 

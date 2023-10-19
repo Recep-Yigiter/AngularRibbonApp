@@ -14,7 +14,7 @@
 
 
 .popup .top-bar {
-	background: linear-gradient(to right, #2f3988 0%, #3384c8 100%);
+	background-image: linear-gradient(to right, #2f3988 0%, #3384c8 100%);
 	padding: 2px;
 	background-color: #BDBDBD;
 	cursor: move;
