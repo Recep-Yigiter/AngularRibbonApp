@@ -1,0 +1,173 @@
+<app-large-dialog-content layoutName="Teklif Oluştur" [tableActions]="true" [formTopActions]="true">
+    <div class="close-dialog">
+        <button class="item" name="close" mat-dialog-close>
+            <i class="fa fa-close"></i>
+        </button>
+    </div>
+
+
+
+    <div class="grid_container_content">
+        <aside class="aside">
+            <div class="title-kart">
+                BELGE
+            </div>
+            <form class="form" [formGroup]="frm">
+
+                <calendar-input [field]="date" label="T. Tarih" [formControlNames]="tarih"></calendar-input>
+                <div style="width: 300px;">
+                    <common-input [readonly]="true" label="Seri" [formControlNames]="seri" [disableInput]="true"
+                        [field]="TeklifSeri"></common-input>
+                    <common-input type="text" label="Teklif No" [formControlNames]="teklifNo" [field]="formReferans"
+                        [readonly]="true"></common-input>
+                </div>
+            </form>
+        </aside>
+
+        <section class="kart-1">
+            <div class="title-kart">
+                MÜŞTERİ/SATICI
+            </div>
+            <form class="form" [formGroup]="frm">
+                <common-input [readonly]="true" label="Kodu" [formControlNames]="cariKod"
+                    [field]="cariSelectItemKod"></common-input>
+                <cari-select-input label="Adı" [formControlNames]="cariId" (childFunc)="cariChildFunc($event)"
+                    [field]="cariSelectItemAd"></cari-select-input>
+            </form>
+
+        </section>
+        <section class="kart-2">
+            <div class="title-kart">
+                İRSALİYE
+            </div>
+            <form class="form" [formGroup]="frm">
+
+                <div
+                    style="display: flex; align-items: center; justify-content: space-between; height: 25px;margin: 5px 0;">
+                    <common-input label="Düzenleyen" [readonly]="true" [formControlNames]="duzenleyen"
+                        [field]="'Kullanıcı Adı Girilecek'"></common-input>
+
+                </div>
+                <div
+                    style="display: flex; align-items: center; justify-content: space-between; height: 25px;margin: 5px 0;">
+                    <common-input label="T. Nedeni" [formControlNames]="TeklifNedeni"></common-input>
+
+                </div>
+                <div
+                    style="display: flex; align-items: center; justify-content: space-between; height: 25px;margin: 5px 0;">
+                    <common-input label="Aciklama" [formControlNames]="aciklama"></common-input>
+                </div>
+                <div
+                    style="display: flex; align-items: center; justify-content: space-between; height: 25px;margin: 5px 0;">
+                    <talep-durum label="Durum" [formControlNames]="durum" [disableInput]="true"
+                        [field]="defaultDurum.name"></talep-durum>
+                </div>
+
+            </form>
+        </section>
+
+    </div>
+
+
+
+
+
+
+
+
+    <div class="table-layout-content">
+
+        <div class="content-detay" style="position: relative;">
+            TEKLİF
+
+            <div style="position: absolute; right: 0; font-size: 12px;">
+                Ürün sayısı: <span style="color: red;">{{10000000 | number:'1.0-2' }}</span>
+            </div>
+        </div>
+        <div class="table-display-none activeSelectCategori">
+            <p-table #dt [value]="dataSource" [tableStyle]="{'min-width': '50rem'}" selectionMode="single"
+                frozenWidth="1200px" [(selection)]="selectedItem" dataKey="id" responsiveLayout="scroll"
+                [resizableColumns]="false" [scrollable]="true" scrollHeight="calc(100vh - 345px)"
+                columnResizeMode="expand" selectionMode="single" (onRowSelect)="onRowSelect($event)"
+                (onRowUnselect)="onRowUnSelect()">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width:75px;color: #959595 !important;">Kodu</th>
+                        <th style="width:300px;color: #959595 !important;">Adı</th>
+                        <th style="width:75px;color: #959595 !important;">Miktar</th>
+                        <th style="width:75px;color: #959595 !important;">Birim</th>
+                    </tr>
+                    <tr>
+
+                        <th>
+                            <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                                (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                        </th>
+                        <th>
+                            <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                                (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                        </th>
+                        <th>
+                            <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                                (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                        </th>
+                        <th>
+                            <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                                (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                        </th>
+
+
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-product>
+                    <tr [pSelectableRow]="product">
+                        <td>{{product.stokKodu}}</td>
+                        <td>{{product.stokAdi}}</td>
+                        <td pEditableColumn>
+
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <input pInputText type="number" onfocus="this.select()"
+                                        [(ngModel)]="product.talepMiktari" required>
+                                </ng-template>
+                                <ng-template pTemplate="output">
+                                    {{product.talepMiktari}}
+                                </ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td>{{product.talepBirimi}}</td>
+
+                    </tr>
+                </ng-template>
+
+
+
+            </p-table>
+
+
+
+
+
+        </div>
+
+
+
+
+    </div>
+
+    <div class="form_actions">
+        <div style="width: 100%;display: flex;
+        align-items: center;">
+            <div  class="ribbon-button ribbon-button-large" id="add-table-btn"
+                unselectable="on" style="height: 27px;
+         display: flex;
+         align-items: center;
+         gap: 5px;
+         margin: 5px;
+         border: 1px solid #515050;">
+                Tamam 
+            </div>
+
+        </div>
+    </div>
+</app-large-dialog-content>

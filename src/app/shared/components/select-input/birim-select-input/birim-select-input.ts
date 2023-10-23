@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Injectable, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { CustomDialogService } from 'src/app/core/services/custom-dialog.service';
 import { DialogSelectBirimComponent } from 'src/app/pages/birim/dialog-select-birim/dialog-select-birim.component';
 
 
@@ -20,7 +21,7 @@ export class BirimSelectInput {
   selectedBirimItem: any;
 
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog,private CustomDialogService:CustomDialogService) { }
 
 
   filterString: any = '';

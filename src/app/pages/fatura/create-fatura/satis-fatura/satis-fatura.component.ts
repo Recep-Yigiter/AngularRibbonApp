@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CreateFaturaHareketModel, CreateFaturaModel } from '../../models/create-fatura.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FaturaService } from '../../services/fatura.service';
-import { StokDialogService } from '../../../stok/services/stok-dialog.service';
+import { DialogSelectStokComponent } from 'src/app/pages/stok/dialog-select-stok/dialog-select-stok.component';
+import { CustomDialogService } from 'src/app/core/services/custom-dialog.service';
 
 @Component({
   selector: 'app-satis-fatura',
@@ -16,12 +17,12 @@ export class SatisFaturaComponent implements OnInit {
   date: Date;
   defaultOtv: any = { name: "Yok" }
   defaultFiyat = 0;
-  faturaSeri: any = "AF";
+  faturaSeri: any = "SF";
   faturaBelgeNo: any;
   formReferans: any;
   constructor(private fb: FormBuilder,
     private FaturaService: FaturaService,
-    private stokDialogService: StokDialogService
+    private customDialogService:CustomDialogService
     // private dialogRef: MatDialogRef<AlisFaturaComponent>
   ) { }
 
@@ -133,8 +134,14 @@ export class SatisFaturaComponent implements OnInit {
 
   addStok() {
     this.faturaHareket = {}
-    this.stokDialogService.selectDialog((data) => {
 
+
+
+
+    this.customDialogService.normalDialog({
+      componentType:DialogSelectStokComponent,
+    },
+    (data) => {
       data.faturaHareketTuru = 1;
       data.giren = 0;
       data.cikan = 0;
@@ -142,16 +149,19 @@ export class SatisFaturaComponent implements OnInit {
       data.depoId = this.cariSelectItem.id ? this.cariSelectItem.id : "3fa85f64-5717-4562-b3fc-2c963f66afa6";
       data.stokId = data.id;
       this.faturaHareketler.push(data);
-      
-    })
+      }
+    
+    )
   }
 
 
   cariSelectItem: any;
   cariSelectItemKod: any;
+  cariSelectItemAd: any;
   cariChildFunc(item) {
     this.cariSelectItem = item;
     this.cariSelectItemKod = item.kod;
+    this.cariSelectItemAd = item.ad;
 
   }
 

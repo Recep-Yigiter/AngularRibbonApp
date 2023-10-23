@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Table } from 'primeng/table';
-import { StokService } from 'src/app/core/services/stok/stok.service';
+import { StokService } from '../services/stok.service';
 
 @Component({
   selector: 'app-list-stok',

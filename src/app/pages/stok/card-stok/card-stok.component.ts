@@ -1,10 +1,14 @@
-import { Component, OnInit ,Inject, ViewChild} from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatRadioButton } from '@angular/material/radio';
-import { StokTreeViewService } from 'src/app/core/services/stok/stok-treeview.service';
-import { StokService } from 'src/app/core/services/stok/stok.service';
+
 import { StokCardDialogService } from 'src/app/shared/dialogs/stok/services/stok-card-dialog.service';
+import { StokTreeViewService } from '../services/stok-treeview.service';
+import { StokService } from '../services/stok.service';
+import { CustomDialogService } from 'src/app/core/services/custom-dialog.service';
+import { DialogAddStokComponent } from '../dialog-add-stok/dialog-add-stok.component';
+import { DialogAddChildStokComponent } from '../dialog-add-child-stok/dialog-add-child-stok.component';
 @Component({
   selector: 'app-card-stok',
   templateUrl: './card-stok.component.html',
@@ -29,7 +33,8 @@ export class CardStokComponent implements OnInit {
   constructor(
     private StokService: StokService,
     private StokCardDialogService: StokCardDialogService,
-    private StokTreeViewService: StokTreeViewService
+    private StokTreeViewService: StokTreeViewService,
+    private customDialogService: CustomDialogService
   ) {
     this.toggleVisible = this.StokTreeViewService.toggleVisible
   }
@@ -54,31 +59,45 @@ export class CardStokComponent implements OnInit {
     var tree = this.StokTreeViewService.CreateTreeView(this.treeViewDataSource.data.items);
     this.menu = tree.map(x => this.StokTreeViewService.toNode(x));
 
-   this.selectedNode=null;
+    this.selectedNode = null;
 
-   this.stokDetayList = [
-    { label: "Stok Kodu", value: null},
-    { label: "Stok Kısa Adı ", value: null },
-    { label: "Stok Adı", value: null },
-    { label: "Stok Türü", value: null },
-    { label: "Sipariş İhtiyaç Seviyesi", value: null },
-    { label: "Birim1 Adı ", value: null },
-    { label: "Birim2 Adı ", value: null },
-    { label: "Birim3 Adı ", value: null },
-    { label: "Katsayı ", value: null },
-    { label: "Alış KDV Oranı ", value: null },
-    { label: "Satış KDV Oranı ", value: null },
-    { label: "Alış Vade Süresi", value: null },
-    { label: "Satış Vade Süresi", value: null },
-    { label: "Satır İskonto", value:null },
-  ]
+    this.stokDetayList = [
+      { label: "Stok Kodu", value: null },
+      { label: "Stok Kısa Adı ", value: null },
+      { label: "Stok Adı", value: null },
+      { label: "Stok Türü", value: null },
+      { label: "Sipariş İhtiyaç Seviyesi", value: null },
+      { label: "Birim1 Adı ", value: null },
+      { label: "Birim2 Adı ", value: null },
+      { label: "Birim3 Adı ", value: null },
+      { label: "Katsayı ", value: null },
+      { label: "Alış KDV Oranı ", value: null },
+      { label: "Satış KDV Oranı ", value: null },
+      { label: "Alış Vade Süresi", value: null },
+      { label: "Satış Vade Süresi", value: null },
+      { label: "Satır İskonto", value: null },
+    ]
 
 
   }
   addDialog() {
-    this.StokCardDialogService.addDialog(this.selectedNode,() => {
-      this.TreeViewList();
-    })
+    // this.StokCardDialogService.addDialog(this.selectedNode, () => {
+    //   this.TreeViewList();
+    // })
+
+    if (this.selectedNode == null) {
+      this.customDialogService.smallDialog({
+        componentType: DialogAddStokComponent
+      })
+
+    } else {
+      this.customDialogService.smallDialog({
+        componentType: DialogAddChildStokComponent
+      })
+    }
+
+
+
   }
 
   updateDialog() {

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Injectable, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { CustomDialogService } from 'src/app/core/services/custom-dialog.service';
 import { DialogAddStokComponent } from 'src/app/pages/stok/dialog-add-stok/dialog-add-stok.component';
 import { DialogSelectStokComponent } from 'src/app/pages/stok/dialog-select-stok/dialog-select-stok.component';
 
@@ -22,39 +23,17 @@ export class IrsaliyeSelectInput {
   selectedStokItem: any;
 
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog,private CustomDialogService:CustomDialogService) { }
 
 
-  filterString: any = '';
-
-  filterPazarlamaUrunGrubus(event: any) {
-    let query = event.query;
-    this.filterString = query.toLowerCase();
-  }
 
 
   IrsaliyeSelectDialogOpen() {
     
-const dialogRef = this.dialog.open(DialogSelectStokComponent, {
-      width: '40%',
-      minWidth: '40%',
-      height: '550px',
-      maxWidth: '850px',
-      disableClose: true,
-      autoFocus: false,
-      restoreFocus: false,
-      data:this.irsaliyeTuru
-
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (dialogRef.componentInstance._selectedDataItem == null) {
-        return
-      }
-      this.selectedStokItem = dialogRef.componentInstance._selectedDataItem;
-      this.childFunc.emit(this.selectedStokItem)
-
-    });
+    this.CustomDialogService.normalDialog({
+      data:{ issue: {} = "" },
+      afterClose:()=>{}
+    })
 
 
   }

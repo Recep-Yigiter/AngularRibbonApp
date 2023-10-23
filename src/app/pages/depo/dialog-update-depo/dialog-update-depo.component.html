@@ -1,1 +1,32 @@
-<p>dialog-update-depo works!</p>
+<app-small-dialog-content layoutName="Stok Card ekleme" [tableActions]="false" [formTopActions]="true"
+    [tableContent]="false">
+
+    <div class="close-dialog">
+        <button class="item" name="close" mat-dialog-close>
+            <i class="fa fa-close"></i>
+        </button>
+    </div>
+
+
+    <div class="grid_container_content">
+        <aside class="aside">
+            <div class="title-kart">
+                STOK KART
+            </div>
+            <!-- formGELECEKk -->
+        </aside>
+
+
+
+    </div>
+    <div class="form_actions">
+        <div style="width: 100%;display: flex;
+    align-items: center;">
+            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
+                style="height: 27px; display: flex; align-items: center; gap: 5px; margin: 5px; border: 1px solid #515050;">
+                Kaydet
+            </div>
+
+        </div>
+    </div>
+</app-small-dialog-content>

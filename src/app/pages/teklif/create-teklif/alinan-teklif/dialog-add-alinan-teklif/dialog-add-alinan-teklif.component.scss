@@ -6,8 +6,11 @@
 @import "src/assets/css/dx-light";
 
 
-
 :host ::ng-deep{
+    .p-datatable-table{
+        border-spacing: 0px;
+        width: 80% !important;
+    }
     .p-datatable .p-datatable-footer {
         background: #f8f9fa;
         color: #343a40;
@@ -19,17 +22,60 @@
         bottom: 0;
         text-align: end;
     }
-
-    .mat-radio-button{
-        margin: 0 10px;
+    .dx-menu-horizontal {
+        height: 40px !important;
     }
 
-
+.activeSelectCategori{
+    display: block !important;
 }
-.grid_container{
+.table-display-none{
+    display: none;
+}
+}   
+
+
+
+
+.content-detay{
+    padding-right: 10px;
+    color: #959595; 
+    font-size: 16px;  
+    font-weight: 500;   
+    width: 100%; 
+    min-width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    border-bottom: 2px solid #c9c9c9;
+}
+
+.table-detay{
+    table-layout: fixed; 
+    margin-top: 10px !important;
+    width: 100%;
+    tr{
+         border-bottom: 1px solid #dee2e6;
+         .table-detay-label{
+            color: black; 
+            text-align: left;
+            margin-left: 10px;
+         }
+         .table-detay-value{
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'times new roman', serif;
+            font-style: italic;
+         }
+    }
+}
+
+
+
+.grid_container_content{
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: auto 100px ;
+    grid-template-columns: repeat(3, 1fr);
+
     grid-template-areas:"aside item-1 item-2 item-3"
                         "aside main main main";
     grid-gap: 0px;
@@ -57,3 +103,10 @@
 
     background-color: #f8f9fa;
 }
+
+
+
+
+
+
+

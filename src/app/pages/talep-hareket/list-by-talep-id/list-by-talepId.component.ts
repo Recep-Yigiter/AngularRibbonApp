@@ -1,9 +1,12 @@
-import { Component, OnInit,Inject } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { CreateTalepModel } from '../../talep/models/create-talep.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { StokDialogService } from '../../stok/services/stok-dialog.service';
 import { TalepHareketService } from '../services/talep-hareket.service';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { CustomDialogService } from 'src/app/core/services/custom-dialog.service';
+import { AlinanTeklifComponent } from '../../teklif/create-teklif/alinan-teklif/alinan-teklif.component';
+import { DialogAddAlinanTeklifComponent } from '../../teklif/create-teklif/alinan-teklif/dialog-add-alinan-teklif/dialog-add-alinan-teklif.component';
+import { DialogSelectStokComponent } from '../../stok/dialog-select-stok/dialog-select-stok.component';
 
 @Component({
   selector: 'app-list-by-talepId',
@@ -21,9 +24,11 @@ export class ListByTalepIdComponent implements OnInit {
   TalepNo: any;
   formReferans: any;
   constructor(private fb: FormBuilder,
-    private stokDialogService: StokDialogService,
-    private TalepHareketService:TalepHareketService,
+    private TalepHareketService: TalepHareketService,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private customDialogService:CustomDialogService,
+
+    private dialogRef: MatDialogRef<ListByTalepIdComponent>,
     // private dialogRef: MatDialogRef<AlisFaturaComponent>
   ) { }
 
@@ -94,9 +99,6 @@ export class ListByTalepIdComponent implements OnInit {
     model.aciklama = this.frm.value.aciklama;
     model.TalepHareketler = this.TalepHareketler;
 
-    
-
-
   }
   TalepHareketler: CreateTalepModel[] = [];
   TalepHareket: CreateTalepModel;
@@ -104,7 +106,10 @@ export class ListByTalepIdComponent implements OnInit {
   addStok() {
     this.TalepHareket = {}
     if (this.cariSelectItem != null) {
-      this.stokDialogService.selectDialog((data) => {
+      this.customDialogService.normalDialog({
+        componentType:DialogSelectStokComponent,
+      },
+      (data) => {
         data.talepMiktari = 0;
         data.talepBirimi = data.birimAdi;
         data.stokId = data.id;
@@ -112,7 +117,9 @@ export class ListByTalepIdComponent implements OnInit {
         data.cariKodu = this.cariSelectItemKod;
         data.cariAdi = this.cariSelectItem?.ad;
         this.TalepHareketler.push(data);
-      })
+        }
+      
+      )
     }
 
   }
@@ -120,10 +127,11 @@ export class ListByTalepIdComponent implements OnInit {
 
   cariSelectItem: any;
   cariSelectItemKod: any;
+  cariSelectItemAd: any;
   cariChildFunc(item) {
     this.cariSelectItem = item;
     this.cariSelectItemKod = item.kod;
-
+    this.cariSelectItemAd = item.ad;
   }
 
 
@@ -138,21 +146,29 @@ export class ListByTalepIdComponent implements OnInit {
 
 
 
-  async getAllTalep(){
-  const list=await this.TalepHareketService.GetList(()=>{});
-    this.dataSource=list.data.items.reduce((acc,item)=>{
-      if (this.data.id==item.talepId) {
+  async getAllTalep() {
+    const list = await this.TalepHareketService.GetList(() => { });
+    this.dataSource = list.data.items.reduce((acc, item) => {
+      if (this.data.id == item.talepId) {
         acc.push(item);
       }
       return acc;
-    },[]);
+    }, []);
 
 
   }
 
 
 
-  onSubmit(event){
+  onSubmit(event) {
+
+  }
+
+  alinanTeklifAktar() {
+    this.customDialogService.largeDialog({
+      componentType:DialogAddAlinanTeklifComponent,
+      data:this.dataSource
+    })
 
   }
 

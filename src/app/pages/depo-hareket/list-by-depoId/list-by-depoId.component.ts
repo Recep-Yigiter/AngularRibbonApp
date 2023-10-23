@@ -45,8 +45,6 @@ export class ListByDepoIdComponent implements OnInit {
 
   async ngOnInit() {
     this.getAllDepoHareket();
-
-console.log(this.data)
   }
 
 

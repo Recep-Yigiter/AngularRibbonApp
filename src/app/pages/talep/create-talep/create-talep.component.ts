@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TalepService } from '../services/talep.service';
-import { StokDialogService } from '../../stok/services/stok-dialog.service';
 import { CreateTalepModel } from '../models/create-talep.model';
+import { DialogSelectStokComponent } from '../../stok/dialog-select-stok/dialog-select-stok.component';
+import { CustomDialogService } from 'src/app/core/services/custom-dialog.service';
 
 @Component({
   selector: 'app-create-talep',
@@ -21,7 +22,8 @@ export class CreateTalepComponent implements OnInit {
   formReferans: any;
   constructor(private fb: FormBuilder,
     private FaturaService: TalepService,
-    private stokDialogService: StokDialogService
+    private customDialogService:CustomDialogService
+
     // private dialogRef: MatDialogRef<AlisFaturaComponent>
   ) { }
 
@@ -41,7 +43,6 @@ export class CreateTalepComponent implements OnInit {
     seri: [null, [Validators.required, Validators.maxLength(16)]],
     talepNo: [null, [Validators.required, Validators.maxLength(16)]],
     talepNedeni: [null, [Validators.required, Validators.maxLength(16)]],
-    cariId: [null, [Validators.required, Validators.maxLength(16)]],
     duzenleyen: [null, [Validators.required, Validators.maxLength(16)]],
     cariKod: [null, [Validators.required, Validators.maxLength(16)]],
     aciklama: [null, [Validators.required, Validators.maxLength(16)]],
@@ -52,26 +53,9 @@ export class CreateTalepComponent implements OnInit {
   get seri() { return this.frm.get('seri') }
   get talepNo() { return this.frm.get('talepNo') }
   get talepNedeni() { return this.frm.get('talepNedeni') }
-  get cariId() { return this.frm.get('cariId') }
-  get cariKod() { return this.frm.get('cariKod') }
   get duzenleyen() { return this.frm.get('duzenleyen') }
   get aciklama() { return this.frm.get('aciklama') }
   get durum() { return this.frm.get('durum') }
-
-
-  public irsaliyeFrm: FormGroup = this.fb.group({
-    irsaliyeTur: [null],
-    irsaliyeSeri: [null, [Validators.required, Validators.maxLength(16)]],
-    irsaliyeNo: [null, [Validators.required, Validators.maxLength(16)]],
-    fiyat: [null, [Validators.required, Validators.maxLength(16)]],
-    irsaliyeAdi: [null, [Validators.required, Validators.maxLength(16)]],
-  });
-  get irsaliyeTur() { return this.irsaliyeFrm.get('irsaliyeTur') }
-  get irsaliyeSeri() { return this.irsaliyeFrm.get('irsaliyeSeri') }
-  get irsaliyeNo() { return this.irsaliyeFrm.get('irsaliyeNo') }
-  get fiyat() { return this.irsaliyeFrm.get('fiyat') }
-  get irsaliyeAdi() { return this.irsaliyeFrm.get('irsaliyeAdi') }
-
 
   onRowSelect(event: any) {
     this.alisFaturaItem = event.data;
@@ -94,7 +78,6 @@ export class CreateTalepComponent implements OnInit {
     model.aciklama = this.frm.value.aciklama;
     model.TalepHareketler = this.TalepHareketler;
 
-    if (this.cariSelectItem?.id != undefined || this.cariSelectItem?.id != null) {
       this.FaturaService.create(model, () => {
         window.location.reload();
 
@@ -105,7 +88,7 @@ export class CreateTalepComponent implements OnInit {
           console.log("Hata....", errorMessage)
         }, 1000)
       })
-    }
+   
 
 
   }
@@ -114,8 +97,15 @@ export class CreateTalepComponent implements OnInit {
 
   addStok() {
     this.TalepHareket = {}
-    if (this.cariSelectItem != null) {
-      this.stokDialogService.selectDialog((data) => {
+   
+
+
+
+
+      this.customDialogService.normalDialog({
+        componentType:DialogSelectStokComponent,
+      },
+      (data) => {
         data.talepMiktari = 0;
         data.talepBirimi = data.birimAdi;
         data.stokId = data.id;
@@ -123,8 +113,10 @@ export class CreateTalepComponent implements OnInit {
         data.cariKodu = this.cariSelectItemKod;
         data.cariAdi = this.cariSelectItem?.ad;
         this.TalepHareketler.push(data);
-      })
-    }
+        }
+      
+      )
+
 
   }
 

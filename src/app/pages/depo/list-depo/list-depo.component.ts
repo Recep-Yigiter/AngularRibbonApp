@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DepoService } from '../services/depo.service';
-import { DepoDialogService } from '../services/depo-dialog.service';
+import { CustomDialogService } from 'src/app/core/services/custom-dialog.service';
+import { ListByDepoIdComponent } from '../../depo-hareket/list-by-depoId/list-by-depoId.component';
 
 @Component({
   selector: 'app-list-depo',
@@ -9,7 +10,7 @@ import { DepoDialogService } from '../services/depo-dialog.service';
 })
 export class ListDepoComponent implements OnInit {
 
-  constructor(private DepoService: DepoService, private depoDialogService: DepoDialogService) { }
+  constructor(private DepoService: DepoService,private customDialogService: CustomDialogService) { }
 
   ngOnInit(): void {
     this.getList()
@@ -46,7 +47,13 @@ export class ListDepoComponent implements OnInit {
   }
 
   dblclickDepo(item) {
-    this.depoDialogService.ListByDepoId(item,() => { })
+    // this.depoDialogService.ListByDepoId(item,() => { })
+
+    this.customDialogService.largeDialog({
+      componentType: ListByDepoIdComponent,
+      data:item
+    })
+
   }
 
 

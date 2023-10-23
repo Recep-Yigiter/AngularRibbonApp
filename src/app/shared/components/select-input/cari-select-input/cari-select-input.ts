@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Injectable, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { CustomDialogService } from 'src/app/core/services/custom-dialog.service';
 import { DialogSelectCariComponent } from 'src/app/pages/cari/dialog-select-cari/dialog-select-cari.component';
 
 
@@ -16,43 +17,22 @@ export class CariSelectInput {
   @Input() formControlNames: any;
   @Output() public childFunc: EventEmitter<any> = new EventEmitter();
   @Input() field: any;
-  @Input() label:any;
+  @Input() label: any;
   selectedCariItem: any;
 
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private CustomDialogService: CustomDialogService) { }
 
-
-  filterString: any = '';
-
-  filterPazarlamaUrunGrubus(event: any) {
-    let query = event.query;
-    this.filterString = query.toLowerCase();
-  }
-
-
+  selectedData: any;
   CariSelectDialogOpen() {
-    const dialogRef = this.dialog.open(DialogSelectCariComponent, {
-      width: '40%',
-      minWidth: '40%',
-      height: '550px',
-      maxWidth: '850px',
-      disableClose: true,
-      autoFocus: false,
-      restoreFocus: false,
-      data: { issue: {} = "" }
-
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (dialogRef.componentInstance._selectedDataItem == null) {
-        return
-      }
-      this.selectedCariItem = dialogRef.componentInstance._selectedDataItem;
-      this.childFunc.emit(this.selectedCariItem)
-
-    });
-
+    this.CustomDialogService.normalDialog({
+      componentType: DialogSelectCariComponent,
+      data: this.selectedData,
+      afterClose: () => { }
+    }, (data) => {
+       this.selectedData = data;
+       this.childFunc.emit(this.selectedData)
+      })
 
   }
 }

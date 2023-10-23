@@ -1,24 +1,42 @@
-<dialog-action>
-    <button (click)="onSubmit($event)" class="done_outline" autofocus="false" mat-button>
-        <mat-icon class="big-icon" style="font-size: 25px;">done_outline</mat-icon>
-    </button>
-
-    <button class="clear" autofocus="false" mat-dialog-close mat-button>
-        <mat-icon class="big-icon" style="font-size: 25px;">clear</mat-icon>
-    </button>
-</dialog-action>
 
 
 
+<app-small-dialog-content layoutName="Stok Card ekleme" [tableActions]="false" [formTopActions]="true"
+    [tableContent]="false">
+
+    <div class="close-dialog">
+        <button class="item" name="close" mat-dialog-close>
+            <i class="fa fa-close"></i>
+        </button>
+    </div>
 
 
-<form-content formTitle="Stok Kart">
-    <form class="form" [formGroup]="frm">
-        <common-input label="Ad" [formControlNames]="ad"></common-input>
-        <common-input label="Kod" [formControlNames]="kod"></common-input>
-        <common-input label="Stok Grup" [formControlNames]="stokGrup"></common-input>
-        <common-input type="number" label="Birim Fiyat" [formControlNames]="birimFiyat"></common-input>
-        <birim-select-input label="Birim"  [formControlNames]="birimId"
-            (childFunc)="birimFunc($event)"></birim-select-input>
-    </form>
-</form-content>
+    <div class="grid_container_content">
+        <aside class="aside">
+            <div class="title-kart">
+                STOK KART
+            </div>
+            <form class="form" [formGroup]="frm">
+                <common-input label="Ad" [formControlNames]="ad"></common-input>
+                <common-input label="Kod" [formControlNames]="kod"></common-input>
+                <common-input label="Stok Grup" [formControlNames]="stokGrup"></common-input>
+                <common-input type="number" label="Birim Fiyat" [formControlNames]="birimFiyat"></common-input>
+                <birim-select-input label="Birim"  [formControlNames]="birimId"
+                    (childFunc)="birimFunc($event)"></birim-select-input>
+            </form>
+        </aside>
+
+
+
+    </div>
+    <div class="form_actions">
+        <div (click)="onSubmit($event)" style="width: 100%;display: flex;
+    align-items: center;">
+            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
+                style="height: 27px; display: flex; align-items: center; gap: 5px; margin: 5px; border: 1px solid #515050;">
+                Kaydet
+            </div>
+
+        </div>
+    </div>
+</app-small-dialog-content>

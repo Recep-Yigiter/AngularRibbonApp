@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Injectable, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { CustomDialogService } from 'src/app/core/services/custom-dialog.service';
 import { DialogSelectDepoComponent } from 'src/app/pages/depo/dialog-select-depo/dialog-select-depo.component';
 
 
@@ -20,7 +21,7 @@ export class DepoSelectInput {
   selectedDepoItem: any;
 
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog,private CustomDialogService:CustomDialogService) { }
 
 
   filterString: any = '';
@@ -32,26 +33,12 @@ export class DepoSelectInput {
 
 
   DepoSelectDialogOpen() {
-    const dialogRef = this.dialog.open(DialogSelectDepoComponent, {
-      width: '40%',
-      minWidth: '40%',
-      height: '550px',
-      maxWidth: '850px',
-      disableClose: true,
-      autoFocus: false,
-      restoreFocus: false,
-      data: { issue: {} = "" }
-
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (dialogRef.componentInstance._selectedDataItem == null) {
-        return
-      }
-      this.selectedDepoItem = dialogRef.componentInstance._selectedDataItem;
-      this.childFunc.emit(this.selectedDepoItem)
-
-    });
+    this.CustomDialogService.normalDialog({
+      componentType:DialogSelectDepoComponent,
+      data:{ issue: {} = "" },
+      
+    })
+   
 
 
   }

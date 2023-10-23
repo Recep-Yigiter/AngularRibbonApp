@@ -4,26 +4,32 @@
 
 
 
-  <select-list-layout-content>
-    <div class="close-dialog">
-      <button class="item" name="close" mat-dialog-close>
-          <i class="fa fa-close"></i>
-      </button>
+
+
+<app-normal-dialog-content layoutName="Stok Select" [tableActions]="false" [formTopActions]="false">
+
+
+  <div class="close-dialog">
+    <button class="item" name="close" mat-dialog-close>
+      <i class="fa fa-close"></i>
+    </button>
   </div>
 
 
-    <div class="table-layout-content">
 
-      <div class="content-detay" style="position: relative;">
-          TEDARİKÇİLER
 
-          <div style="position: absolute; right: 0; font-size: 12px;">
-              Tedarikçi Sayısı : <span style="color: red;">{{10000000 | number:'1.0-2' }} </span>
-          </div>
+  <div class="table-layout-content">
+
+    <div class="content-detay" style="position: relative;">
+      STOK SEÇİM LİSTESİ
+
+      <div style="position: absolute; right: 0; font-size: 12px;">
+        Stok Sayısı : <span style="color: red;">{{10000000 | number:'1.0-2' }} </span>
       </div>
-      <div class="table-display-none activeSelectCategori">
+    </div>
+    <div class="table-display-none activeSelectCategori">
 
-        <p-table #dt [value]="dataSource" responsiveLayout="scroll" [resizableColumns]="true" columnResizeMode="expand"
+      <p-table #dt [value]="dataSource" responsiveLayout="scroll" [resizableColumns]="true" columnResizeMode="expand"
         [scrollable]="true" [virtualScroll]="true" [virtualScrollItemSize]="46" selectionMode="single" [(selection)]="selectedCari" dataKey="id"
           (onRowSelect)="onRowSelect($event)" [(contextMenuSelection)]="selectedCari">
           <ng-template pTemplate="header">
@@ -59,11 +65,26 @@
           </ng-template>
         </p-table>
 
-      </div>
+    </div>
 
 
 
 
   </div>
-  </select-list-layout-content>
-  
+
+  <div class="form_actions">
+    <div style="width: 100%;display: flex;
+    align-items: center;">
+        <div  class="ribbon-button ribbon-button-large" id="add-table-btn"
+            unselectable="on" style="height: 27px;
+     display: flex;
+     align-items: center;
+     gap: 5px;
+     margin: 5px;
+     border: 1px solid #515050;">
+            Tamam 
+        </div>
+
+    </div>
+</div>
+</app-normal-dialog-content>

@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FaturaService } from '../../services/fatura.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { CreateFaturaHareketModel, CreateFaturaModel } from '../../models/create-fatura.model';
-import { StokDialogService } from '../../../stok/services/stok-dialog.service';
+import { CustomDialogService } from 'src/app/core/services/custom-dialog.service';
+import { DialogSelectStokComponent } from 'src/app/pages/stok/dialog-select-stok/dialog-select-stok.component';
 
 @Component({
   selector: 'app-alis-fatura',
@@ -22,7 +23,7 @@ export class AlisFaturaComponent implements OnInit {
   formReferans: any;
   constructor(private fb: FormBuilder,
     private FaturaService: FaturaService,
-    private stokDialogService: StokDialogService
+    private customDialogService:CustomDialogService
     // private dialogRef: MatDialogRef<AlisFaturaComponent>
   ) { }
 
@@ -119,8 +120,6 @@ export class AlisFaturaComponent implements OnInit {
     if (this.cariSelectItem?.id != undefined || this.cariSelectItem?.id != null) {
       this.FaturaService.create(model, () => {
         window.location.reload();
-
-
       }, errorMessage => {
         console.log("Hata....", errorMessage)
         setTimeout(() => {
@@ -136,26 +135,30 @@ export class AlisFaturaComponent implements OnInit {
 
   addStok() {
     this.faturaHareket = {}
-    this.stokDialogService.selectDialog((data) => {
-
-      data.faturaHareketTuru = 1;
-      data.giren = 0;
-      data.cikan = 0;
-      data.birimFiyat = 0;
-      data.depoId = this.cariSelectItem.id ? this.cariSelectItem.id : "3fa85f64-5717-4562-b3fc-2c963f66afa6";
-      data.stokId = data.id;
-      this.faturaHareketler.push(data);
-      
-    })
+    this.customDialogService.normalDialog({
+      componentType:DialogSelectStokComponent,
+    },
+    (data) => {
+        data.faturaHareketTuru = 1;
+        data.giren = 0;
+        data.cikan = 0;
+        data.birimFiyat = 0;
+        data.depoId = this.cariSelectItem.id ? this.cariSelectItem.id : "3fa85f64-5717-4562-b3fc-2c963f66afa6";
+        data.stokId = data.id;
+        this.faturaHareketler.push(data);
+      }
+    
+    )
   }
 
 
   cariSelectItem: any;
   cariSelectItemKod: any;
+  cariSelectItemAd: any;
   cariChildFunc(item) {
     this.cariSelectItem = item;
+    this.cariSelectItemAd = item.ad;
     this.cariSelectItemKod = item.kod;
-
   }
 
 

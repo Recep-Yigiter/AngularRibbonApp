@@ -86,7 +86,93 @@
   </table-content>
 </div> -->
 
+<app-large-dialog-content layoutName="Depo Hareketler">
+  <div class="close-dialog">
+    <button class="item" name="close" mat-dialog-close>
+        <i class="fa fa-close"></i>
+    </button>
+</div>
+<div class="table-layout-content">
 
+  <div class="content-detay" style="position: relative;">
+      TEDARİKÇİLER
+
+      <div style="position: absolute; right: 0; font-size: 12px;">
+          Tedarikçi Sayısı : <span style="color: red;">{{10000000 | number:'1.0-2' }} </span>
+      </div>
+  </div>
+  <div class="table-display-none activeSelectCategori">
+
+    <p-table #dt [value]="dataSource" responsiveLayout="scroll" [resizableColumns]="true" columnResizeMode="expand"
+    [scrollable]="true" [virtualScroll]="true" [virtualScrollItemSize]="46" selectionMode="single"
+    [(selection)]="selectedDepoHareket" dataKey="id" (onRowSelect)="onRowSelect($event)"
+    [(contextMenuSelection)]="selectedDepoHareket">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="min-width:150px;" pSortableColumn="kod">Hareket Türü <p-sortIcon field="kod"></p-sortIcon></th>
+        <th style="min-width:100px;" pSortableColumn="ad">Stok Kodu <p-sortIcon field="ad"></p-sortIcon></th>
+        <th style="min-width:300px;" pSortableColumn="aciklama">Stok Adı<p-sortIcon field="aciklama"></p-sortIcon>
+        <th style="min-width:50px;" pSortableColumn="aciklama">Birim<p-sortIcon field="aciklama"></p-sortIcon>
+        <th style="min-width:100px;" pSortableColumn="aciklama">Giren<p-sortIcon field="aciklama"></p-sortIcon>
+        </th>
+        <th style="min-width:100px;" pSortableColumn="aciklama">Çıkan<p-sortIcon field="aciklama"></p-sortIcon>
+        </th>
+        <th style="min-width:100px;" pSortableColumn="aciklama">TOPLAM<p-sortIcon field="aciklama"></p-sortIcon>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+            (input)="dt.filter(getFilter($event),'kod', 'contains')" class="p-column-filter">
+        </th>
+        <th>
+          <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+            (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+        </th>
+        <th>
+          <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+            (input)="dt.filter(getFilter($event),'aciklama', 'contains')" class="p-column-filter">
+        </th>
+        <th>
+          <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+            (input)="dt.filter(getFilter($event),'aciklama', 'contains')" class="p-column-filter">
+        </th>
+        <th>
+          <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+            (input)="dt.filter(getFilter($event),'aciklama', 'contains')" class="p-column-filter">
+        </th>
+        <th>
+          <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+            (input)="dt.filter(getFilter($event),'aciklama', 'contains')" class="p-column-filter">
+        </th>
+        <th>
+          <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+            (input)="dt.filter(getFilter($event),'aciklama', 'contains')" class="p-column-filter">
+        </th>
+
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-customer let-rowIndex="rowIndex">
+      <tr (dblclick)="selectedDbClickDepoHareket(customer)" [pContextMenuRow]="customer" [pSelectableRow]="customer">
+
+        <td style="width: 100px;">{{customer.faturaHareketTuruAdi}}</td>
+        <td>{{customer.stokKodu}}</td>
+        <td>{{customer.stokAdi}}</td>
+        <td>{{customer.birimAdi}}</td>
+        <td>{{customer.giren |currency:'':'':'0.1-2'}}</td>
+        <td>{{customer.cikan |currency:'':'':'0.1-2'}}</td>
+        <td>{{customer.giren - customer.cikan |currency:'':'':'0.1-2'}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  </div>
+
+
+
+
+</div>
+</app-large-dialog-content>
 
 
 
@@ -94,93 +180,3 @@
    
 
 
-
-<select-list-layout-content>
-  <div class="close-dialog">
-    <button class="item" name="close" mat-dialog-close>
-        <i class="fa fa-close"></i>
-    </button>
-</div>
-
-
-  <div class="table-layout-content">
-
-    <div class="content-detay" style="position: relative;">
-        TEDARİKÇİLER
-
-        <div style="position: absolute; right: 0; font-size: 12px;">
-            Tedarikçi Sayısı : <span style="color: red;">{{10000000 | number:'1.0-2' }} </span>
-        </div>
-    </div>
-    <div class="table-display-none activeSelectCategori">
-
-      <p-table #dt [value]="dataSource" responsiveLayout="scroll" [resizableColumns]="true" columnResizeMode="expand"
-      [scrollable]="true" [virtualScroll]="true" [virtualScrollItemSize]="46" selectionMode="single"
-      [(selection)]="selectedDepoHareket" dataKey="id" (onRowSelect)="onRowSelect($event)"
-      [(contextMenuSelection)]="selectedDepoHareket">
-      <ng-template pTemplate="header">
-        <tr>
-          <th style="min-width:150px;" pSortableColumn="kod">Hareket Türü <p-sortIcon field="kod"></p-sortIcon></th>
-          <th style="min-width:100px;" pSortableColumn="ad">Stok Kodu <p-sortIcon field="ad"></p-sortIcon></th>
-          <th style="min-width:300px;" pSortableColumn="aciklama">Stok Adı<p-sortIcon field="aciklama"></p-sortIcon>
-          <th style="min-width:50px;" pSortableColumn="aciklama">Birim<p-sortIcon field="aciklama"></p-sortIcon>
-          <th style="min-width:100px;" pSortableColumn="aciklama">Giren<p-sortIcon field="aciklama"></p-sortIcon>
-          </th>
-          <th style="min-width:100px;" pSortableColumn="aciklama">Çıkan<p-sortIcon field="aciklama"></p-sortIcon>
-          </th>
-          <th style="min-width:100px;" pSortableColumn="aciklama">TOPLAM<p-sortIcon field="aciklama"></p-sortIcon>
-          </th>
-        </tr>
-        <tr>
-          <th>
-            <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-              (input)="dt.filter(getFilter($event),'kod', 'contains')" class="p-column-filter">
-          </th>
-          <th>
-            <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-              (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
-          </th>
-          <th>
-            <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-              (input)="dt.filter(getFilter($event),'aciklama', 'contains')" class="p-column-filter">
-          </th>
-          <th>
-            <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-              (input)="dt.filter(getFilter($event),'aciklama', 'contains')" class="p-column-filter">
-          </th>
-          <th>
-            <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-              (input)="dt.filter(getFilter($event),'aciklama', 'contains')" class="p-column-filter">
-          </th>
-          <th>
-            <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-              (input)="dt.filter(getFilter($event),'aciklama', 'contains')" class="p-column-filter">
-          </th>
-          <th>
-            <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-              (input)="dt.filter(getFilter($event),'aciklama', 'contains')" class="p-column-filter">
-          </th>
-
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-customer let-rowIndex="rowIndex">
-        <tr (dblclick)="selectedDbClickDepoHareket(customer)" [pContextMenuRow]="customer" [pSelectableRow]="customer">
-
-          <td style="width: 100px;">{{customer.faturaHareketTuruAdi}}</td>
-          <td>{{customer.stokKodu}}</td>
-          <td>{{customer.stokAdi}}</td>
-          <td>{{customer.birimAdi}}</td>
-          <td>{{customer.giren |currency:'':'':'0.1-2'}}</td>
-          <td>{{customer.cikan |currency:'':'':'0.1-2'}}</td>
-          <td>{{customer.giren - customer.cikan |currency:'':'':'0.1-2'}}</td>
-        </tr>
-      </ng-template>
-    </p-table>
-
-    </div>
-
-
-
-
-</div>
-</select-list-layout-content>

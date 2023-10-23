@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TalepService } from '../services/talep.service';
-import { TalepDialogService } from '../services/talep-dialog.service';
+import { CustomDialogService } from 'src/app/core/services/custom-dialog.service';
+import { TalepHareketComponent } from '../../talep-hareket/talep-hareket.component';
+import { ListByTalepIdComponent } from '../../talep-hareket/list-by-talep-id/list-by-talepId.component';
 
 @Component({
   selector: 'app-list-talep',
@@ -9,7 +11,9 @@ import { TalepDialogService } from '../services/talep-dialog.service';
 })
 export class ListTalepComponent implements OnInit {
 
-  constructor(private TalepService: TalepService,private TalepDialogService:TalepDialogService) { }
+  constructor(private TalepService: TalepService,
+    private CustomDialogService: CustomDialogService
+  ) { }
 
   ngOnInit(): void {
     this.getList()
@@ -30,7 +34,7 @@ export class ListTalepComponent implements OnInit {
 
 
   }
- 
+
 
   onRowSelect(event: any) {
     this.StokItem = event.data;
@@ -42,8 +46,11 @@ export class ListTalepComponent implements OnInit {
 
 
   dblclickTalep(item) {
-    this.TalepDialogService.ListByTalepId(item,() => { })
-   
+    // this.TalepDialogService.ListByTalepId(item,() => { })
+    this.CustomDialogService.largeDialog({
+      componentType: ListByTalepIdComponent,
+      data:item,
+    })
   }
 
 

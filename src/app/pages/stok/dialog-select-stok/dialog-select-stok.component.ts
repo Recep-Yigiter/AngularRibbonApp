@@ -4,7 +4,7 @@ import { Component, OnInit ,Inject} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
-import { StokService } from 'src/app/core/services/stok/stok.service';
+import { StokService } from '../services/stok.service';
 @Component({
   selector: 'app-dialog-select-stok',
   templateUrl: './dialog-select-stok.component.html',

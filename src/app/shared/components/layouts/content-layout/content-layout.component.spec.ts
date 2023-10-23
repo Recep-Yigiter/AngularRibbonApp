@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AlinanTeklifComponent } from './alinan-teklif.component';
+import { ContentLayoutComponent } from './content-layout.component';
 
-describe('AlinanTeklifComponent', () => {
-  let component: AlinanTeklifComponent;
-  let fixture: ComponentFixture<AlinanTeklifComponent>;
+describe('ContentLayoutComponent', () => {
+  let component: ContentLayoutComponent;
+  let fixture: ComponentFixture<ContentLayoutComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AlinanTeklifComponent ]
+      declarations: [ ContentLayoutComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AlinanTeklifComponent);
+    fixture = TestBed.createComponent(ContentLayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
