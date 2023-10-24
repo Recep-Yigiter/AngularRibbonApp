@@ -3,17 +3,18 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { StokService } from '../services/stok.service';
 import { CustomDialogService } from 'src/app/core/services/custom-dialog.service';
+import { StokUpdateModel } from '../models/stok-update-model';
 
 @Component({
-  selector: 'app-dialog-add-child-stok',
-  templateUrl: './dialog-add-child-stok.component.html',
-  styleUrls: ['./dialog-add-child-stok.component.scss']
+  selector: 'app-dialog-update-child-stok',
+  templateUrl: './dialog-update-child-stok.component.html',
+  styleUrls: ['./dialog-update-child-stok.component.scss']
 })
-export class DialogAddChildStokComponent implements OnInit {
+export class DialogUpdateChildStokComponent implements OnInit {
   selectBirimId: any;
   constructor(private fb: FormBuilder,
      @Inject(MAT_DIALOG_DATA) public data: any,
-      private dialogRef: MatDialogRef<DialogAddChildStokComponent>,
+      private dialogRef: MatDialogRef<DialogUpdateChildStokComponent>,
       private customDialogService:CustomDialogService,
        private StokService: StokService) { }
 
@@ -40,26 +41,29 @@ export class DialogAddChildStokComponent implements OnInit {
   get parentId() { return this.frm.get('parentId') }
   get birimId() { return this.frm.get('birimId') }
 
+
+
+
   onSubmit() {
 
-    this.frm.value.ad = this.frm.value.ad,
-      this.frm.value.kod = this.frm.value.kod,
-      this.frm.value.stokGrup = this.frm.value.stokGrup,
-      this.frm.value.birimFiyat = Number(this.frm.value.birimFiyat),
-      this.frm.value.aciklama = null,
-      this.frm.value.durum = true,
-      this.frm.value.birimId = this.selectBirimId,
-      this.frm.value.parentId = this.data.id;
+    const model=new StokUpdateModel();
+    model.id=this.data.id;
+    model.ad= this.frm.value.ad;
+    model.kod = this.frm.value.kod;
+    model.birimFiyat=Number(this.frm.value.birimFiyat);
+    model.stokGrup= this.frm.value.stokGrup;
+    model.aciklama= null;
+    model.durum= true;
+    model.birimId= this.selectBirimId?this.selectBirimId:this.data.birimId;
+    model.parentId= this.data.parentId;
 
+    this.StokService.update(model, () => {
+      this.frm.reset();
+      this.dialogRef.close()
+    }, errorMessage => {
+      this.customDialogService.errorDialog(errorMessage)
+    })
 
-
-      this.StokService.create(this.frm.value, () => {
-        this.frm.reset();
-        this.dialogRef.close()
-
-      }, errorMessage => {
-        this.customDialogService.errorDialog(errorMessage)
-      })
 
 
   }

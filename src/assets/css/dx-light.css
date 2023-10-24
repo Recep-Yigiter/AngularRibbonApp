@@ -10693,7 +10693,7 @@ input.dx-hidden {
   margin-right: 0;
 }
 .dx-filemanager {
-  height: 500px;
+  /* height: 500px; */
   border: 1px solid;
 }
 .dx-filemanager .dx-filemanager-wrapper {

@@ -107,6 +107,10 @@ import { DialogHeaderDirective } from './core/directives/dialog-header.directive
 import { DialogContentDirective } from './core/directives/dialog-content.directive';
 import { ErrorDialogComponent } from './shared/dialogs/error-dialog/error-dialog.component';
 import { ConfirmDialogComponent } from './shared/dialogs/confirm-dialog/confirm-dialog.component';
+import { DeleteDialogComponent } from './shared/dialogs/delete-dialog/delete-dialog.component';
+import { DialogUpdateChildStokComponent } from './pages/stok/dialog-update-child-stok/dialog-update-child-stok.component';
+import { CardLayoutComponent } from './shared/components/layouts/card-layout/card-layout.component';
+import { CardMasrafComponent } from './pages/masraf/card-masraf/card-masraf.component';
 
 @NgModule({
   declarations: [
@@ -210,6 +214,10 @@ import { ConfirmDialogComponent } from './shared/dialogs/confirm-dialog/confirm-
     DialogContentDirective,
     ErrorDialogComponent,
     ConfirmDialogComponent,
+    DeleteDialogComponent,
+    DialogUpdateChildStokComponent,
+    CardLayoutComponent,
+    CardMasrafComponent
 
   ],
   imports: [

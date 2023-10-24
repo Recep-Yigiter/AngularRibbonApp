@@ -12,5 +12,13 @@ export class CardHizmetComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  addDialog(){
+    
+  }
+  updateDialog(){
+    
+  }
+  deleteDialog(){
+    
+  }
 }

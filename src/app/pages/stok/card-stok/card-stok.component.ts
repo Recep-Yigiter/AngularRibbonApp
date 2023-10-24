@@ -8,6 +8,8 @@ import { StokService } from '../services/stok.service';
 import { CustomDialogService } from 'src/app/core/services/custom-dialog.service';
 import { DialogAddStokComponent } from '../dialog-add-stok/dialog-add-stok.component';
 import { DialogAddChildStokComponent } from '../dialog-add-child-stok/dialog-add-child-stok.component';
+import { DialogUpdateStokComponent } from '../dialog-update-stok/dialog-update-stok.component';
+import { DialogUpdateChildStokComponent } from '../dialog-update-child-stok/dialog-update-child-stok.component';
 @Component({
   selector: 'app-card-stok',
   templateUrl: './card-stok.component.html',
@@ -38,9 +40,8 @@ export class CardStokComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.TreeViewList()
+    this.TreeViewList();
   }
-
   async TreeViewList() {
     const getList = await this.StokService.GetListTreeView()
 
@@ -83,9 +84,9 @@ export class CardStokComponent implements OnInit {
 
     this.customDialogService.smallDialog({
       componentType: DialogAddChildStokComponent,
-      data: this.selectedNode,
-      afterClose:()=>{}
-    },(data)=>{ console.log(data)})
+      data:this.selectedNode,
+      afterClose: () => {this.TreeViewList()}
+    })
 
 
 
@@ -93,18 +94,42 @@ export class CardStokComponent implements OnInit {
   addNewCardDialog() {
     this.customDialogService.smallDialog({
       componentType: DialogAddStokComponent,
-      afterClose:()=>{ this.TreeViewList()}
+      data:this.selectedNode,
+      afterClose: () => {this.TreeViewList()}
     })
 
 
   }
-
   updateDialog() {
-    // this.StokCardDialogService.updateDialog(() => {
-    //   this.TreeViewList();
-    // })
+    if (this.selectedNode.submenu != undefined) {
+      this.customDialogService.smallDialog({
+        componentType: DialogUpdateStokComponent,
+        data: this.selectedNode,
+        afterClose: () => { this.TreeViewList() }
+      })
+    }
+    else {
+      this.customDialogService.smallDialog({
+        componentType: DialogUpdateChildStokComponent,
+        data: this.selectedNode,
+        afterClose: () => {  this.TreeViewList() }
+      })
+    }
+
+
+  }
+  deleteDialog() {
+    if (this.selectedNode.submenu == undefined || this.selectedNode.submenu == null) {
+      this.customDialogService.deleteDialog(() => {
+
+        this.StokService.delete(this.selectedNode.id, () => { this.TreeViewList() });
+      })
+    }
+
+
   }
   selectNode(node: any) {
+
     this.stokDetayList = []
     this.selectedNode = node;
     this.stokDetayList = [

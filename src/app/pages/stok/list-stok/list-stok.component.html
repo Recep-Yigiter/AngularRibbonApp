@@ -6,7 +6,7 @@
 
 
 
-        <div class="ribbon-section" style="height: 40px;margin-bottom: 3px; margin-left: 10px;">
+        <div (click)="updateDialog()" class="ribbon-section" style="height: 40px;margin-bottom: 3px; margin-left: 10px;">
             <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
                 <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
                     src=" ../../assets/icons/actions/edit.png">
@@ -28,7 +28,7 @@
         STOK LİSTESİ
 
         <div style="position: absolute; right: 0; font-size: 12px;">
-            Stok Sayısı: <span style="color: red;">{{10000000 | number:'1.0-2' }} </span>
+            Stok Sayısı: <span style="color: red;">{{totalStok | number:'1.0-2' }} kayıt </span>
         </div>
     </div>
     <div class="table-display-none activeSelectCategori">

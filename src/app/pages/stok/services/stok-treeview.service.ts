@@ -1,9 +1,11 @@
-import { Injectable } from '@angular/core';
+import { AfterViewChecked, ChangeDetectionStrategy, ChangeDetectorRef, Injectable } from '@angular/core';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
+  
 })
-export class StokTreeViewService {
+
+export class StokTreeViewService  {
     index = 0;
     expand = {};
     res:any;
@@ -15,15 +17,16 @@ export class StokTreeViewService {
             return arr.find((parent) => parent.id === id);
         }
         function createTreeNode(value) {
+
             return {
                 id: value.id,
                 ad: value.ad,
-                stokAdi: value.stokAdi,
+                kod:value.kod,
                 birimAdi: value.birimAdi,
                 birimFiyat: value.birimFiyat,
-                adet: value.adet,
-                olcu: value.olcu,
-                miktar: value.miktar,
+                birimId: value.birimId,
+                stokGrup:value.stokGrup,
+                parenId:value.parenId,
                 submenu: (value.submenu !== undefined)
                     ? value.submenu.map(createTreeNode)
                     : undefined

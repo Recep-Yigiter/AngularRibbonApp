@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Table } from 'primeng/table';
 import { StokService } from '../services/stok.service';
+import { StokUpdateModel } from '../models/stok-update-model';
+import { CustomDialogService } from 'src/app/core/services/custom-dialog.service';
+import { DialogUpdateChildStokComponent } from '../dialog-update-child-stok/dialog-update-child-stok.component';
 
 @Component({
   selector: 'app-list-stok',
@@ -9,7 +12,7 @@ import { StokService } from '../services/stok.service';
 })
 export class ListStokComponent implements OnInit {
 
-  constructor(private StokService: StokService) { }
+  constructor(private StokService: StokService, private customDialogService: CustomDialogService) { }
 
   ngOnInit(): void {
     this.getList()
@@ -19,6 +22,7 @@ export class ListStokComponent implements OnInit {
   selectedItem: any;
   StokItem: any;
   totalHesap: any;
+  totalStok: any;
 
 
   testList: any[];
@@ -26,16 +30,10 @@ export class ListStokComponent implements OnInit {
     this.testList = []
     const list = await this.StokService.GetList();
     this.dataSource = list.data.items;
-    this.dataSource.map(c=>c.ad).forEach(element => {
-  
-     this.testList.push({ad:element})
-
- 
-    });
-
+    this.totalStok = this.dataSource.length
 
   }
- 
+
 
   onRowSelect(event: any) {
     this.StokItem = event.data;
@@ -45,7 +43,15 @@ export class ListStokComponent implements OnInit {
     this.StokItem = null
   }
 
+  updateDialog() {
 
+    this.customDialogService.smallDialog({
+      componentType: DialogUpdateChildStokComponent,
+      data: this.StokItem,
+      afterClose: () => { this.getList() }
+    })
+
+  }
 
 
 

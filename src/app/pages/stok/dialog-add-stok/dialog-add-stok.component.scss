@@ -75,7 +75,7 @@
 
 .grid_container_content{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(1, 1fr);
 
     grid-template-areas:"aside item-1 item-2 item-3"
                         "aside main main main";

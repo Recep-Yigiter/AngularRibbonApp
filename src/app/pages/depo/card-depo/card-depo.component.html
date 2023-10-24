@@ -1,96 +1,92 @@
+<app-card-layout layoutName="Depo Kart">
 
- 
+    <div class="sidebar-add-layout-content">
 
-
-<div style="position: fixed;margin-left: 4px;">
-    <div id="window" class="window" style="height: 300px; width:calc(100vw - 10px); min-height:calc(100vh - 176px); ">
-        <div id="draggable-header" class="top-bar">
-            <div class="title">Depo Kart </div>
-            <div class="toolbar">
-                <button class="item" name="close">
-                    <i class="fa fa-close"></i>
-                </button>
-            </div>
-        </div>
-        <div id="draggable-header" class="top-bar"
-            style="border: none; background-color: transparent;margin-bottom: 0;">
-            <div class="title" style="background: linear-gradient(to bottom, #ffffff 0%, #bbbbbb 100%); width: 100%; ">
-                <div class="ribbon-section" style="height: 36px;">
-                    <div  class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
-                        style="height: 36px;">
-                        <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                            src=" ../../assets/icons/actions/folder_add.png">
-                        <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                            src=" ../../assets/icons/actions/folder_add.png">
-                        <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                            src=" ../../assets/icons/actions/folder_add.png">
-
-                    </div>
-
-                </div>
-                <div class="ribbon-section" style="height: 36px;">
-                    <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
-                        style="height: 36px;">
-                        <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                            src=" ../../assets/icons/actions/folder_down.png">
-                        <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                            src=" ../../assets/icons/actions/folder_down.png">
-                        <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                            src=" ../../assets/icons/actions/folder_down.png">
-
-                    </div>
-
-                </div>
-                <div class="ribbon-section" style="height: 36px;">
-                    <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
-                        style="height: 36px;">
-                        <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                            src=" ../../assets/icons/actions/erase_registry.png">
-                        <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                            src=" ../../assets/icons/actions/erase_registry.png">
-                        <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                            src=" ../../assets/icons/actions/erase_registry.png">
-
-                    </div>
-
-                </div>
-
-
-
+        <div (click)="addDialog()" class="ribbon-section" style="height: 40px;margin-bottom: 3px;">
+            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/actions/folder_add.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/actions/folder_add.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/actions/folder_add.png">
 
             </div>
 
         </div>
-        <div class="content" style="overflow-x: scroll;">
+       
+        <div (click)="updateDialog()" class="ribbon-section" style="height: 40px;margin-bottom: 3px;">
+            <div  class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/actions/edit.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/actions/edit.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/actions/edit.png">
 
-
-
-
-
-
-
-            <div class="tree-content" >
-         
             </div>
 
-            <div style="flex: 1;  ">
-                <div class="tree-detay-content" >
+        </div>
+        <div  (click)="deleteDialog()" class="ribbon-section"
+            style="height: 40px; margin-bottom: 3px;">
+            <div class="ribbon-button ribbon-button-large " id="add-table-btn" unselectable="on" style="height: 40px;">
+                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/actions/erase_registry.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/actions/erase_registry.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/actions/erase_registry.png">
 
-                
-                </div>
             </div>
 
         </div>
 
 
-        <div class="footer">
-            <div class="content">
-                footer
-            </div>
-            <div id="draggable-resize" class="resize"></div>
-        </div>
     </div>
 
-</div>
+    <div class="sidebar-layout-content">
+        <!-- <ng-template #nodeTemplate let-nodes="nodes" let-tree="tree">
+            <ng-container *ngFor="let node of nodes">
+                <div class="menu-node" [ngClass]=" { 'menu-node-tree' : tree }" style="position: relative;">
+                    <div (click)="toggleVisible(node)" class="menu-node-button "
+                        [ngClass]="{ 'menu-node-button-show': node.submenu && node.submenu?.length,'menu-node-button-plus': !expand[node.index],'menu-node-button-minus': expand[node.index] } "
+                        role="button">
+                    </div>
+                    <div class="menu-node-name" [ngClass]="{
+                 'menu-node-name-selected': (node === selectedNode),'menu-node-folder':(node.submenu?.length>0)}"
+                        (click)="selectNode(node)">
 
 
+                        <img *ngIf="node.submenu?.length>0" src=" ../../assets/icons/actions/received_files.png"
+                            class="title-icon" alt="">
+
+                        <img *ngIf="node.submenu==undefined" src=" ../../assets/icons/actions/list.png"
+                            class="title-icon" alt="">
+                        {{ node.ad }}
+                    </div>
+                    <ng-container *ngIf="node.submenu && node.submenu?.length && expand[node.index] ">
+                        <ng-template [ngTemplateOutlet]="nodeTemplate"
+                            [ngTemplateOutletContext]="{ nodes: node.submenu, tree: true }">
+                        </ng-template>
+                    </ng-container>
+                </div>
+            </ng-container>
+        </ng-template> 
+
+        <ng-template [ngTemplateOutlet]="nodeTemplate" [ngTemplateOutletContext]="{ nodes: menu, tree: false }">
+        </ng-template>-->
+    </div>
+
+
+    <div class="table-layout-content">
+
+        <div class="content-detay">
+            STOK DETAY
+        </div>
+
+
+
+
+
+    </div>
+</app-card-layout>

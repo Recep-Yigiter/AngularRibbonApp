@@ -5,8 +5,8 @@
 
 
 
-<div style="position: fixed;">
-    <div id="window" class="window" style="height: 39vh; width:24vw;  min-width: 200px;">
+<div style="position: fixed; top: 31%;">
+    <div id="window" class="window" style=" width:24vw;  min-width: 200px;">
         <div id="draggable-header" class="top-bar">
             <div class="title">{{layoutName}} </div>
             <div class="toolbar">
@@ -19,7 +19,7 @@
         <div class="content" style="overflow-x: scroll;">
 
             <div class="" style="position: relative;">
-                <div id="file-manager" class="dx-filemanager" style="height: 100%;width: calc(24vw - 24px);">
+                <div id="file-manager" class="dx-filemanager" style="width: calc(24vw - 24px);">
                     <div class="dx-filemanager-notification-container dx-widget"></div>
                     <div class=" dx-drawer dx-widget dx-visibility-change-handler dx-drawer-slide dx-drawer-right ">
                         <div class="dx-drawer-wrapper">
@@ -32,7 +32,7 @@
                                         <div class="dx-filemanager-toolbar dx-filemanager-general-toolbar">
 
 
-                                            <div style="max-width: 1400px;min-width: 1300px;">
+                                            <div >
                                                 <div *ngIf="formTopActions">
                                                     <ng-content select=".talep-actions" ></ng-content>
                                                 </div>

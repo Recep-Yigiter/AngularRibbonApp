@@ -12,5 +12,13 @@ export class CardDepoComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  addDialog(){
+    
+  }
+  updateDialog(){
+    
+  }
+  deleteDialog(){
+    
+  }
 }

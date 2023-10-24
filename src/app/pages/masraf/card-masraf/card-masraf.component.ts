@@ -12,5 +12,13 @@ export class CardMasrafComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  addDialog(){
+    
+  }
+  updateDialog(){
+    
+  }
+  deleteDialog(){
+    
+  }
 }

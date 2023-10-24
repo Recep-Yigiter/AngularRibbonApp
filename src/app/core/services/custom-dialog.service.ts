@@ -2,6 +2,7 @@ import { DialogRef } from '@angular/cdk/dialog';
 import { ComponentType } from '@angular/cdk/portal';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { DeleteDialogComponent, DeleteState } from 'src/app/shared/dialogs/delete-dialog/delete-dialog.component';
 import { ErrorDialogComponent } from 'src/app/shared/dialogs/error-dialog/error-dialog.component';
 
 
@@ -20,7 +21,7 @@ export class CustomDialogService {
         const dialogRef = this.dialog.open(DialogParameters.componentType, {
             width: '24%',
             minWidth: '0px',
-            height: '39vh',
+            // height: '39vh',
             maxWidth: '30vw',
             disableClose: true,
             autoFocus: false,
@@ -29,14 +30,15 @@ export class CustomDialogService {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            if (result == DialogParameters.data) {DialogParameters.afterClose()}
-            if (dialogRef.componentInstance._selectedDataItem == null ) { return}
+            DialogParameters.afterClose()
+            // if (result != DialogParameters.data) { DialogParameters.afterClose() }
+            if (dialogRef.componentInstance._selectedDataItem == null) { return }
             this.selectedData = dialogRef.componentInstance._selectedDataItem;
             successCallBack(this.selectedData);
         });
     }
 
-    normalDialog(DialogParameters: Partial<DialogParameters>, successCallBack?: (data) => void) {
+    normalDialog(DialogParameters: Partial<DialogParameters>, successCallBack?: (data) => void,) {
         const dialogRef = this.dialog.open(DialogParameters.componentType, {
             width: '40%',
             minWidth: '0px',
@@ -49,10 +51,12 @@ export class CustomDialogService {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            if (result == DialogParameters.data) {DialogParameters.afterClose()}
-            if (dialogRef.componentInstance._selectedDataItem == null ) { return}
+            
+            if (result == DialogParameters.data) { DialogParameters.afterClose() }
+            if (dialogRef.componentInstance._selectedDataItem == null) { return }
             this.selectedData = dialogRef.componentInstance._selectedDataItem;
             successCallBack(this.selectedData);
+    
 
         });
 
@@ -74,8 +78,8 @@ export class CustomDialogService {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            if (result == DialogParameters.data) {DialogParameters.afterClose()}
-            if (dialogRef.componentInstance._selectedDataItem == null ) { return}
+            if (result == DialogParameters.data) { DialogParameters.afterClose() }
+            if (dialogRef.componentInstance._selectedDataItem == null) { return }
             this.selectedData = dialogRef.componentInstance._selectedDataItem;
             successCallBack(this.selectedData);
 
@@ -86,7 +90,7 @@ export class CustomDialogService {
     }
 
 
-    errorDialog(errorMessage){
+    errorDialog(errorMessage) {
         const dialogRef = this.dialog.open(ErrorDialogComponent, {
             width: '19%',
             minWidth: '0px',
@@ -95,11 +99,31 @@ export class CustomDialogService {
             disableClose: true,
             autoFocus: false,
             restoreFocus: false,
-            data:errorMessage,
+            data: errorMessage,
 
         });
 
 
+    }
+    deleteDialog(successCallBack:()=>void) {
+        const dialogRef = this.dialog.open(DeleteDialogComponent, {
+            width: '19%',
+            minWidth: '0px',
+            height: '19vh',
+            maxWidth: '19vw',
+            disableClose: true,
+            autoFocus: false,
+            restoreFocus: false,
+            data: DeleteState.Yes,
+
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result == DeleteState.Yes) { 
+               successCallBack()
+            }
+
+        })
     }
 
 

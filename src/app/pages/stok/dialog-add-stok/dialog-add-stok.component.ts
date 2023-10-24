@@ -52,17 +52,18 @@ export class DialogAddStokComponent implements OnInit {
 
   onSubmit() {
 
-    this.frm.value.ad = this.frm.value.ad,
+      this.frm.value.ad = this.frm.value.ad,
       this.frm.value.kod = this.frm.value.kod,
       this.frm.value.stokGrup = null,
       this.frm.value.birimFiyat = 0,
       this.frm.value.aciklama = null,
       this.frm.value.durum = false,
-      this.frm.value.birimId = "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      this.frm.value.birimId = "4fa85f64-5717-4562-b3fc-2c963f66afa6",
       this.frm.value.parentId = null,
       this.StokService.create(this.frm.value, () => {
         this.frm.reset();
-        this.dialogRef.close()
+        this.dialogRef.close({data:this.frm.value});
+
 
       }, errorMessage => {
         this.customDialogService.errorDialog(errorMessage)

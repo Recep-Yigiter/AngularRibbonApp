@@ -1,4 +1,4 @@
-<layout-content layoutName="Stok Kart">
+<app-card-layout layoutName="Stok Kart">
 
     <div class="sidebar-add-layout-content">
 
@@ -24,10 +24,22 @@
                     src=" ../../assets/icons/actions/folder_down.png">
 
             </div>
+        </div>
+        <div (click)="updateDialog()" class="ribbon-section" style="height: 40px;margin-bottom: 3px;">
+            <div ngClass="{{selectedNode?'':'disabled'&& selectedNode?.submenu==undefined?'disabled':'' }}" class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/actions/edit.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/actions/edit.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/actions/edit.png">
+
+            </div>
 
         </div>
-        <div class="ribbon-section" style="height: 40px; margin-bottom: 3px;">
-            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+        <div  (click)="deleteDialog()" class="ribbon-section"
+            style="height: 40px; margin-bottom: 3px;">
+            <div ngClass="{{selectedNode?'':'disabled'&& selectedNode?.submenu==undefined?'disabled':'' }}" class="ribbon-button ribbon-button-large " id="add-table-btn" unselectable="on" style="height: 40px;">
                 <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
                     src=" ../../assets/icons/actions/erase_registry.png">
                 <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
@@ -76,29 +88,6 @@
     </div>
 
 
-    <div class="table-action-layout-content">
-
-
-
-        <div class="ribbon-section" style="height: 40px;margin-bottom: 3px; margin-left: 10px;">
-            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
-                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                    src=" ../../assets/icons/actions/edit.png">
-                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                    src=" ../../assets/icons/actions/edit.png">
-                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                    src=" ../../assets/icons/actions/edit.png">
-
-            </div>
-
-        </div>
-
-
-
-    </div>
-
-
-
     <div class="table-layout-content">
 
         <div class="content-detay">
@@ -124,4 +113,4 @@
 
 
     </div>
-</layout-content>
+</app-card-layout>
