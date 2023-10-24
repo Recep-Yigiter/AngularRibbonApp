@@ -82,18 +82,7 @@ export class DialogSelectCariComponent implements OnInit {
 
 
   }
-  openAddDialog() {
-    const dialogRef = this.dialog.open(DialogSelectCariComponent, {
-      width: '25%',
-      minWidth: '350px',
-      height: '38vh',
-      disableClose: true,
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      this.getAllCari();
 
-    });
-  }
 
 
   

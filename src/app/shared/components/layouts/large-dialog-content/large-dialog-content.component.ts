@@ -8,7 +8,7 @@ import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 export class LargeDialogContentComponent {
   @Input() layoutName: any;
   @Input() tableActions: any;
-  @Input() formTopActions: any;
+  @Input() topActions: any;
   constructor( private ref: ChangeDetectorRef) {
      
   }

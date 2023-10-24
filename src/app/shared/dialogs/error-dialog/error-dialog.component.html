@@ -1,0 +1,24 @@
+<div id="popup" class="pop-up" style="z-index: 999999;">
+	<div id="popup-header" class="top-bar">
+		<div class="title">Error</div>
+		
+			<div class="toolbar">
+
+				<div class="close-dialog">
+					<button class="item" name="close" mat-dialog-close>
+						<i class="fa fa-close"></i>
+					</button>
+				</div>
+
+			</div>
+		
+	</div>
+	<div class="content">
+		<div *ngFor="let item of data.error.Errors" style="color: rgb(117, 1, 1);">
+			- {{item.ErrorMessage}}
+		</div>
+	</div>
+	<div class="button-group center">
+		<button>Cancel</button>
+	</div>
+</div> 

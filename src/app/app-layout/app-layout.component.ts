@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ConfirmDialogService } from '../core/services/confirm-dialog.service';
 
 @Component({
   selector: 'app-app-layout',
@@ -7,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class AppLayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(public confirmDialogService:ConfirmDialogService) { }
 
   ngOnInit(): void {
   }

@@ -24,7 +24,7 @@ export class DialogAddAlinanTeklifComponent implements OnInit {
   ngOnInit(): void {
     this.date = new Date;
 this.dataSource=this.data
-console.log(this.data)
+
 
   }
 

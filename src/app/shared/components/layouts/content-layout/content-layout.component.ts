@@ -8,6 +8,8 @@ import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 export class ContentLayoutComponent implements OnInit {
   @Input() layoutName: any;
   @Input() tableActions: any;
+  @Input() topActions: any=false;
+
   constructor(private ref: ChangeDetectorRef) {
 
   }
@@ -18,8 +20,6 @@ export class ContentLayoutComponent implements OnInit {
   ngAfterContentChecked() {
     this.ref.detectChanges();
   }
-
-
 
 
 

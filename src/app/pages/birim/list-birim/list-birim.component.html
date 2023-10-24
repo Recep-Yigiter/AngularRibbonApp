@@ -1,57 +1,30 @@
-<app-content-layout layoutName="Stok Kart">
-
-    <div class="sidebar-add-layout-content">
-
-        <div class="ribbon-section" style="height: 40px;margin-bottom: 3px;">
-            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
-                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                    src=" ../../assets/icons/actions/folder_add.png">
-                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                    src=" ../../assets/icons/actions/folder_add.png">
-                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                    src=" ../../assets/icons/actions/folder_add.png">
-
-            </div>
-
-        </div>
-        <div class="ribbon-section" style="height: 40px; margin-bottom: 3px;">
-            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
-                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                    src=" ../../assets/icons/actions/folder_down.png">
-                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                    src=" ../../assets/icons/actions/folder_down.png">
-                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                    src=" ../../assets/icons/actions/folder_down.png">
-
-            </div>
-
-        </div>
-        <div class="ribbon-section" style="height: 40px; margin-bottom: 3px;">
-            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
-                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                    src=" ../../assets/icons/actions/erase_registry.png">
-                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                    src=" ../../assets/icons/actions/erase_registry.png">
-                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                    src=" ../../assets/icons/actions/erase_registry.png">
-
-            </div>
-
-        </div>
-
-
-    </div>
-
-    <div class="sidebar-layout-content">
-deneme
-    </div>
-
-
+<app-content-layout layoutName="Birim List" [tableActions]="true">
     <div class="table-action-layout-content">
+        <div (click)="addDialog()" class="ribbon-section" style="height: 40px; margin-left: 10px;">
+            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/actions/clipboard_add.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/actions/clipboard_add.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/actions/clipboard_add.png">
 
+            </div>
+        </div>
+        <div (click)="deleteDialog()" class="ribbon-section" style="height: 40px;">
+            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/actions/clipboard_close.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/actions/clipboard_close.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/actions/clipboard_close.png">
 
+            </div>
 
-        <div class="ribbon-section" style="height: 40px;margin-bottom: 3px; margin-left: 10px;">
+        </div>
+
+        <div (click)="updateDialog()"  class="ribbon-section" style="height: 40px;margin-bottom: 3px; margin-left: 10px;">
             <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
                 <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
                     src=" ../../assets/icons/actions/edit.png">
@@ -65,143 +38,10 @@ deneme
         </div>
 
 
-
     </div>
 
 
 
-    <div class="table-layout-content">
-
-        <div class="content-detay">
-            STOK DETAY
-        </div>
-
-
-        <table class="table-detay">
-            <colgroup>
-                <col style="width: 200px;">
-                <col style="width: 200px;">
-                <col style="width: auto;">
-            </colgroup>
-            <tbody>
-
-                <tr>
-                    <td><span class="table-detay-value">item1</span></td>
-                    <td><span class="table-detay-value">item2</span></td>
-                    <td><span class="table-detay-value">item3</span></td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table-detay">
-            <colgroup>
-                <col style="width: 200px;">
-                <col style="width: 200px;">
-                <col style="width: auto;">
-            </colgroup>
-            <tbody>
-
-                <tr>
-                    <td><span>item1</span></td>
-                    <td><span>item2</span></td>
-                    <td><span>item3</span></td>
-                </tr>
-            </tbody>
-        </table>
-
-
-    </div>
-</app-content-layout>
-
-
-<app-content-layout layoutName="Stok List">
-
-    <div class="sidebar-add-layout-content">
-
-        <div class="ribbon-section" style="height: 40px;margin-bottom: 3px;">
-            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
-                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                    src=" ../../assets/icons/actions/folder_add.png">
-                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                    src=" ../../assets/icons/actions/folder_add.png">
-                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                    src=" ../../assets/icons/actions/folder_add.png">
-
-            </div>
-
-        </div>
-        <div class="ribbon-section" style="height: 40px; margin-bottom: 3px;">
-            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
-                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                    src=" ../../assets/icons/actions/folder_down.png">
-                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                    src=" ../../assets/icons/actions/folder_down.png">
-                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                    src=" ../../assets/icons/actions/folder_down.png">
-
-            </div>
-
-        </div>
-        <div class="ribbon-section" style="height: 40px; margin-bottom: 3px;">
-            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
-                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                    src=" ../../assets/icons/actions/erase_registry.png">
-                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                    src=" ../../assets/icons/actions/erase_registry.png">
-                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                    src=" ../../assets/icons/actions/erase_registry.png">
-
-            </div>
-
-        </div>
-
-
-    </div>
-
-
-
-    <div class="table-action-layout-content">
-
-
-        <div  (click)="addDialog()" class="ribbon-section" style="height: 40px;margin-bottom: 3px;">
-            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
-                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                    src=" ../../assets/icons/actions/folder_add.png">
-                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                    src=" ../../assets/icons/actions/folder_add.png">
-                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                    src=" ../../assets/icons/actions/folder_add.png">
-
-            </div>
-
-        </div>
-        <div (click)="updateDialog()" class="ribbon-section" style="height: 40px; margin-bottom: 3px;">
-            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
-                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                    src=" ../../assets/icons/actions/folder_down.png">
-                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                    src=" ../../assets/icons/actions/folder_down.png">
-                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                    src=" ../../assets/icons/actions/folder_down.png">
-
-            </div>
-
-        </div>
-        <div class="ribbon-section" style="height: 40px; margin-bottom: 3px;">
-            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
-                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                    src=" ../../assets/icons/actions/erase_registry.png">
-                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                    src=" ../../assets/icons/actions/erase_registry.png">
-                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                    src=" ../../assets/icons/actions/erase_registry.png">
-
-            </div>
-
-        </div>
-
-
-
-    </div>
 
 
 

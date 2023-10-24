@@ -78,7 +78,7 @@
             </div>
 
         </div>
-        <div class="ribbon-section" style="height: 40px;">
+        <div (click)="saveTalep()" class="ribbon-section" style="height: 40px;">
             <div  class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
                 style="height: 40px;">
                 <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
@@ -122,8 +122,6 @@
                         <th style="width:75px;color: #959595 !important;">T. Miktarı</th>
                         <th style="width:75px;color: #959595 !important;">Tal. Br.</th>
                         <th style="width:75px;color: #959595 !important;">Onay Mik.</th>
-                        <th style="width:75px;color: #959595 !important;">Cari Kodu</th>
-                        <th style="width:100px;color: #959595 !important;">Cari Adı</th>
                     </tr>
                     <tr>
 
@@ -147,14 +145,7 @@
                             <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
                                 (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
                         </th>
-                        <th>
-                            <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-                                (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
-                        </th>
-                        <th>
-                            <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-                                (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
-                        </th>
+
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-product>
@@ -184,8 +175,7 @@
                             </p-cellEditor>
 
                         </td>
-                        <td>{{product.cariKodu}}</td>
-                        <td>{{product.cariAdi}}</td>
+                       
                     </tr>
                 </ng-template>
 

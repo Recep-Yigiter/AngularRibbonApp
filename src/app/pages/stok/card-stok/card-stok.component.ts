@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatRadioButton } from '@angular/material/radio';
 
-import { StokCardDialogService } from 'src/app/shared/dialogs/stok/services/stok-card-dialog.service';
 import { StokTreeViewService } from '../services/stok-treeview.service';
 import { StokService } from '../services/stok.service';
 import { CustomDialogService } from 'src/app/core/services/custom-dialog.service';
@@ -32,7 +31,6 @@ export class CardStokComponent implements OnInit {
   @ViewChild('first') matRadioButton: MatRadioButton;
   constructor(
     private StokService: StokService,
-    private StokCardDialogService: StokCardDialogService,
     private StokTreeViewService: StokTreeViewService,
     private customDialogService: CustomDialogService
   ) {
@@ -80,30 +78,31 @@ export class CardStokComponent implements OnInit {
 
 
   }
-  addDialog() {
-    // this.StokCardDialogService.addDialog(this.selectedNode, () => {
-    //   this.TreeViewList();
-    // })
+  addChildDialog() {
 
-    if (this.selectedNode == null) {
-      this.customDialogService.smallDialog({
-        componentType: DialogAddStokComponent
-      })
 
-    } else {
-      this.customDialogService.smallDialog({
-        componentType: DialogAddChildStokComponent
-      })
-    }
+    this.customDialogService.smallDialog({
+      componentType: DialogAddChildStokComponent,
+      data: this.selectedNode,
+      afterClose:()=>{}
+    },(data)=>{ console.log(data)})
 
+
+
+  }
+  addNewCardDialog() {
+    this.customDialogService.smallDialog({
+      componentType: DialogAddStokComponent,
+      afterClose:()=>{ this.TreeViewList()}
+    })
 
 
   }
 
   updateDialog() {
-    this.StokCardDialogService.updateDialog(() => {
-      this.TreeViewList();
-    })
+    // this.StokCardDialogService.updateDialog(() => {
+    //   this.TreeViewList();
+    // })
   }
   selectNode(node: any) {
     this.stokDetayList = []

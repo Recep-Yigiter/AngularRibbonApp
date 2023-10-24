@@ -86,7 +86,7 @@
 
 
 <div style="position: fixed;">
-    <div id="window" class="window" style="height: 90vh; width:89vw;  min-width: 200px;">
+    <div id="window" class="window" style="height: 89vh; width:89vw;  min-width: 200px;">
         <div id="draggable-header" class="top-bar">
             <div class="title">{{layoutName}} </div>
             <div class="toolbar">
@@ -111,9 +111,31 @@
                                     <div class="dx-filemanager-wrapper">
                                         <div class="dx-filemanager-toolbar dx-filemanager-general-toolbar">
 
+                                            <div class="dx-toolbar dx-widget dx-visibility-change-handler dx-collection" *ngIf="topActions"
+                                            role="toolbar">
+                                            <div class="dx-toolbar-items-container">
+                                                <div class="dx-toolbar-before">
 
+
+                                                    <div id="draggable-header" class="top-bar"
+                                                        style="border: none; background-color: transparent;margin-bottom: 0;">
+
+                                                        <div class="title"
+                                                            style="background: linear-gradient(to bottom, #ffffff 0%, #bbbbbb 100%); width: 100%; ">
+                                                            <ng-content select=".sidebar-add-layout-content"></ng-content>
+
+                                                        </div>
+
+                                                    </div>
+
+
+
+                                                </div>
+
+                                            </div>
+                                        </div>
                                             <div style="max-width: 1400px;min-width: 1300px;">
-                                                <div *ngIf="formTopActions">
+                                                <div *ngIf="topActions">
                                                     <ng-content select=".talep-actions" ></ng-content>
                                                 </div>
                                                 <ng-content select=".grid_container_content"></ng-content>
@@ -160,11 +182,11 @@
         </div>
 
 
-        <div class="footer">
-            <div class="content" style="display: flex; align-items: center; justify-content: space-between;">
-                footer 
-                <div style="margin-right: 10px;">
-                    
+        <div class="footer" style="height: 30px;position: relative;">
+            <div class="content">
+                footer
+                <div style="margin-right: 10px;position: absolute; right: 10px;top: -2px;">
+
                     <ng-content select=".form_actions"></ng-content>
                 </div>
             </div>

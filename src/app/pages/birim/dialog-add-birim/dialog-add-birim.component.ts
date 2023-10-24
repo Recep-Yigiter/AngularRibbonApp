@@ -30,7 +30,7 @@ export class DialogAddBirimComponent implements OnInit {
 
 
 
-  onSubmit(event: any) {
+  onSubmit() {
 
 
       this.frm.value.ad = this.frm.value.ad;

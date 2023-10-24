@@ -8,7 +8,7 @@ import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 export class NormalDialogContentComponent implements OnInit {
   @Input() layoutName: any;
   @Input() tableActions: any;
-  @Input() formTopActions: any;
+  @Input() topActions: any;
   constructor( private ref: ChangeDetectorRef) {
      
   }

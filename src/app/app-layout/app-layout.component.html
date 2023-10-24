@@ -1,17 +1,19 @@
+<!-- <app-dialog *ngIf="confirmDialogService.showDialog==true"></app-dialog>
+<div *ngIf="confirmDialogService.showDialog" class="popup-background">
 
+</div> -->
+<tabs>
+    <tab tabTitle="Stok">
+        <app-stok-tab></app-stok-tab>
+    </tab>
+    <tab tabTitle="Satınalma">
+        <app-satinalma-tab></app-satinalma-tab>
+    </tab>
+    <tab tabTitle="Maliyet">
+        <app-maliyet-tab></app-maliyet-tab>
+    </tab>
+</tabs>
 
-    <tabs>
-        <tab tabTitle="Stok">
-            <app-stok-tab></app-stok-tab>
-        </tab>
-        <tab tabTitle="Satınalma">
-            <app-satinalma-tab></app-satinalma-tab>
-        </tab>
-        <tab tabTitle="Maliyet">
-            <app-maliyet-tab></app-maliyet-tab>
-        </tab>
-    </tabs>
-
-    <div style="position: fixed; margin-top: 120px;">
-        <router-outlet></router-outlet>
-    </div>
+<div style="position: fixed; margin-top: 140px;">
+    <router-outlet></router-outlet>
+</div>

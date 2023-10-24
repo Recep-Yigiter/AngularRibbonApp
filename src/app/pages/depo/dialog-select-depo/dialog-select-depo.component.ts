@@ -5,6 +5,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { DepoService } from '../services/depo.service';
 import { HttpClient } from '@angular/common/http';
 import { DialogRef } from '@angular/cdk/dialog';
+import { CustomDialogService } from 'src/app/core/services/custom-dialog.service';
 @Component({
   selector: 'app-dialog-select-depo',
   templateUrl: './dialog-select-depo.component.html',
@@ -31,7 +32,10 @@ export class DialogSelectDepoComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private dialogRef: DialogRef,
-    private http: HttpClient,private DepoService:DepoService) { }
+    private http: HttpClient,
+    private DepoService:DepoService,
+    private customDialogService:CustomDialogService
+    ) { }
 
 
 
@@ -82,21 +86,7 @@ export class DialogSelectDepoComponent implements OnInit {
 
 
   }
-  openAddDialog() {
-    const dialogRef = this.dialog.open(DialogSelectDepoComponent, {
-      width: '25%',
-      minWidth: '350px',
-      height: '38vh',
-      disableClose: true,
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      this.getAllDepo();
 
-    });
-  }
-
-
-  
   selectedDbClickDepo(event) {
     this._selectedDataItem = event;
     this.dialogRef.close({ data: this._selectedDataItem })

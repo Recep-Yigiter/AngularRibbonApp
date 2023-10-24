@@ -32,13 +32,16 @@ export class DepoSelectInput {
   }
 
 
-  DepoSelectDialogOpen() {
+  selectedData: any;
+  DepoSelectDialogOpen() {   
     this.CustomDialogService.normalDialog({
-      componentType:DialogSelectDepoComponent,
-      data:{ issue: {} = "" },
-      
-    })
-   
+      componentType: DialogSelectDepoComponent,
+      data: this.selectedData,
+      afterClose: () => { }
+    }, (data) => {
+       this.selectedData = data;
+       this.childFunc.emit(this.selectedData)
+      })
 
 
   }

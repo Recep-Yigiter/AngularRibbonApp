@@ -14,7 +14,6 @@ export class CreateFaturaModel {
 
 export class CreateFaturaHareketModel{
     faturaHareketTuru?:any;
-    id?:any;
     birimFiyat?:number;
     giren?:number;
     cikan?:number;

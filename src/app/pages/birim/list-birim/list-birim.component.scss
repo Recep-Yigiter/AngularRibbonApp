@@ -8,8 +8,9 @@
 
 
 :host ::ng-deep{
-    .p-datatable{
-        width: 50%;
+    .p-datatable-table{
+        border-spacing: 0px;
+        width: 100% !important;
     }
     .p-datatable .p-datatable-footer {
         background: #f8f9fa;
@@ -43,6 +44,7 @@
     font-size: 16px;  
     font-weight: 500;   
     width: 100%; 
+    min-width: 600px;
     display: flex;
     justify-content: center;
     align-items: center;  
@@ -71,3 +73,33 @@
 
 
 
+.grid_container_content{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:"aside item-1 item-2 item-3"
+                        "aside main main main";
+    grid-gap: 0px;
+}
+.aside { grid-area: aside;border: 1px solid #ddd; border-radius: 5px;  text-align: center;font-size: 10px; }
+.main { grid-area: main;border: 1px solid #ddd; border-radius: 5px;  text-align: center;font-size: 10px; }
+.kart-1 { grid-area: item-1;border: 1px solid #ddd; border-radius: 5px;  text-align: center;font-size: 10px; }
+.kart-2 { grid-area: item-2;border: 1px solid #ddd; border-radius: 5px;  text-align: center;font-size: 10px; }
+.kart-3 { grid-area: item-3;border: 1px solid #ddd; border-radius: 5px;  text-align: center;font-size: 10px; }
+.title-kart{
+    width: 100%; 
+    border: 1px solid #ddd;
+    height: 25px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding-left: 10px;
+    font-size: 13px;
+    vertical-align: middle;
+    font-style: italic;
+    font-weight: 500;
+    font-family: "times new roman", serif;
+
+
+    background-color: #f8f9fa;
+}

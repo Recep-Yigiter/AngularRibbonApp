@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { StokService } from '../services/stok.service';
+import { CustomDialogService } from 'src/app/core/services/custom-dialog.service';
 
 @Component({
   selector: 'app-dialog-add-child-stok',
@@ -10,9 +11,14 @@ import { StokService } from '../services/stok.service';
 })
 export class DialogAddChildStokComponent implements OnInit {
   selectBirimId: any;
-  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<DialogAddChildStokComponent>, private StokService: StokService) { }
+  constructor(private fb: FormBuilder,
+     @Inject(MAT_DIALOG_DATA) public data: any,
+      private dialogRef: MatDialogRef<DialogAddChildStokComponent>,
+      private customDialogService:CustomDialogService,
+       private StokService: StokService) { }
 
   ngOnInit(): void {
+    
   }
   public frm: FormGroup = this.fb.group({
 
@@ -44,7 +50,7 @@ export class DialogAddChildStokComponent implements OnInit {
   }
 
 
-  onSubmit(event: any) {
+  onSubmit() {
 
     this.frm.value.ad = this.frm.value.ad,
       this.frm.value.kod = this.frm.value.kod,
@@ -56,18 +62,14 @@ export class DialogAddChildStokComponent implements OnInit {
       this.frm.value.parentId = this.data.id;
 
 
-console.log(this.frm.value)
 
-    this.StokService.create(this.frm.value, () => {
-      this.frm.reset();
-      this.dialogRef.close()
+      this.StokService.create(this.frm.value, () => {
+        this.frm.reset();
+        this.dialogRef.close()
 
-    }, errorMessage => {
-      console.log("Hata....", errorMessage)
-      setTimeout(() => {
-        console.log("Hata....", errorMessage)
-      }, 1000)
-    })
+      }, errorMessage => {
+        this.customDialogService.errorDialog(errorMessage)
+      })
 
 
   }

@@ -6,7 +6,7 @@
 
 
 <div style="position: fixed;">
-    <div id="window" class="window" style="height: 40vh; width:24vw;  min-width: 200px;">
+    <div id="window" class="window" style="height: 39vh; width:24vw;  min-width: 200px;">
         <div id="draggable-header" class="top-bar">
             <div class="title">{{layoutName}} </div>
             <div class="toolbar">
@@ -80,11 +80,11 @@
         </div>
 
 
-        <div class="footer">
-            <div class="content" style="display: flex; align-items: center; justify-content: space-between;">
-                footer 
-                <div style="margin-right: 10px;">
-                    
+        <div class="footer" style="height: 30px;position: relative;">
+            <div class="content">
+                footer
+                <div style="margin-right: 10px;position: absolute; right: 10px;top: -2px;">
+
                     <ng-content select=".form_actions"></ng-content>
                 </div>
             </div>

@@ -101,6 +101,12 @@ import { NormalDialogContentComponent } from './shared/components/layouts/normal
 import { LargeDialogContentComponent } from './shared/components/layouts/large-dialog-content/large-dialog-content.component';
 import { ContentLayoutComponent } from './shared/components/layouts/content-layout/content-layout.component';
 import { LayoutContent } from './shared/components/layouts/layout-content/layout-content/layout-content';
+import { DialogComponent } from './shared/dialog/dialog.component';
+import { DialogFooterDirective } from './core/directives/dialog-footer.directive';
+import { DialogHeaderDirective } from './core/directives/dialog-header.directive';
+import { DialogContentDirective } from './core/directives/dialog-content.directive';
+import { ErrorDialogComponent } from './shared/dialogs/error-dialog/error-dialog.component';
+import { ConfirmDialogComponent } from './shared/dialogs/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -197,7 +203,13 @@ import { LayoutContent } from './shared/components/layouts/layout-content/layout
     SmallDialogContentComponent,
     NormalDialogContentComponent,
     LargeDialogContentComponent,
-    ContentLayoutComponent
+    ContentLayoutComponent,
+    DialogComponent,
+    DialogFooterDirective,
+    DialogHeaderDirective,
+    DialogContentDirective,
+    ErrorDialogComponent,
+    ConfirmDialogComponent,
 
   ],
   imports: [

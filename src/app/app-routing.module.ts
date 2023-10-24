@@ -21,6 +21,7 @@ import { SatisFaturaComponent } from './pages/fatura/create-fatura/satis-fatura/
 import { ListTalepComponent } from './pages/talep/list-talep/list-talep.component';
 import { CreateTalepComponent } from './pages/talep/create-talep/create-talep.component';
 import { AlinanTeklifComponent } from './pages/teklif/create-teklif/alinan-teklif/alinan-teklif.component';
+import { ListBirimComponent } from './pages/birim/list-birim/list-birim.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'stok', pathMatch: 'full', },
@@ -36,7 +37,7 @@ const routes: Routes = [
           { path: "depo-list", component: ListDepoComponent },
           { path: "hizmet-list", component: ListHizmetComponent },
           { path: "masraf-list", component: ListMasrafComponent },
-          { path: "birim", component: BirimComponent },
+          { path: "birim", component: ListBirimComponent },
         ]
       },
       {

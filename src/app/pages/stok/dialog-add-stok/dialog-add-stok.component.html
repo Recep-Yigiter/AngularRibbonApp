@@ -22,14 +22,20 @@
 
 
     </div>
-    <div class="form_actions">
-        <div (click)="onSubmit($event)" style="width: 100%;display: flex;
-    align-items: center;">
-            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
-                style="height: 27px; display: flex; align-items: center; gap: 5px; margin: 5px; border: 1px solid #515050;">
-                Kaydet
-            </div>
-
-        </div>
-    </div>
+    <div class="form_actions" (click)="onSubmit()">
+        <div style="width: 100%;display: flex;;
+        align-items: center;">
+          <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 27px;
+          /* display: flex; */
+          align-items: center;
+          gap: 5px;
+          /* margin: 5px; */
+          border: 1px solid #515050;
+          position: absolute;
+          right: 0;
+          top: 5px;">
+            Kaydet
+          </div>
+        </div> 
+      </div> 
 </app-small-dialog-content>

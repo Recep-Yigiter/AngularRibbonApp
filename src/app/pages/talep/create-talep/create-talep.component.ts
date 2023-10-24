@@ -22,7 +22,7 @@ export class CreateTalepComponent implements OnInit {
   formReferans: any;
   constructor(private fb: FormBuilder,
     private FaturaService: TalepService,
-    private customDialogService:CustomDialogService
+    private customDialogService: CustomDialogService
 
     // private dialogRef: MatDialogRef<AlisFaturaComponent>
   ) { }
@@ -66,11 +66,8 @@ export class CreateTalepComponent implements OnInit {
   }
 
   saveTalep() {
-    // var DateObj = new Date();
-    // this.frm.value.tarih= DateObj.getFullYear() + '/' + ('0' + (DateObj.getMonth() + 1)).slice(-2) + '/' + ('0' + DateObj.getDate()).slice(-2);
-    // this.frm.value.otv=this.frm.value.otv.name
-    this.frm.value.cariId = this.cariSelectItem?.id;
 
+   
     const model = new CreateTalepModel();
     model.talepNo = this.formReferans;
     model.departman = "Kalite Kontrol"
@@ -78,17 +75,13 @@ export class CreateTalepComponent implements OnInit {
     model.aciklama = this.frm.value.aciklama;
     model.TalepHareketler = this.TalepHareketler;
 
-      this.FaturaService.create(model, () => {
-        window.location.reload();
+    this.FaturaService.create(model, () => {
+      window.location.reload();
+    }, errorMessage => {
+      this.customDialogService.errorDialog(errorMessage)
+     
+    })
 
-
-      }, errorMessage => {
-        console.log("Hata....", errorMessage)
-        setTimeout(() => {
-          console.log("Hata....", errorMessage)
-        }, 1000)
-      })
-   
 
 
   }
@@ -97,14 +90,10 @@ export class CreateTalepComponent implements OnInit {
 
   addStok() {
     this.TalepHareket = {}
-   
-
-
-
-
-      this.customDialogService.normalDialog({
-        componentType:DialogSelectStokComponent,
-      },
+    this.customDialogService.normalDialog({
+      componentType: DialogSelectStokComponent,
+      afterClose: () => { }
+    },
       (data) => {
         data.talepMiktari = 0;
         data.talepBirimi = data.birimAdi;
@@ -113,9 +102,9 @@ export class CreateTalepComponent implements OnInit {
         data.cariKodu = this.cariSelectItemKod;
         data.cariAdi = this.cariSelectItem?.ad;
         this.TalepHareketler.push(data);
-        }
-      
-      )
+      }
+
+    )
 
 
   }

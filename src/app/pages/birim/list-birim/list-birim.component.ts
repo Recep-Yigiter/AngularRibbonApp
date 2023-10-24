@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BirimService } from 'src/app/core/services/birim/birim.service';
-import { BirimDialogService } from 'src/app/shared/dialogs/birim/services/birim-dialog.service';
+import { CustomDialogService } from 'src/app/core/services/custom-dialog.service';
+import { DialogAddBirimComponent } from '../dialog-add-birim/dialog-add-birim.component';
+import { DialogUpdateBirimComponent } from '../dialog-update-birim/dialog-update-birim.component';
 
 @Component({
   selector: 'app-list-birim',
@@ -12,7 +14,10 @@ export class ListBirimComponent implements OnInit {
   totalRecords: number;
   BirimItem: any;
   selectedItem: any;
-  constructor(private BirimService: BirimService, private birimDialogService: BirimDialogService) { }
+  constructor(
+    private BirimService: BirimService,
+    private CustomerDialogService: CustomDialogService
+  ) { }
 
   ngOnInit(): void {
     this.getAll()
@@ -39,10 +44,19 @@ export class ListBirimComponent implements OnInit {
   }
 
   addDialog() {
-    this.birimDialogService.addDialog(() => { this.getAll() })
+    this.CustomerDialogService.smallDialog({
+      componentType: DialogAddBirimComponent,
+      afterClose: () => { this.getAll() }
+    })
   }
   updateDialog() {
-    this.birimDialogService.updateDialog(this.BirimItem,() => { this.getAll() })
+    this.CustomerDialogService.smallDialog({
+      componentType: DialogUpdateBirimComponent,
+      afterClose: () => { this.getAll() }
+    })
+  }
+  deleteDialog() {
+    // this.birimDialogService.updateDialog(this.BirimItem,() => { this.getAll() })
   }
 
 

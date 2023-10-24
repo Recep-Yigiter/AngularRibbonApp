@@ -5,6 +5,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { CreateFaturaHareketModel, CreateFaturaModel } from '../../models/create-fatura.model';
 import { CustomDialogService } from 'src/app/core/services/custom-dialog.service';
 import { DialogSelectStokComponent } from 'src/app/pages/stok/dialog-select-stok/dialog-select-stok.component';
+import { ConfirmationService } from 'primeng/api';
+import { ConfirmDialogService } from 'src/app/core/services/confirm-dialog.service';
 
 @Component({
   selector: 'app-alis-fatura',
@@ -23,7 +25,9 @@ export class AlisFaturaComponent implements OnInit {
   formReferans: any;
   constructor(private fb: FormBuilder,
     private FaturaService: FaturaService,
-    private customDialogService:CustomDialogService
+    private customDialogService: CustomDialogService,
+    private confirmationService: ConfirmationService,
+    private confirDialogService: ConfirmDialogService
     // private dialogRef: MatDialogRef<AlisFaturaComponent>
   ) { }
 
@@ -99,12 +103,8 @@ export class AlisFaturaComponent implements OnInit {
   }
 
   saveFatura() {
-    // var DateObj = new Date();
-    // this.frm.value.tarih= DateObj.getFullYear() + '/' + ('0' + (DateObj.getMonth() + 1)).slice(-2) + '/' + ('0' + DateObj.getDate()).slice(-2);
-    // this.frm.value.otv=this.frm.value.otv.name
-    this.frm.value.cariId = this.cariSelectItem?.id;
-
     const model = new CreateFaturaModel();
+    // this.frm.value.cariId = this.cariSelectItem?.id;
     model.belgeNo = this.frm.value.belgeNo;
     model.faturaTuru = 1;
     model.seri = this.frm.value.seri;
@@ -115,39 +115,52 @@ export class AlisFaturaComponent implements OnInit {
     model.eArsiv = this.frm.value.eArsiv;
     model.aciklama = this.frm.value.aciklama;
     model.cariId = this.cariSelectItem?.id;
+    model.cariId = null;
     model.faturaHareketler = this.faturaHareketler;
 
     if (this.cariSelectItem?.id != undefined || this.cariSelectItem?.id != null) {
+
       this.FaturaService.create(model, () => {
         window.location.reload();
       }, errorMessage => {
+        this.customDialogService.errorDialog(errorMessage)
         console.log("Hata....", errorMessage)
         setTimeout(() => {
           console.log("Hata....", errorMessage)
         }, 1000)
       })
+
     }
+
+
+
+
+
 
 
   }
   faturaHareketler: CreateFaturaHareketModel[] = [];
-  faturaHareket: CreateFaturaHareketModel;
+  faturaHareket: any;
 
   addStok() {
     this.faturaHareket = {}
     this.customDialogService.normalDialog({
-      componentType:DialogSelectStokComponent,
+      componentType: DialogSelectStokComponent,
+      afterClose: () => { }
     },
-    (data) => {
-        data.faturaHareketTuru = 1;
-        data.giren = 0;
-        data.cikan = 0;
-        data.birimFiyat = 0;
-        data.depoId = this.cariSelectItem.id ? this.cariSelectItem.id : "3fa85f64-5717-4562-b3fc-2c963f66afa6";
-        data.stokId = data.id;
-        this.faturaHareketler.push(data);
+      (data) => {
+        this.faturaHareket.faturaHareketTuru = 1;
+        this.faturaHareket.giren = data.giren = 0;
+        this.faturaHareket.cikan = data.cikan = 0;
+        this.faturaHareket.birimFiyat = data.birimFiyat = 0;
+        this.faturaHareket.depoId = this.depoSelectItem?.id ? this.depoSelectItem?.id : "3fa85f64-5717-4562-b3fc-2c963f66afa6";
+        this.faturaHareket.stokId = data.id;
+        this.faturaHareket.stokAdi = data.ad
+        this.faturaHareket.stokKodu = data.kod
+        this.faturaHareket.birimAdi = data.birimAdi
+        this.faturaHareketler.push(this.faturaHareket);
       }
-    
+
     )
   }
 
@@ -164,9 +177,11 @@ export class AlisFaturaComponent implements OnInit {
 
   depoSelectItem: any;
   depoSelectItemKod: any;
+  depoSelectItemAd: any;
   depoChildFunc(item) {
     this.depoSelectItem = item;
     this.depoSelectItemKod = item.kod;
+    this.depoSelectItemAd = item.ad;
 
   }
 
@@ -193,7 +208,19 @@ export class AlisFaturaComponent implements OnInit {
 
 
 
+  confirm1() {
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to proceed?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        console.log("sdgh")
+      },
+      reject: (type) => {
 
+      }
+    });
+  }
 
 
 

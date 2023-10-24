@@ -32,14 +32,17 @@ export class StokSelectInput {
     this.filterString = query.toLowerCase();
   }
 
-
+  selectedData:any;
   StokSelectDialogOpen() {
+
     this.CustomDialogService.normalDialog({
-      componentType:DialogSelectStokComponent,
-      data:{ issue: {} = "" },
-      
-    })
-   
+      componentType: DialogSelectStokComponent,
+      data: this.selectedData,
+      afterClose: () => { }
+    }, (data) => {
+       this.selectedData = data;
+       this.childFunc.emit(this.selectedData)
+      })
 
   }
 }

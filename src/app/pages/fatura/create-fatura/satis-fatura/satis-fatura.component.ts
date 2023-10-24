@@ -11,7 +11,7 @@ import { CustomDialogService } from 'src/app/core/services/custom-dialog.service
   styleUrls: ['./satis-fatura.component.scss']
 })
 export class SatisFaturaComponent implements OnInit {
-  satisFaturaItem: any;
+  alisFaturaItem: any;
   dataSource: any;
   selectedItem: any;
   date: Date;
@@ -22,7 +22,7 @@ export class SatisFaturaComponent implements OnInit {
   formReferans: any;
   constructor(private fb: FormBuilder,
     private FaturaService: FaturaService,
-    private customDialogService:CustomDialogService
+    private customDialogService: CustomDialogService
     // private dialogRef: MatDialogRef<AlisFaturaComponent>
   ) { }
 
@@ -90,14 +90,17 @@ export class SatisFaturaComponent implements OnInit {
 
 
   onRowSelect(event: any) {
-    this.satisFaturaItem = event.data;
+    this.alisFaturaItem = event.data;
 
   }
   onRowUnSelect() {
-    this.satisFaturaItem = null
+    this.alisFaturaItem = null
   }
 
   saveFatura() {
+    // var DateObj = new Date();
+    // this.frm.value.tarih= DateObj.getFullYear() + '/' + ('0' + (DateObj.getMonth() + 1)).slice(-2) + '/' + ('0' + DateObj.getDate()).slice(-2);
+    // this.frm.value.otv=this.frm.value.otv.name
     this.frm.value.cariId = this.cariSelectItem?.id;
 
     const model = new CreateFaturaModel();
@@ -111,46 +114,46 @@ export class SatisFaturaComponent implements OnInit {
     model.eArsiv = this.frm.value.eArsiv;
     model.aciklama = this.frm.value.aciklama;
     model.cariId = this.cariSelectItem?.id;
-
     model.faturaHareketler = this.faturaHareketler;
 
     if (this.cariSelectItem?.id != undefined || this.cariSelectItem?.id != null) {
+
       this.FaturaService.create(model, () => {
         window.location.reload();
-
-
       }, errorMessage => {
+        this.customDialogService.errorDialog(errorMessage)
         console.log("Hata....", errorMessage)
         setTimeout(() => {
           console.log("Hata....", errorMessage)
         }, 1000)
       })
+      
     }
 
 
   }
   faturaHareketler: CreateFaturaHareketModel[] = [];
-  faturaHareket: CreateFaturaHareketModel;
+  faturaHareket: any;
 
   addStok() {
     this.faturaHareket = {}
-
-
-
-
     this.customDialogService.normalDialog({
-      componentType:DialogSelectStokComponent,
+      componentType: DialogSelectStokComponent,
+      afterClose: () => { }
     },
-    (data) => {
-      data.faturaHareketTuru = 1;
-      data.giren = 0;
-      data.cikan = 0;
-      data.birimFiyat = 0;
-      data.depoId = this.cariSelectItem.id ? this.cariSelectItem.id : "3fa85f64-5717-4562-b3fc-2c963f66afa6";
-      data.stokId = data.id;
-      this.faturaHareketler.push(data);
+      (data) => {
+        this.faturaHareket.faturaHareketTuru = 1;
+        this.faturaHareket.giren = data.giren = 0;
+        this.faturaHareket.cikan = data.cikan = 0;
+        this.faturaHareket.birimFiyat = data.birimFiyat = 0;
+        this.faturaHareket.depoId = this.depoSelectItem?.id ? this.depoSelectItem?.id : "3fa85f64-5717-4562-b3fc-2c963f66afa6";
+        this.faturaHareket.stokId = data.id;
+        this.faturaHareket.stokAdi = data.ad
+        this.faturaHareket.stokKodu = data.kod
+        this.faturaHareket.birimAdi = data.birimAdi
+        this.faturaHareketler.push(this.faturaHareket);
       }
-    
+
     )
   }
 
@@ -160,17 +163,18 @@ export class SatisFaturaComponent implements OnInit {
   cariSelectItemAd: any;
   cariChildFunc(item) {
     this.cariSelectItem = item;
-    this.cariSelectItemKod = item.kod;
     this.cariSelectItemAd = item.ad;
-
+    this.cariSelectItemKod = item.kod;
   }
 
 
   depoSelectItem: any;
   depoSelectItemKod: any;
+  depoSelectItemAd: any;
   depoChildFunc(item) {
     this.depoSelectItem = item;
     this.depoSelectItemKod = item.kod;
+    this.depoSelectItemAd = item.ad;
 
   }
 

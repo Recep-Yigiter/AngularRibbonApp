@@ -1,3 +1,5 @@
+
+
 <div style="position: fixed;margin-left: 4px;">
     <div id="window" class="window" style="height: 300px; width:calc(100vw - 10px); min-height:calc(100vh - 176px); ">
         <div id="draggable-header" class="top-bar">
@@ -20,10 +22,39 @@
                                     style="visibility: hidden; z-index: 1500; opacity: 0;"></div>
                                 <div class="dx-filemanager-notification-drawer-panel">
                                     <div class="dx-filemanager-wrapper">
+    
                                         <div class="dx-filemanager-toolbar dx-filemanager-general-toolbar">
-                                             <div style="max-width: 1400px;min-width: 1300px;">
-                                                <ng-content select=".grid_container_content"></ng-content>
-                                            </div> 
+                                            <div class="dx-toolbar dx-widget dx-visibility-change-handler dx-collection" *ngIf="topActions"
+                                                role="toolbar">
+                                                <div class="dx-toolbar-items-container">
+                                                    <div class="dx-toolbar-before">
+
+
+                                                        <div id="draggable-header" class="top-bar"
+                                                            style="border: none; background-color: transparent;margin-bottom: 0;">
+
+                                                            <div class="title"
+                                                                style="background: linear-gradient(to bottom, #ffffff 0%, #bbbbbb 100%); width: 100%; ">
+                                                                <ng-content select=".sidebar-add-layout-content"></ng-content>
+
+                                                            </div>
+
+                                                        </div>
+
+
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            
+
+                                            <div class="dx-filemanager-toolbar dx-filemanager-general-toolbar">
+                                                <div style="max-width: 1400px;min-width: 1300px;">
+                                                    <ng-content select=".grid_container_content"></ng-content>
+                                                </div>
+                                                <div class="dx-filemanager-view-switcher-popup"></div>
+                                            </div>
                                             <div class="dx-filemanager-view-switcher-popup"></div>
                                         </div>
                                         <div class="dx-filemanager-container ">
@@ -39,7 +70,8 @@
                                                             <div class="dx-menu dx-menu-base" tabindex="0"
                                                                 role="menubar">
                                                                 <div class="dx-menu-horizontal" *ngIf="tableActions">
-                                                                    <ng-content select=".table-action-layout-content"></ng-content>
+                                                                    <ng-content
+                                                                        select=".table-action-layout-content"></ng-content>
 
                                                                 </div>
                                                             </div>
@@ -75,3 +107,5 @@
     </div>
 
 </div>
+
+

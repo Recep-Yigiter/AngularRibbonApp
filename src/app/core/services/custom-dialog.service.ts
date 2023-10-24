@@ -2,6 +2,7 @@ import { DialogRef } from '@angular/cdk/dialog';
 import { ComponentType } from '@angular/cdk/portal';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ErrorDialogComponent } from 'src/app/shared/dialogs/error-dialog/error-dialog.component';
 
 
 @Injectable({
@@ -28,11 +29,10 @@ export class CustomDialogService {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            if (dialogRef.componentInstance._selectedDataItem == null) { return }
+            if (result == DialogParameters.data) {DialogParameters.afterClose()}
+            if (dialogRef.componentInstance._selectedDataItem == null ) { return}
             this.selectedData = dialogRef.componentInstance._selectedDataItem;
-
             successCallBack(this.selectedData);
-
         });
     }
 
@@ -49,7 +49,8 @@ export class CustomDialogService {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            if (dialogRef.componentInstance._selectedDataItem == null) { return }
+            if (result == DialogParameters.data) {DialogParameters.afterClose()}
+            if (dialogRef.componentInstance._selectedDataItem == null ) { return}
             this.selectedData = dialogRef.componentInstance._selectedDataItem;
             successCallBack(this.selectedData);
 
@@ -68,13 +69,14 @@ export class CustomDialogService {
             disableClose: true,
             autoFocus: false,
             restoreFocus: false,
-            data: DialogParameters.data
+            data: DialogParameters.data,
+
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            if (dialogRef.componentInstance._selectedDataItem == null) { return }
+            if (result == DialogParameters.data) {DialogParameters.afterClose()}
+            if (dialogRef.componentInstance._selectedDataItem == null ) { return}
             this.selectedData = dialogRef.componentInstance._selectedDataItem;
-
             successCallBack(this.selectedData);
 
         });
@@ -84,8 +86,24 @@ export class CustomDialogService {
     }
 
 
-   
- 
+    errorDialog(errorMessage){
+        const dialogRef = this.dialog.open(ErrorDialogComponent, {
+            width: '19%',
+            minWidth: '0px',
+            height: '19vh',
+            maxWidth: '19vw',
+            disableClose: true,
+            autoFocus: false,
+            restoreFocus: false,
+            data:errorMessage,
+
+        });
+
+
+    }
+
+
+
 }
 
 export class DialogParameters {

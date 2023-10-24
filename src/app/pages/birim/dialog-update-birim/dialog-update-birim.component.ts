@@ -39,7 +39,7 @@ export class DialogUpdateBirimComponent implements OnInit {
       this.frm.value.kod = this.frm.value.kod;
       this.frm.value.aciklama = this.frm.value.aciklama;
 
-console.log(this.frm.value)
+
     this.BirimService.update(this.frm.value, () => { this.frm.reset(); this.dialogRef.close() }, errorMessage => {
       console.log("Hata....", errorMessage)
       setTimeout(() => {

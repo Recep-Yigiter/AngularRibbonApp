@@ -84,18 +84,7 @@ export class DialogSelectStokComponent implements OnInit {
 
 
   }
-  openAddDialog() {
-    const dialogRef = this.dialog.open(DialogSelectStokComponent, {
-      width: '25%',
-      minWidth: '350px',
-      height: '38vh',
-      disableClose: true,
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      this.getAllStok();
 
-    });
-  }
 
 
   

@@ -66,7 +66,7 @@ export class DialogSelectBirimComponent implements OnInit {
     this.dataSource = allBirims.data.items;
     this.totalRecords = allBirims.data.count;
 
-
+console.log(this.dataSource)
   }
   onpage(e: any) {
     this.pageIndex = e.first / e.rows;

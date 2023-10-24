@@ -1,4 +1,5 @@
-<app-content-layout layoutName="Satış Faturası">
+
+<app-content-layout layoutName="Satış Faturası" [tableActions]="true">
 
     <div class="grid_container_content">
         <aside class="aside">
@@ -57,7 +58,7 @@
                 İRSALİYE
             </div>
             <form class="form" [formGroup]="irsaliyeFrm">
-                <common-input label="Tür" [formControlNames]="irsaliyeTur" [field]="'Satış'"
+                <common-input label="Tür" [formControlNames]="irsaliyeTur" [field]="'Satis'"
                     [readonly]="true"></common-input>
                 <div style="display: flex; align-items: center; justify-content: space-between; height: 25px;">
                     <irsaliye-seri label="Seri" [formControlNames]="irsaliyeSeri"></irsaliye-seri>
@@ -66,7 +67,7 @@
                 <div
                     style="display: flex; align-items: center; justify-content: space-between; height: 25px; margin-top: 5px;">
                     <common-input type="number" label="Fiyat" [formControlNames]="fiyat"></common-input>
-                    <irsaliye-select-input [formControlNames]="irsaliyeAdi" irsaliyeTuru="Aliş" ></irsaliye-select-input>
+                    <irsaliye-select-input [formControlNames]="irsaliyeAdi" irsaliyeTuru="Satış" ></irsaliye-select-input>
                 </div>
     
             </form>
@@ -148,94 +149,125 @@
     </div>
     <div class="table-display-none activeSelectCategori">
         <p-table #dt [value]="faturaHareketler" [tableStyle]="{'min-width': '50rem'}" selectionMode="single"
-            frozenWidth="1200px" [(selection)]="selectedItem" dataKey="id" responsiveLayout="scroll"
-            [resizableColumns]="false" [scrollable]="true" scrollHeight="calc(100vh - 345px)"
-            columnResizeMode="expand" selectionMode="single" (onRowSelect)="onRowSelect($event)"
-            (onRowUnselect)="onRowUnSelect()">
-            <ng-template pTemplate="header">
-                <tr>
-                    <th style="width:50px; color: #959595 !important;">S/H/D</th>
-                    <th style="width:150px;color: #959595 !important;">Kodu</th>
-                    <th style="width:300px;color: #959595 !important;">Adı</th>
-                    <th style="width:75px;color: #959595 !important;">Miktar</th>
-                    <th style="width:75px; min-width:50px;color: #959595 !important;">Birim</th>
-                    <th style="width:100px; min-width:50px;color: #959595 !important;">Birim Fiyat</th>
-                    <th style="width:auto; min-width:250px;color: #959595 !important;">Açıklama</th>
-                    <th style="width:75px; min-width:150px;color: #959595 !important;">Toplam Tutar</th>
-                </tr>
-                <tr>
-                    <th>
-                        <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-                            (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
-                    </th>
-                    <th>
-                        <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-                            (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
-                    </th>
-                    <th>
-                        <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-                            (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
-                    </th>
-                    <th>
-                        <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-                            (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
-                    </th>
-                    <th>
-                        <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-                            (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
-                    </th>
-                    <th>
-                        <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-                            (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
-                    </th>
-                    <th>
-                        <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-                            (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
-                    </th>
-                    <th>
-                        <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-                            (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
-                    </th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-product>
-                <tr [pSelectableRow]="product">
-                    <td>{{product.faturaHareketTuru}}</td>
-                    <td>{{product.kod}}</td>
-                    <td>{{product.ad}}</td>
-                    <td pEditableColumn>
+        frozenWidth="1200px" [(selection)]="selectedItem" dataKey="id" responsiveLayout="scroll"
+        [resizableColumns]="false" [scrollable]="true" scrollHeight="calc(100vh - 345px)"
+        columnResizeMode="expand" selectionMode="single" (onRowSelect)="onRowSelect($event)"
+        (onRowUnselect)="onRowUnSelect()">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width:50px; color: #959595 !important;">S/H/D</th>
+                <th style="width:150px;color: #959595 !important;">Kodu</th>
+                <th style="width:300px;color: #959595 !important;">Adı</th>
+                <th style="width:75px;color: #959595 !important;">Miktar</th>
+                <th style="width:75px; min-width:50px;color: #959595 !important;">Birim</th>
+                <th style="width:100px; min-width:100px;color: #959595 !important;">Birim Fiyat</th>
+                <th style="width:100px; min-width:100px;color: #959595 !important;">B.F.(Döviz)</th>
+                <th style="width:100px; min-width:100px;color: #959595 !important;">Döviz</th>
+                <th style="width:75px; min-width:100px;color: #959595 !important;">isk.(%)</th>
+                <th style="width:75px; min-width:100px;color: #959595 !important;">isk. Tutarı</th>
+                <th style="width:75px; min-width:100px;color: #959595 !important;">Vade</th>
+                <th style="width:75px; min-width:100px;color: #959595 !important;">Açıklama</th>
+                <th style="width:75px; min-width:100px;color: #959595 !important;">Top.Tutar</th>
+            </tr>
+            <tr>
+                <th>
+                    <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                        (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                </th>
+                <th>
+                    <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                        (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                </th>
+                <th>
+                    <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                        (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                </th>
+                <th>
+                    <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                        (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                </th>
+                <th>
+                    <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                        (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                </th>
+                <th>
+                    <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                        (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                </th>
+                <th>
+                    <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                        (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                </th>
+                <th>
+                    <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                        (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                </th>
+                <th>
+                    <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                        (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                </th>
+                <th>
+                    <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                        (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                </th>
+                <th>
+                    <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                        (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                </th>
+                <th>
+                    <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                        (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                </th>
+                <th>
+                    <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                        (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr [pSelectableRow]="product">
+                <td>{{product.faturaHareketTuru}}</td>
+                <td>{{product.stokKodu}}</td>
+                <td>{{product.stokAdi}}</td>
+                <td pEditableColumn>
 
-                        <p-cellEditor>
-                            <ng-template pTemplate="input">
-                                <input pInputText type="number" onfocus="this.select()" [(ngModel)]="product.giren"
-                                    required>
-                            </ng-template>
-                            <ng-template pTemplate="output">
-                                {{product.giren}}
-                            </ng-template>
-                        </p-cellEditor>
-                    </td>
-                    <td>{{product.birimAdi}}</td>
-                    <td pEditableColumn>
-                        <p-cellEditor>
-                            <ng-template pTemplate="input">
-                                <input pInputText type="number" onfocus="this.select()"
-                                    [(ngModel)]="product.birimFiyat" required>
-                            </ng-template>
-                            <ng-template pTemplate="output">
-                                {{product.birimFiyat |currency:'TRY':'₺':'0.2-2'}}
-                            </ng-template>
-                        </p-cellEditor>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="number" onfocus="this.select()" [(ngModel)]="product.cikan"
+                                required>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{product.cikan}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>{{product.birimAdi}}</td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="number" onfocus="this.select()"
+                                [(ngModel)]="product.birimFiyat" required>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{product.birimFiyat |currency:'TRY':'₺':'0.2-2'}}
+                        </ng-template>
+                    </p-cellEditor>
 
-                    </td>
-                    <td>{{product.aciklama}}</td>
-                    <td>{{product.miktar * product.birimFiyat |currency:'TRY':'₺':'0.2-2'}}</td>
-                </tr>
-            </ng-template>
+                </td>
+                <td>{{product.aciklama}}</td>
+                <td>{{product.miktar * product.birimFiyat |currency:'TRY':'₺':'0.2-2'}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                
+            </tr>
+        </ng-template>
 
 
 
-        </p-table>
+    </p-table>
 
 
 
