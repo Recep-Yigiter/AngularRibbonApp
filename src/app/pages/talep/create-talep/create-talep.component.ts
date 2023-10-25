@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TalepService } from '../services/talep.service';
-import { CreateTalepModel } from '../models/create-talep.model';
+import { CreateTalepHareketModel, CreateTalepModel } from '../models/create-talep.model';
 import { DialogSelectStokComponent } from '../../stok/dialog-select-stok/dialog-select-stok.component';
 import { CustomDialogService } from 'src/app/core/services/custom-dialog.service';
 
@@ -20,9 +20,10 @@ export class CreateTalepComponent implements OnInit {
   TalepSeri: any = "TLP";
   TalepNo: any;
   formReferans: any;
+  totalTalepHareket: any;
   constructor(private fb: FormBuilder,
     private FaturaService: TalepService,
-    private customDialogService: CustomDialogService
+    private CustomDialogService: CustomDialogService
 
     // private dialogRef: MatDialogRef<AlisFaturaComponent>
   ) { }
@@ -66,8 +67,6 @@ export class CreateTalepComponent implements OnInit {
   }
 
   saveTalep() {
-
-   
     const model = new CreateTalepModel();
     model.talepNo = this.formReferans;
     model.departman = "Kalite Kontrol"
@@ -78,19 +77,19 @@ export class CreateTalepComponent implements OnInit {
     this.FaturaService.create(model, () => {
       window.location.reload();
     }, errorMessage => {
-      this.customDialogService.errorDialog(errorMessage)
-     
+      this.CustomDialogService.errorDialog(errorMessage)
+
     })
 
 
 
   }
-  TalepHareketler: CreateTalepModel[] = [];
-  TalepHareket: CreateTalepModel;
+  TalepHareketler: CreateTalepHareketModel[] = [];
+  TalepHareket: CreateTalepHareketModel;
 
-  addStok() {
+  addTalepHareket() {
     this.TalepHareket = {}
-    this.customDialogService.normalDialog({
+    this.CustomDialogService.normalDialog({
       componentType: DialogSelectStokComponent,
       afterClose: () => { }
     },
@@ -102,12 +101,35 @@ export class CreateTalepComponent implements OnInit {
         data.cariKodu = this.cariSelectItemKod;
         data.cariAdi = this.cariSelectItem?.ad;
         this.TalepHareketler.push(data);
+        this.totalTalepHareket = this.TalepHareketler.length;
       }
 
     )
 
 
   }
+
+
+  deleteTalepHareket() {
+    this.CustomDialogService.deleteDialog(() => {
+      var filterTalepHareket = this.TalepHareketler.filter(c => c.stokId != this.alisFaturaItem.stokId);
+      this.TalepHareketler = filterTalepHareket;
+      if (this.TalepHareketler.length==0) {
+        this.onRowUnSelect();
+      }
+    })
+
+  }
+
+
+
+
+
+
+
+
+
+
 
 
   cariSelectItem: any;

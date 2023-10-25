@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { StokService } from '../services/stok.service';
 import { CustomDialogService } from 'src/app/core/services/custom-dialog.service';
+import { StokCreateModel } from '../models/stok-create-model';
 
 @Component({
   selector: 'app-dialog-add-stok',
@@ -51,20 +52,18 @@ export class DialogAddStokComponent implements OnInit {
 
 
   onSubmit() {
-
-      this.frm.value.ad = this.frm.value.ad,
-      this.frm.value.kod = this.frm.value.kod,
-      this.frm.value.stokGrup = null,
-      this.frm.value.birimFiyat = 0,
-      this.frm.value.aciklama = null,
-      this.frm.value.durum = false,
-      this.frm.value.birimId = "4fa85f64-5717-4562-b3fc-2c963f66afa6",
-      this.frm.value.parentId = null,
-      this.StokService.create(this.frm.value, () => {
+    const model=new StokCreateModel();
+    model.ad= this.frm.value.ad;
+    model.kod = this.frm.value.kod;
+    model.birimFiyat=0;
+    model.stokGrup= null;
+    model.aciklama= null;
+    model.durum= false;
+    model.birimId= "3fa85f64-5717-4562-b3fc-2c963f66afa6";
+    model.parentId= null;
+      this.StokService.create(model, () => {
         this.frm.reset();
-        this.dialogRef.close({data:this.frm.value});
-
-
+        this.dialogRef.close({data:model});
       }, errorMessage => {
         this.customDialogService.errorDialog(errorMessage)
       })

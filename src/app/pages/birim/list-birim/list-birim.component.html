@@ -3,28 +3,28 @@
         <div (click)="addDialog()" class="ribbon-section" style="height: 40px; margin-left: 10px;">
             <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
                 <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                    src=" ../../assets/icons/actions/clipboard_add.png">
+                    src=" ../../assets/icons/actions/add.png">
                 <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                    src=" ../../assets/icons/actions/clipboard_add.png">
+                    src=" ../../assets/icons/actions/add.png">
                 <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                    src=" ../../assets/icons/actions/clipboard_add.png">
+                    src=" ../../assets/icons/actions/add.png">
 
             </div>
         </div>
         <div (click)="deleteDialog()" class="ribbon-section" style="height: 40px;">
             <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
                 <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                    src=" ../../assets/icons/actions/clipboard_close.png">
+                    src=" ../../assets/icons/actions/delete.png">
                 <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                    src=" ../../assets/icons/actions/clipboard_close.png">
+                    src=" ../../assets/icons/actions/delete.png">
                 <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                    src=" ../../assets/icons/actions/clipboard_close.png">
+                    src=" ../../assets/icons/actions/delete.png">
 
             </div>
 
         </div>
 
-        <div (click)="updateDialog()"  class="ribbon-section" style="height: 40px;margin-bottom: 3px; margin-left: 10px;">
+        <div (click)="updateDialog()"  class="ribbon-section" style="height: 40px;margin-bottom: 3px; ">
             <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
                 <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
                     src=" ../../assets/icons/actions/edit.png">
@@ -51,7 +51,7 @@
             BİRİM LİSTESİ
 
             <div style="position: absolute; right: 0; font-size: 12px;">
-                Birim Sayısı: <span style="color: red;">{{10000000 | number:'1.0-2' }} </span>
+                Birim Sayısı: <span style="color: red;">{{totalBirim | number:'1.0-2' }} kayıt </span>
             </div>
         </div>
         <div class="table-display-none activeSelectCategori">

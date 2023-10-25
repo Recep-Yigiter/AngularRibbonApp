@@ -17,14 +17,9 @@ export class ErrorDialogComponent implements OnInit {
   ngOnInit() {
     this.deneme = [];
     this.data.error.Errors.forEach(element => {
-      console.log(element.ErrorMessage)
        this.deneme.push(element.ErrorMessage)
 
     })
-    // console.log("Hatalar", this.data.error.Errors.forEach(element => {
-    //   this.deneme.push(element.errorMessage)
-
-    // }))
   }
 
 }

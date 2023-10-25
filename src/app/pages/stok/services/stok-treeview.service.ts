@@ -26,7 +26,7 @@ export class StokTreeViewService  {
                 birimFiyat: value.birimFiyat,
                 birimId: value.birimId,
                 stokGrup:value.stokGrup,
-                parenId:value.parenId,
+                parentId:value.parentId,
                 submenu: (value.submenu !== undefined)
                     ? value.submenu.map(createTreeNode)
                     : undefined

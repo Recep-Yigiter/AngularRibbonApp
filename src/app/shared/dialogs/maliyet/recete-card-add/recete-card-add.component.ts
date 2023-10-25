@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ReceteService } from 'src/app/core/services/recete/recete.service';
+import { ReceteService } from 'src/app/pages/maliyet/recete/services/recete.service';
 
 @Component({
   selector: 'app-recete-card-add',

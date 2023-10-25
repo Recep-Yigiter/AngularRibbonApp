@@ -1,21 +1,43 @@
-<dialog-action>
-    <button (click)="onSubmit($event)" class="done_outline" autofocus="false" mat-button>
-        <mat-icon class="big-icon" style="font-size: 25px;">done_outline</mat-icon>
-    </button>
 
-    <button class="clear" autofocus="false" mat-dialog-close mat-button>
-        <mat-icon class="big-icon" style="font-size: 25px;">clear</mat-icon>
-    </button>
-</dialog-action>
+<app-small-dialog-content layoutName="Stok Card güncelle" [tableActions]="false" [formTopActions]="true"
+    [tableContent]="false">
 
-
+    <div class="close-dialog">
+        <button class="item" name="close" mat-dialog-close>
+            <i class="fa fa-close"></i>
+        </button>
+    </div>
 
 
+    <div class="grid_container_content">
+        <aside class="aside">
+            <div class="title-kart">
+                BİRİM GÜNCELLEME
+            </div>
+            <form class="form" [formGroup]="frm">
+                <common-input label="Kod" [formControlNames]="kod" [field]="data.kod"></common-input>
+                <common-input label="Ad" [formControlNames]="ad" [field]="data.ad"></common-input>
+                <common-input label="Açıklama" [formControlNames]="aciklama" [field]="data.aciklama"></common-input>
+            </form>
+        </aside>
 
-<form-content formTitle="Birim">
-    <form class="form" [formGroup]="frm">
-        <common-input label="Kod" [formControlNames]="kod" [field]="data.kod"></common-input>
-        <common-input label="Ad" [formControlNames]="ad" [field]="data.ad"></common-input>
-        <common-input label="Açıklama" [formControlNames]="aciklama" [field]="data.aciklama"></common-input>
-    </form>
-</form-content>
+
+
+    </div>
+    <div class="form_actions" (click)="onSubmit()">
+        <div style="width: 100%;display: flex;;
+        align-items: center;">
+          <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 27px;
+          /* display: flex; */
+          align-items: center;
+          gap: 5px;
+          /* margin: 5px; */
+          border: 1px solid #515050;
+          position: absolute;
+          right: 0;
+          top: 5px;">
+            Kaydet
+          </div>
+        </div> 
+      </div> 
+</app-small-dialog-content>

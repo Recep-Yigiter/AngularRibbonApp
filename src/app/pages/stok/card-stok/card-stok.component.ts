@@ -101,16 +101,17 @@ export class CardStokComponent implements OnInit {
 
   }
   updateDialog() {
-    if (this.selectedNode.submenu != undefined) {
+
+    if (this.selectedNode.submenu == undefined) {
       this.customDialogService.smallDialog({
-        componentType: DialogUpdateStokComponent,
+        componentType:DialogUpdateChildStokComponent,
         data: this.selectedNode,
         afterClose: () => { this.TreeViewList() }
       })
     }
     else {
       this.customDialogService.smallDialog({
-        componentType: DialogUpdateChildStokComponent,
+        componentType: DialogUpdateStokComponent ,
         data: this.selectedNode,
         afterClose: () => {  this.TreeViewList() }
       })
@@ -121,6 +122,7 @@ export class CardStokComponent implements OnInit {
   deleteDialog() {
     if (this.selectedNode.submenu == undefined || this.selectedNode.submenu == null) {
       this.customDialogService.deleteDialog(() => {
+
 
         this.StokService.delete(this.selectedNode.id, () => { this.TreeViewList() });
       })

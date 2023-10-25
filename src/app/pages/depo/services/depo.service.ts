@@ -36,7 +36,8 @@ export class DepoService {
     async delete(id: string, successCallBack?: () => void, errorCallback?: (errorMessage: string) => void) {
         const observable = await this.apiService.post({
             controller: "Depos",
-            action: "Delete"
+            action: "Delete",
+            queryString:"id="+`${id}`
         }, id)
         const promiseData = firstValueFrom(observable);
         promiseData.then(successCallBack).catch(errorCallback);

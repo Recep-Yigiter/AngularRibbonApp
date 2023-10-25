@@ -14,6 +14,7 @@ export class ListBirimComponent implements OnInit {
   totalRecords: number;
   BirimItem: any;
   selectedItem: any;
+  totalBirim:any;
   constructor(
     private BirimService: BirimService,
     private CustomerDialogService: CustomDialogService
@@ -31,7 +32,8 @@ export class ListBirimComponent implements OnInit {
 
     })
 
-    this.dataSource = getAll.data.items
+    this.dataSource = getAll.data.items;
+    this.totalBirim=this.dataSource.length;
 
 
   }
@@ -52,11 +54,16 @@ export class ListBirimComponent implements OnInit {
   updateDialog() {
     this.CustomerDialogService.smallDialog({
       componentType: DialogUpdateBirimComponent,
+      data:this.BirimItem,
       afterClose: () => { this.getAll() }
     })
   }
   deleteDialog() {
-    // this.birimDialogService.updateDialog(this.BirimItem,() => { this.getAll() })
+    this.CustomerDialogService.deleteDialog(()=>{
+      this.BirimService.delete(this.BirimItem.id,()=>{
+        this.getAll()
+      })
+    })
   }
 
 

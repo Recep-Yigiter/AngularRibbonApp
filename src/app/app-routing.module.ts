@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppLayoutComponent } from './app-layout/app-layout.component';
 import { StokComponent } from './pages/stok/stok.component';
 import { MaliyetComponent } from './pages/maliyet/maliyet.component';
-import { ReceteCardComponent } from './pages/maliyet/cards/recete-card/recete-card.component';
 import { CardStokComponent } from './pages/stok/card-stok/card-stok.component';
 import { CardDepoComponent } from './pages/depo/card-depo/card-depo.component';
 import { CardHizmetComponent } from './pages/hizmet/card-hizmet/card-hizmet.component';
@@ -11,7 +10,6 @@ import { ListStokComponent } from './pages/stok/list-stok/list-stok.component';
 import { ListDepoComponent } from './pages/depo/list-depo/list-depo.component';
 import { ListHizmetComponent } from './pages/hizmet/list-hizmet/list-hizmet.component';
 import { ListMasrafComponent } from './pages/masraf/list-masraf/list-masraf.component';
-import { BirimComponent } from './pages/birim/birim.component';
 import { CardMasrafComponent } from './pages/masraf/card-masraf/card-masraf.component';
 import { SatinalmaComponent } from './pages/satinalma/satinalma.component';
 import { FaturaComponent } from './pages/fatura/fatura.component';
@@ -22,6 +20,7 @@ import { ListTalepComponent } from './pages/talep/list-talep/list-talep.componen
 import { CreateTalepComponent } from './pages/talep/create-talep/create-talep.component';
 import { AlinanTeklifComponent } from './pages/teklif/create-teklif/alinan-teklif/alinan-teklif.component';
 import { ListBirimComponent } from './pages/birim/list-birim/list-birim.component';
+import { CardReceteComponent } from './pages/maliyet/recete/card-recete/card-recete.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'stok', pathMatch: 'full', },
@@ -43,7 +42,7 @@ const routes: Routes = [
       {
         path: "maliyet", component: MaliyetComponent, children: [
 
-          { path: "recete-kart", component: ReceteCardComponent },
+          { path: "recete-kart", component: CardReceteComponent },
         ]
       },
       {

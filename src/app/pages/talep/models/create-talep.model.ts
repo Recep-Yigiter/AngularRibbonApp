@@ -10,9 +10,8 @@ export class CreateTalepModel {
 export class CreateTalepHareketModel {
     stokKodu?: any;
     stokAdi?: any;
+    stokId?: any;
     talepMiktari?: any;
     talepBirimi?: any;
-    cariKodu?: any;
-    cariAdi?: any;
     aciklama?: any;
 }

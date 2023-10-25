@@ -36,7 +36,8 @@ export class FaturaService {
     async delete(id: string, successCallBack?: () => void, errorCallback?: (errorMessage: string) => void) {
         const observable = await this.apiService.post({
             controller: "Faturas",
-            action: "Delete"
+            action: "Delete",
+            queryString:"id="+`${id}`
         }, id)
         const promiseData = firstValueFrom(observable);
         promiseData.then(successCallBack).catch(errorCallback);

@@ -1,9 +1,6 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 
-import { ReceteCardDialogService } from 'src/app/shared/dialogs/maliyet/services/recete-card-dialog.service';
-import { MatRadioButton } from '@angular/material/radio';
-import { ReceteTreeViewService } from 'src/app/core/services/recete/recete-treeview.service';
-import { ReceteService } from 'src/app/core/services/recete/recete.service';
+
 
 declare var $: any;
 

@@ -5,11 +5,11 @@
         <div (click)="addDialog()" class="ribbon-section" style="height: 40px;margin-bottom: 3px;">
             <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
                 <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                    src=" ../../assets/icons/actions/folder_add.png">
+                    src=" ../../assets/icons/actions/add.png">
                 <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                    src=" ../../assets/icons/actions/folder_add.png">
+                    src=" ../../assets/icons/actions/add.png">
                 <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                    src=" ../../assets/icons/actions/folder_add.png">
+                    src=" ../../assets/icons/actions/add.png">
 
             </div>
 
@@ -31,11 +31,11 @@
             style="height: 40px; margin-bottom: 3px;">
             <div class="ribbon-button ribbon-button-large " id="add-table-btn" unselectable="on" style="height: 40px;">
                 <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                    src=" ../../assets/icons/actions/erase_registry.png">
+                    src=" ../../assets/icons/actions/delete.png">
                 <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                    src=" ../../assets/icons/actions/erase_registry.png">
+                    src=" ../../assets/icons/actions/delete.png">
                 <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                    src=" ../../assets/icons/actions/erase_registry.png">
+                    src=" ../../assets/icons/actions/delete.png">
 
             </div>
 
@@ -45,47 +45,55 @@
     </div>
 
     <div class="sidebar-layout-content">
-        <!-- <ng-template #nodeTemplate let-nodes="nodes" let-tree="tree">
-            <ng-container *ngFor="let node of nodes">
-                <div class="menu-node" [ngClass]=" { 'menu-node-tree' : tree }" style="position: relative;">
-                    <div (click)="toggleVisible(node)" class="menu-node-button "
-                        [ngClass]="{ 'menu-node-button-show': node.submenu && node.submenu?.length,'menu-node-button-plus': !expand[node.index],'menu-node-button-minus': expand[node.index] } "
-                        role="button">
-                    </div>
-                    <div class="menu-node-name" [ngClass]="{
-                 'menu-node-name-selected': (node === selectedNode),'menu-node-folder':(node.submenu?.length>0)}"
-                        (click)="selectNode(node)">
+        <p-table #dt [value]="dataSource" 
+        selectionMode="single" frozenWidth="1200px" [(selection)]="selectedItem" dataKey="id"
+        responsiveLayout="scroll" [resizableColumns]="false" [scrollable]="true"
+        scrollHeight="calc(100vh - 345px)" columnResizeMode="expand" selectionMode="single"
+        (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnSelect()">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 150px; color: #959595 !important;">Depo Kodu</th>
+                <th style="width:350px;color: #959595 !important;">Depo Adı</th>
+
+            </tr>
+            <tr>
+                <th>
+                    <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                      (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                </th>
+                <th>
+                    <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                      (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                </th>
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr [pSelectableRow]="product">
+                <td>{{product.kod}}</td>
+                <td>{{product.ad}}</td>
+
+            </tr>
+        </ng-template>
 
 
-                        <img *ngIf="node.submenu?.length>0" src=" ../../assets/icons/actions/received_files.png"
-                            class="title-icon" alt="">
 
-                        <img *ngIf="node.submenu==undefined" src=" ../../assets/icons/actions/list.png"
-                            class="title-icon" alt="">
-                        {{ node.ad }}
-                    </div>
-                    <ng-container *ngIf="node.submenu && node.submenu?.length && expand[node.index] ">
-                        <ng-template [ngTemplateOutlet]="nodeTemplate"
-                            [ngTemplateOutletContext]="{ nodes: node.submenu, tree: true }">
-                        </ng-template>
-                    </ng-container>
-                </div>
-            </ng-container>
-        </ng-template> 
+    </p-table>
 
-        <ng-template [ngTemplateOutlet]="nodeTemplate" [ngTemplateOutletContext]="{ nodes: menu, tree: false }">
-        </ng-template>-->
     </div>
 
 
     <div class="table-layout-content">
 
         <div class="content-detay">
-            STOK DETAY
+            DEPO DETAY
         </div>
 
 
+        <mat-tab-group animationDuration="0ms">
+            <mat-tab label="Hareketler"></mat-tab>
 
+          </mat-tab-group>
 
 
     </div>

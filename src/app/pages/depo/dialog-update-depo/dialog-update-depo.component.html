@@ -1,4 +1,4 @@
-<app-small-dialog-content layoutName="Stok Card ekleme" [tableActions]="false" [formTopActions]="true"
+<app-small-dialog-content layoutName="Depo Card ekleme" [tableActions]="false" [formTopActions]="true"
     [tableContent]="false">
 
     <div class="close-dialog">
@@ -11,15 +11,18 @@
     <div class="grid_container_content">
         <aside class="aside">
             <div class="title-kart">
-                STOK KART
+                DEPO KART
             </div>
-            <!-- formGELECEKk -->
+            <form class="form" [formGroup]="frm">
+                <common-input label="Ad" [formControlNames]="ad" [field]="data.ad"></common-input>
+                <common-input label="Kod" [formControlNames]="kod" [field]="data.kod"></common-input>
+            </form>
         </aside>
 
 
 
     </div>
-    <div class="form_actions">
+    <div (click)="onSubmit()" class="form_actions">
         <div style="width: 100%;display: flex;
     align-items: center;">
             <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"

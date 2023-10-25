@@ -26,10 +26,7 @@ import { ReceteCardUpdateComponent } from './shared/dialogs/maliyet/recete-card-
 import { StokSelectInput } from './shared/components/select-input/stok-select-input/stok-select-input';
 import { StokTuruDropDown } from './shared/components/dropdown/stok-turu-dropdown/stok-turu-dropdown';
 import { ReceteChildCardAddComponent } from './shared/dialogs/maliyet/recete-child-card-add/recete-child-card-add.component';
-import { ReceteCardComponent } from './pages/maliyet/cards/recete-card/recete-card.component';
-import { ProcessCardComponent } from './pages/maliyet/cards/process-card/process-card.component';
 import { BirimSelectInput } from './shared/components/select-input/birim-select-input/birim-select-input';
-import { IscilikComponent } from './pages/maliyet/iscilik/iscilik.component';
 import { SatinalmaTabComponent } from './app-layout/satinalma-tab/satinalma-tab.component';
 import { DialogAddStokComponent } from './pages/stok/dialog-add-stok/dialog-add-stok.component';
 import { DialogUpdateStokComponent } from './pages/stok/dialog-update-stok/dialog-update-stok.component';
@@ -111,6 +108,13 @@ import { DeleteDialogComponent } from './shared/dialogs/delete-dialog/delete-dia
 import { DialogUpdateChildStokComponent } from './pages/stok/dialog-update-child-stok/dialog-update-child-stok.component';
 import { CardLayoutComponent } from './shared/components/layouts/card-layout/card-layout.component';
 import { CardMasrafComponent } from './pages/masraf/card-masraf/card-masraf.component';
+import { ReceteComponent } from './pages/maliyet/recete/recete.component';
+import { CardReceteComponent } from './pages/maliyet/recete/card-recete/card-recete.component';
+
+import { DialogUpdateReceteComponent } from './pages/maliyet/recete/dialog-update-recete/dialog-update-recete.component';
+import { DialogUpdateChildReceteComponent } from './pages/maliyet/recete/dialog-update-child-recete/dialog-update-child-recete.component';
+import { DialogAddReceteComponent } from './pages/maliyet/recete/dialog-add-recete/dialog-add-recete.component';
+import { DialogAddChildReceteComponent } from './pages/maliyet/recete/dialog-add-child-recete/dialog-add-child-recete.component';
 
 @NgModule({
   declarations: [
@@ -134,9 +138,6 @@ import { CardMasrafComponent } from './pages/masraf/card-masraf/card-masraf.comp
     BirimSelectInput,
     StokTuruDropDown,
     ReceteChildCardAddComponent,
-    ReceteCardComponent,
-    ProcessCardComponent,
-    IscilikComponent,
     SatinalmaTabComponent,
     DialogAddStokComponent,
     DialogUpdateStokComponent,
@@ -217,7 +218,13 @@ import { CardMasrafComponent } from './pages/masraf/card-masraf/card-masraf.comp
     DeleteDialogComponent,
     DialogUpdateChildStokComponent,
     CardLayoutComponent,
-    CardMasrafComponent
+    CardMasrafComponent,
+    ReceteComponent,
+    CardReceteComponent,
+    DialogAddChildReceteComponent,
+    DialogAddReceteComponent,
+    DialogUpdateReceteComponent,
+    DialogUpdateChildReceteComponent
 
   ],
   imports: [

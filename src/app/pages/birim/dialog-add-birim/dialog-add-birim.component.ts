@@ -2,6 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { BirimService } from 'src/app/core/services/birim/birim.service';
+import { BirimCreateModel } from '../models/birim-create-model';
+import { CustomDialogService } from 'src/app/core/services/custom-dialog.service';
 
 @Component({
   selector: 'app-dialog-add-birim',
@@ -10,7 +12,12 @@ import { BirimService } from 'src/app/core/services/birim/birim.service';
 })
 export class DialogAddBirimComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<DialogAddBirimComponent>, private BirimService: BirimService) { }
+  constructor(private fb: FormBuilder, 
+    @Inject(MAT_DIALOG_DATA) public data: any,
+     private dialogRef: MatDialogRef<DialogAddBirimComponent>,
+      private BirimService: BirimService,
+      private customDialogService:CustomDialogService
+      ) { }
 
   ngOnInit(): void {
 
@@ -31,21 +38,18 @@ export class DialogAddBirimComponent implements OnInit {
 
 
   onSubmit() {
+    const model=new BirimCreateModel();
 
+    model.ad= this.frm.value.ad;
+    model.kod = this.frm.value.kod;
+    model.aciklama = this.frm.value.aciklama;
 
-      this.frm.value.ad = this.frm.value.ad;
-      this.frm.value.kod = this.frm.value.kod;
-      this.frm.value.aciklama = this.frm.value.aciklama;
-
-
-    this.BirimService.create(this.frm.value, () => { this.frm.reset(); this.dialogRef.close() }, errorMessage => {
-      console.log("Hata....", errorMessage)
-      setTimeout(() => {
-        console.log("Hata....", errorMessage)
-      }, 1000)
+    this.BirimService.create(model, () => {
+      this.frm.reset();
+      this.dialogRef.close({ data: model });
+    }, errorMessage => {
+      this.customDialogService.errorDialog(errorMessage)
     })
-
-
   }
 
 

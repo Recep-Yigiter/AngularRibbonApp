@@ -1,4 +1,3 @@
-
 <app-content-layout layoutName="Satınalma Talebi" [tableActions]="true">
 
     <div class="grid_container_content">
@@ -18,34 +17,38 @@
             </form>
         </aside>
 
-   
+
         <section class="kart-1">
             <div class="title-kart">
                 DETAY
             </div>
             <form class="form" [formGroup]="frm">
-            
+
                 <div
                     style="display: flex; align-items: center; justify-content: space-between; height: 25px;margin: 5px 0;">
                     <common-input label="Düzenleyen" [readonly]="true" [formControlNames]="duzenleyen"
                         [field]="'Kullanıcı Adı Girilecek'"></common-input>
-                   
+
                 </div>
-                <div  style="display: flex; align-items: center; justify-content: space-between; height: 25px;margin: 5px 0;">
+                <div
+                    style="display: flex; align-items: center; justify-content: space-between; height: 25px;margin: 5px 0;">
                     <common-input label="T. Nedeni" [formControlNames]="talepNedeni"></common-input>
-         
+
                 </div>
-                <div  style="display: flex; align-items: center; justify-content: space-between; height: 25px;margin: 5px 0;">
+                <div
+                    style="display: flex; align-items: center; justify-content: space-between; height: 25px;margin: 5px 0;">
                     <common-input label="Aciklama" [formControlNames]="aciklama"></common-input>
                 </div>
-                <div  style="display: flex; align-items: center; justify-content: space-between; height: 25px;margin: 5px 0;">
-                    <talep-durum label="Durum" [formControlNames]="durum" [disableInput]="true" [field]="defaultDurum.name"></talep-durum>
-                 </div>
-    
+                <div
+                    style="display: flex; align-items: center; justify-content: space-between; height: 25px;margin: 5px 0;">
+                    <talep-durum label="Durum" [formControlNames]="durum" [disableInput]="true"
+                        [field]="defaultDurum.name"></talep-durum>
+                </div>
+
             </form>
 
         </section>
-     
+
     </div>
 
 
@@ -55,38 +58,39 @@
 
 
     <div class="table-action-layout-content">
-        <div (click)="addStok()" class="ribbon-section" style="height: 40px; margin-left: 10px;">
+        <div (click)="addTalepHareket()" class="ribbon-section" style="height: 40px; margin-left: 10px;">
             <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
                 <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                    src=" ../../assets/icons/actions/clipboard_add.png">
+                    src=" ../../assets/icons/actions/add.png">
                 <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                    src=" ../../assets/icons/actions/clipboard_add.png">
+                    src=" ../../assets/icons/actions/add.png">
                 <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                    src=" ../../assets/icons/actions/clipboard_add.png">
+                    src=" ../../assets/icons/actions/add.png">
 
             </div>
         </div>
-        <div class="ribbon-section" style="height: 40px;">
-            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+        <div (click)="deleteTalepHareket()" class="ribbon-section" style="height: 40px;">
+            <div ngClass="{{alisFaturaItem?'':'disabled' && TalepHareketler.length!=0?'':'disabled' }}"
+                class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
                 <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                    src=" ../../assets/icons/actions/clipboard_close.png">
+                    src=" ../../assets/icons/actions/delete.png">
                 <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                    src=" ../../assets/icons/actions/clipboard_close.png">
+                    src=" ../../assets/icons/actions/delete.png">
                 <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                    src=" ../../assets/icons/actions/clipboard_close.png">
+                    src=" ../../assets/icons/actions/delete.png">
 
             </div>
 
         </div>
         <div (click)="saveTalep()" class="ribbon-section" style="height: 40px;">
-            <div  class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
-                style="height: 40px;">
+            <div ngClass="{{TalepHareketler.length!=0?'':'disabled' }}" class="ribbon-button ribbon-button-large"
+                id="add-table-btn" unselectable="on" style="height: 40px;">
                 <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                    src=" ../../assets/icons/disabled/save-page.png">
+                    src=" ../../assets/icons/disabled/save.png">
                 <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                    src=" ../../assets/icons/disabled/save-page.png">
+                    src=" ../../assets/icons/disabled/save.png">
                 <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                    src=" ../../assets/icons/disabled/save-page.png">
+                    src=" ../../assets/icons/disabled/save.png">
 
             </div>
 
@@ -103,10 +107,11 @@
     <div class="table-layout-content">
 
         <div class="content-detay" style="position: relative;">
-           SATINALMA TALEP FORMU
+            SATINALMA TALEP FORMU
 
             <div style="position: absolute; right: 0; font-size: 12px;">
-                Aliş Talepsı : <span style="color: red;">{{10000000 | number:'1.0-2' }} </span>
+                Aliş Talep : <span style="color: red;">{{totalTalepHareket?totalTalepHareket:0 | number:'1.0-2' }}
+                    kayıt</span>
             </div>
         </div>
         <div class="table-display-none activeSelectCategori">
@@ -153,10 +158,11 @@
                         <td>{{product.kod}}</td>
                         <td>{{product.ad}}</td>
                         <td pEditableColumn>
-                    
+
                             <p-cellEditor>
                                 <ng-template pTemplate="input">
-                                    <input pInputText type="number" onfocus="this.select()" [(ngModel)]="product.talepMiktari" required>
+                                    <input pInputText type="number" onfocus="this.select()"
+                                        [(ngModel)]="product.talepMiktari" required>
                                 </ng-template>
                                 <ng-template pTemplate="output">
                                     {{product.talepMiktari}}
@@ -167,7 +173,8 @@
                         <td pEditableColumn>
                             <p-cellEditor>
                                 <ng-template pTemplate="input">
-                                    <input pInputText type="number" onfocus="this.select()" [(ngModel)]="product.birimFiyat" required>
+                                    <input pInputText type="number" onfocus="this.select()"
+                                        [(ngModel)]="product.birimFiyat" required>
                                 </ng-template>
                                 <ng-template pTemplate="output">
                                     {{product.birimFiyat |currency:'TRY':'₺':'0.2-2'}}
@@ -175,7 +182,7 @@
                             </p-cellEditor>
 
                         </td>
-                       
+
                     </tr>
                 </ng-template>
 

@@ -1,7 +1,9 @@
-import { Component, OnInit,Inject } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { BirimService } from 'src/app/core/services/birim/birim.service';
+import { BirimUpdateModel } from '../models/birim-update-model';
+import { CustomDialogService } from 'src/app/core/services/custom-dialog.service';
 
 @Component({
   selector: 'app-dialog-update-birim',
@@ -10,14 +12,17 @@ import { BirimService } from 'src/app/core/services/birim/birim.service';
 })
 export class DialogUpdateBirimComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<DialogUpdateBirimComponent>, private BirimService: BirimService) { }
+  constructor(private fb: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialogRef: MatDialogRef<DialogUpdateBirimComponent>,
+    private BirimService: BirimService,
+    private CustomDialogService: CustomDialogService) { }
 
   ngOnInit(): void {
 
   }
   public frm: FormGroup = this.fb.group({
 
-    id: [null],
     ad: [null],
     kod: [null],
     aciklama: [null],
@@ -31,23 +36,20 @@ export class DialogUpdateBirimComponent implements OnInit {
 
 
 
-  onSubmit(event: any) {
+  onSubmit() {
+    const model = new BirimUpdateModel();
 
-      
-      this.frm.value.id = this.data.id;
-      this.frm.value.ad = this.frm.value.ad;
-      this.frm.value.kod = this.frm.value.kod;
-      this.frm.value.aciklama = this.frm.value.aciklama;
+    model.id = this.data.id;
+    model.ad = this.frm.value.ad;
+    model.kod = this.frm.value.kod;
+    model.aciklama = this.frm.value.aciklama;
 
-
-    this.BirimService.update(this.frm.value, () => { this.frm.reset(); this.dialogRef.close() }, errorMessage => {
-      console.log("Hata....", errorMessage)
-      setTimeout(() => {
-        console.log("Hata....", errorMessage)
-      }, 1000)
+    this.BirimService.update(model, () => {
+      this.frm.reset();
+      this.dialogRef.close({ data: model });
+    }, errorMessage => {
+      this.CustomDialogService.errorDialog(errorMessage)
     })
-
-
   }
 
 
