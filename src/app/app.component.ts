@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
+import {environment} from '../environments/environment'
 
 @Component({
   selector: 'app-root',
@@ -11,8 +12,9 @@ export class AppComponent {
   /**
    *
    */
+  envInfo = environment;
   constructor(private primengConfig: PrimeNGConfig ) {
-    
+ 
     this.primengConfig.ripple = true;
     document.documentElement.style.fontSize = '13px';
   }

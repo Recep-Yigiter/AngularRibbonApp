@@ -11,6 +11,7 @@ export class AppLayoutComponent implements OnInit {
   constructor(public confirmDialogService:ConfirmDialogService) { }
 
   ngOnInit(): void {
+  
   }
 
   name = 'Angular';

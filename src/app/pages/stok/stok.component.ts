@@ -10,6 +10,7 @@ export class StokComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }

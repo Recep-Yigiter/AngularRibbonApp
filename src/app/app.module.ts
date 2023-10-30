@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HashLocationStrategy,LocationStrategy } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PrimeNgModule } from 'src/primeng.module';
@@ -238,7 +238,8 @@ import { DialogAddChildReceteComponent } from './pages/maliyet/recete/dialog-add
     MaterialModule,
 
   ],
-  providers: [{ provide: "baseUrl", useValue: "https://localhost:7146/api", multi: true },],
+  // providers: [{ provide: "baseUrl", useValue: "http://192.168.4.31:8080/api", multi: true },{provide:LocationStrategy, useClass:HashLocationStrategy,}],   build yaparken açılacak
+   providers: [{ provide: "baseUrl", useValue: "https://localhost:7146/api", multi: true },{provide:LocationStrategy, useClass:HashLocationStrategy,}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

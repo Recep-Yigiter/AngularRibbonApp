@@ -151,6 +151,7 @@ body
 	background-image:-ms-linear-gradient(left, #4488e5 15%, #ffffff 100%);
 	background-image:linear-gradient(left, #4488e5 15%, #ffffff 100%);
 	background-image:-o-linear-gradient(left, #4488e5 15%, #ffffff 100%);
+	background-image:-webkit-gradient(linear, left bottom, right bottom, color-stop(15%,#4488e5), color-stop(100%,#ffffff));
 	
 	
 	overflow: hidden;
@@ -325,7 +326,7 @@ body
   .ribbon-button.disabled .ribbon-icon.ribbon-disabled
 {
 	display: block;
-	opacity: 0.8;
+	opacity: 0.6;
 
 }
   .ribbon-button.disabled .ribbon-icon.ribbon-implicit-disabled

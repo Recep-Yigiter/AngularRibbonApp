@@ -40,6 +40,7 @@ export class CardStokComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     this.TreeViewList();
   }
   async TreeViewList() {

@@ -22,7 +22,7 @@ export class SatisFaturaComponent implements OnInit {
   formReferans: any;
   constructor(private fb: FormBuilder,
     private FaturaService: FaturaService,
-    private customDialogService: CustomDialogService
+    private CustomDialogService: CustomDialogService
     // private dialogRef: MatDialogRef<AlisFaturaComponent>
   ) { }
 
@@ -121,7 +121,7 @@ export class SatisFaturaComponent implements OnInit {
       this.FaturaService.create(model, () => {
         window.location.reload();
       }, errorMessage => {
-        this.customDialogService.errorDialog(errorMessage)
+        this.CustomDialogService.errorDialog(errorMessage)
         console.log("Hata....", errorMessage)
         setTimeout(() => {
           console.log("Hata....", errorMessage)
@@ -137,7 +137,7 @@ export class SatisFaturaComponent implements OnInit {
 
   addStok() {
     this.faturaHareket = {}
-    this.customDialogService.normalDialog({
+    this.CustomDialogService.normalDialog({
       componentType: DialogSelectStokComponent,
       afterClose: () => { }
     },
@@ -158,6 +158,18 @@ export class SatisFaturaComponent implements OnInit {
   }
 
 
+  deleteFaturaHareket() {
+    this.CustomDialogService.deleteDialog(() => {
+      var filterTalepHareket = this.faturaHareketler.filter(c => c.stokId != this.alisFaturaItem.stokId);
+      this.faturaHareketler = filterTalepHareket;
+      if (this.faturaHareketler.length==0) {
+        this.onRowUnSelect();
+      }
+    })
+
+  }
+
+  
   cariSelectItem: any;
   cariSelectItemKod: any;
   cariSelectItemAd: any;

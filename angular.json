@@ -44,13 +44,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "1mb",
-                  "maximumError": "8mb"
+                  "maximumWarning": "21mb",
+                  "maximumError": "28mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4mb",
-                  "maximumError": "8mb"
+                  "maximumWarning": "24mb",
+                  "maximumError": "28mb"
                 }
               ],
               "fileReplacements": [
@@ -60,6 +60,22 @@
                 }
               ],
               "outputHashing": "all"
+            },
+            "test": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.test.ts"
+                }
+              ]
+            },
+            "dev": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ]
             },
             "development": {
               "buildOptimizer": false,
@@ -76,7 +92,16 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "YukselisERP:build:production"
+              "browserTarget": "ng-custom-environment:build:production",
+              "port": 4202
+            },
+            "test":{
+              "browserTarget": "ng-custom-environment:build:test",
+              "port": 4203
+            },
+            "dev":{
+              "browserTarget": "ng-custom-environment:build:dev",
+              "port": 4204
             },
             "development": {
               "browserTarget": "YukselisERP:build:development"

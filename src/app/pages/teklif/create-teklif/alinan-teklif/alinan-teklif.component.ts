@@ -1,5 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CustomDialogService } from 'src/app/core/services/custom-dialog.service';
+import { DialogSelectStokComponent } from 'src/app/pages/stok/dialog-select-stok/dialog-select-stok.component';
+import { StokService } from 'src/app/pages/stok/services/stok.service';
+import { TeklifHareketCreateModel } from '../../models/teklif-create-model';
 
 @Component({
   selector: 'app-alinan-teklif',
@@ -16,7 +20,10 @@ export class AlinanTeklifComponent implements OnInit {
   TeklifSeri: any = "TLP";
   TeklifNo: any;
   formReferans: any;
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private CustomDialogService:CustomDialogService
+    ) { }
   data="";
   ngOnInit(): void {
     this.date = new Date;
@@ -68,6 +75,52 @@ export class AlinanTeklifComponent implements OnInit {
   onRowUnSelect() {
     this.alisFaturaItem = null
   }
+
+
+
+  teklifHareketler: TeklifHareketCreateModel[] = [];
+  teklifHareket: any;
+
+  addStok() {
+    this.teklifHareket = {}
+    this.CustomDialogService.normalDialog({
+      componentType: DialogSelectStokComponent,
+      afterClose: () => { }
+    },
+      (data) => {
+        this.teklifHareket.faturaHareketTuru = 1;
+        this.teklifHareket.miktar = data.miktar = 0;
+        this.teklifHareket.birimFiyat = data.birimFiyat = 0;
+        this.teklifHareket.depoId = this.depoSelectItem?.id ? this.depoSelectItem?.id : "3fa85f64-5717-4562-b3fc-2c963f66afa6";
+        this.teklifHareket.stokId = data.id;
+        this.teklifHareket.stokAdi = data.ad
+        this.teklifHareket.stokKodu = data.kod
+        this.teklifHareket.birimAdi = data.birimAdi
+        this.teklifHareketler.push(this.teklifHareket);
+      }
+
+    )
+  }
+
+  deleteTeklifHareket() {
+    this.CustomDialogService.deleteDialog(() => {
+      var filterTalepHareket = this.teklifHareketler.filter(c => c.stokId != this.alisFaturaItem.stokId);
+      this.teklifHareketler = filterTalepHareket;
+      if (this.teklifHareketler.length==0) {
+        this.onRowUnSelect();
+      }
+    })
+
+  }
+
+
+
+
+
+
+
+
+
   cariSelectItem: any;
   cariSelectItemKod: any;
   cariChildFunc(item) {

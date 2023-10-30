@@ -1,4 +1,4 @@
-.popup {
+#popup {
 	font-size: 12px;
 	background-color: #BDBDBD;
 	border-bottom: 1px solid #1F1F1F;
@@ -7,38 +7,38 @@
 	border-left: 1px solid #EEEEEE;
 	position: absolute;
 	padding: 3px;
-	display: flex;
+	display: grid;
 	flex-direction: column;
-
+	min-width: 364px;
+    height: 177px;
 }
 
 
-.popup .top-bar {
-	background-image: linear-gradient(to right, #2f3988 0%, #3384c8 100%);
+#popup .top-bar {
+	background: linear-gradient(to right, #2f3988 0%, #3384c8 100%);
 	padding: 2px;
 	background-color: #BDBDBD;
-	cursor: move;
 	color: white;
 	margin-bottom: 3px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	flex-shrink: 0;
+	height: 24px;
 }
 
 
- .popup .toolbar {
+#popup .toolbar {
 	display: flex;
 	flex-direction: row;
-
+	cursor: pointer;
 
 }
 
 
-.popup .toolbar .item {
+#popup .toolbar .item {
 	padding: 0 3px;
 	flex-grow: 1;
-	cursor: default;
 	display: flex;
 	border-bottom: 1px solid #1F1F1F;
 	border-right: 1px solid #1F1F1F;
@@ -52,14 +52,14 @@
 }
 
 
-.popup .toolbar .footer {
+#popup .toolbar .footer {
 	padding-top: 3px;
 
 
 }
 
 
-.popup .toolbar .footer .content {
+#popup .toolbar .footer .content {
 	background-color: #BDBDBD;
 	border-bottom: 1px solid #1F1F1F;
 	border-right: 1px solid #1F1F1F;
@@ -70,34 +70,27 @@
 }
 
 
-.popup {
-	top: 50%;
-	left: 43%;
-	min-width: 200px;
 
-
-
-}
-
-.popup .toolbar .item {
+#popup .toolbar .item {
 	color: #8B8B8B;
 }
 
-.popup .content {
+#popup .content {
 	padding: 5px 10px;
+	height: 100px;
 }
 
-.popup .button-group {
+#popup .button-group {
 	width: 100%;
 	display: flex;
 	padding: 5px 10px 10px 10px;
 }
 
-.popup .button-group.center {
+#popup .button-group.center {
 	justify-content: center;
 }
 
-.popup .button-group button {
+#popup .button-group button {
 	background: #BDBDBD;
 	border-bottom: 1px solid #1F1F1F;
 	border-right: 1px solid #1F1F1F;
@@ -110,15 +103,13 @@
 
 }
 
-.popup .button-group button:active {
+#popup .button-group button:active {
 	border-bottom: 1px solid #EEEEEE;
 	border-right: 1px solid #EEEEEE;
 	border-top: 1px solid #1F1F1F;
 	border-left: 1px solid #1F1F1F;
 }
 
-.popup .button-group button:last-child {
+#popup .button-group button:last-child {
 	margin-right: 0;
 }
-
-

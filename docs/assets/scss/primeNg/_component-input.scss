@@ -1,7 +1,11 @@
 :host ::ng-deep{
 
     .select-container{
-      display: grid; grid-template-columns: 100px auto; margin: 5px 0px;
+    //   display: grid; grid-template-columns: minmax(70px,auto)  auto;
+      display: grid; grid-template-columns: 80px  auto;
+       margin: 5px 5px;
+    //    height: 100%;
+       line-height: 100%;
 
       .p-inputtext {
         padding: 0.25rem 0.75rem !important;
@@ -18,10 +22,11 @@
         padding: 0.25rem 0.5625rem !important;
         border-width: 0 0 1px 0;
         border-radius: 0 !important;
+        background-color: #eaedf1;
     }
     
     .p-inputtext{
-        height: 26px !important;
+        height: 25px !important;
     }
     
     .p-inputtext:enabled:focus {

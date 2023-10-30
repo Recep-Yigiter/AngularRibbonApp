@@ -25,9 +25,8 @@ export class AlisFaturaComponent implements OnInit {
   formReferans: any;
   constructor(private fb: FormBuilder,
     private FaturaService: FaturaService,
-    private customDialogService: CustomDialogService,
-    private confirmationService: ConfirmationService,
-    private confirDialogService: ConfirmDialogService
+    private CustomDialogService: CustomDialogService,
+
     // private dialogRef: MatDialogRef<AlisFaturaComponent>
   ) { }
 
@@ -104,7 +103,6 @@ export class AlisFaturaComponent implements OnInit {
 
   saveFatura() {
     const model = new CreateFaturaModel();
-    // this.frm.value.cariId = this.cariSelectItem?.id;
     model.belgeNo = this.frm.value.belgeNo;
     model.faturaTuru = 1;
     model.seri = this.frm.value.seri;
@@ -123,7 +121,7 @@ export class AlisFaturaComponent implements OnInit {
       this.FaturaService.create(model, () => {
         window.location.reload();
       }, errorMessage => {
-        this.customDialogService.errorDialog(errorMessage)
+        this.CustomDialogService.errorDialog(errorMessage)
         console.log("Hata....", errorMessage)
         setTimeout(() => {
           console.log("Hata....", errorMessage)
@@ -132,19 +130,13 @@ export class AlisFaturaComponent implements OnInit {
 
     }
 
-
-
-
-
-
-
   }
   faturaHareketler: CreateFaturaHareketModel[] = [];
   faturaHareket: any;
 
   addStok() {
     this.faturaHareket = {}
-    this.customDialogService.normalDialog({
+    this.CustomDialogService.normalDialog({
       componentType: DialogSelectStokComponent,
       afterClose: () => { }
     },
@@ -163,6 +155,24 @@ export class AlisFaturaComponent implements OnInit {
 
     )
   }
+
+  deleteFaturaHareket() {
+    this.CustomDialogService.deleteDialog(() => {
+      var filterTalepHareket = this.faturaHareketler.filter(c => c.stokId != this.alisFaturaItem.stokId);
+      this.faturaHareketler = filterTalepHareket;
+      if (this.faturaHareketler.length==0) {
+        this.onRowUnSelect();
+      }
+    })
+
+  }
+
+
+
+
+
+
+
 
 
   cariSelectItem: any;
@@ -208,19 +218,6 @@ export class AlisFaturaComponent implements OnInit {
 
 
 
-  confirm1() {
-    this.confirmationService.confirm({
-      message: 'Are you sure that you want to proceed?',
-      header: 'Confirmation',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        console.log("sdgh")
-      },
-      reject: (type) => {
-
-      }
-    });
-  }
 
 
 

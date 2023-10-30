@@ -100,8 +100,8 @@
                  src=" ../../assets/icons/actions/add.png">
             </div>
         </div>
-        <div class="ribbon-section" style="height: 40px;">
-            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+        <div (click)="deleteFaturaHareket()" class="ribbon-section" style="height: 40px;">
+            <div ngClass="{{alisFaturaItem?'':'disabled' && faturaHareketler.length!=0?'':'disabled' }}" class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
                 <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
                     src=" ../../assets/icons/actions/delete.png">
                 <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
@@ -111,7 +111,7 @@
             </div>
         </div>
         <div class="ribbon-section" style="height: 40px;">
-            <div (click)="saveFatura()" class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
+            <div ngClass="{{faturaHareketler.length!=0?'':'disabled' }}" (click)="saveFatura()" class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
                 style="height: 40px;">
                 <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
                     src=" ../../assets/icons/disabled/save.png">
@@ -135,7 +135,7 @@
         </div>
         <div class="table-display-none activeSelectCategori">
             <p-table #dt [value]="faturaHareketler" [tableStyle]="{'min-width': '50rem'}" selectionMode="single"
-                frozenWidth="1200px" [(selection)]="selectedItem" dataKey="id" responsiveLayout="scroll"
+                frozenWidth="1200px" [(selection)]="selectedItem" dataKey="stokAdi" responsiveLayout="scroll"
                 [resizableColumns]="false" [scrollable]="true" scrollHeight="calc(100vh - 345px)"
                 columnResizeMode="expand" selectionMode="single" (onRowSelect)="onRowSelect($event)"
                 (onRowUnselect)="onRowUnSelect()">

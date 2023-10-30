@@ -69,7 +69,7 @@
 
     <div class="table-action-layout-content">
         <div  class="ribbon-section" style="height: 40px; margin-left: 10px;">
-            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+            <div (click)="addStok()" class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
                 <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
                     src=" ../../assets/icons/actions/add.png">
                 <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
@@ -80,7 +80,7 @@
             </div>
 
         </div>
-        <div class="ribbon-section" style="height: 40px;">
+        <div (click)="deleteTeklifHareket()" class="ribbon-section" style="height: 40px;">
             <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
                 <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
                     src=" ../../assets/icons/actions/delete.png">
@@ -123,7 +123,7 @@
             </div>
         </div>
         <div class="table-display-none activeSelectCategori">
-            <p-table #dt [value]="TeklifHareketler" [tableStyle]="{'min-width': '50rem'}" selectionMode="single"
+            <p-table #dt [value]="teklifHareketler" [tableStyle]="{'min-width': '50rem'}" selectionMode="single"
                 frozenWidth="1200px" [(selection)]="selectedItem" dataKey="id" responsiveLayout="scroll"
                 [resizableColumns]="false" [scrollable]="true" scrollHeight="calc(100vh - 345px)"
                 columnResizeMode="expand" selectionMode="single" (onRowSelect)="onRowSelect($event)"
@@ -132,11 +132,11 @@
                     <tr>
                         <th style="width:75px;color: #959595 !important;">Kodu</th>
                         <th style="width:300px;color: #959595 !important;">Adı</th>
-                        <th style="width:75px;color: #959595 !important;">T. Miktarı</th>
-                        <th style="width:75px;color: #959595 !important;">Tal. Br.</th>
-                        <th style="width:75px;color: #959595 !important;">Onay Mik.</th>
-                        <th style="width:75px;color: #959595 !important;">Cari Kodu</th>
-                        <th style="width:100px;color: #959595 !important;">Cari Adı</th>
+                        <th style="width:75px;color: #959595 !important;">Miktar</th>
+                        <th style="width:75px;color: #959595 !important;">Birim</th>
+                        <th style="width:75px;color: #959595 !important;">Br. Fiyat</th>
+                        <th style="width:75px;color: #959595 !important;">Aciklama</th>
+                        
                     </tr>
                     <tr>
 
@@ -164,29 +164,26 @@
                             <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
                                 (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
                         </th>
-                        <th>
-                            <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-                                (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
-                        </th>
+                       
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-product>
                     <tr [pSelectableRow]="product">
-                        <td>{{product.kod}}</td>
-                        <td>{{product.ad}}</td>
+                        <td>{{product.stokAdi}}</td>
+                        <td>{{product.stokKodu}}</td>
                         <td pEditableColumn>
                             <!-- {{product.miktar |currency:'TRY':'₺':'0.2-2'}} -->
 
                             <p-cellEditor>
                                 <ng-template pTemplate="input">
-                                    <input pInputText type="number" onfocus="this.select()" [(ngModel)]="product.TeklifMiktari" required>
+                                    <input pInputText type="number" onfocus="this.select()" [(ngModel)]="product.miktar" required>
                                 </ng-template>
                                 <ng-template pTemplate="output">
-                                    {{product.TeklifMiktari}}
+                                    {{product.miktar}}
                                 </ng-template>
                             </p-cellEditor>
                         </td>
-                        <td>{{product.TeklifBirimi}}</td>
+                        <td>{{product.birimAdi}}</td>
                         <td pEditableColumn>
                             <p-cellEditor>
                                 <ng-template pTemplate="input">
@@ -198,8 +195,8 @@
                             </p-cellEditor>
 
                         </td>
-                        <td>{{product.cariKodu}}</td>
-                        <td>{{product.cariAdi}}</td>
+                        <td>{{product.aciklama}}</td>
+                       
                     </tr>
                 </ng-template>
 
