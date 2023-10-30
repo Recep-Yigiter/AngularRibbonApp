@@ -16,8 +16,9 @@ export class ErrorDialogComponent implements OnInit {
   deneme: any;
   ngOnInit() {
     this.deneme = [];
+    console.log(this.data)
     this.data.error.Errors.forEach(element => {
-       this.deneme.push(element.ErrorMessage)
+      this.deneme.push(element.ErrorMessage)
 
     })
   }

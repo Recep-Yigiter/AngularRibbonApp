@@ -16,10 +16,10 @@ import { TableContent } from './shared/components/table-content/table-content';
 import { FormContent } from './shared/components/form-content/form-content';
 import { DialogAction } from './shared/components/dialog-action/dialog-action';
 import { AppLayoutComponent } from './app-layout/app-layout.component';
-import { StokTabComponent } from './app-layout/stok-tab/stok-tab.component';
+import { StokTabComponent } from './app-layout/components/stok-tab/stok-tab.component';
 import { TabsComponent } from './app-layout/tabs/tabs.component';
 import { TabComponent } from './app-layout/tab/tab.component';
-import { MaliyetTabComponent } from './app-layout/maliyet-tab/maliyet-tab.component';
+import { MaliyetTabComponent } from './app-layout/components/maliyet-tab/maliyet-tab.component';
 import { MaliyetComponent } from './pages/maliyet/maliyet.component';
 import { ReceteCardAddComponent } from './shared/dialogs/maliyet/recete-card-add/recete-card-add.component';
 import { ReceteCardUpdateComponent } from './shared/dialogs/maliyet/recete-card-update/recete-card-update.component';
@@ -27,7 +27,7 @@ import { StokSelectInput } from './shared/components/select-input/stok-select-in
 import { StokTuruDropDown } from './shared/components/dropdown/stok-turu-dropdown/stok-turu-dropdown';
 import { ReceteChildCardAddComponent } from './shared/dialogs/maliyet/recete-child-card-add/recete-child-card-add.component';
 import { BirimSelectInput } from './shared/components/select-input/birim-select-input/birim-select-input';
-import { SatinalmaTabComponent } from './app-layout/satinalma-tab/satinalma-tab.component';
+import { SatinalmaTabComponent } from './app-layout/components/satinalma-tab/satinalma-tab.component';
 import { DialogAddStokComponent } from './pages/stok/dialog-add-stok/dialog-add-stok.component';
 import { DialogUpdateStokComponent } from './pages/stok/dialog-update-stok/dialog-update-stok.component';
 import { DialogSelectStokComponent } from './pages/stok/dialog-select-stok/dialog-select-stok.component';
@@ -115,6 +115,9 @@ import { DialogUpdateReceteComponent } from './pages/maliyet/recete/dialog-updat
 import { DialogUpdateChildReceteComponent } from './pages/maliyet/recete/dialog-update-child-recete/dialog-update-child-recete.component';
 import { DialogAddReceteComponent } from './pages/maliyet/recete/dialog-add-recete/dialog-add-recete.component';
 import { DialogAddChildReceteComponent } from './pages/maliyet/recete/dialog-add-child-recete/dialog-add-child-recete.component';
+import { SatisTabComponent } from './app-layout/components/satis-tab/satis-tab.component';
+import { UretimTabComponent } from './app-layout/components/uretim-tab/uretim-tab.component';
+import { UretimComponent } from './pages/uretim/uretim.component';
 
 @NgModule({
   declarations: [
@@ -224,7 +227,10 @@ import { DialogAddChildReceteComponent } from './pages/maliyet/recete/dialog-add
     DialogAddChildReceteComponent,
     DialogAddReceteComponent,
     DialogUpdateReceteComponent,
-    DialogUpdateChildReceteComponent
+    DialogUpdateChildReceteComponent,
+    SatisTabComponent,
+    UretimTabComponent,
+    UretimComponent,
 
   ],
   imports: [
