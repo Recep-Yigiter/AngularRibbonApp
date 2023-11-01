@@ -19,7 +19,6 @@ export class DialogUpdateStokComponent implements OnInit {
      private customDialogService:CustomDialogService) { }
 
   ngOnInit(): void {
-  
   }
   public frm: FormGroup = this.fb.group({
     ad: [null, [Validators.required, Validators.maxLength(16)]],
@@ -41,7 +40,7 @@ export class DialogUpdateStokComponent implements OnInit {
     model.aciklama= null;
     model.durum= false;
     model.birimId= "3fa85f64-5717-4562-b3fc-2c963f66afa6";
-    model.parentId= null;
+    model.parentId= this.data.parentId;
 
     this.StokService.update(model, () => {
       this.frm.reset();

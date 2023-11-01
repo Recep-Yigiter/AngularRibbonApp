@@ -59,6 +59,7 @@ export class DialogUpdateChildStokComponent implements OnInit {
     this.StokService.update(model, () => {
       this.frm.reset();
       this.dialogRef.close()
+
     }, errorMessage => {
       this.customDialogService.errorDialog(errorMessage)
     })

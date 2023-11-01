@@ -12,13 +12,13 @@ import { CustomDialogService } from 'src/app/core/services/custom-dialog.service
 export class DialogAddChildStokComponent implements OnInit {
   selectBirimId: any;
   constructor(private fb: FormBuilder,
-     @Inject(MAT_DIALOG_DATA) public data: any,
-      private dialogRef: MatDialogRef<DialogAddChildStokComponent>,
-      private customDialogService:CustomDialogService,
-       private StokService: StokService) { }
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialogRef: MatDialogRef<DialogAddChildStokComponent>,
+    private customDialogService: CustomDialogService,
+    private StokService: StokService) { }
 
   ngOnInit(): void {
-    
+
   }
   public frm: FormGroup = this.fb.group({
 
@@ -50,16 +50,20 @@ export class DialogAddChildStokComponent implements OnInit {
       this.frm.value.durum = true,
       this.frm.value.birimId = this.selectBirimId,
       this.frm.value.parentId = this.data.id;
+    this.StokService.create(this.frm.value, () => {
 
 
-
-      this.StokService.create(this.frm.value, () => {
+      this.data.durum = false;
+      this.StokService.update(this.data, () => {
         this.frm.reset();
         this.dialogRef.close()
-
-      }, errorMessage => {
-        this.customDialogService.errorDialog(errorMessage)
       })
+
+
+
+    }, errorMessage => {
+      this.customDialogService.errorDialog(errorMessage)
+    })
 
 
   }

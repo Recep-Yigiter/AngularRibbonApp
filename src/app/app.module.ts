@@ -118,6 +118,12 @@ import { DialogAddChildReceteComponent } from './pages/maliyet/recete/dialog-add
 import { SatisTabComponent } from './app-layout/components/satis-tab/satis-tab.component';
 import { UretimTabComponent } from './app-layout/components/uretim-tab/uretim-tab.component';
 import { UretimComponent } from './pages/uretim/uretim.component';
+import { CardUrunAgaciComponent } from './pages/uretim/urun-agaci/card-urun-agaci/card-urun-agaci.component';
+import { UrunAgaciComponent } from './pages/uretim/urun-agaci/urun-agaci.component';
+import { DialogAddChildUrunAgaciComponent } from './pages/uretim/urun-agaci/dialog-add-child-urun-agaci/dialog-add-child-urun-agaci.component';
+import { DialogAddUrunAgaciComponent } from './pages/uretim/urun-agaci/dialog-add-urun-agaci/dialog-add-urun-agaci.component';
+import { DialogUpdateUrunAgaciComponent } from './pages/uretim/urun-agaci/dialog-update-urun-agaci/dialog-update-urun-agaci.component';
+import { ListUrunAgaciComponent } from './pages/uretim/urun-agaci/list-urun-agaci/list-urun-agaci.component';
 
 @NgModule({
   declarations: [
@@ -231,6 +237,12 @@ import { UretimComponent } from './pages/uretim/uretim.component';
     SatisTabComponent,
     UretimTabComponent,
     UretimComponent,
+    UrunAgaciComponent,
+    CardUrunAgaciComponent,
+    DialogAddChildUrunAgaciComponent,
+    DialogAddUrunAgaciComponent,
+    DialogUpdateUrunAgaciComponent,
+    ListUrunAgaciComponent,
 
   ],
   imports: [

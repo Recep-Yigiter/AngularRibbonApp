@@ -21,6 +21,8 @@ import { CreateTalepComponent } from './pages/talep/create-talep/create-talep.co
 import { AlinanTeklifComponent } from './pages/teklif/create-teklif/alinan-teklif/alinan-teklif.component';
 import { ListBirimComponent } from './pages/birim/list-birim/list-birim.component';
 import { CardReceteComponent } from './pages/maliyet/recete/card-recete/card-recete.component';
+import { UretimComponent } from './pages/uretim/uretim.component';
+import { CardUrunAgaciComponent } from './pages/uretim/urun-agaci/card-urun-agaci/card-urun-agaci.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'stok', pathMatch: 'full', },
@@ -57,6 +59,12 @@ const routes: Routes = [
           { path: "talep", component: CreateTalepComponent },
           { path: "list-talep", component: ListTalepComponent },
           { path: "alinan-teklif", component: AlinanTeklifComponent },
+        ]
+      },
+      {
+        path: "uretim", component: UretimComponent, children: [
+
+         { path: "urun-agaci-kart", component: CardUrunAgaciComponent },
         ]
       },
 
