@@ -1,14 +1,19 @@
 
 :host ::ng-deep {
-
+    .p-datatable .p-datatable-tbody > tr {
+        background: #ffffff;
+        color: #495057;
+        transition: box-shadow 0.2s;
+        height: 22px !important;
+    }
     .p-datatable .p-datatable-tbody>tr>td {
         text-align: left;
         border: 1px solid #dee2e6;
         border-width: 0 1px 1px 0;
-        padding: 5px 10px;
-        line-height: 17px;
+        padding: 0px 0px;
+        line-height: 22px;
         font-size: 12px;
-
+        font-weight: 700;
 
         .p-button.p-button-icon-only.p-button-rounded {
             border-radius: 50%;
@@ -23,7 +28,7 @@
     .p-datatable .p-datatable-thead>tr>th {
 
             text-align: left;
-            padding: 0.5rem 0.7rem 0.5rem 0.3rem !important;
+            padding: 0.2rem 0.7rem 0.2rem 0.3rem !important;
             border-width: 0 0px 1px 0 !important;
             font-weight: 600;
             color: #343a40 !important;
@@ -38,8 +43,20 @@
             border-radius: 0;
             width: 100%;
         }
+
+
     }
-    
+    .p-datatable .p-datatable-thead>tr>td>{
+        .p-inputtext {
+            padding: 0.25rem 0.75rem !important;
+            width: 100% !important;
+            border-radius: 0 !important;
+            border-width: 0 0 1px 0 !important;
+            color: black !important;
+            font-weight: 700 !important;
+            border-radius: 0 !important;
+        }
+    }
 
     .p-datatable-container-grid{
         display: grid;

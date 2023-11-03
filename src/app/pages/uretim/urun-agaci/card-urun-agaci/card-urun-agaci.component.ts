@@ -10,6 +10,7 @@ import { DialogUpdateStokComponent } from 'src/app/pages/stok/dialog-update-stok
 import { StokTreeViewService } from 'src/app/pages/stok/services/stok-treeview.service';
 import { StokService } from 'src/app/pages/stok/services/stok.service';
 import { DialogAddChildUrunAgaciComponent } from '../dialog-add-child-urun-agaci/dialog-add-child-urun-agaci.component';
+import { DialogAddUrunAgaciComponent } from '../dialog-add-urun-agaci/dialog-add-urun-agaci.component';
 
 
 @Component({
@@ -18,6 +19,7 @@ import { DialogAddChildUrunAgaciComponent } from '../dialog-add-child-urun-agaci
   styleUrls: ['./card-urun-agaci.component.scss']
 })
 export class CardUrunAgaciComponent implements OnInit {
+  deneme="background:black"
   index = 0;
   menu: any;
   expand = {};
@@ -96,7 +98,7 @@ export class CardUrunAgaciComponent implements OnInit {
   }
   addNewCardDialog() {
     this.customDialogService.largeDialog({
-      componentType: DialogAddStokComponent,
+      componentType: DialogAddUrunAgaciComponent,
       data:this.selectedNode,
       afterClose: () => {this.TreeViewList()}
     })

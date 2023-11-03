@@ -1,4 +1,4 @@
-<app-card-layout layoutName="Ürün Ağaçları" tableAc tableActions="false">
+<app-card-layout layoutName="Ürün Ağaçları" tableAc [tableActions]="false">
 
     <div class="sidebar-add-layout-content">
 
@@ -14,8 +14,9 @@
             </div>
 
         </div>
-        <div  (click)="addChildDialog()" class="ribbon-section" style="height: 40px; margin-bottom: 3px;">
-            <div ngClass="{{selectedNode?'':'disabled'&& selectedNode?.submenu==undefined?'disabled':'' }}" class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+        <div (click)="addChildDialog()" class="ribbon-section" style="height: 40px; margin-bottom: 3px;">
+            <div ngClass="{{selectedNode?'':'disabled'&& selectedNode?.submenu==undefined?'disabled':'' }}"
+                class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
                 <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
                     src=" ../../assets/icons/actions/folder_down.png">
                 <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
@@ -26,7 +27,8 @@
             </div>
         </div>
         <div (click)="updateDialog()" class="ribbon-section" style="height: 40px;margin-bottom: 3px;">
-            <div ngClass="{{selectedNode?'':'disabled'&& selectedNode?.submenu==undefined?'disabled':'' }}" class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+            <div ngClass="{{selectedNode?'':'disabled'&& selectedNode?.submenu==undefined?'disabled':'' }}"
+                class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
                 <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
                     src=" ../../assets/icons/actions/edit.png">
                 <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
@@ -37,21 +39,17 @@
             </div>
 
         </div>
-        <div  (click)="deleteDialog()" class="ribbon-section"
-            style="height: 40px; margin-bottom: 3px;">
-            <div ngClass="{{selectedNode?'':'disabled'&& selectedNode?.submenu==undefined?'disabled':'' }}" class="ribbon-button ribbon-button-large " id="add-table-btn" unselectable="on" style="height: 40px;">
+        <div (click)="deleteDialog()" class="ribbon-section" style="height: 40px; margin-bottom: 3px;">
+            <div ngClass="{{selectedNode?'':'disabled'&& selectedNode?.submenu==undefined?'disabled':'' }}"
+                class="ribbon-button ribbon-button-large " id="add-table-btn" unselectable="on" style="height: 40px;">
                 <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
                     src=" ../../assets/icons/actions/delete.png">
                 <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
                     src=" ../../assets/icons/actions/delete.png">
                 <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
                     src=" ../../assets/icons/actions/delete.png">
-
             </div>
-
         </div>
-
-
     </div>
 
     <div class="sidebar-layout-content">
@@ -92,12 +90,15 @@
 
     <div class="table-layout-content">
 
+
+
+
         <!-- <div class="content-detay">
             STOK DETAY
         </div> -->
 
 
-        <table class="table-detay">
+       <table class="table-detay">
             <colgroup>
                 <col style="width: 200px;">
                 <col style="width: 30px;">
@@ -111,6 +112,8 @@
                     <td><span class="table-detay-value">{{item.value?item.value:""}}</span></td>
                 </tr>
             </tbody>
+
+
         </table>
 
 

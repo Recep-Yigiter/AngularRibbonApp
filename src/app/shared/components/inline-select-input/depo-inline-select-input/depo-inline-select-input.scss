@@ -1,35 +1,30 @@
+// @import "src/assets/layout/styles/primeNG/_component-select-input.scss";
+@import "src/assets/scss/material/_dialogtittle.scss";
+@import "src/assets/scss/primeNG/primeNG-styles.scss";
+
+
 :host ::ng-deep{
 
     .select-container{
-      display: grid;
+      display: block;
       grid-template-columns: 80px auto;
-      margin: 5px 5px;
+      margin: 0px 0px;
 
       .p-inputtext {
         padding: 0.25rem 0.75rem !important;
         width: 100% !important;
         border-radius: 0 !important;
-        border-width: 0 0 1px 0 !important;
+        border-width: 0 0 0px 0 !important;
         color: black !important;
         font-weight: 400 !important;
         border-radius: 0 !important;
-        background: #eaedf1;
+        background: transparent;
     }
-    .p-datatable .p-datatable-thead>tr>td>{
-      .p-inputtext {
-          padding: 0.25rem 0.75rem !important;
-          width: 100% !important;
-          border-radius: 0 !important;
-          border-width: 0 0 1px 0 !important;
-          color: black !important;
-          font-weight: 700 !important;
-          border-radius: 0 !important;
-      }
-  }
+    
     .p-inputtext.p-inputtext-sm {
         font-size: 1.1rem !important;
         padding: 0.25rem 22px 0.25rem 0.5625rem  !important;
-        border-width: 0 0 1px 0;
+        border-width: 0 0 0px 0;
         border-radius: 0 !important;
     }
     
@@ -125,3 +120,4 @@
   
   
   }
+

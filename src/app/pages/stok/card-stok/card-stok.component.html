@@ -14,8 +14,9 @@
             </div>
 
         </div>
-        <div  (click)="addChildDialog()" class="ribbon-section" style="height: 40px; margin-bottom: 3px;">
-            <div ngClass="{{selectedNode?'':'disabled'&& selectedNode?.submenu==undefined?'disabled':'' }}" class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+        <div (click)="addChildDialog()" class="ribbon-section" style="height: 40px; margin-bottom: 3px;">
+            <div ngClass="{{selectedNode?'':'disabled'&& selectedNode?.submenu==undefined?'disabled':'' }}"
+                class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
                 <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
                     src=" ../../assets/icons/actions/folder_down.png">
                 <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
@@ -26,7 +27,8 @@
             </div>
         </div>
         <div (click)="updateDialog()" class="ribbon-section" style="height: 40px;margin-bottom: 3px;">
-            <div ngClass="{{selectedNode?'':'disabled'&& selectedNode?.submenu==undefined?'disabled':'' }}" class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+            <div ngClass="{{selectedNode?'':'disabled'&& selectedNode?.submenu==undefined?'disabled':'' }}"
+                class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
                 <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
                     src=" ../../assets/icons/actions/edit.png">
                 <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
@@ -37,9 +39,9 @@
             </div>
 
         </div>
-        <div  (click)="deleteDialog()" class="ribbon-section"
-            style="height: 40px; margin-bottom: 3px;">
-            <div ngClass="{{selectedNode?'':'disabled'&& selectedNode?.submenu==undefined?'disabled':'' }}" class="ribbon-button ribbon-button-large " id="add-table-btn" unselectable="on" style="height: 40px;">
+        <div (click)="deleteDialog()" class="ribbon-section" style="height: 40px; margin-bottom: 3px;">
+            <div ngClass="{{selectedNode?'':'disabled'&& selectedNode?.submenu==undefined?'disabled':'' }}"
+                class="ribbon-button ribbon-button-large " id="add-table-btn" unselectable="on" style="height: 40px;">
                 <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
                     src=" ../../assets/icons/actions/delete.png">
                 <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
@@ -62,7 +64,7 @@
                         [ngClass]="{ 'menu-node-button-show': node.submenu && node.submenu?.length,'menu-node-button-plus': !expand[node.index],'menu-node-button-minus': expand[node.index] } "
                         role="button">
                     </div>
-                    <div class="menu-node-name" [ngClass]="{
+                    <div style="font-weight: 500;" class="menu-node-name" [ngClass]="{
                  'menu-node-name-selected': (node === selectedNode),'menu-node-folder':(node.submenu?.length>0)}"
                         (click)="selectNode(node)">
 
@@ -72,7 +74,10 @@
 
                         <img *ngIf="node.submenu==undefined" src=" ../../assets/icons/actions/list.png"
                             class="title-icon" alt="">
-                        {{ node.ad }}
+                      
+                            {{node.kod }} <span>-</span> <span style="margin-left: 7px; font-weight: 600;">{{node.ad}}</span>
+                        
+
                     </div>
                     <ng-container *ngIf="node.submenu && node.submenu?.length && expand[node.index] ">
                         <ng-template [ngTemplateOutlet]="nodeTemplate"

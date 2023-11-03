@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HashLocationStrategy,LocationStrategy } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PrimeNgModule } from 'src/primeng.module';
@@ -124,6 +124,8 @@ import { DialogAddChildUrunAgaciComponent } from './pages/uretim/urun-agaci/dial
 import { DialogAddUrunAgaciComponent } from './pages/uretim/urun-agaci/dialog-add-urun-agaci/dialog-add-urun-agaci.component';
 import { DialogUpdateUrunAgaciComponent } from './pages/uretim/urun-agaci/dialog-update-urun-agaci/dialog-update-urun-agaci.component';
 import { ListUrunAgaciComponent } from './pages/uretim/urun-agaci/list-urun-agaci/list-urun-agaci.component';
+import { DepoInlineSelectInput } from './shared/components/inline-select-input/depo-inline-select-input/depo-inline-select-input';
+import { StokInlineSelectInput } from './shared/components/inline-select-input/stok-inline-select-input/stok-inline-select-input';
 
 @NgModule({
   declarations: [
@@ -208,7 +210,7 @@ import { ListUrunAgaciComponent } from './pages/uretim/urun-agaci/list-urun-agac
     CreateTalepComponent,
     ListTalepComponent,
     ListByTalepIdComponent,
-
+    DepoInlineSelectInput,
     TeklifComponent,
     TeklifHareketComponent,
     AlinanTeklifComponent,
@@ -243,6 +245,7 @@ import { ListUrunAgaciComponent } from './pages/uretim/urun-agaci/list-urun-agac
     DialogAddUrunAgaciComponent,
     DialogUpdateUrunAgaciComponent,
     ListUrunAgaciComponent,
+    StokInlineSelectInput
 
   ],
   imports: [
@@ -257,7 +260,7 @@ import { ListUrunAgaciComponent } from './pages/uretim/urun-agaci/list-urun-agac
 
   ],
   // providers: [{ provide: "baseUrl", useValue: "http://192.168.4.31:8080/api", multi: true },{provide:LocationStrategy, useClass:HashLocationStrategy,}],   build yaparken açılacak
-   providers: [{ provide: "baseUrl", useValue: "https://localhost:7146/api", multi: true },{provide:LocationStrategy, useClass:HashLocationStrategy,}],
+  providers: [{ provide: "baseUrl", useValue: "https://localhost:7146/api", multi: true }, { provide: LocationStrategy, useClass: HashLocationStrategy, }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

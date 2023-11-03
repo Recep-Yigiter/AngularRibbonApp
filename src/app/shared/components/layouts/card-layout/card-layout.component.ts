@@ -7,7 +7,7 @@ import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 })
 export class CardLayoutComponent  {
   @Input() layoutName: any;
-
+  @Input() tableActions: any;
   constructor( private ref: ChangeDetectorRef) {
      
   }

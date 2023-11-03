@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Injectable, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Injectable, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CustomDialogService } from 'src/app/core/services/custom-dialog.service';
-import { DialogAddStokComponent } from 'src/app/pages/stok/dialog-add-stok/dialog-add-stok.component';
+import { DialogSelectDepoComponent } from 'src/app/pages/depo/dialog-select-depo/dialog-select-depo.component';
 import { DialogSelectStokComponent } from 'src/app/pages/stok/dialog-select-stok/dialog-select-stok.component';
 
 
@@ -10,19 +10,19 @@ import { DialogSelectStokComponent } from 'src/app/pages/stok/dialog-select-stok
 })
 
 @Component({
-  selector: 'stok-select-input',
-  templateUrl: './stok-select-input.html',
-  styleUrls: ['./stok-select-input.scss']
+  selector: 'stok-inline-select-input',
+  templateUrl: './stok-inline-select-input.html',
+  styleUrls: ['./stok-inline-select-input.scss']
 })
-export class StokSelectInput {
+export class StokInlineSelectInput {
   @Input() formControlNames: any;
   @Output() public childFunc: EventEmitter<any> = new EventEmitter();
   @Input() field: any;
   @Input() label:any;
-  selectedStokItem: any;
+  selectedDepoItem: any;
 
 
-  constructor(private dialog: MatDialog,private CustomDialogService:CustomDialogService) { }
+  constructor(private dialog: MatDialog,private CustomDialogService:CustomDialogService,private readonly changeDetectorRef: ChangeDetectorRef) { }
 
 
   filterString: any = '';
@@ -31,18 +31,22 @@ export class StokSelectInput {
     let query = event.query;
     this.filterString = query.toLowerCase();
   }
+  ngAfterViewChecked(): void {
+    this.changeDetectorRef.detectChanges();
+  }
 
-  selectedData:any;
-  StokSelectDialogOpen() {
-
+  selectedData: any;
+  
+  DepoInlineSelectDialogOpen() {   
     this.CustomDialogService.normalDialog({
       componentType: DialogSelectStokComponent,
       data: this.selectedData,
       afterClose: () => { }
     }, (data) => {
-       this.selectedData = data;
+        this.selectedData = data;
        this.childFunc.emit(this.selectedData)
       })
+
 
   }
 }

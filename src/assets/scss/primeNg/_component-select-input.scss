@@ -11,20 +11,20 @@
         border-radius: 0 !important;
         border-width: 0 0 1px 0 !important;
         color: black !important;
-        font-weight: 700 !important;
+        font-weight: 400 !important;
         border-radius: 0 !important;
-        background: #eaedf1;
+        background: #E8F0FE;
     }
     
     .p-inputtext.p-inputtext-sm {
         font-size: 1.1rem !important;
-        padding: 0.25rem 0.5625rem !important;
+        padding: 0.25rem 22px 0.25rem 0.5625rem  !important;
         border-width: 0 0 1px 0;
         border-radius: 0 !important;
     }
     
     .p-inputtext{
-        height: 25px !important;
+        height: 20px !important;
     }
     
     .p-inputtext:enabled:focus {
@@ -42,10 +42,10 @@
 
 
       .selectButton-insert {
-        position: absolute; top:-4px; right: 0px;
+        position: absolute; top:0; right: 0px;
           .p-button.p-button-icon-only{
-            width: 27px;
-            height: 27px;
+            width: 19px;
+            height: 19px;
             padding: 0.75rem 0;
           }
             .fa-pencil{
@@ -65,10 +65,10 @@
             }
         }
        .selectButton-update {
-        position: absolute; top:-4px; right: 30px;
+        position: absolute; top:0; right: 0px;
           .p-button.p-button-icon-only{
-            width: 27px;
-            height: 27px;
+            width: 19px;
+            height: 19px;
             padding: 0.75rem 0;
           }
             .fa-pencil{
@@ -88,10 +88,10 @@
             }
         }
        .selectButton-delete  {
-        position: absolute; top:-4px; right:25px;
+        position: absolute; top:0; right: 0px;
           .p-button.p-button-icon-only{
-            width: 27px;
-            height: 27px;
+            width: 19px;
+            height: 19px;
             padding: 0.75rem 0;
           }
             .fa-pencil{

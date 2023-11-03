@@ -1,0 +1,155 @@
+@import "src/assets/resizeble-panel";
+@import "src/assets/resizable-table-columns.min";
+@import "src/assets/scss/primeNg/primeNG-styles";
+@import "src/assets/ribbon-tab";
+@import "src/assets/soft_button";
+@import "src/assets/css/dx-light";
+
+@import "src/assets/scss/primeNg/_component-select-input.scss";
+:host ::ng-deep{
+    .p-datatable-table{
+        border-spacing: 0px;
+        width: 100% !important;
+    }
+    .urun-agaci{
+        .p-datatable-table{
+            border-spacing: 0px;
+            width: 80% !important;
+        }
+    }
+
+    .p-datatable .p-datatable-footer {
+        background: #f8f9fa;
+        color: #343a40;
+        border: 1px solid #dee2e6;
+        border-width: 0 0 1px 0;
+        padding: 1rem 1rem;
+        font-weight: 700;
+        position: sticky;
+        bottom: 0;
+        text-align: end;
+    }
+    .dx-menu-horizontal {
+        height: 40px !important;
+    }
+
+.activeSelectCategori{
+    display: block !important;
+}
+.table-display-none{
+    display: none;
+}
+
+
+
+
+
+
+
+
+ .mat-radio-inner-circle {
+
+    height: 15px !important;
+    width: 15px !important; 
+   }
+
+
+
+  .mat-radio-outer-circle{
+    height: 15px !important;
+    width: 15px !important; 
+   }
+   .mat-radio-container{
+    height: 15px !important;
+    width: 15px !important; 
+   }
+
+
+  .mat-radio-button {
+    margin: 0 0px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 8px !important;
+    margin-top: 5px !important;
+    }
+
+    .mat-radio-label-content{
+        padding-left: 5px !important;
+    }
+
+}   
+
+
+
+
+.content-detay{
+    padding-right: 10px;
+    color: #959595; 
+    font-size: 16px;  
+    font-weight: 500;   
+    width: 100%; 
+    min-width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    border-bottom: 2px solid #c9c9c9;
+}
+
+.table-detay{
+    table-layout: fixed; 
+    margin-top: 10px !important;
+    width: 100%;
+    tr{
+         border-bottom: 1px solid #dee2e6;
+         .table-detay-label{
+            color: black; 
+            text-align: left;
+            margin-left: 10px;
+         }
+         .table-detay-value{
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'times new roman', serif;
+            font-style: italic;
+         }
+    }
+}
+
+
+
+
+.grid_container_content{
+    display: grid;
+    grid-template-columns: 300px 350px 100px 100px;
+
+    grid-template-areas:"aside item-1 item-2 item-3"
+                        "aside main main main";
+    grid-gap: 0px;
+}
+.aside { grid-area: aside;border: 1px solid #ddd; border-radius: 5px;  text-align: center;font-size: 10px; }
+.main { grid-area: main;border: 1px solid #ddd; border-radius: 5px;  text-align: center;font-size: 10px; }
+.kart-1 { grid-area: item-1;border: 1px solid #ddd; border-radius: 5px;  text-align: center;font-size: 11px; }
+.kart-2 { grid-area: item-2;border: 1px solid #ddd; border-radius: 5px;  text-align: center;font-size: 11px; }
+.kart-3 { grid-area: item-3;border: 1px solid #ddd; border-radius: 5px;  text-align: center;font-size: 11px; }
+.title-kart{
+    width: 100%; 
+    border: 1px solid #ddd;
+    height: 20px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding-left: 10px;
+    font-size: 13px;
+    vertical-align: middle;
+    font-style: italic;
+    font-weight: 500;
+    font-family: "times new roman", serif;
+
+
+    background-color: #f8f9fa;
+}
+
+
+
