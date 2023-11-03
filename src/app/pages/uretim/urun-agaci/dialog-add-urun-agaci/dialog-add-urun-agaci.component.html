@@ -62,7 +62,7 @@
 
     <div class="table-layout-content">
 
-        <div class="urun-agaci" style="height: 200px;border: 1px solid #d5d5d5;">
+        <div class="urun-agaci" style="height: 100px;border: 1px solid #d5d5d5;">
             <p-table #dt1 [value]="dataSource" [tableStyle]="{'min-width': '50rem'}" frozenWidth="1200px" dataKey="id"
                 responsiveLayout="scroll" [resizableColumns]="false" [scrollable]="true"
                 scrollHeight="calc(100vh - 345px)" columnResizeMode="expand" (onRowSelect)="onRowSelect($event)"
@@ -74,36 +74,33 @@
                         <th style="width:200px; color: #959595 !important;">Adı</th>
                         <th style="width:75px;color: #959595 !important;">Birim</th>
                         <th style="width:75px;color: #959595 !important;">Miktar</th>
-                        <th style="width:100px;color: #959595 !important;">Depo Kodu</th>
-                        <th style="width:200px;color: #959595 !important;">Depo Adı</th>
+
                         <th style="width:auto;color: #959595 !important;">Açıklama</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-product>
                     <tr [pSelectableRow]="product">
-                        <td>{{product.name}}</td>
+                        <td>{{product.shm}}</td>
                         <td>{{product.kod}}</td>
                         <td>
-                            <stok-inline-select-input [formControlNames]="urunAgaciKodu"
-                                        (childFunc)="stokChildFunc($event)"
-                                        [field]="stokSelectItemAd"></stok-inline-select-input>
+                            <stok-inline-select-input [formControlNames]="stokUrunAgaci"
+                                (childFunc)="stokChildFunc($event)"
+                                [field]="stokSelectItemAd"></stok-inline-select-input>
                         </td>
                         <td>{{product.birimAdi}}</td>
                         <td pEditableColumn>
 
                             <p-cellEditor>
                                 <ng-template pTemplate="input">
-                                    <input pInputText type="number" onfocus="this.select()"
-                                        [(ngModel)]="product.miktar" required>
+                                    <input pInputText type="number" onfocus="this.select()" [(ngModel)]="product.miktar"
+                                        required>
                                 </ng-template>
                                 <ng-template pTemplate="output">
                                     {{product.miktar}}
                                 </ng-template>
                             </p-cellEditor>
                         </td>
-                        <td>{{product.depoKodu}}</td>
-                        <td>{{product.birimAdi}}</td>
-                        <td>{{product.aciklama}}</td>
+
 
                     </tr>
                 </ng-template>
@@ -118,26 +115,7 @@
 
 
 
-        <div class="ribbon-section" style="height: 40px; margin-left: 10px;">
-            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
-                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                    src=" ../../assets/icons/actions/add.png">
-                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                    src=" ../../assets/icons/actions/add.png">
-                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                    src=" ../../assets/icons/actions/add.png">
-            </div>
-        </div>
-        <div class="ribbon-section" style="height: 40px;">
-            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
-                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                    src=" ../../assets/icons/actions/delete.png">
-                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                    src=" ../../assets/icons/actions/delete.png">
-                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                    src=" ../../assets/icons/actions/delete.png">
-            </div>
-        </div>
+
         <div class="content-detay" style="position: relative;">
             HAREKETLER
             <div style="position: absolute; right: 0; font-size: 12px;">
@@ -146,8 +124,8 @@
         </div>
         <div class="table-display-none activeSelectCategori">
             <div style="height: 322px; border: 1px solid #d5d5d5;">
-                <p-table #dt [value]="durums" [tableStyle]="{'min-width': '50rem'}" selectionMode="single"
-                    frozenWidth="1200px" [(selection)]="selectedItem" dataKey="key" responsiveLayout="scroll"
+                <p-table #dt [value]="urunAgaciHareketler" [tableStyle]="{'min-width': '50rem'}" selectionMode="single"
+                    frozenWidth="1200px" [(selection)]="selectedItem" dataKey="kod" responsiveLayout="scroll"
                     [resizableColumns]="false" [scrollable]="true" scrollHeight="calc(100vh - 345px)"
                     columnResizeMode="expand" selectionMode="single" (onRowSelect)="onRowSelect($event)"
                     (onRowUnselect)="onRowUnSelect()">
@@ -159,8 +137,6 @@
                             <th style="width:75px;color: #959595 !important;">Tipi</th>
                             <th style="width:75px;color: #959595 !important;">Birim</th>
                             <th style="width:75px;color: #959595 !important;">Miktar</th>
-                            <th style="width:75px;color: #959595 !important;">Depo Kodu</th>
-                            <th style="width:100px;color: #959595 !important;">Depo Adı</th>
                             <th style="width:100px;color: #959595 !important;">Maliyet Türü</th>
                             <th style="width:100px;color: #959595 !important;">Birim Fiyat</th>
                             <th style="width:100px;color: #959595 !important;">Oran/Miktar</th>
@@ -169,14 +145,7 @@
                         </tr>
                         <tr>
 
-                            <th>
-                                <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-                                    (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
-                            </th>
-                            <th>
-                                <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-                                    (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
-                            </th>
+
                             <th>
                                 <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
                                     (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
@@ -225,39 +194,23 @@
                     </ng-template>
                     <ng-template pTemplate="body" let-product>
                         <tr [pSelectableRow]="product">
-                            <td>{{product.stokKodu}}</td>
-                            <td>{{product.stokKodu}}</td>
-                            <td>{{product.stokAdi}}</td>
+                            <td>{{product.ad}}</td>
+                            <td>{{product.kod}}</td>
+                            <td>{{product.ad}} </td>
+                            <td>{{product.tipi}} </td>
+                            <td>{{product.birimAdi}}</td>
                             <td pEditableColumn>
-
                                 <p-cellEditor>
                                     <ng-template pTemplate="input">
                                         <input pInputText type="number" onfocus="this.select()"
-                                            [(ngModel)]="product.TeklifMiktari" required>
+                                            [(ngModel)]="product.miktar" required>
                                     </ng-template>
                                     <ng-template pTemplate="output">
-                                        {{product.talepMiktari}}
-                                    </ng-template>
-                                </p-cellEditor>
-                            </td>
-                            <td>{{product.TeklifBirimi}}</td>
-                            <td pEditableColumn>
-                                <p-cellEditor>
-                                    <ng-template pTemplate="input">
-                                        <!-- <input pInputText type="number" onfocus="this.select()"
-                                            [(ngModel)]="product.birimFiyat" required> -->
-                                        <depo-inline-select-input label="Ad" [formControlNames]="urunAgaciKodu"
-                                            (childFunc)="stokChildFunc($event)"
-                                            [field]="stokSelectItem?.ad"></depo-inline-select-input>
-                                    </ng-template>
-                                    <ng-template pTemplate="output">
-                                        {{product.birimFiyat |currency:'TRY':'₺':'0.2-2'}}
+                                        {{product.miktar}}
                                     </ng-template>
                                 </p-cellEditor>
 
                             </td>
-                            <td>{{product.cariKodu}}</td>
-                            <td>{{product.key}}</td>
                             <td>{{product.cariAdi}}</td>
                             <td>{{product.cariAdi}}</td>
                             <td>{{product.cariAdi}}</td>
@@ -270,6 +223,47 @@
 
                 </p-table>
             </div>
+            <div style="
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: end;">
+                <div (click)="addStok()" class="ribbon-section" style="height: 32px;
+                     border: 1px solid #c1c1c1;
+                     border-radius: 3px;
+                     background: #dfdfdf; margin: 5px;">
+                    <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
+                        style="height: 30px; display: flex; justify-content: center;align-items: center; padding: 0 6px !important;">
+                        <img style="width: 25px; height: 25px; " class="ribbon-icon ribbon-normal"
+                        src=" ../../assets/icons/actions/add_satir.png">
+                    <img style="width: 25px; height: 25px;" class="ribbon-icon ribbon-hot"
+                        src=" ../../assets/icons/actions/add_satir.png">
+                    <img style="width: 25px; height: 25px;" class="ribbon-icon ribbon-disabled"
+                        src=" ../../assets/icons/actions/add_satir.png">
+                        <div style="font-size: 14px; font-weight: 500;margin-left: 5px;padding-top: 5px;">
+                            Satır Ekle
+                        </div>
+                    </div>
+                </div>
+                <div (click)="deleteUrunAgaciHareket()" class="ribbon-section" style="height: 32px;
+                     border: 1px solid #c1c1c1;
+                     border-radius: 3px;
+                     background: #dfdfdf; margin: 5px;">
+                    <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
+                        style="height: 30px; display: flex; justify-content: center;align-items: center; padding: 0 6px !important;">
+                        <img style="width: 25px; height: 25px; " class="ribbon-icon ribbon-normal"
+                        src=" ../../assets/icons/actions/delete_satir.png">
+                    <img style="width: 25px; height: 25px;" class="ribbon-icon ribbon-hot"
+                        src=" ../../assets/icons/actions/delete_satir.png">
+                    <img style="width: 25px; height: 25px;" class="ribbon-icon ribbon-disabled"
+                        src=" ../../assets/icons/actions/delete_satir.png">
+                        <div style="font-size: 14px; font-weight: 500;margin-left: 5px;padding-top: 5px;">
+                            Satır Ekle
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
         </div>
 
@@ -280,18 +274,26 @@
 
 
     <div class="form_actions">
-        <div style="width: 100%;display: flex;;
-        align-items: center;">
-            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 27px;
-          /* display: flex; */
-          align-items: center;
-          gap: 5px;
-          /* margin: 5px; */
-          border: 1px solid #515050;
-          position: absolute;
-          right: 0;
-          top: 5px;">
-                Kaydet
+        <div style="
+        width: 100%;
+        display: flex;
+        align-items: center;
+        border: 1px solid #757575;
+        border-radius: 5px;
+        ">
+            <div (click)="onSubmit()" class="ribbon-section" style="height: 40px;">
+                <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
+                    style="height: 40px; display: flex; justify-content: center;align-items: center;">
+                    <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                        src=" ../../assets/icons/actions/save.png">
+                    <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                        src=" ../../assets/icons/actions/save.png">
+                    <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                        src=" ../../assets/icons/actions/save.png">
+                    <div style="font-size: 14px; font-weight: 600;margin-left: 5px;">
+                        KAYDET
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -22,14 +22,29 @@
 
 
     </div>
-    <div (click)="onSubmit()" class="form_actions">
-        <div style="width: 100%;display: flex;
-    align-items: center;">
-            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
-                style="height: 27px; display: flex; align-items: center; gap: 5px; margin: 5px; border: 1px solid #515050;">
-                Kaydet
-            </div>
 
+    <div class="form_actions">
+        <div style="
+        width: 100%;
+        display: flex;
+        align-items: center;
+        border: 1px solid #757575;
+        border-radius: 5px;
+        ">
+            <div (click)="onSubmit()" class="ribbon-section" style="height: 40px;">
+                <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
+                    style="height: 40px; display: flex; justify-content: center;align-items: center;">
+                    <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                        src=" ../../assets/icons/actions/save.png">
+                    <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                        src=" ../../assets/icons/actions/save.png">
+                    <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                        src=" ../../assets/icons/actions/save.png">
+                    <div style="font-size: 14px; font-weight: 600;margin-left: 5px;">
+                        KAYDET
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </app-small-dialog-content>
