@@ -2,17 +2,17 @@
    
 
 
-        <span class="p-float-label">
+        <span class="" style="position: relative; width: 100%;">
 
-            <input readonly *ngIf="selectedDepoItem!=undefined" [ngModel]="selectedDepoItem.ad" [formControl]="formControlNames"
+            <input readonly *ngIf="selectedDepoItem!=undefined" [ngModel]="selectedDepoItem.ad" [formControl]="formControlNames" placeholder="stok seçiniz..."
                 style=" text-align : left;padding-right:85px  !important;" type="text" class="p-inputtext-sm"
                 pInputText />
-            <input readonly [(ngModel)]="field" *ngIf="selectedDepoItem==undefined || selectedDepoItem==null"
+            <input readonly [(ngModel)]="field" *ngIf="selectedDepoItem==undefined || selectedDepoItem==null" placeholder="stok seçiniz..."
                 [formControl]="formControlNames" style=" text-align : left;" type="text" class="p-inputtext-sm"
                 pInputText />
 
             <div class="selectButton-insert">
-                <button (click)="DepoInlineSelectDialogOpen()" type="button" pbutton pripple
+                <button (click)="StokInlineSelectDialogOpen()" type="button" pbutton pripple
                     class="p-element p-ripple p-autocomplete-dropdown  p-button p-component p-button-icon-only ng-star-inserted">
                     <i class="fa-solid fa-ellipsis" style="color: black;"></i>
                 </button>

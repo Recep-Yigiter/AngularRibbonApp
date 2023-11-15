@@ -10,17 +10,25 @@ export class ErrorDialogComponent implements OnInit {
   @Input() layoutName: any;
   @Input() tableActions: any;
   @Input() formTopActions: any;
-  @Input() tableContent: any=true;
-  
+  @Input() tableContent: any = true;
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,) { }
   deneme: any;
   ngOnInit() {
+    
     this.deneme = [];
-    console.log(this.data)
+    if (this.data != null) {
+      this.deneme.push(this.data)
+      console.log(this.deneme)
+    }
+    else
     this.data.error.Errors.forEach(element => {
       this.deneme.push(element.ErrorMessage)
-
+      
     })
+
+
+
   }
 
 }

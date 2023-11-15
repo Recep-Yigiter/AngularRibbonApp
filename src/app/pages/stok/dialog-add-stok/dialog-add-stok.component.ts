@@ -12,13 +12,18 @@ import { StokCreateModel } from '../models/stok-create-model';
 })
 export class DialogAddStokComponent implements OnInit {
   selectBirimId: any;
+  stokKod:any;
   constructor(private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<DialogAddStokComponent>,
     private customDialogService: CustomDialogService,
     private StokService: StokService) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+
+    const fatura = await this.StokService.GetCode();
+    
+    this.stokKod = fatura.data.kod;
 
   }
   public frm: FormGroup = this.fb.group({
@@ -52,21 +57,21 @@ export class DialogAddStokComponent implements OnInit {
 
 
   onSubmit() {
-    const model=new StokCreateModel();
-    model.ad= this.frm.value.ad;
+    const model = new StokCreateModel();
+    model.ad = this.frm.value.ad;
     model.kod = this.frm.value.kod;
-    model.birimFiyat=0;
-    model.stokGrup= null;
-    model.aciklama= null;
-    model.durum= false;
-    model.birimId= "3fa85f64-5717-4562-b3fc-2c963f66afa6";
-    model.parentId= null;
-      this.StokService.create(model, () => {
-        this.frm.reset();
-        this.dialogRef.close({data:model});
-      }, errorMessage => {
-        this.customDialogService.errorDialog(errorMessage)
-      })
+    model.birimFiyat = 0;
+    model.stokGrup = null;
+    model.aciklama = null;
+    model.durum = true;
+    model.birimId = "3fa85f64-5717-4562-b3fc-2c963f66afa6";
+    model.parentId = null;
+    this.StokService.create(model, () => {
+      this.frm.reset();
+      this.dialogRef.close({ data: model });
+    }, errorMessage => {
+      this.customDialogService.errorDialog(errorMessage)
+    })
   }
 
   birimFunc(event) {

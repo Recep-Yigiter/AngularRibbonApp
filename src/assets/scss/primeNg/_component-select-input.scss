@@ -1,5 +1,9 @@
 :host ::ng-deep{
 
+  ::placeholder {
+    color: red;
+    font-size: 11px;
+  }
     .select-container{
       display: grid;
       grid-template-columns: 80px auto;
@@ -42,7 +46,7 @@
 
 
       .selectButton-insert {
-        position: absolute; top:0; right: 0px;
+        position: absolute; top:-3px; right: 0px;
           .p-button.p-button-icon-only{
             width: 19px;
             height: 19px;

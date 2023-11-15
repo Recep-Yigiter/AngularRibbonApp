@@ -1,1 +1,5 @@
 @import "src/assets/scss/primeNG/_component-input.scss";
+::placeholder{
+    color:red;
+    font-size: 11px;
+}

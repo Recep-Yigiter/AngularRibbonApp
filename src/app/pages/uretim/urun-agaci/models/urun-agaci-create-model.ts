@@ -3,17 +3,16 @@ export class UrunAgaciCreateModel {
   kod?: any;
   ad?: any;
   stokId?: any;
-  depoId?: any;
   miktar?: any;
+  urunGrubu:any;
   parentId?: any;
   aciklama?: any;
-  urunAgaciHareketler?:UrunAgaciHareketCreateModel[]
+  UrunAgaciBilesenler?:UrunAgaciHareketCreateModel[]
 }
 
 
 export class UrunAgaciHareketCreateModel{
   stokId?: any;
-  depoId?: any;
   miktar?: any;
   tip?: any;
   fiyatListesiId?: any;

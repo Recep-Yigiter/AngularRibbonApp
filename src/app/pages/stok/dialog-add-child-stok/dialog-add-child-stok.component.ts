@@ -11,14 +11,17 @@ import { CustomDialogService } from 'src/app/core/services/custom-dialog.service
 })
 export class DialogAddChildStokComponent implements OnInit {
   selectBirimId: any;
+  stokKod:any;
   constructor(private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<DialogAddChildStokComponent>,
     private customDialogService: CustomDialogService,
     private StokService: StokService) { }
 
-  ngOnInit(): void {
-
+ async ngOnInit() {
+    const fatura = await this.StokService.GetCode();
+    
+    this.stokKod = fatura.data.kod;
   }
   public frm: FormGroup = this.fb.group({
 

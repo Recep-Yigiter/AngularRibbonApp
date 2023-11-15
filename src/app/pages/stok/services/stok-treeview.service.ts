@@ -34,8 +34,7 @@ export class StokTreeViewService  {
         }
 
         function createTree(data) {
-            return data
-                .reduce((result, value, index, originalArray) => {
+            return data.reduce((result, value, index, originalArray) => {
                     if (value.parentId !== null) {
                         const parent = findParent(originalArray, value.parentId);
                         if (parent) {

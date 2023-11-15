@@ -76,3 +76,21 @@
     width: 4.5px;
     margin-left: -4.95px
 }
+
+
+mat-tab-label {
+    height: 27px !important;
+    padding: 0 8px !important;
+    cursor: pointer;
+    box-sizing: border-box;
+    opacity: .6;
+    min-width: 81px !important;
+    text-align: center;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    position: relative;
+}
+
+/* 1px solid #8f8f8f */

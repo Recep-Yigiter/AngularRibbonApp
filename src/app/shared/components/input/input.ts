@@ -16,6 +16,7 @@ export class CommonInput {
     @Input() valueInput: any;
     @Input() styleInput: any;
     @Input() disableInput:boolean;
+    @Input() placeHolder:any;
 
     constructor(private ref: ChangeDetectorRef) {
 

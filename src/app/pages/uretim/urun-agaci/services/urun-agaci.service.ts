@@ -83,26 +83,19 @@ export class UrunAgaciService {
         return await promiseData;
     }
 
-
-
-
-
-
-
-
-    async getCode(durum: boolean, successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void) {
-        const observable = this.apiService.get<{ kod: any }>(
+    async  GetCode(successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void) {
+        const observable = this.apiService.get<any>(
             {
-                controller: "UrunAgaci",
-                action: "GetCode",
-                queryString: `Durum=${durum}`
+                controller: "UrunAgacis",
+                action: "GetCode"
             });
-
         const promiseData = firstValueFrom(observable);
+
         promiseData.then(successCallBack).catch(errorCallBack);
 
         return await promiseData;
     }
+
 
 
 

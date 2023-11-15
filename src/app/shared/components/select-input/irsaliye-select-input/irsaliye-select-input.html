@@ -1,12 +1,12 @@
 <div class="select-container">
 
     <div style="width: 100%;">
-        <span class="p-float-label">
+        <span  style="position: relative;">
 
-            <input readonly *ngIf="selectedStokItem!=undefined" [ngModel]="selectedStokItem.ad" [formControl]="formControlNames"
+            <input readonly *ngIf="selectedStokItem!=undefined" [ngModel]="selectedStokItem.ad" [formControl]="formControlNames" placeholder="irsaliye seçiniz..."
                 style=" text-align : left;padding-right:55px  !important;" type="text" class="p-inputtext-sm"
                 pInputText />
-            <input readonly [(ngModel)]="field" *ngIf="selectedStokItem==undefined || selectedStokItem==null" [formControl]="formControlNames"
+            <input readonly [(ngModel)]="field" *ngIf="selectedStokItem==undefined || selectedStokItem==null" [formControl]="formControlNames" placeholder="irsaliye seçiniz..."
                 style=" text-align : left;" type="text" class="p-inputtext-sm"
                 pInputText />
 

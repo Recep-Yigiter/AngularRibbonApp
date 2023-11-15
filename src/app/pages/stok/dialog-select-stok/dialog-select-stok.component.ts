@@ -63,7 +63,7 @@ export class DialogSelectStokComponent implements OnInit {
 
   async getAllStok() {
 
-    const allStoks= await this.StokService.GetList( () => console.log())
+    const allStoks= await this.StokService.GetListTreeView( () => console.log())
     this.dataSource = allStoks.data.items;
     this.totalRecords = allStoks.data.count;
 
@@ -90,7 +90,10 @@ export class DialogSelectStokComponent implements OnInit {
   
   selectedDbClickStok(event) {
     this._selectedDataItem = event;
-    this.dialogRef.close({ data: this._selectedDataItem })
+    if (this._selectedDataItem.durum==true) {
+      this.dialogRef.close({ data: this._selectedDataItem })
+    }
+   
     
   }
 }

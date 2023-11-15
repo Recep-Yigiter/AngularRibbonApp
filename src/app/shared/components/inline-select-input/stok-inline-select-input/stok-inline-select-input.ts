@@ -37,7 +37,7 @@ export class StokInlineSelectInput {
 
   selectedData: any;
   
-  DepoInlineSelectDialogOpen() {   
+  StokInlineSelectDialogOpen() {   
     this.CustomDialogService.normalDialog({
       componentType: DialogSelectStokComponent,
       data: this.selectedData,

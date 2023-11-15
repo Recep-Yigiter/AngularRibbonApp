@@ -58,7 +58,7 @@ export class CardStokComponent implements OnInit {
     });
     var tree = this.StokTreeViewService.CreateTreeView(this.treeViewDataSource.data.items);
     this.menu = tree.map(x => this.StokTreeViewService.toNode(x));
-
+console.log(this.menu.filter(p=>p.index==1).map(c=>c.ad)[0])
     this.selectedNode = null;
 
     this.stokDetayList = [
@@ -82,6 +82,8 @@ export class CardStokComponent implements OnInit {
   }
   addChildDialog() {
 
+this.selectedNode.stokGrup=this.menu.filter(p=>p.index==1).map(c=>c.ad)[0];
+
 
     this.customDialogService.smallDialog({
       componentType: DialogAddChildStokComponent,
@@ -93,6 +95,7 @@ export class CardStokComponent implements OnInit {
 
   }
   addNewCardDialog() {
+    
     this.customDialogService.smallDialog({
       componentType: DialogAddStokComponent,
       data:this.selectedNode,

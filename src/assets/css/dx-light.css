@@ -11675,13 +11675,13 @@ input.dx-hidden {
   content: " ";
   position: absolute;
   left: 8px;
-  top: 0;
+  top: -7px;
   bottom: 0;
   width: 4px;
   border-left: 1px dotted silver;
 }
 .menu-node > .menu-node-tree:last-of-type::after {
-  bottom: 8px;
+  bottom: 16px;
 }
 .menu-node > .menu-node-tree::before {
   content: " ";

@@ -1,210 +1,274 @@
-
-
-
-<app-large-dialog-content layoutName="Ürün Ağaç Kartı ({{data.kod +'-'+ data.ad}})  " [tableActions]="true" [topActions]="true">
+<app-large-dialog-content layoutName="Ürün Ağaç Kartı (Yeni)  " [tableActions]="true" [topActions]="true">
     <div class="close-dialog">
-        <button class="item" name="close" mat-dialog-close >
+        <button class="item" name="close" mat-dialog-close>
             <i class="fa fa-close"></i>
         </button>
     </div>
+
     <div class="grid_container_content">
+
         <aside class="aside">
             <div class="title-kart">
                 Üst Ürün Ağacı
             </div>
-             <form class="form" [formGroup]="frm">
-                <div  style="display: flex; align-items: center; justify-content: space-between; height: 25px;margin: 5px 0;">
-                    <common-input [readonly]="true" label="Kod" [formControlNames]="ustUrunAgaciAdi"  [field]="data.kod"></common-input>
-    
-                </div>
-                <div
-                    style="display: flex; align-items: center; justify-content: space-between; height: 25px;margin: 5px 0;">
-                    <common-input [readonly]="true" label="Ad" [formControlNames]="ustUrunAgaciKodu" [field]="data.ad"></common-input>
-                
-                </div>
-            </form> 
+            <form class="form" [formGroup]="frm">
+                <common-input [readonly]="true" [styleInput]="disabledInput" label="Kod" [field]="data.kod"
+                    [formControlNames]="ustUrunAgaciAdi"></common-input>
+                <common-input [readonly]="true" [styleInput]="disabledInput" label="Ad" [field]="data.ad"
+                    [formControlNames]="ustUrunAgaciKodu"></common-input>
+            </form>
         </aside>
-
         <section class="kart-1">
             <div class="title-kart">
                 Ürün Ağacı
             </div>
             <form class="form" [formGroup]="frm">
+                <common-input label="Kod" [formControlNames]="urunAgaciKodu" placeHolder="kod giriniz..." [field]="urunAgaciKod"></common-input>
+                <common-input label="Ad" [formControlNames]="urunAgaciAdi" placeHolder="ad giriniz..."></common-input>
+            </form>
 
-                <div  style="display: flex; align-items: center; justify-content: space-between; height: 25px;margin: 5px 0;">
-                    <common-input label="Kod" [formControlNames]="urunAgaciAdi"></common-input>
-    
-                </div>
-                <div
-                    style="display: flex; align-items: center; justify-content: space-between; height: 25px;margin: 5px 0;">
-                    <common-input label="Ad"  [formControlNames]="urunAgaciKodu"></common-input>
-    
-                </div>
-               
-    
-            </form> 
         </section>
-     
+        <section class="kart-2">
+            <div class="title-kart">
+                Tip
+            </div>
+
+            <mat-radio-group aria-label="Select an option" (click)="tipChange(selectedTip)" [(ngModel)]="selectedTip">
+                <mat-radio-button class="exmple-radio-button" *ngFor="let tip of tips" [value]="tip.key"
+                    [checked]="tip.checked">
+                    {{tip.key}}
+                </mat-radio-button>
+            </mat-radio-group>
+
+        </section>
+        <section class="kart-3">
+            <div class="title-kart">
+                Durum
+            </div>
+            <mat-radio-group class="example-radio-group" (change)="durumChange(selectedDurum)"
+                [(ngModel)]="selectedDurum">
+                <mat-radio-button class="exmple-radio-button" *ngFor="let durum of durums" [value]="durum.key"
+                    [checked]="durum.checked">
+                    {{durum.key}}
+                </mat-radio-button>
+            </mat-radio-group>
+
+
+        </section>
     </div>
 
 
-
-
-
-<div class="table-action-layout-content">
-    <div  class="ribbon-section" style="height: 40px; margin-left: 10px;">
-        <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
-            <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                src=" ../../assets/icons/actions/add.png">
-            <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                src=" ../../assets/icons/actions/add.png">
-            <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-             src=" ../../assets/icons/actions/add.png">
-        </div>
-    </div>
-    <div  class="ribbon-section" style="height: 40px;">
-        <div  class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
-            <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
-                src=" ../../assets/icons/actions/delete.png">
-            <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
-                src=" ../../assets/icons/actions/delete.png">
-            <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
-                src=" ../../assets/icons/actions/delete.png">
-        </div>
-    </div>
-   
-</div>
 
 
     <div class="table-layout-content">
+        <div class="urun-agaci" style="height: 100px;border: 1px solid #d5d5d5;">
+            <p-table #dt1 [value]="dataSource" [tableStyle]="{'min-width': '50rem'}" frozenWidth="1200px" dataKey="id"
+                responsiveLayout="scroll" [resizableColumns]="false" [scrollable]="true"
+                scrollHeight="calc(100vh - 345px)" columnResizeMode="expand" (onRowSelect)="onRowSelect($event)"
+                (onRowUnselect)="onRowUnSelect()">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width:50px;color: #959595 !important;">Stok/Hizmet</th>
+                        <th style="width:100px;color: #959595 !important;">Kodu</th>
+                        <th style="width:200px; color: #959595 !important;">Adı</th>
+                        <th style="width:75px;color: #959595 !important;">Birim</th>
+                        <th style="width:75px;color: #959595 !important;">Miktar</th>
+                        <th style="width:auto;color: #959595 !important;">Açıklama</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-product>
+                    <tr [pSelectableRow]="product">
+                        <td>Stok</td>
+                        <td>{{product.kod}}</td>
+                        <td>
+                            <stok-inline-select-input [formControlNames]="stokUrunAgaci"
+                                (childFunc)="stokChildFunc($event)"
+                                [field]="stokSelectItemAd"></stok-inline-select-input>
+                        </td>
+                        <td>{{product.birimAdi}}</td>
+                        <td pEditableColumn>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <input pInputText type="number" onfocus="this.select()" [(ngModel)]="product.miktar"
+                                        required>
+                                </ng-template>
+                                <ng-template pTemplate="output">
+                                    {{product.miktar}}
+                                </ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td>{{product.aciklama}}</td>
+
+                    </tr>
+                </ng-template>
+
+
+
+            </p-table>
+
+        </div>
+
+
+
+
+
 
         <div class="content-detay" style="position: relative;">
             HAREKETLER
-
             <div style="position: absolute; right: 0; font-size: 12px;">
                 Hareket Sayısı : <span style="color: red;">{{10000000 | number:'1.0-2' }} </span>
             </div>
         </div>
         <div class="table-display-none activeSelectCategori">
-            <p-table #dt [value]="dataSource" [tableStyle]="{'min-width': '50rem'}" selectionMode="single"
-            frozenWidth="1200px" [(selection)]="selectedItem" dataKey="id" responsiveLayout="scroll"
-            [resizableColumns]="false" [scrollable]="true" scrollHeight="calc(100vh - 345px)"
-            columnResizeMode="expand" selectionMode="single" (onRowSelect)="onRowSelect($event)"
-            (onRowUnselect)="onRowUnSelect()">
-            <ng-template pTemplate="header">
-                <tr>
-                    <th style="width:75px;color: #959595 !important;">Kodu</th>
-                    <th style="width:300px;color: #959595 !important;">Adı</th>
-                    <th style="width:75px;color: #959595 !important;">Tipi</th>
-                    <th style="width:75px;color: #959595 !important;">Birim</th>
-                    <th style="width:75px;color: #959595 !important;">Miktar</th>
-                    <th style="width:75px;color: #959595 !important;">Depo Kodu</th>
-                    <th style="width:100px;color: #959595 !important;">Depo Adı</th>
-                    <th style="width:100px;color: #959595 !important;">Maliyet Türü</th>
-                    <th style="width:100px;color: #959595 !important;">Birim Fiyat</th>
-                    <th style="width:100px;color: #959595 !important;">Oran/Miktar</th>
-                    <th style="width:100px;color: #959595 !important;">Fire</th>
-                    <th style="width:100px;color: #959595 !important;">Açıklama</th>
-                </tr>
-                <tr>
+            <div style="height: 322px; border: 1px solid #d5d5d5;">
+                <p-table #dt [value]="urunAgaciHareketler" [tableStyle]="{'min-width': '50rem'}" selectionMode="single"
+                    frozenWidth="1200px" [(selection)]="selectedItem" dataKey="kod" responsiveLayout="scroll"
+                    [resizableColumns]="false" [scrollable]="true" scrollHeight="calc(100vh - 345px)"
+                    columnResizeMode="expand" selectionMode="single" (onRowSelect)="onRowSelect($event)"
+                    (onRowUnselect)="onRowUnSelect()">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width:75px;color: #959595 !important;">Stok/Hizmet</th>
+                            <th style="width:75px;color: #959595 !important;">Kodu</th>
+                            <th style="width:300px;color: #959595 !important;">Adı</th>
+                            <th style="width:75px;color: #959595 !important;">Tipi</th>
+                            <th style="width:75px;color: #959595 !important;">Birim</th>
+                            <th style="width:75px;color: #959595 !important;">Miktar</th>
+                            <th style="width:100px;color: #959595 !important;">Maliyet Türü</th>
+                            <th style="width:100px;color: #959595 !important;">Birim Fiyat</th>
+                            <th style="width:100px;color: #959595 !important;">Oran/Miktar</th>
+                            <th style="width:100px;color: #959595 !important;">Fire</th>
+                            <th style="width:100px;color: #959595 !important;">Açıklama</th>
+                        </tr>
+                        <tr>
 
-                    <th>
-                        <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-                            (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
-                    </th>
-                    <th>
-                        <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-                            (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
-                    </th>
-                    <th>
-                        <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-                            (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
-                    </th>
-                    <th>
-                        <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-                            (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
-                    </th>
-                    <th>
-                        <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-                            (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
-                    </th>
-                    <th>
-                        <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-                            (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
-                    </th>
-                    <th>
-                        <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-                            (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
-                    </th>
-                    <th>
-                        <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-                            (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
-                    </th>
-                    <th>
-                        <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-                            (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
-                    </th>
-                    <th>
-                        <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-                            (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
-                    </th>
-                    <th>
-                        <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-                            (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
-                    </th>
-                    <th>
-                        <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-                            (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
-                    </th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-product>
-                <tr [pSelectableRow]="product">
-                    <td>{{product.stokKodu}}</td>
-                    <td>{{product.stokAdi}}</td>
-                    <td pEditableColumn>
-                       
-                        <p-cellEditor>
-                            <ng-template pTemplate="input">
-                                <input pInputText type="number" onfocus="this.select()" [(ngModel)]="product.TeklifMiktari" required>
-                            </ng-template>
-                            <ng-template pTemplate="output">
-                                {{product.talepMiktari}}
-                            </ng-template>
-                        </p-cellEditor>
-                    </td>
-                    <td>{{product.TeklifBirimi}}</td>
-                    <td pEditableColumn>
-                        <p-cellEditor>
-                            <ng-template pTemplate="input">
-                                <input pInputText type="number" onfocus="this.select()" [(ngModel)]="product.birimFiyat" required>
-                            </ng-template>
-                            <ng-template pTemplate="output">
-                                {{product.birimFiyat |currency:'TRY':'₺':'0.2-2'}}
-                            </ng-template>
-                        </p-cellEditor>
 
-                    </td>
-                    <td>{{product.cariKodu}}</td>
-                    <td>{{product.cariAdi}}</td>
-                    <td>{{product.cariAdi}}</td>
-                    <td>{{product.cariAdi}}</td>
-                    <td>{{product.cariAdi}}</td>
-                    <td>{{product.cariAdi}}</td>
-                    <td>{{product.cariAdi}}</td>
-                </tr>
-            </ng-template>
+                            <th>
+                                <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                                    (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                            </th>
+                            <th>
+                                <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                                    (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                            </th>
+                            <th>
+                                <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                                    (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                            </th>
+                            <th>
+                                <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                                    (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                            </th>
+                            <th>
+                                <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                                    (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                            </th>
+                            <th>
+                                <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                                    (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                            </th>
+                            <th>
+                                <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                                    (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                            </th>
+                            <th>
+                                <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                                    (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                            </th>
+                            <th>
+                                <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                                    (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                            </th>
+                            <th>
+                                <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                                    (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                            </th>
+                            <th>
+                                <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                                    (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-product>
+                        <tr [pSelectableRow]="product">
+                            <td>{{product.shm}}</td>
+                            <td>{{product.kod}}</td>
+                            <td>{{product.ad}} </td>
+                            <td>{{product.tipi}} </td>
+                            <td>{{product.birimAdi}}</td>
+                            <td pEditableColumn>
+                                <p-cellEditor>
+                                    <ng-template pTemplate="input">
+                                        <input pInputText type="number" onfocus="this.select()"
+                                            [(ngModel)]="product.miktar" required>
+                                    </ng-template>
+                                    <ng-template pTemplate="output">
+                                        {{product.miktar}}
+                                    </ng-template>
+                                </p-cellEditor>
+
+                            </td>
+                            <td>{{product.cariAdi}}</td>
+                            <td>{{product.cariAdi}}</td>
+                            <td>{{product.cariAdi}}</td>
+                            <td>{{product.cariAdi}}</td>
+                            <td>{{product.cariAdi}}</td>
+                        </tr>
+                    </ng-template>
 
 
 
-        </p-table>
+                </p-table>
+            </div>
+            <div  style="
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: start;">
+
+                <div (click)="addStok()" [ngClass]="btnDisabledAction==true?'btnDisabledAction': ''"  class="ribbon-section" style="height: 32px;
+                     border: 1px solid #c1c1c1;
+                     border-radius: 3px;
+                     background: #dfdfdf; margin: 5px;">
+                    <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
+                        style="height: 30px; display: flex; justify-content: center;align-items: center; padding: 0 6px !important;">
+                        <img style="width: 25px; height: 25px; " class="ribbon-icon ribbon-normal"
+                        src=" ../../assets/icons/actions/add_satir.png">
+                    <img style="width: 25px; height: 25px;" class="ribbon-icon ribbon-hot"
+                        src=" ../../assets/icons/actions/add_satir.png">
+                    <img style="width: 25px; height: 25px;" class="ribbon-icon ribbon-disabled"
+                        src=" ../../assets/icons/actions/add_satir.png">
+                        <div style="font-size: 14px; font-weight: 500;margin-left: 5px;padding-top: 5px;">
+                            Satır Ekle
+                        </div>
+                    </div>
+                </div>
+                <div (click)="deleteUrunAgaciHareket()" [ngClass]="btnDisabledAction==true?'btnDisabledAction': ''"  class="ribbon-section" style="height: 32px;
+                     border: 1px solid #c1c1c1;
+                     border-radius: 3px;
+                     background: #dfdfdf; margin: 5px;">
+                    <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
+                        style="height: 30px; display: flex; justify-content: center;align-items: center; padding: 0 6px !important;">
+                        <img style="width: 25px; height: 25px; " class="ribbon-icon ribbon-normal"
+                        src=" ../../assets/icons/actions/delete_satir.png">
+                    <img style="width: 25px; height: 25px;" class="ribbon-icon ribbon-hot"
+                        src=" ../../assets/icons/actions/delete_satir.png">
+                    <img style="width: 25px; height: 25px;" class="ribbon-icon ribbon-disabled"
+                        src=" ../../assets/icons/actions/delete_satir.png">
+                        <div style="font-size: 14px; font-weight: 500;margin-left: 5px;padding-top: 5px;">
+                            Satır Sil
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
 
 
 
 
     </div>
-
 
 
     <div class="form_actions">
@@ -215,7 +279,7 @@
         border: 1px solid #757575;
         border-radius: 5px;
         ">
-            <div  class="ribbon-section" style="height: 40px;">
+            <div (click)="onSubmit()" class="ribbon-section" style="height: 40px;">
                 <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
                     style="height: 40px; display: flex; justify-content: center;align-items: center;">
                     <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
@@ -230,7 +294,5 @@
                 </div>
             </div>
         </div>
-    </div> 
- </app-large-dialog-content>
-
-
+    </div>
+</app-large-dialog-content>

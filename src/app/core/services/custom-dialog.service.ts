@@ -77,15 +77,20 @@ export class CustomDialogService {
 
         });
 
+        // dialogRef.afterClosed().subscribe(result => {
+        //     if (result == DialogParameters.data) { DialogParameters.afterClose() }
+        //     if (dialogRef.componentInstance._selectedDataItem == null) { return }
+        //     this.selectedData = dialogRef.componentInstance._selectedDataItem;
+        //     successCallBack(this.selectedData);
+
+        // });
+
         dialogRef.afterClosed().subscribe(result => {
-            if (result == DialogParameters.data) { DialogParameters.afterClose() }
+            DialogParameters.afterClose()
             if (dialogRef.componentInstance._selectedDataItem == null) { return }
             this.selectedData = dialogRef.componentInstance._selectedDataItem;
             successCallBack(this.selectedData);
-
         });
-
-
 
     }
 

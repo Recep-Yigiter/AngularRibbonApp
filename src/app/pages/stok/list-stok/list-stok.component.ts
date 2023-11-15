@@ -28,7 +28,7 @@ export class ListStokComponent implements OnInit {
   testList: any[];
   async getList() {
     this.testList = []
-    const list = await this.StokService.GetList();
+    const list = await this.StokService.GetListTreeView();
     this.dataSource = list.data.items;
     this.totalStok = this.dataSource.length
 

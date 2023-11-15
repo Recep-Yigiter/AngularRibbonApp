@@ -17,8 +17,8 @@
                 STOK KART
             </div>
             <form class="form" [formGroup]="frm">
+                <common-input label="Kod" [formControlNames]="kod" [field]="stokKod"></common-input>
                 <common-input label="Ad" [formControlNames]="ad"></common-input>
-                <common-input label="Kod" [formControlNames]="kod"></common-input>
                 <common-input label="Stok Grup" [formControlNames]="stokGrup"></common-input>
                 <common-input type="number" label="Birim Fiyat" [formControlNames]="birimFiyat"></common-input>
                 <birim-select-input label="Birim"  [formControlNames]="birimId"

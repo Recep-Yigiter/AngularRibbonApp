@@ -32,7 +32,7 @@
         </div>
     </div>
     <div class="table-display-none activeSelectCategori">
-        <p-table #dt [value]="dataSource" [tableStyle]="{'min-width': '50rem'}"
+        <p-table #dt [value]="dataSource" [tableStyle]="{'min-width': '50rem'}" styleClass="p-datatable-striped"
             selectionMode="single" frozenWidth="1200px" [(selection)]="selectedItem" dataKey="id"
             responsiveLayout="scroll" [resizableColumns]="false" [scrollable]="true"
             scrollHeight="calc(100vh - 345px)" columnResizeMode="expand" selectionMode="single"
@@ -40,7 +40,7 @@
             <ng-template pTemplate="header">
                 <tr>
                     <th style="width: 350px; color: #959595 !important;">Stok Adı</th>
-                    <th style="width:100px;color: #959595 !important;">Stok Grup</th>
+                    <th style="width:150px;color: #959595 !important;">Stok Grup</th>
                     <th style="width:100px;color: #959595 !important;">Birim Adı</th>
                     <th style="width:100px;color: #959595 !important;">Birim Fiyat</th>
                     <th style="width:auto; min-width: 150px;color: #959595 !important;">Açıklama</th>
@@ -69,9 +69,11 @@
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-product>
-                <tr [pSelectableRow]="product">
+                <tr [pSelectableRow]="product" [style]="product.durum==false?'background-color: rgb(227 227 227)':''"
+               [pSelectableRow]="product" [pSelectableRowIndex]="product"
+                [pSelectableRowDisabled]="product.durum==false?true:false">
                     <td>{{product.ad}}</td>
-                    <td>{{product.stokGrup}}</td>
+                    <td >{{product.stokGrup}}</td>
                     <td>{{product.birimAdi}}</td>
                     <td>{{product.birimFiyat |currency:'TRY':'₺':'0.2-2'}}</td>
                     <td>{{product.aciklama}}</td>

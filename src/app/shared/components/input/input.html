@@ -4,11 +4,12 @@
       {{label}}<span>: </span>
    </div>
    <div style="width: 100%;">
-      <span class="p-float-label" >
-        <input [style]="styleInput" id="disabled-input" [formControl]="formControlNames"  [(value)]="valueInput"   [readonly]="readonly"  [(ngModel)]="field" 
-            type="{{type}}" class="p-inputtext-sm" pInputText /> 
+      <span class="" >
+       <input [style]="styleInput"  [formControl]="formControlNames"  [(value)]="valueInput" placeholder="{{placeHolder}}"  [readonly]="readonly"  [(ngModel)]="field" 
+            type="{{type}}" class="p-inputtext-sm" pInputText  /> 
 
       </span>
+
    </div>
 
 </div>

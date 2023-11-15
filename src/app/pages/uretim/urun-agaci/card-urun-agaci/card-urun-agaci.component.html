@@ -53,36 +53,45 @@
     </div>
 
     <div class="sidebar-layout-content">
-        <ng-template #nodeTemplate let-nodes="nodes" let-tree="tree">
-            <ng-container *ngFor="let node of nodes">
-                <div class="menu-node" [ngClass]=" { 'menu-node-tree' : tree }" style="position: relative;">
-                    <div (click)="toggleVisible(node)" class="menu-node-button "
-                        [ngClass]="{ 'menu-node-button-show': node.submenu && node.submenu?.length,'menu-node-button-plus': !expand[node.index],'menu-node-button-minus': expand[node.index] } "
-                        role="button">
-                    </div>
-                    <div class="menu-node-name" [ngClass]="{
-                 'menu-node-name-selected': (node === selectedNode),'menu-node-folder':(node.submenu?.length>0)}"
-                        (click)="selectNode(node)">
+        <mat-tab-group animationDuration="0ms" (selectedTabChange)="selectedTabChange($event)">
 
+            <mat-tab *ngFor="let item of tabs" label="{{item}}">
 
-                        <img *ngIf="node.submenu?.length>0" src=" ../../assets/icons/actions/received_files.png"
-                            class="title-icon" alt="">
-
-                        <img *ngIf="node.submenu==undefined" src=" ../../assets/icons/actions/list.png"
-                            class="title-icon" alt="">
-                        {{ node.ad }}
-                    </div>
-                    <ng-container *ngIf="node.submenu && node.submenu?.length && expand[node.index] ">
-                        <ng-template [ngTemplateOutlet]="nodeTemplate"
-                            [ngTemplateOutletContext]="{ nodes: node.submenu, tree: true }">
-                        </ng-template>
+                <ng-template #nodeTemplate let-nodes="nodes" let-tree="tree">
+                    <ng-container *ngFor="let node of nodes">
+                       
+                        <div class="menu-node" [ngClass]=" { 'menu-node-tree' : tree }" style="position: relative;">
+                            <div (click)="toggleVisible(node)" class="menu-node-button "
+                                [ngClass]="{ 'menu-node-button-show': node.submenu && node.submenu?.length,'menu-node-button-plus': !expand[node.index],'menu-node-button-minus': expand[node.index] } "
+                                role="button">
+                            </div>
+                            <div class="menu-node-name" [ngClass]="{
+                         'menu-node-name-selected': (node === selectedNode),'menu-node-folder':(node.submenu?.length>0)}"
+                                (click)="selectNode(node)">
+        
+        
+                                <img *ngIf="node.submenu?.length>0" src=" ../../assets/icons/actions/received_files.png"
+                                    class="title-icon" alt="">
+        
+                                <img *ngIf="node.submenu==undefined" src=" ../../assets/icons/actions/list.png"
+                                    class="title-icon" alt="">
+                                {{ node.ad }}
+                            </div>
+                            <ng-container *ngIf="node.submenu && node.submenu?.length && expand[node.index] ">
+                                <ng-template [ngTemplateOutlet]="nodeTemplate"
+                                    [ngTemplateOutletContext]="{ nodes: node.submenu, tree: true }">
+                                </ng-template>
+                            </ng-container>
+                        </div>
                     </ng-container>
-                </div>
-            </ng-container>
-        </ng-template>
+                </ng-template>
+                <ng-template [ngTemplateOutlet]="nodeTemplate" [ngTemplateOutletContext]="{ nodes: menu, tree: false }">
+                </ng-template>
+            </mat-tab>
 
-        <ng-template [ngTemplateOutlet]="nodeTemplate" [ngTemplateOutletContext]="{ nodes: menu, tree: false }">
-        </ng-template>
+          </mat-tab-group>
+
+
 
 
     </div>
@@ -104,7 +113,7 @@
                 <col style="width: 30px;">
                 <col style="width: auto;">
             </colgroup>
-            <tbody *ngFor="let item of stokDetayList">
+            <tbody *ngFor="let item of UrunAgaciDetayList">
 
                 <tr>
                     <td><span class="table-detay-label">{{item.label?item.label:"NULL"}}</span></td>

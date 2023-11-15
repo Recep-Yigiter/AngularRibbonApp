@@ -12,9 +12,9 @@
                 Üst Ürün Ağacı
             </div>
             <form class="form" [formGroup]="frm">
-                <common-input [readonly]="true" [styleInput]="disabledInput" label="Kod"
+                <common-input [readonly]="true" [styleInput]="disabledInput" label="Kod" 
                     [formControlNames]="ustUrunAgaciAdi"></common-input>
-                <common-input [readonly]="true" [styleInput]="disabledInput" label="Ad"
+                <common-input [readonly]="true" [styleInput]="disabledInput" label="Ad" 
                     [formControlNames]="ustUrunAgaciKodu"></common-input>
             </form>
         </aside>
@@ -23,8 +23,8 @@
                 Ürün Ağacı
             </div>
             <form class="form" [formGroup]="frm">
-                <common-input label="Kod" [formControlNames]="urunAgaciKodu"></common-input>
-                <common-input label="Ad" [formControlNames]="urunAgaciAdi"></common-input>
+                <common-input label="Kod" [formControlNames]="urunAgaciKodu" placeHolder="kod giriniz..." [field]="urunAgaciKod"></common-input>
+                <common-input label="Ad" [formControlNames]="urunAgaciAdi" placeHolder="ad giriniz..."></common-input>
             </form>
 
         </section>
@@ -61,7 +61,6 @@
 
 
     <div class="table-layout-content">
-
         <div class="urun-agaci" style="height: 100px;border: 1px solid #d5d5d5;">
             <p-table #dt1 [value]="dataSource" [tableStyle]="{'min-width': '50rem'}" frozenWidth="1200px" dataKey="id"
                 responsiveLayout="scroll" [resizableColumns]="false" [scrollable]="true"
@@ -74,13 +73,12 @@
                         <th style="width:200px; color: #959595 !important;">Adı</th>
                         <th style="width:75px;color: #959595 !important;">Birim</th>
                         <th style="width:75px;color: #959595 !important;">Miktar</th>
-
                         <th style="width:auto;color: #959595 !important;">Açıklama</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-product>
                     <tr [pSelectableRow]="product">
-                        <td>{{product.shm}}</td>
+                        <td>Stok</td>
                         <td>{{product.kod}}</td>
                         <td>
                             <stok-inline-select-input [formControlNames]="stokUrunAgaci"
@@ -89,7 +87,6 @@
                         </td>
                         <td>{{product.birimAdi}}</td>
                         <td pEditableColumn>
-
                             <p-cellEditor>
                                 <ng-template pTemplate="input">
                                     <input pInputText type="number" onfocus="this.select()" [(ngModel)]="product.miktar"
@@ -100,7 +97,7 @@
                                 </ng-template>
                             </p-cellEditor>
                         </td>
-
+                        <td>{{product.aciklama}}</td>
 
                     </tr>
                 </ng-template>
@@ -194,7 +191,7 @@
                     </ng-template>
                     <ng-template pTemplate="body" let-product>
                         <tr [pSelectableRow]="product">
-                            <td>{{product.ad}}</td>
+                            <td>{{product.shm}}</td>
                             <td>{{product.kod}}</td>
                             <td>{{product.ad}} </td>
                             <td>{{product.tipi}} </td>
@@ -227,7 +224,7 @@
             width: 100%;
             display: flex;
             align-items: center;
-            justify-content: end;">
+            justify-content: start;">
                 <div (click)="addStok()" class="ribbon-section" style="height: 32px;
                      border: 1px solid #c1c1c1;
                      border-radius: 3px;
