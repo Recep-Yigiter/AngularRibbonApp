@@ -5,7 +5,8 @@ export class UrunAgaciUpdateModel {
     birimFiyat?: any;
     aciklama?: any;
     UrunAgaciGrup?: any;
-    durum?: any;
+    durum?:any;
+    tip?:any;
     parentId?: any;
     birimId?: any;
 

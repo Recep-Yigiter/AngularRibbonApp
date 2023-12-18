@@ -1,0 +1,51 @@
+<app-small-dialog-content layoutName="Stok Card ekleme" [tableActions]="false" [formTopActions]="true"
+    [tableContent]="false">
+
+    <div class="close-dialog">
+        <button class="item" name="close" mat-dialog-close>
+            <i class="fa fa-close"></i>
+        </button>
+    </div>
+
+
+    <div class="grid_container_content">
+        <aside class="aside">
+            <div class="title-kart">
+                STOK KART
+            </div>
+            <form class="form" [formGroup]="frm">
+                <common-input label="Kod" [formControlNames]="kod" [field]="OperasyonKod"></common-input>
+                <common-input label="Ad" [formControlNames]="ad"></common-input>
+                <common-input label="Acıklama" [formControlNames]="aciklama"></common-input>
+            </form>
+        </aside>
+
+
+
+    </div>
+
+    <div class="form_actions">
+        <div style="
+        width: 100%;
+        display: flex;
+        align-items: center;
+        border: 1px solid #757575;
+        border-radius: 5px;
+        ">
+            <div (click)="onSubmit()" class="ribbon-section" style="height: 40px;">
+                <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
+                    style="height: 40px; display: flex; justify-content: center;align-items: center;">
+                    <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                        src=" ../../assets/icons/actions/save.png">
+                    <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                        src=" ../../assets/icons/actions/save.png">
+                    <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                        src=" ../../assets/icons/actions/save.png">
+                    <div style="font-size: 14px; font-weight: 600;margin-left: 5px;">
+                        KAYDET
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</app-small-dialog-content>

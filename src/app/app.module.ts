@@ -126,6 +126,13 @@ import { DialogUpdateUrunAgaciComponent } from './pages/uretim/urun-agaci/dialog
 import { ListUrunAgaciComponent } from './pages/uretim/urun-agaci/list-urun-agaci/list-urun-agaci.component';
 import { DepoInlineSelectInput } from './shared/components/inline-select-input/depo-inline-select-input/depo-inline-select-input';
 import { StokInlineSelectInput } from './shared/components/inline-select-input/stok-inline-select-input/stok-inline-select-input';
+import { MaliyetHesaplamaComponent } from './pages/uretim/maliyet-hesaplama/maliyet-hesaplama.component';
+import { RotaPlaniComponent } from './pages/uretim/rota-plani/rota-plani.component';
+import { DialogAddRotaComponent } from './pages/uretim/rota-plani/dialog-add-rota/dialog-add-rota.component';
+import { OperasyonComponent } from './pages/uretim/operasyon/operasyon.component';
+import { DialogAddOperasyonComponent } from './pages/uretim/operasyon/dialog-add-operasyon/dialog-add-operasyon.component';
+import { DialogUpdateOperasyonComponent } from './pages/uretim/operasyon/dialog-update-operasyon/dialog-update-operasyon.component';
+import { ListOperasyonComponent } from './pages/uretim/operasyon/list-operasyon/list-operasyon.component';
 
 @NgModule({
   declarations: [
@@ -245,7 +252,14 @@ import { StokInlineSelectInput } from './shared/components/inline-select-input/s
     DialogAddUrunAgaciComponent,
     DialogUpdateUrunAgaciComponent,
     ListUrunAgaciComponent,
-    StokInlineSelectInput
+    StokInlineSelectInput,
+    MaliyetHesaplamaComponent,
+    RotaPlaniComponent,
+    DialogAddRotaComponent,
+    OperasyonComponent,
+    DialogAddOperasyonComponent,
+    DialogUpdateOperasyonComponent,
+    ListOperasyonComponent
 
   ],
   imports: [

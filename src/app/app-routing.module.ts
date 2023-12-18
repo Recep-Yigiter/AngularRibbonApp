@@ -23,6 +23,9 @@ import { ListBirimComponent } from './pages/birim/list-birim/list-birim.componen
 import { CardReceteComponent } from './pages/maliyet/recete/card-recete/card-recete.component';
 import { UretimComponent } from './pages/uretim/uretim.component';
 import { CardUrunAgaciComponent } from './pages/uretim/urun-agaci/card-urun-agaci/card-urun-agaci.component';
+import { MaliyetHesaplamaComponent } from './pages/uretim/maliyet-hesaplama/maliyet-hesaplama.component';
+import { OperasyonComponent } from './pages/uretim/operasyon/operasyon.component';
+import { ListOperasyonComponent } from './pages/uretim/operasyon/list-operasyon/list-operasyon.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'stok', pathMatch: 'full', },
@@ -65,6 +68,8 @@ const routes: Routes = [
         path: "uretim", component: UretimComponent, children: [
 
          { path: "urun-agaci-kart", component: CardUrunAgaciComponent },
+         { path: "maliyet-hesaplama", component: MaliyetHesaplamaComponent },
+         { path: "operasyon", component: ListOperasyonComponent },
         ]
       },
 

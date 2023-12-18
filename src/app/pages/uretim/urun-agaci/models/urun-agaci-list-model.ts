@@ -6,5 +6,6 @@ export class UrunAgaciListModel{
     UrunAgaciGrupAdi:string;
     aciklama : string;
     UrunAgaciGrupId:string;
-    durum: boolean;
+    durum?:any;
+    tip?:any;
   }

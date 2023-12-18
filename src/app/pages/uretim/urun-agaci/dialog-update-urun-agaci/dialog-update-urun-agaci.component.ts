@@ -5,6 +5,9 @@ import { UrunAgaciCreateModel, UrunAgaciHareketCreateModel } from '../models/uru
 import { CustomDialogService } from 'src/app/core/services/custom-dialog.service';
 import { DialogSelectStokComponent } from 'src/app/pages/stok/dialog-select-stok/dialog-select-stok.component';
 import { UrunAgaciService } from '../services/urun-agaci.service';
+import { UrunAgaciBilesenService } from '../services/urun-agaci-bilesen.service';
+import { DialogAddRotaComponent } from '../../rota-plani/dialog-add-rota/dialog-add-rota.component';
+import { BilesenRotaService } from '../../rota-plani/services/bilesen-rota.service';
 
 @Component({
   selector: 'app-dialog-update-urun-agaci',
@@ -26,23 +29,50 @@ export class DialogUpdateUrunAgaciComponent implements OnInit {
   disabledInput = "background-color:#ebebeb;";
   dataSource: any[];
   dataSourceHarekets: any[];
-  urunAgaciKod:any;
-  btnDisabledAction:boolean=true;
+  urunAgaciKod: any;
+  btnDisabledAction: boolean = true;
+  getAllUrunAgaci: any;
+  getListByIdUrunAgaciBilesen: any;
+  getListByIdUrunAgaci: any;
+  getUrunAgaci: any;
+  bilesenRotalar: any;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
     private UrunAgaciService: UrunAgaciService,
     private dialogRef: MatDialogRef<DialogUpdateUrunAgaciComponent>,
     private fb: FormBuilder,
     private readonly changeDetectorRef: ChangeDetectorRef,
-    private CustomDialogService: CustomDialogService
+    private CustomDialogService: CustomDialogService,
+    private UrunAgaciBilesenService: UrunAgaciBilesenService,
+    private BilesenRotaService: BilesenRotaService
   ) { }
 
- async ngOnInit() {
+  async ngOnInit() {
     this.selectedDurum = 'Aktif';
     this.selectedTip = 'Proses';
-    this.dataSource = [{ ad: "", miktar: 0 }];
+    this.dataSource = [this.data];
+    const fatura = await this.UrunAgaciService.GetCode();
+    this.urunAgaciKod = fatura.data.kod;
 
-    const fatura = await this.UrunAgaciService.GetCode(); 
-    this.urunAgaciKod= fatura.data.kod;
+
+
+    this.getListByIdUrunAgaci = await (this.UrunAgaciService.getById(this.data.id))
+
+
+    this.getListByIdUrunAgaciBilesen = this.getListByIdUrunAgaci.data.urunAgaciBilesenler;
+
+    this.bilesenRotalar = [];
+    this.getListByIdUrunAgaciBilesen.forEach(item1 => {
+      item1.shm = "Stok";
+      item1.ad = item1.stokAdi,
+        item1.kod = item1.stokKodu
+      item1.bilesenRotalar.forEach(item2 => {
+
+        this.bilesenRotalar.push(item2);
+      });
+    });
+    if (this.getListByIdUrunAgaci.data.urunAgaciBilesenler.length > 0) {
+      this.btnDisabledAction = false
+    }
   }
 
   ngAfterViewChecked(): void {
@@ -72,7 +102,6 @@ export class DialogUpdateUrunAgaciComponent implements OnInit {
 
 
   onSubmit() {
-
     const model = new UrunAgaciCreateModel();
     model.ad = this.frm.value.urunAgaciAdi;
     model.kod = this.frm.value.urunAgaciKodu;
@@ -80,9 +109,17 @@ export class DialogUpdateUrunAgaciComponent implements OnInit {
     model.aciklama = "";
     model.stokId = this.stokSelectItem?.id;
     model.parentId = this.data.id;
-    model.urunGrubu=this.data.urunGrubu;
-    model.UrunAgaciBilesenler = this.urunAgaciHareketler;
-    this.UrunAgaciService.create(model, () => {
+    model.urunGrubu = this.data.urunGrubu;
+    model.urunAgaciBilesenler = this.urunAgaciBilesenler;
+    this.urunAgaciBilesenler.forEach((element: any) => {
+      element.toplamfiyat = element.birimFiyat * element.miktar;
+    })
+    const reducer = function (acc, item) {
+      return acc + item.toplamfiyat;
+    };
+    const sum = this.urunAgaciBilesenler.reduce(reducer, 0);
+    model.birimFiyat = sum
+    this.UrunAgaciService.update(model, () => {
       this.frm.reset();
       this.dialogRef.close({ data: model });
     }, errorMessage => {
@@ -90,23 +127,32 @@ export class DialogUpdateUrunAgaciComponent implements OnInit {
     })
   }
 
-  urunAgaciHareketler: UrunAgaciHareketCreateModel[] = [];
-  urunAgaciHareket: any;
+  urunAgaciBilesenler: UrunAgaciHareketCreateModel[] = [];
+  urunAgaciBilesen: any;
   addStok() {
-    this.urunAgaciHareket = {}
+    this.urunAgaciBilesen = {}
     this.CustomDialogService.normalDialog({
       componentType: DialogSelectStokComponent,
       afterClose: () => { }
     },
       (data) => {
-        this.urunAgaciHareket.shm = "Stok";
-        this.urunAgaciHareket.birimFiyat = data.birimFiyat = 0;
-        this.urunAgaciHareket.stokId = data.id;
-        this.urunAgaciHareket.ad = data.ad;
-        this.urunAgaciHareket.kod = data.kod
-        this.urunAgaciHareket.birimAdi = data.birimAdi;
-        this.urunAgaciHareket.miktar = data.birimFiyat = 0;
-        this.urunAgaciHareketler.push(this.urunAgaciHareket);
+        console.log(this.getAllUrunAgaci);
+        var item = this.getAllUrunAgaci.filter(c => c.stokId == data.id)
+        this.urunAgaciBilesen.shm = "Stok";
+        this.urunAgaciBilesen.birimFiyat = data.birimFiyat ? data.birimFiyat : 0;
+        this.urunAgaciBilesen.stokId = data.id;
+        this.urunAgaciBilesen.stokAdi = data.ad;
+        this.urunAgaciBilesen.stokKodu = data.kod
+        this.urunAgaciBilesen.birimAdi = data.birimAdi;
+        this.urunAgaciBilesen.miktar = 0;
+        if (item.length > 0) {
+          this.urunAgaciBilesen.tipi = "Yarımamul"
+        } else {
+          this.urunAgaciBilesen.tipi = "Hammadde"
+        }
+        this.getListByIdUrunAgaciBilesen.push(this.urunAgaciBilesen);
+
+
       }
 
     )
@@ -114,9 +160,9 @@ export class DialogUpdateUrunAgaciComponent implements OnInit {
 
   deleteUrunAgaciHareket() {
     this.CustomDialogService.deleteDialog(() => {
-      var filterTalepHareket = this.urunAgaciHareketler.filter(c => c.stokId != this.urunAgaciHareket.stokId);
-      this.urunAgaciHareketler = filterTalepHareket;
-      if (this.urunAgaciHareketler.length == 0) {
+      var filterTalepHareket = this.urunAgaciBilesenler.filter(c => c.stokId != this.urunAgaciBilesen.stokId);
+      this.urunAgaciBilesenler = filterTalepHareket;
+      if (this.urunAgaciBilesenler.length == 0) {
         this.onRowUnSelect();
       }
     })
@@ -124,26 +170,62 @@ export class DialogUpdateUrunAgaciComponent implements OnInit {
   }
 
 
-  stokSelectItem: any;
+  stokSelectItem: any = this;
   stokSelectItemKod: any;
-  stokSelectItemAd: any;
+  stokSelectItemAd: any = this.data.stokAdi;
   stokChildFunc(item) {
-
-    if (this.frm.value.urunAgaciAdi==undefined||this.frm.value.urunAgaciAdi==''||this.frm.value.urunAgaciAdi==null) {
-    this.CustomDialogService.errorDialog("Lütfen önce ürün ağacı adını giriniz..")
+    if (this.frm.value.urunAgaciAdi == undefined || this.frm.value.urunAgaciAdi == '' || this.frm.value.urunAgaciAdi == null) {
+      this.CustomDialogService.errorDialog("Lütfen önce ürün ağacı adını giriniz..")
     }
-   else{
-    this.stokSelectItem = item;
-    this.stokSelectItemAd = item.ad;
-    this.stokSelectItemKod = item.kod;
-    this.stokSelectItem.shm = "Stok";
-    this.dataSource = [];
-    this.stokSelectItem.miktar = 0;
-    this.dataSource.push(this.stokSelectItem);
+    else {
+      this.stokSelectItem = item;
+      this.stokSelectItemAd = item.ad;
+      this.stokSelectItemKod = item.kod;
+      this.stokSelectItem.shm = "Stok";
+      this.dataSource = [];
+      this.stokSelectItem.miktar = 0;
+      this.dataSource.push(this.stokSelectItem);
 
-    this.btnDisabledAction=false;
-   }
-   
+      this.btnDisabledAction = false;
+    }
+
+  }
+
+
+  bilesenRotalari: any;
+  rotaGruplama: any[];
+
+  rotaEkle() {
+    this.CustomDialogService.normalDialog({
+      componentType: DialogAddRotaComponent,
+      data: this.getListByIdUrunAgaci.data.urunAgaciBilesenler,
+      afterClose: () => { }
+    }, (data) => {
+      this.bilesenRotalari = data;
+
+      for (let i = 0; i < this.bilesenRotalari.length; i++) {
+        for (let t = 0; t < this.bilesenRotalari[i].bilesenRotalar.length; t++) {
+          var test = {
+            bilesenAdi: this.bilesenRotalari[i].ad,
+            operasyonAdi: this.bilesenRotalari[i].bilesenRotalar[t].ad,
+            operasyonKodu: this.bilesenRotalari[i].bilesenRotalar[t].kod,
+            operasyonId: this.bilesenRotalari[i].bilesenRotalar[t].id,
+            operasyonSuresi: 0
+          }
+
+          this.bilesenRotalar.push(test);
+
+
+        }
+
+      }
+
+
+
+    })
+
+
+
   }
 
 

@@ -28,6 +28,9 @@ export class UrunAgaciTreeViewService  {
                 stokGrup:value.stokGrup,
                 urunGrubu:value.urunGrubu,
                 parentId:value.parentId,
+                stokAdi:value.stokAdi,
+                stokKodu:value.stokKodu,
+                miktar:value.miktar,
                 submenu: (value.submenu !== undefined)
                     ? value.submenu.map(createTreeNode)
                     : undefined

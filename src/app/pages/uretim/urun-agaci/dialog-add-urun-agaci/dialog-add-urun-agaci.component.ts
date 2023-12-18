@@ -78,7 +78,7 @@ export class DialogAddUrunAgaciComponent implements OnInit {
     model.stokId = this.stokSelectItem?.id;
     model.parentId = null;
     model.urunGrubu=this.data;
-    model.UrunAgaciBilesenler = this.urunAgaciHareketler;
+    model.urunAgaciBilesenler = this.urunAgaciHareketler;
 
     this.UrunAgaciService.create(model, () => {
       this.frm.reset();

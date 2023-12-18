@@ -1,0 +1,248 @@
+<app-normal-dialog-content layoutName="Rota Planı" [tableActions]="false" [topActions]="false">
+
+
+  <div class="close-dialog">
+    <button class="item" name="close" mat-dialog-close>
+      <i class="fa fa-close"></i>
+    </button>
+  </div>
+
+
+  <!-- sortField="bilesenAdi" sortMode="single" [scrollable]="true"
+  scrollHeight="600px" rowGroupMode="subheader" groupRowsBy="bilesenAdi"
+ -->
+
+  <div class="table-layout-content">
+    <div class="urun-agaci" style="height: 100%; max-height: 410px; border: 1px solid #d5d5d5;">
+      <!-- <p-table #dt1 [value]="dataSource" responsiveLayout="scroll" [tableStyle]="{'min-width': '50rem'}"
+        selectionMode="single" frozenWidth="1200px" [(selection)]="selectedItem" dataKey="kod" responsiveLayout="scroll"
+        [resizableColumns]="false" [scrollable]="true" scrollHeight="calc(100vh - 730px)" columnResizeMode="expand"
+        (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnSelect()">
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width:75px;color: #959595 !important;">Stok/Hizmet</th>
+            <th style="width:75px;color: #959595 !important;">Kodu</th>
+            <th style="width:100%;color: #959595 !important;">Ad</th>
+
+          </tr>
+
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+          <tr [pSelectableRow]="product">
+
+            <td>{{product.shm}}</td>
+            <td>{{product.kod}}</td>
+            <td>{{product.ad}} </td>
+
+          </tr>
+        </ng-template>
+
+
+
+      </p-table> -->
+
+
+      <!-- <p-table [value]="bilesenRotaGruplari"
+      
+      sortField="bilesenAdi" sortMode="single" [scrollable]="true"
+      scrollHeight="600px" rowGroupMode="subheader" groupRowsBy="bilesenAdi"
+
+        [(selection)]="isChecked" dataKey="dataKey"
+        >
+
+
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 2rem;"></th>
+            <th style="max-width: 200px; width: 200px; color: #959595 !important;">Rota Kodu</th>
+            <th style="max-width: 200px; width: 200px; color: #959595 !important;">Rota Adı</th>
+            <th style="width: auto; color: #959595 !important;">Operasyon Süresi</th>
+
+          </tr>
+
+        </ng-template>
+
+        
+        <ng-template pTemplate="groupheader" let-customer let-rowIndex="rowIndex" let-expanded="expanded">
+          <tr pRowGroupHeader>
+            <td colspan="5">
+              <span class="p-text-bold p-ml-2">{{customer.bilesenAdi}} </span>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-customer let-rowIndex="rowIndex">
+          <tr [pSelectableRow]="customer">
+            <td>
+              <p-tableCheckbox [value]="customer"></p-tableCheckbox>
+       
+                <p-checkbox #checkboxes [binary]="true" inputId="binary" 
+                  
+                  (onChange)="changeCheckmark($event, customer)" ></p-checkbox>   
+            </td>
+            <td style="min-width:200px">
+              {{customer.operasyonKodu}}
+            </td>
+            <td style="min-width:200px">
+              {{customer.operasyonAdi}}
+            </td>
+            <td style="min-width:200px">
+              {{customer.operasyonSuresi}}
+            </td>
+
+          </tr>
+        </ng-template>
+      </p-table> -->
+
+
+      <p-table [value]="bilesenRotaGruplari" [(selection)]="isChecked" dataKey="dataKey">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Quantity</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td>
+                    <p-tableCheckbox [value]="product"></p-tableCheckbox>
+                </td>
+                <td>{{product.code}}</td>
+                <td style="min-width:200px">
+                  {{product.operasyonKodu}}
+                </td>
+                <td style="min-width:200px">
+                  {{product.operasyonAdi}}
+                </td>
+                <td style="min-width:200px">
+                  {{product.operasyonSuresi}}
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+      
+
+    </div>
+
+    <!-- <div class="content-detay" style="position: relative; margin-top:20px ;">
+      ROTALAR
+      <div style="position: absolute; right: 0; font-size: 12px;">
+        Rota Sayısı : <span style="color: red;">{{10| number:'1.0-2' }} </span>
+      </div>
+    </div>
+    <div class="table-display-none activeSelectCategori">
+
+      <div style="height: 100%; max-height: 210px; border: 1px solid #d5d5d5;">
+        <p-table #dt2 [value]="dataSourceRota" [(selection)]="selectedItems" [rowHover]="true" dataKey="kod">
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="width: 3rem">
+              </th>
+              <th style="width:75px;color: #959595 !important;">Kodu</th>
+              <th style="width:250px;min-width: 250px; color: #959595 !important;">Ad</th>
+              <th style="width:100%;color: #959595 !important;">Opresyon Süresi</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-product>
+            <tr>
+              <td>
+                <p-checkbox #checkboxes [binary]="true" inputId="binary" 
+                  
+                  (onChange)="changeCheckmark($event, product)"></p-checkbox>
+
+              </td>
+              <td>{{product.kod}}</td>
+              <td>{{product.ad}} </td>
+              <td pEditableColumn>
+                <p-cellEditor>
+                  <ng-template pTemplate="input">
+                    <input pInputText type="number" onfocus="this.select()" [(ngModel)]="product.operasyonSuresi" 
+                      required>
+                  </ng-template>
+                  <ng-template pTemplate="output">
+                    {{product.operasyonSuresi}}
+                  </ng-template>
+                </p-cellEditor>
+
+              </td>
+            </tr>
+          </ng-template>
+
+        </p-table>
+      </div>
+
+
+    </div> -->
+
+
+
+
+  </div>
+
+  <div class="form_actions">
+    <div style="
+        width: 100%;
+        display: flex;
+        align-items: center;
+        border: 1px solid #757575;
+        border-radius: 5px;
+  
+        ">
+      <div (click)="onSubmit()" class="ribbon-section" style="height: 40px;">
+        <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on"
+          style="height: 40px; display: flex; justify-content: center;align-items: center;">
+          <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+            src=" ../../assets/icons/actions/save.png">
+          <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+            src=" ../../assets/icons/actions/save.png">
+          <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+            src=" ../../assets/icons/actions/save.png">
+          <div style="font-size: 14px; font-weight: 600;margin-left: 5px;">
+            KAYDET
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-normal-dialog-content>
+
+
+
+
+<!-- 
+ <p-table #dt [value]="products" [rows]="10" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']"
+[(selection)]="selectedProducts" [rowHover]="true" dataKey="id"
+currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+
+<ng-template pTemplate="header">
+    <tr>
+        <th style="width: 3rem">
+            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+         <th style="width:75px;color: #959595 !important;">Kodu</th>
+              <th style="width:100%;color: #959595 !important;">Ad</th>
+              <th style="width:100px;min-width: 100px; color: #959595 !important;">Ü. Süresi</th>
+      
+    </tr>
+</ng-template>
+<ng-template pTemplate="body" let-product>
+    <tr>
+        <td>
+            <p-tableCheckbox [value]="product"></p-tableCheckbox>
+        </td>
+        <td>{{product.kod}}</td>
+              <td>{{product.ad}} </td>
+              <td>{{product.uretimSuresi}} </td>
+
+    </tr>
+</ng-template>
+<ng-template pTemplate="summary">
+    <div class="p-d-flex p-ai-center p-jc-between">
+        In total there are {{products ? products.length : 0 }} products.
+    </div>
+</ng-template>
+</p-table>  -->

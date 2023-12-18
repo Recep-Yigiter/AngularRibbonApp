@@ -4,14 +4,18 @@ export class UrunAgaciCreateModel {
   ad?: any;
   stokId?: any;
   miktar?: any;
-  urunGrubu:any;
+  urunGrubu: any;
   parentId?: any;
   aciklama?: any;
-  UrunAgaciBilesenler?:UrunAgaciHareketCreateModel[]
+  birimFiyat?: any;
+  durum?: any;
+  tip?: any;
+  urunAgaciBilesenler?: UrunAgaciHareketCreateModel[];
+
 }
 
 
-export class UrunAgaciHareketCreateModel{
+export class UrunAgaciHareketCreateModel {
   stokId?: any;
   miktar?: any;
   tip?: any;
@@ -20,5 +24,11 @@ export class UrunAgaciHareketCreateModel{
   oranMiktar?: any;
   fire?: any;
   aciklama?: any;
-  
+  BilesenRotalar?:BilesenRotaCreateModel[];
+}
+
+export class BilesenRotaCreateModel {
+  OperasyonId?: any;
+  OperasyonSuresi?: any;
+  BilesenId?:any;
 }
