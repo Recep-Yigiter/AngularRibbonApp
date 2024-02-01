@@ -16,11 +16,12 @@
             <form class="form" [formGroup]="frm">
                 <common-input label="Kod" [formControlNames]="kod" [field]="OperasyonKod"></common-input>
                 <common-input label="Ad" [formControlNames]="ad"></common-input>
-                <common-input label="Acıklama" [formControlNames]="aciklama"></common-input>
+                <tezgah-select-input label="Tezgah" [formControlNames]="tezgahId" [field]="selectedTezgah?.ad" (childFunc)="tezgahChildFunc($event)"></tezgah-select-input>
+                <common-input label="Acıklama" [formControlNames]="aciklama" ></common-input>
             </form>
         </aside>
 
-
+z
 
     </div>
 

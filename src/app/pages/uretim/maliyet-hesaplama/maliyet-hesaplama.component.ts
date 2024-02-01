@@ -22,7 +22,22 @@ export class MaliyetHesaplamaComponent implements OnInit {
 
   testList: any[];
   async getList() {
-    this.dataSource = (await this.UrunAgaciService.GetList()).data.items.filter(c=>c.durum=="Aktif")
+    this.dataSource = (await this.UrunAgaciService.GetList()).data.items
+
+    this.dataSource.forEach(element => {
+      if (element.urunAgaciBilesenler.length > 0) {
+        element.stokTipi = "YarıMamul"
+      }else{
+        element.stokTipi = "Hammadde"
+      }
+    });
+
+
+    console.log(this.dataSource);
+
+
+
+
   }
 
 
@@ -33,37 +48,6 @@ export class MaliyetHesaplamaComponent implements OnInit {
   onRowUnSelect() {
     this.StokItem = null
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   getFilter(event: Event): any {

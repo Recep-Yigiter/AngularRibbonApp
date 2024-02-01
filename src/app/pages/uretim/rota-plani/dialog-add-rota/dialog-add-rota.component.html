@@ -8,47 +8,15 @@
   </div>
 
 
-  <!-- sortField="bilesenAdi" sortMode="single" [scrollable]="true"
-  scrollHeight="600px" rowGroupMode="subheader" groupRowsBy="bilesenAdi"
- -->
+
 
   <div class="table-layout-content">
     <div class="urun-agaci" style="height: 100%; max-height: 410px; border: 1px solid #d5d5d5;">
-      <!-- <p-table #dt1 [value]="dataSource" responsiveLayout="scroll" [tableStyle]="{'min-width': '50rem'}"
-        selectionMode="single" frozenWidth="1200px" [(selection)]="selectedItem" dataKey="kod" responsiveLayout="scroll"
-        [resizableColumns]="false" [scrollable]="true" scrollHeight="calc(100vh - 730px)" columnResizeMode="expand"
-        (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnSelect()">
-        <ng-template pTemplate="header">
-          <tr>
-            <th style="width:75px;color: #959595 !important;">Stok/Hizmet</th>
-            <th style="width:75px;color: #959595 !important;">Kodu</th>
-            <th style="width:100%;color: #959595 !important;">Ad</th>
-
-          </tr>
-
-        </ng-template>
-        <ng-template pTemplate="body" let-product>
-          <tr [pSelectableRow]="product">
-
-            <td>{{product.shm}}</td>
-            <td>{{product.kod}}</td>
-            <td>{{product.ad}} </td>
-
-          </tr>
-        </ng-template>
 
 
-
-      </p-table> -->
-
-
-      <!-- <p-table [value]="bilesenRotaGruplari"
-      
-      sortField="bilesenAdi" sortMode="single" [scrollable]="true"
-      scrollHeight="600px" rowGroupMode="subheader" groupRowsBy="bilesenAdi"
-
-        [(selection)]="isChecked" dataKey="dataKey"
-        >
+      <p-table [value]="dataSource" sortField="bilesenAdi" sortMode="single" [scrollable]="true" scrollHeight="400px"
+        rowGroupMode="subheader" groupRowsBy="bilesenAdi" [(selection)]="selectedDataSource" dataKey="dataKey"
+        (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)">
 
 
         <ng-template pTemplate="header">
@@ -61,8 +29,6 @@
           </tr>
 
         </ng-template>
-
-        
         <ng-template pTemplate="groupheader" let-customer let-rowIndex="rowIndex" let-expanded="expanded">
           <tr pRowGroupHeader>
             <td colspan="5">
@@ -74,10 +40,10 @@
           <tr [pSelectableRow]="customer">
             <td>
               <p-tableCheckbox [value]="customer"></p-tableCheckbox>
-       
-                <p-checkbox #checkboxes [binary]="true" inputId="binary" 
+
+              <!-- <p-checkbox #checkboxes [binary]="true" inputId="binary" 
                   
-                  (onChange)="changeCheckmark($event, customer)" ></p-checkbox>   
+                  (onChange)="changeCheckmark($event, customer)" ></p-checkbox>    -->
             </td>
             <td style="min-width:200px">
               {{customer.operasyonKodu}}
@@ -85,98 +51,30 @@
             <td style="min-width:200px">
               {{customer.operasyonAdi}}
             </td>
-            <td style="min-width:200px">
-              {{customer.operasyonSuresi}}
-            </td>
 
+            <td pEditableColumn>
+              <p-cellEditor>
+                <ng-template pTemplate="input">
+                  <input pInputText type="number" onfocus="this.select()" [(ngModel)]="customer.operasyonSuresi"
+                    required>
+                </ng-template>
+                <ng-template pTemplate="output">
+                  {{customer.operasyonSuresi}}
+                </ng-template>
+              </p-cellEditor>
+
+            </td>
           </tr>
         </ng-template>
-      </p-table> -->
+      </p-table>
 
 
-      <p-table [value]="bilesenRotaGruplari" [(selection)]="isChecked" dataKey="dataKey">
-        <ng-template pTemplate="header">
-            <tr>
-                <th style="width: 3rem">
-                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                </th>
-                <th>Code</th>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Quantity</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-product>
-            <tr>
-                <td>
-                    <p-tableCheckbox [value]="product"></p-tableCheckbox>
-                </td>
-                <td>{{product.code}}</td>
-                <td style="min-width:200px">
-                  {{product.operasyonKodu}}
-                </td>
-                <td style="min-width:200px">
-                  {{product.operasyonAdi}}
-                </td>
-                <td style="min-width:200px">
-                  {{product.operasyonSuresi}}
-                </td>
-            </tr>
-        </ng-template>
-    </p-table>
-      
+
+
 
     </div>
 
-    <!-- <div class="content-detay" style="position: relative; margin-top:20px ;">
-      ROTALAR
-      <div style="position: absolute; right: 0; font-size: 12px;">
-        Rota Sayısı : <span style="color: red;">{{10| number:'1.0-2' }} </span>
-      </div>
-    </div>
-    <div class="table-display-none activeSelectCategori">
 
-      <div style="height: 100%; max-height: 210px; border: 1px solid #d5d5d5;">
-        <p-table #dt2 [value]="dataSourceRota" [(selection)]="selectedItems" [rowHover]="true" dataKey="kod">
-          <ng-template pTemplate="header">
-            <tr>
-              <th style="width: 3rem">
-              </th>
-              <th style="width:75px;color: #959595 !important;">Kodu</th>
-              <th style="width:250px;min-width: 250px; color: #959595 !important;">Ad</th>
-              <th style="width:100%;color: #959595 !important;">Opresyon Süresi</th>
-            </tr>
-          </ng-template>
-          <ng-template pTemplate="body" let-product>
-            <tr>
-              <td>
-                <p-checkbox #checkboxes [binary]="true" inputId="binary" 
-                  
-                  (onChange)="changeCheckmark($event, product)"></p-checkbox>
-
-              </td>
-              <td>{{product.kod}}</td>
-              <td>{{product.ad}} </td>
-              <td pEditableColumn>
-                <p-cellEditor>
-                  <ng-template pTemplate="input">
-                    <input pInputText type="number" onfocus="this.select()" [(ngModel)]="product.operasyonSuresi" 
-                      required>
-                  </ng-template>
-                  <ng-template pTemplate="output">
-                    {{product.operasyonSuresi}}
-                  </ng-template>
-                </p-cellEditor>
-
-              </td>
-            </tr>
-          </ng-template>
-
-        </p-table>
-      </div>
-
-
-    </div> -->
 
 
 
@@ -214,6 +112,7 @@
 
 
 <!-- 
+
  <p-table #dt [value]="products" [rows]="10" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']"
 [(selection)]="selectedProducts" [rowHover]="true" dataKey="id"
 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
@@ -246,3 +145,5 @@ currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" 
     </div>
 </ng-template>
 </p-table>  -->
+
+

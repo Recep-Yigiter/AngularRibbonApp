@@ -134,7 +134,6 @@
                             (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnSelect()">
                             <ng-template pTemplate="header">
                                 <tr>
-                                    <th style="width:50px;color: #959595 !important;"></th>
                                     <th style="width:75px;color: #959595 !important;">Stok/Hizmet</th>
                                     <th style="width:75px;color: #959595 !important;">Kodu</th>
                                     <th style="width:300px;color: #959595 !important;">Adı</th>
@@ -149,7 +148,6 @@
                                 </tr>
                                 <tr>
 
-                                    <th></th>
                                     <th>
                                         <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
                                             (input)="dt.filter(getFilter($event),'ad', 'contains')"
@@ -209,11 +207,7 @@
                             </ng-template>
                             <ng-template pTemplate="body" let-product>
                                 <tr [pSelectableRow]="product">
-                                    <td style="text-align: center;position: relative;">
-                                        <button pTooltip="Rota Ekle" tooltipPosition="top" pButton pRipple type="button"
-                                            style="top:0;" icon="pi pi-sitemap"
-                                            class="p-button-rounded p-button-text "></button>
-                                    </td>
+   
                                     <td>{{product.shm}}</td>
                                     <td>{{product.kod}}</td>
                                     <td>{{product.ad}} </td>
@@ -302,7 +296,7 @@
                 <div class="table-display-none activeSelectCategori">
                     <div style="height: 322px; border: 1px solid #d5d5d5;">
                         <p-table [value]="rotaGruplama" sortField="bilesenAdi" sortMode="single" dataKey="bilesenAdi"
-                            rowGroupMode="subheader" groupRowsBy="bilesenAdi">
+                            rowGroupMode="subheader" groupRowsBy="bilesenAdi" scrollHeight="300px">
                             <ng-template pTemplate="header">
                                 <tr>
                                     <th style="max-width: 200px; width: 200px; color: #959595 !important;">Rota Kodu</th>
@@ -332,7 +326,7 @@
                                         {{customer.operasyonAdi}}
                                     </td>
                                     <td>
-                                        {{customer.operasyonSuresi}}
+                                        {{customer.operasyonSuresi}} sn
                                     </td>
 
                                     

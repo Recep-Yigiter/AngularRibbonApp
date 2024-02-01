@@ -42,13 +42,15 @@ export class CardUrunAgaciComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.TreeViewList();
   }
+
+
+
+
   async TreeViewList() {
     const getList = await this.UrunAgaciService.GetList();
     this.treeViewDataSource = getList;
-
 
     const deneme = this.treeViewDataSource.data.items.filter(d => d.urunGrubu == "Kabin")
 
@@ -101,26 +103,29 @@ export class CardUrunAgaciComponent implements OnInit {
 
   }
   updateDialog() {
-
     if (this.selectedNode.submenu == undefined) {
       this.customDialogService.largeDialog({
         componentType: DialogUpdateUrunAgaciComponent,
         data: this.selectedNode,
-        afterClose: () => { this.TreeViewList() }
+        afterClose: () => {
+          this.TreeViewList()
+        }
       })
     }
     else {
       this.customDialogService.largeDialog({
         componentType: DialogUpdateUrunAgaciComponent,
         data: this.selectedNode,
-        afterClose: () => { this.TreeViewList() }
+        afterClose: () => {
+          this.TreeViewList()
+        }
       })
     }
 
 
   }
   deleteDialog() {
-    console.log(this.selectedNode)
+
     if (this.selectedNode.submenu == undefined || this.selectedNode == null) {
       this.customDialogService.deleteDialog(() => {
 
@@ -132,7 +137,6 @@ export class CardUrunAgaciComponent implements OnInit {
 
   }
   selectNode(node: any) {
-
     this.UrunAgaciDetayList = []
     this.selectedNode = node;
     this.UrunAgaciDetayList = [
@@ -182,7 +186,23 @@ export class CardUrunAgaciComponent implements OnInit {
       { label: "Satış Vade Süresi", value: null },
       { label: "Satır İskonto", value: null },
     ]
-    
+
+  }
+
+
+
+
+
+
+  Visible(node: any) {
+
+    if (node.submenu && node.submenu?.length) {
+      if (this.expand[node.index]) {
+        this.expand[node.index] = false;
+      } else {
+        this.expand[node.index] = true;
+      }
+    }
   }
 
 

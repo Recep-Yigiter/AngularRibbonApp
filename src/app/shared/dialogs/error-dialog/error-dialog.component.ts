@@ -19,7 +19,6 @@ export class ErrorDialogComponent implements OnInit {
     this.deneme = [];
     if (this.data != null) {
       this.deneme.push(this.data)
-      console.log(this.deneme)
     }
     else
     this.data.error.Errors.forEach(element => {

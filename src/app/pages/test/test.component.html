@@ -1,0 +1,97 @@
+<app-content-layout layoutName="Tezgah Listesi" [tableActions]="true">
+    <div class="table-action-layout-content">
+       
+        <div (click)="addNewCardDialog()" class="ribbon-section" style="height: 40px;margin-bottom: 3px;">
+            <div class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/actions/folder_add.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/actions/folder_add.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/actions/folder_add.png">
+
+            </div>
+
+        </div>
+        <div (click)="addChildDialog()" class="ribbon-section" style="height: 40px; margin-bottom: 3px;">
+            <div ngClass="{{selectedNode?'':'disabled'&& selectedNode?.submenu==undefined?'disabled':'' }}"
+                class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/actions/folder_down.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/actions/folder_down.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/actions/folder_down.png">
+
+            </div>
+        </div>
+        <div (click)="updateDialog()" class="ribbon-section" style="height: 40px;margin-bottom: 3px;">
+            <div ngClass="{{selectedNode?'':'disabled'&& selectedNode?.submenu==undefined?'disabled':'' }}"
+                class="ribbon-button ribbon-button-large" id="add-table-btn" unselectable="on" style="height: 40px;">
+                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/actions/edit.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/actions/edit.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/actions/edit.png">
+
+            </div>
+
+        </div>
+        <div (click)="deleteDialog()" class="ribbon-section" style="height: 40px; margin-bottom: 3px;">
+            <div ngClass="{{selectedNode?'':'disabled'&& selectedNode?.submenu==undefined?'disabled':'' }}"
+                class="ribbon-button ribbon-button-large " id="add-table-btn" unselectable="on" style="height: 40px;">
+                <img style="width: 30px; height: 30px; " class="ribbon-icon ribbon-normal"
+                    src=" ../../assets/icons/actions/delete.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-hot"
+                    src=" ../../assets/icons/actions/delete.png">
+                <img style="width: 30px; height: 30px;" class="ribbon-icon ribbon-disabled"
+                    src=" ../../assets/icons/actions/delete.png">
+            </div>
+        </div>
+    </div>
+    <div class="table-layout-content">
+        
+        <div class="content-detay" style="position: relative;">
+            Ürün Ağacı LİSTESİ
+            <div style="position: absolute; right: 0; font-size: 12px;">
+                Ürün Sayısı Sayısı: <span style="color: red;">{{10000 | number:'1.0-2' }} kayıt </span>
+            </div>
+        </div>
+        <div class="table-display-none activeSelectCategori" style="height: 610px;
+    overflow-y: auto;">
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width: 100%;" matSort
+                matSortActive="created" matSortDisableClear matSortDirection="desc">
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef>
+                        <span [style.paddingLeft.px]="40"> Ağaç Adı</span>
+                    </th>
+                    <td mat-cell *matCellDef="let data">
+                        <button mat-icon-button [style.visibility]="!data.expandable ? 'hidden' : ''"
+                            [style.marginLeft.px]="data.level * 32" (click)="treeControl.toggle(data)">
+                            <mat-icon class="mat-icon-rtl-mirror">
+                                {{treeControl.isExpanded(data) ? 'expand_more' : 'chevron_right'}}
+                            </mat-icon>
+                        </button>
+                        <span [ngClass]="data.expandable?'btnExpandable': ''">
+                            {{data.ad}} 
+                        </span>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="birim">
+                    <th mat-header-cell *matHeaderCellDef> Birim </th>
+                    <td mat-cell *matCellDef="let data"> {{data.birim}} </td>
+                </ng-container>
+                <ng-container matColumnDef="birimFiyat">
+                    <th mat-header-cell *matHeaderCellDef> Birim Fiyat </th>
+                    <td mat-cell *matCellDef="let data"> {{data.birimFiyat}} </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="rowClick(row);"
+                    style="color: red !important;"
+                    [ngClass]="{  'menu-node-name-selected': (row === selectedNode),'menu-node-folder':(row.submenu?.length>0)}">
+                </tr>
+            </table> 
+        </div>
+    </div>
+</app-content-layout>

@@ -39,21 +39,6 @@ export class AlisFaturaComponent implements OnInit {
     this.formReferans = `${this.frm.value.seri}-${this.faturaBelgeNo?.kod}`
 
 
-    var numaralar = [12, 246, 786, 898, 0, 3, 5, 7]
-    function name(nums) {
-      let max_num = Number.NEGATIVE_INFINITY;
-      
-      for (let num of nums) {
-       
-        if (num > max_num) {
-          max_num =num
-
-        }
-      }
-      return max_num;
-    }
-
-  console.log(name(numaralar));;
 
   }
 

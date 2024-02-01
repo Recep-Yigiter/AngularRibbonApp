@@ -12,7 +12,7 @@ import { OperasyonService } from '../services/operasyon.service';
 })
 export class DialogAddOperasyonComponent implements OnInit {
   selectBirimId: any;
-  OperasyonKod:any;
+  OperasyonKod: any;
   constructor(private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<DialogAddOperasyonComponent>,
@@ -22,7 +22,7 @@ export class DialogAddOperasyonComponent implements OnInit {
   async ngOnInit() {
 
     const getKod = await this.OperasyonService.GetCode();
-    
+
     this.OperasyonKod = getKod.data.kod;
 
   }
@@ -30,17 +30,21 @@ export class DialogAddOperasyonComponent implements OnInit {
 
     kod: [null, [Validators.required, Validators.maxLength(16)]],
     ad: [null, [Validators.required, Validators.maxLength(16)]],
+    tezgahId: [null, [Validators.required, Validators.maxLength(16)]],
     aciklama: [null, [Validators.required, Validators.maxLength(16)]],
 
   });
   get kod() { return this.frm.get('kod') }
   get ad() { return this.frm.get('ad') }
+  get tezgahId() { return this.frm.get('tezgahId') }
   get aciklama() { return this.frm.get('aciklama') }
 
   onSubmit() {
     const model = new OperasyonCreateModel();
     model.ad = this.frm.value.ad;
     model.kod = this.frm.value.kod;
+    model.tezgahId = this.selectedTezgah.id;
+
 
     this.OperasyonService.create(model, () => {
       this.frm.reset();
@@ -50,4 +54,11 @@ export class DialogAddOperasyonComponent implements OnInit {
     })
   }
 
+
+
+  selectedTezgah: any;
+  tezgahChildFunc(item) {
+    this.selectedTezgah = item
+
+  }
 }

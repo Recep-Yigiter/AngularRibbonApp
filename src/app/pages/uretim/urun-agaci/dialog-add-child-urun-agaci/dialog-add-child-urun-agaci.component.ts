@@ -28,6 +28,13 @@ export class DialogAddChildUrunAgaciComponent implements OnInit {
   btnDisabledAction: boolean = true;
   getAllUrunAgaciBilesen: any;
   getAllUrunAgaci: any;
+ 
+  stokSelectItem: any;
+  stokSelectItemKod: any;
+  stokSelectItemAd: any;
+  rotaGruplama: any[];
+  urunAgaciBilesenler: any[] = [];
+  urunAgaciBilesen: any;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
     private UrunAgaciService: UrunAgaciService,
     private dialogRef: MatDialogRef<DialogAddChildUrunAgaciComponent>,
@@ -36,25 +43,11 @@ export class DialogAddChildUrunAgaciComponent implements OnInit {
     private CustomDialogService: CustomDialogService,
     private UrunAgaciBilesenService: UrunAgaciBilesenService
   ) { }
-  customers: any;
+
   async ngOnInit() {
-    this.customers = [{
-      "id": 1000,
-      "name": "James Butt",
-      "company": "Benton, John B Jr",
-      "date": "2015-09-13",
-      "status": "unqualified",
-      "verified": true,
-      "activity": 17,
-      "rotalar": {
-        "name": "Ioni Bowcher",
-      },
-      "balance": 70663
-    },]
     this.selectedDurum = 'Aktif';
     this.selectedTip = 'Proses';
     this.dataSource = [{ ad: "", miktar: 0 }];
-
     const fatura = await this.UrunAgaciService.GetCode();
     this.urunAgaciKod = fatura.data.kod;
 
@@ -62,9 +55,7 @@ export class DialogAddChildUrunAgaciComponent implements OnInit {
     this.getAllUrunAgaci = (await this.UrunAgaciService.GetList()).data.items;
   }
 
-  ngAfterViewChecked(): void {
-    this.changeDetectorRef.detectChanges();
-  }
+
 
   public frm: FormGroup = this.fb.group({
     ustUrunAgaciAdi: [null, [Validators.required, Validators.maxLength(16)]],
@@ -81,13 +72,14 @@ export class DialogAddChildUrunAgaciComponent implements OnInit {
   get stokUrunAgaci() { return this.frm.get('stokUrunAgaci') }
   get stokUrunAgaciHareket() { return this.frm.get('stokUrunAgaciHareket') }
 
-
+ 
   onRowSelect(event: any) { this.urunAgaciItem = event.data; }
   onRowUnSelect() { this.urunAgaciItem = null; }
   durumChange(item) { this.selectedDurum = item; }
   tipChange(item) { this.selectedTip = item; }
-
-
+  ngAfterViewChecked(): void {
+    this.changeDetectorRef.detectChanges();
+  }
   onSubmit() {
 
     const model = new UrunAgaciCreateModel();
@@ -120,9 +112,6 @@ export class DialogAddChildUrunAgaciComponent implements OnInit {
       this.CustomDialogService.errorDialog(errorMessage);
     })
   }
-
-  urunAgaciBilesenler: UrunAgaciHareketCreateModel[] = [];
-  urunAgaciBilesen: any;
   addStok() {
     this.urunAgaciBilesen = {}
     this.CustomDialogService.normalDialog({
@@ -131,13 +120,22 @@ export class DialogAddChildUrunAgaciComponent implements OnInit {
     },
       (data) => {
         var item = this.getAllUrunAgaci.filter(c => c.stokId == data.id)
-        this.urunAgaciBilesen.shm = "Stok";
-        this.urunAgaciBilesen.birimFiyat = data.birimFiyat ? data.birimFiyat : 0;
-        this.urunAgaciBilesen.stokId = data.id;
-        this.urunAgaciBilesen.ad = data.ad;
-        this.urunAgaciBilesen.kod = data.kod
+
+        this.urunAgaciBilesen.kod = data.kod,
+        this.urunAgaciBilesen.aciklama = null,
+        this.urunAgaciBilesen.ad = data.ad,
+        this.urunAgaciBilesen.aciklama = data.aciklama,
+        this.urunAgaciBilesen.bilesenRotalar = [],
         this.urunAgaciBilesen.birimAdi = data.birimAdi;
+        this.urunAgaciBilesen.birimFiyat = data.birimFiyat ? data.birimFiyat : 0;
+        this.urunAgaciBilesen.fiyatListesiId = null;
+        this.urunAgaciBilesen.fire = 0;
         this.urunAgaciBilesen.miktar = 0;
+        this.urunAgaciBilesen.oranMiktar = 0;
+        this.urunAgaciBilesen.shm = "Stok";
+        this.urunAgaciBilesen.stokId = data.id;
+        this.urunAgaciBilesen.stokAdi = data.ad;
+        this.urunAgaciBilesen.stokKodu = data.kod
         if (item.length > 0) {
           this.urunAgaciBilesen.tipi = "Yarımamul"
         } else {
@@ -150,7 +148,6 @@ export class DialogAddChildUrunAgaciComponent implements OnInit {
 
     )
   }
-
   deleteUrunAgaciHareket() {
     this.CustomDialogService.deleteDialog(() => {
       var filterTalepHareket = this.urunAgaciBilesenler.filter(c => c.stokId != this.urunAgaciBilesen.stokId);
@@ -161,11 +158,6 @@ export class DialogAddChildUrunAgaciComponent implements OnInit {
     })
 
   }
-
-
-  stokSelectItem: any;
-  stokSelectItemKod: any;
-  stokSelectItemAd: any;
   stokChildFunc(item) {
 
     if (this.frm.value.urunAgaciAdi == undefined || this.frm.value.urunAgaciAdi == '' || this.frm.value.urunAgaciAdi == null) {
@@ -184,10 +176,6 @@ export class DialogAddChildUrunAgaciComponent implements OnInit {
     }
 
   }
-
-
-  rotaGruplama: any[];
-
   rotaEkle() {
 
     this.CustomDialogService.normalDialog({
@@ -195,25 +183,16 @@ export class DialogAddChildUrunAgaciComponent implements OnInit {
       data: this.urunAgaciBilesenler,
       afterClose: () => { }
     }, (data) => {
-      console.log(data);
-      this.urunAgaciBilesenler = data
-      this.rotaGruplama = [];
-      for (let i = 0; i < data.length; i++) {
-        for (let t = 0; t < data[i].bilesenRotalar.length; t++) {
 
-          var test = {
-            bilesenAdi: data[i].ad,
-            operasyonAdi: data[i].bilesenRotalar[t].operasyonAdi,
-            operasyonKodu: data[i].bilesenRotalar[t].operasyonKodu,
-            operasyonId: data[i].bilesenRotalar[t].operasyonId,
-            operasyonSuresi: data[i].bilesenRotalar[t].operasyonSuresi
+      this.rotaGruplama = data;
+      for (let bilesen of this.urunAgaciBilesenler) {
+        bilesen.bilesenRotalar = []
+        for (let rotaGrup of data) {
+          if (bilesen.stokId==rotaGrup.stokId) {
+            bilesen.bilesenRotalar.push(rotaGrup)
           }
-
-          this.rotaGruplama.push(test);
-
-
+        
         }
-
       }
 
 
@@ -223,8 +202,6 @@ export class DialogAddChildUrunAgaciComponent implements OnInit {
 
 
   }
-
-
   getFilter(event: Event): any {
     return (event.target as HTMLInputElement).value;
   }

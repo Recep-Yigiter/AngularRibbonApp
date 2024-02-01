@@ -136,7 +136,6 @@ export class CardReceteComponent implements OnInit {
     })
   }
   addChildDialog() {
-    console.log(this.selectedNode)
     if (this.selectedNode != undefined) {
       this.CustomDialogService.smallDialog({
         componentType: DialogAddChildReceteComponent,

@@ -10,6 +10,7 @@ export class UrunAgaciCreateModel {
   birimFiyat?: any;
   durum?: any;
   tip?: any;
+  operasyonMaliyeti?:any;
   urunAgaciBilesenler?: UrunAgaciHareketCreateModel[];
 
 }

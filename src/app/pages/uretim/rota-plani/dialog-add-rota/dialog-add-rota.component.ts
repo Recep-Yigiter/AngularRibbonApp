@@ -9,14 +9,10 @@ import { OperasyonService } from '../../operasyon/services/operasyon.service';
   styleUrls: ['./dialog-add-rota.component.scss']
 })
 export class DialogAddRotaComponent implements OnInit {
-  rotaItem: any;
-
-  selectedItem: any;
-  selectedItems: any[];
-  dataSourceRota: any;
-  btnDisabledAction: boolean = true;
-
-  bilesenRotaGruplari: any;
+  dataSource: any;
+  operasyonList: any;
+  selectedDataSource: any[];
+  _selectedDataItem: any;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: DialogRef,
@@ -26,123 +22,125 @@ export class DialogAddRotaComponent implements OnInit {
   async ngOnInit() {
 
 
-    this.isChecked = []
-    this.dataSourceRota = (await this.OperasyonService.GetList()).data.items
+    this.operasyonList = (await this.OperasyonService.GetList()).data.items;
 
-    this.bilesenRotaGruplari = [];
+    this.dataSource = [];
     this.data.forEach(element1 => {
-      this.dataSourceRota.forEach(element2 => {
-        let test = {
-          bilesenAdi: element1.ad,
-          stokId: element1.stokId,
-          operasyonId: element2.id,
-          operasyonAdi: element2.ad,
-          operasyonKodu: element2.kod,
-          operasyonSuresi: 0,
-          dataKey: element1.stokId + ' ' + element2.ad,
-        }
-        this.bilesenRotaGruplari.push(test);
-      });
-
+      if (element1.bilesenRotalar.length>0) {
+        element1.bilesenRotalar.forEach(element2 => {
+          this.operasyonList.forEach(element3 => {
+      
+            let test = {
+              bilesenAdi: element1.ad,
+              stokId: element1.stokId,
+              operasyonId: element3.id,
+              operasyonAdi: element3.ad,
+              operasyonKodu: element3.kod,
+              tezgahAdi: element3.tezgahAdi,
+              tezgahGucu: element3.tezgahGucu,
+              operasyonSuresi:this.selectedDataSource? element2.operasyonSuresi:0,
+              dataKey: element1.stokId + ' ' + element3.ad,
+            }
+            this.dataSource.push(test);
+    
+          });
+        });
+      }
+      else{
+        this.operasyonList.forEach(element3 => {
+      
+          let test = {
+            bilesenAdi: element1.ad,
+            stokId: element1.stokId,
+            operasyonId: element3.id,
+            operasyonAdi: element3.ad,
+            operasyonKodu: element3.kod,
+            tezgahAdi: element3.tezgahAdi,
+            tezgahGucu: element3.tezgahGucu,
+            // operasyonSuresi:this.selectedDataSource? element2.operasyonSuresi:0,
+            dataKey: element1.stokId + ' ' + element3.ad,
+          }
+          this.dataSource.push(test);
+  
+        });
+      }
+      
 
     });
 
 
-    var test = {
-      bilesenAdi: "1.5  mm DKP SAC",
-      dataKey: "8548be78-5185-4054-d9c9-08dbdebfff4f BÜKÜM",
-      operasyonAdi: "BÜKÜM",
-      operasyonId: "a4d2e965-1a2a-4c5b-b637-08dbfa11aa4b",
-      operasyonKodu: "0000000000000001",
-      operasyonSuresi: 0,
-      stokId: "8548be78-5185-4054-d9c9-08dbdebfff4f"
-    }
+    this.selectedDataSource = [];
+    this.data.forEach(item1 => {
+      item1.shm = "Stok";
 
-    this.isChecked.push(test)
+      if (item1.bilesenRotalar.length > 0) {
+        item1.bilesenRotalar.forEach(item2 => {
+          let params = {
+            bilesenAdi: item1.ad,
+            stokId: item1.stokId,
+            operasyonId: item2.operasyonId,
+            operasyonAdi: item2.operasyonAdi,
+            operasyonKodu: item2.operasyonKodu,
+            operasyonSuresi: item2.operasyonSuresi,
+            dataKey: item1.stokId + ' ' + item2.operasyonAdi,
+          }
+          this.selectedDataSource.push(params);
+
+        });
+      }
+    });
 
 
-    // this.isChecked = [];
-    // this.data.forEach(item1 => {
-    //   item1.shm = "Stok";
-    //   if (item1.bilesenRotalar.length > 0) {
-    //     item1.bilesenRotalar.forEach(item2 => {
-
-    //       let params = {
-    //         bilesenAdi: item1.ad,
-    //         stokId: item1.stokId,
-    //         operasyonId: item2.operasyonId,
-    //         operasyonAdi: item2.operasyonAdi,
-    //         operasyonKodu: item2.operasyonKodu,
-    //         operasyonSuresi: 0,
-    //         dataKey: item1.stokId + ' ' + item2.ad,
-    //       }
-    //       this.isChecked.push(params);
-
-    //     });
-    //   }
-    // });
-
-    // console.log(this.isChecked);
-    console.log(this.bilesenRotaGruplari);
   }
 
 
-  onRowSelect(event: any) {
-    this.rotaItem = event.data;
-    this.isChecked = this.selectedItem.bilesenRotalar
-  }
-  onRowUnSelect() { this.rotaItem = null; }
+  private addDuplicatedRotalar(dataSource: any[], selectedDataSource: any[]): any[] {
 
-  _selectedDataItem: any;
-  onSubmit() {
-
-    this._selectedDataItem = this.data;
-    // this.dialogRef.close({ data: this._selectedDataItem })
-  }
-
-
-  getFilter(event: Event): any {
-    return (event.target as HTMLInputElement).value;
-  }
-
-  isChecked: any[];
-
-  changeCheckmark(boolEvt, operasyon) {
-
-    this.isChecked = this.data.filter(c => c.stokId == operasyon.stokId)[0].bilesenRotalar;
-
-    let params = {
-      stokId: operasyon.stokId,
-      operasyonId: operasyon.operasyonId,
-      urunAgacibilesenId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      operasyonSuresi: operasyon.operasyonSuresi,
-      operasyonAdi: operasyon.operasyonAdi,
-      operasyonKodu: operasyon.operasyonKodu
-    }
-    if (boolEvt.checked) {
-      this.isChecked.push(params);
-
-    } else {
-      for (let index = 0; index < this.isChecked.length; index++) {
-        const element = this.isChecked[index];
-
-        if (element.id == operasyon.id) {
-          this.isChecked.splice(index, 1);
+    
+    let changeDataSource: any[] = []; 
+    for (let data of dataSource) {
+      let durum: boolean = false;
+      for (let selected of selectedDataSource) {
+        if (data.dataKey === selected.dataKey) {
+          durum = true;
+          break;
         }
       }
+      if (durum) {
+        changeDataSource.push(data)
+      };
     }
+    return changeDataSource;
+  }
+
+  onSubmit() {
+    this._selectedDataItem = this.addDuplicatedRotalar(this.dataSource, this.selectedDataSource);
+    this._selectedDataItem.forEach(element => {
+      element.maliyet=element.operasyonSuresi * element.tezgahGucu
+    });
+
+  this.dialogRef.close({ data: this._selectedDataItem })
+  }
+
+ 
 
 
-    if (this.isChecked.length > 0) {
-      this.btnDisabledAction = false
-    }
+  onRowSelect(event) {
+    let test = event.data;
+    this.data.filter(c => c.stokId == test.stokId)[0].bilesenRotalar.push(test);
   }
 
 
+  onRowUnselect(event) {
 
+    let test = event.data;
+    var bilesenRotalar = this.data.filter(c => c.stokId == test.stokId)[0].bilesenRotalar
 
-
-
-
-
+    for (let index = 0; index < bilesenRotalar.length; index++) {
+      const element = bilesenRotalar[index];
+      if (element.operasyonId == test.operasyonId) {
+        bilesenRotalar.splice(index, 1);
+      }
+    }
+  }
 }

@@ -36,7 +36,7 @@
             </div>
 
             <mat-radio-group aria-label="Select an option" (click)="tipChange(selectedTip)" [(ngModel)]="selectedTip">
-                <mat-radio-button class="exmple-radio-button" *ngFor="let tip of tips" [value]="tip.key"
+                <mat-radio-button class="exmple-radio-button" *ngFor="let tip of tips" [value]="tip.key" 
                     [checked]="tip.checked">
                     {{tip.key}}
                 </mat-radio-button>
@@ -123,14 +123,13 @@
                 </div>
                 <div class="table-display-none activeSelectCategori">
                     <div style="height: 322px; border: 1px solid #d5d5d5;">
-                        <p-table #dt [value]="getListByIdUrunAgaciBilesen" [tableStyle]="{'min-width': '50rem'}"
+                        <p-table #dt [value]="urunAgaciBilesenler" [tableStyle]="{'min-width': '50rem'}"
                             selectionMode="single" frozenWidth="1200px" [(selection)]="selectedItem" dataKey="stokKodu"
                             responsiveLayout="scroll" [resizableColumns]="false" [scrollable]="true"
-                            scrollHeight="calc(100vh - 345px)" columnResizeMode="expand" selectionMode="single"
+                            scrollHeight="calc(100vh - 445px)" columnResizeMode="expand" 
                             (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnSelect()">
                             <ng-template pTemplate="header">
                                 <tr>
-                                    <th style="width:75px;color: #959595 !important;">Stok/Hizmet</th>
                                     <th style="width:75px;color: #959595 !important;">Kodu</th>
                                     <th style="width:300px;color: #959595 !important;">Adı</th>
                                     <th style="width:75px;color: #959595 !important;">Tipi</th>
@@ -143,10 +142,7 @@
                                     <th style="width:100px;color: #959595 !important;">Açıklama</th>
                                 </tr>
                                 <tr>
-                                    <th>
-                                        <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
-                                            (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
-                                    </th>
+                                   
                                     <th>
                                         <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
                                             (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
@@ -191,7 +187,6 @@
                             </ng-template>
                             <ng-template pTemplate="body" let-product>
                                 <tr [pSelectableRow]="product">
-                                    <td>{{product.shm}}</td>
                                     <td>{{product.stokKodu}}</td>
                                     <td>{{product.stokAdi}} </td>
                                     <td>{{product.tipi}} </td>
@@ -276,9 +271,10 @@
                 </div>
 
                 <div class="table-display-none activeSelectCategori">
-                    <div style="height: 322px; border: 1px solid #d5d5d5;">
-                        <p-table [value]="bilesenRotalar" sortField="bilesenAdi" sortMode="single" dataKey="bilesenAdi"
-                            rowGroupMode="subheader" groupRowsBy="bilesenAdi">
+                    <div style="height: 322px; border: 1px solid #d5d5d5; width: 550px;">
+                      
+                        <p-table [value]="rotaGruplama" sortField="bilesenAdi" sortMode="single" dataKey="bilesenAdi"
+                            rowGroupMode="subheader" groupRowsBy="bilesenAdi" scrollHeight="300px"> 
                             <ng-template pTemplate="header">
                                 <tr>
                                     <th style="max-width: 200px; width: 200px; color: #959595 !important;">Rota Kodu</th>
@@ -307,19 +303,11 @@
                                     <td>
                                         {{customer.operasyonAdi}}
                                     </td>
-
-                                    <td pEditableColumn>
-                                        <p-cellEditor>
-                                            <ng-template pTemplate="input">
-                                                <input pInputText type="number" onfocus="this.select()"
-                                                    [(ngModel)]="customer.operasyonSuresi" required>
-                                            </ng-template>
-                                            <ng-template pTemplate="output">
-                                                {{customer.operasyonSuresi}}
-                                            </ng-template>
-                                        </p-cellEditor>
-
+                                    <td>
+                                        {{customer.operasyonSuresi}} sn
                                     </td>
+
+                                    
                                 </tr>
                             </ng-template>
                         </p-table>

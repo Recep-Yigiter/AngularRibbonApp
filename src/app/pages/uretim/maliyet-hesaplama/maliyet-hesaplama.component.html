@@ -39,15 +39,20 @@
                     <tr>
                         <th style="width: 350px; color: #959595 !important;">Stok Adı</th>
                         <th style="width:150px;color: #959595 !important;">Ürün Grubu</th>
+                        <th style="width:150px;color: #959595 !important;">Stok Tipi</th>
                         <th style="width:150px;color: #959595 !important;">Tip</th>
                         <th style="width:150px;color: #959595 !important;">Durum</th>
                         <th style="width:130px;color: #959595 !important;">Malzeme Maliyeti</th>
+                        <th style="width:130px;color: #959595 !important;">E.Tüketim Maliyeti</th>
                         <th style="width:130px;color: #959595 !important;">İşçilik Maliyeti</th>
-                        <th style="width:130px;color: #959595 !important;">Diğer Giderler</th>
                         <th style="width:auto; min-width: 150px;color: #959595 !important;">Toplam Mliyet</th>
                     </tr>
                     <tr>
 
+                        <th>
+                            <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
+                                (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
+                        </th>
                         <th>
                             <input style="padding: 5px 10px;width: 100%;" pInputText type="text"
                                 (input)="dt.filter(getFilter($event),'ad', 'contains')" class="p-column-filter">
@@ -89,6 +94,7 @@
                         [pSelectableRowDisabled]="product.durum==false?true:false">
                         <td>{{product.ad}}</td>
                         <td>{{product.urunGrubu}}</td>
+                        <td>{{product.stokTipi}}</td>
                         <td>{{product.tip}}</td>
                         <td>{{product.durum}}</td>
                         <td>{{product.birimFiyat |currency:'TRY':'₺':'0.2-2'}}</td>

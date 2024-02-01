@@ -22,15 +22,18 @@ export class UrunAgaciTreeViewService  {
                 id: value.id,
                 ad: value.ad,
                 kod:value.kod,
+                birimId: value.birimId,
                 birimAdi: value.birimAdi,
                 birimFiyat: value.birimFiyat,
-                birimId: value.birimId,
                 stokGrup:value.stokGrup,
                 urunGrubu:value.urunGrubu,
                 parentId:value.parentId,
+                stokId:value.stokId,
                 stokAdi:value.stokAdi,
                 stokKodu:value.stokKodu,
                 miktar:value.miktar,
+                tip:value.tip,
+                durum:value.durum,
                 submenu: (value.submenu !== undefined)
                     ? value.submenu.map(createTreeNode)
                     : undefined
@@ -59,6 +62,8 @@ export class UrunAgaciTreeViewService  {
     }
     toNode(x: any): any {
         const y: any = { ...x };
+
+        
         y.index = ++this.index;
         for (let n = 0; n < y.submenu?.length; n++) {
             y.submenu[n] = this.toNode(y.submenu[n])
@@ -66,6 +71,7 @@ export class UrunAgaciTreeViewService  {
         return y;
     }
     toggleVisible(node: any) {
+ 
         if (node.submenu && node.submenu?.length) {
             if (this.expand[node.index]) {
                 this.expand[node.index] = false;

@@ -133,6 +133,12 @@ import { OperasyonComponent } from './pages/uretim/operasyon/operasyon.component
 import { DialogAddOperasyonComponent } from './pages/uretim/operasyon/dialog-add-operasyon/dialog-add-operasyon.component';
 import { DialogUpdateOperasyonComponent } from './pages/uretim/operasyon/dialog-update-operasyon/dialog-update-operasyon.component';
 import { ListOperasyonComponent } from './pages/uretim/operasyon/list-operasyon/list-operasyon.component';
+import { DialogAddTezgahComponent } from './pages/uretim/tezgah/dialog-add-tezgah/dialog-add-tezgah.component';
+import { DialogUpdateTezgahComponent } from './pages/uretim/tezgah/dialog-update-tezgah/dialog-update-tezgah.component';
+import { DialogSelectTezgahComponent } from './pages/uretim/tezgah/dialog-select-tezgah/dialog-select-tezgah.component';
+import { TezgahSelectInput } from './shared/components/select-input/tezgah-select-input/tezgah-select-input';
+import { ListTezgahComponent } from './pages/uretim/tezgah/list-tezgah/list-tezgah.component';
+import { TestComponent } from './pages/test/test.component';
 
 @NgModule({
   declarations: [
@@ -259,7 +265,13 @@ import { ListOperasyonComponent } from './pages/uretim/operasyon/list-operasyon/
     OperasyonComponent,
     DialogAddOperasyonComponent,
     DialogUpdateOperasyonComponent,
-    ListOperasyonComponent
+    ListOperasyonComponent,
+    DialogAddTezgahComponent,
+    DialogUpdateTezgahComponent,
+    DialogSelectTezgahComponent,
+    TezgahSelectInput,
+    ListTezgahComponent,
+    TestComponent
 
   ],
   imports: [

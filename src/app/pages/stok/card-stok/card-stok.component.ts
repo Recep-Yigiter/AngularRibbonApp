@@ -58,7 +58,6 @@ export class CardStokComponent implements OnInit {
     });
     var tree = this.StokTreeViewService.CreateTreeView(this.treeViewDataSource.data.items);
     this.menu = tree.map(x => this.StokTreeViewService.toNode(x));
-console.log(this.menu.filter(p=>p.index==1).map(c=>c.ad)[0])
     this.selectedNode = null;
 
     this.stokDetayList = [

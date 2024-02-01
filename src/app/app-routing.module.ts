@@ -26,6 +26,8 @@ import { CardUrunAgaciComponent } from './pages/uretim/urun-agaci/card-urun-agac
 import { MaliyetHesaplamaComponent } from './pages/uretim/maliyet-hesaplama/maliyet-hesaplama.component';
 import { OperasyonComponent } from './pages/uretim/operasyon/operasyon.component';
 import { ListOperasyonComponent } from './pages/uretim/operasyon/list-operasyon/list-operasyon.component';
+import { ListTezgahComponent } from './pages/uretim/tezgah/list-tezgah/list-tezgah.component';
+import { TestComponent } from './pages/test/test.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'stok', pathMatch: 'full', },
@@ -70,6 +72,8 @@ const routes: Routes = [
          { path: "urun-agaci-kart", component: CardUrunAgaciComponent },
          { path: "maliyet-hesaplama", component: MaliyetHesaplamaComponent },
          { path: "operasyon", component: ListOperasyonComponent },
+         { path: "tezgah", component: ListTezgahComponent },
+         { path: "test", component: TestComponent },
         ]
       },
 

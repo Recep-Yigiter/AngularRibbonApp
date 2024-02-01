@@ -14,7 +14,6 @@ export class ReceteTreeViewService {
       return arr.find((parent) => parent.id === id);
     }
     function createTreeNode(value) {
-      console.log(value)
       return {
         id: value.id,
         ad: value.ad,
